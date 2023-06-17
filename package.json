@@ -4,7 +4,7 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md,js}\""
   },
   "devDependencies": {
     "@turbo/gen": "^1.9.7",
@@ -13,7 +13,7 @@
     "prettier": "^2.5.1",
     "turbo": "^1.9.7"
   },
-  "name": "monorepo",
+  "name": "juanmsl",
   "packageManager": "npm@8.1.2",
   "workspaces": [
     "apps/*",

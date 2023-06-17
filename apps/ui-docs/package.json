@@ -1,0 +1,49 @@
+{
+  "name": "@juanmsl/ui-docs",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "engines": {
+    "node": "16"
+  },
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build": "tsc && storybook build",
+    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@juanmsl/hooks": "*",
+    "@juanmsl/ui": "*",
+    "axios": "^1.4.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.1",
+    "@storybook/addon-actions": "^7.0.21",
+    "@storybook/addon-essentials": "^7.0.21",
+    "@storybook/addon-interactions": "^7.0.21",
+    "@storybook/addon-links": "^7.0.21",
+    "@storybook/cli": "^7.0.21",
+    "@storybook/node-logger": "^7.0.21",
+    "@storybook/react": "^7.0.21",
+    "@storybook/react-vite": "^7.0.21",
+    "@storybook/testing-library": "^0.1.0",
+    "@types/react": "^18.0.37",
+    "@types/react-dom": "^18.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.59.0",
+    "@typescript-eslint/parser": "^5.59.0",
+    "@vitejs/plugin-react-swc": "^3.0.0",
+    "babel-loader": "^8.3.0",
+    "eslint": "^8.38.0",
+    "eslint-config-custom": "*",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.3.4",
+    "eslint-plugin-storybook": "^0.6.12",
+    "storybook": "^7.0.21",
+    "tsconfig": "*",
+    "typescript": "^5.0.2",
+    "vite": "^4.3.9"
+  }
+}

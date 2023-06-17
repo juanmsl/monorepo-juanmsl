@@ -1,0 +1,51 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;700&display=swap');
+
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 4px;
+	height: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #cecece;
+	border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #cecece;
+}
+
+*, *::after, *::before {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Poppins', sans-serif;
+	background: #333333;
+}
+
+input, textarea {
+	color: currentColor;
+	font-family: inherit;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+}
+
+input {
+	border: 0;
+	outline: 0;
+	padding: 8px 0;
+}

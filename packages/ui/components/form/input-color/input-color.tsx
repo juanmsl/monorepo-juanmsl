@@ -1,0 +1,78 @@
+import { withController } from '../with-controller';
+import { InputProps, ColorProps } from '../types';
+import { InputColorStyle } from './input-color.style';
+import { useInputHandlers } from '@juanmsl/hooks';
+import { Label } from '../label';
+import { InputState } from '../input-state';
+import { Icon } from '../../../contexts';
+import Color from 'color';
+import { useId, useMemo } from 'react';
+
+export const InputColor = ({
+  name,
+  style = {},
+  setValue,
+  onBlur,
+  value,
+  label,
+  leftIcon,
+  rightIcon,
+  state,
+}: InputProps<ColorProps, string>) => {
+  const id = useId();
+
+  const {
+    isFocus,
+    handlers: { ...handlers },
+  } = useInputHandlers({
+    onBlur: onBlur,
+    onChange: setValue,
+  });
+
+  const backgroundColor = useMemo(() => {
+    const color = Color(value === '' ? '#000000' : value);
+    if (color.isLight()) {
+      return '#000000AA';
+    }
+
+    return '#FFFFFF88';
+  }, [value]);
+
+  return (
+    <InputColorStyle>
+      {label ? <Label id={id} label={label} isFocus={isFocus} /> : null}
+      <section
+        className="content"
+        style={{
+          background: value,
+          color: value,
+        }}
+      >
+        <section
+          className="color-box"
+          style={{
+            background: value,
+          }}
+        />
+        <section
+          className="color-content"
+          style={{
+            background: backgroundColor,
+          }}
+        >
+          {!!leftIcon && <Icon name={leftIcon} className="field-icon field-left-icon" />}
+          <span className="color-text">{value}</span>
+          {!!rightIcon && (
+            <span className="field-icon field-right-icon">
+              <Icon name={rightIcon} />
+            </span>
+          )}
+          <input id={id} {...handlers} type="color" name={name} style={style} value={value} />
+        </section>
+      </section>
+      {state?.error?.message ? <InputState state={state.error.message} /> : null}
+    </InputColorStyle>
+  );
+};
+
+export const ColorController = withController<ColorProps, string>(InputColor, '#147EFB');

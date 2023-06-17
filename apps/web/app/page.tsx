@@ -1,10 +1,9 @@
-import { Button, Header } from "ui";
+import { Input } from 'ui';
 
 export default function Page() {
   return (
     <>
-      <Header text="Web" />
-      <Button />
+      <Input name="test" value="test" setValue={(value) => console.log(value)} />
     </>
   );
 }
