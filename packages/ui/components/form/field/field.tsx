@@ -1,9 +1,20 @@
-import { FieldInputProps } from '../types';
 import React from 'react';
 import { FieldStyle } from './field.style';
-import { Icon } from '../../../contexts';
+import { Icon, IconNameT } from '../../../contexts';
 import { Label } from '../label';
 import { InputState } from '../input-state';
+
+type FieldInputProps = {
+  id: string;
+  children: React.ReactNode;
+  label?: string;
+  error?: string;
+  rightIcon?: IconNameT;
+  onClickRightIcon?: () => void;
+  leftIcon?: IconNameT;
+  onClickLeftIcon?: () => void;
+  isFocus?: boolean;
+};
 
 export const Field = ({
   id,

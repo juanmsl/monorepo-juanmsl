@@ -1,5 +1,5 @@
 import { withController } from '../with-controller';
-import { InputProps, ColorProps } from '../types';
+import { InputProps } from '../types';
 import { InputColorStyle } from './input-color.style';
 import { useInputHandlers } from '@juanmsl/hooks';
 import { Label } from '../label';
@@ -7,6 +7,8 @@ import { InputState } from '../input-state';
 import { Icon } from '../../../contexts';
 import Color from 'color';
 import { useId, useMemo } from 'react';
+
+type ColorProps = {};
 
 export const InputColor = ({
   name,
@@ -17,7 +19,7 @@ export const InputColor = ({
   label,
   leftIcon,
   rightIcon,
-  state,
+  error,
 }: InputProps<ColorProps, string>) => {
   const id = useId();
 
@@ -70,7 +72,7 @@ export const InputColor = ({
           <input id={id} {...handlers} type="color" name={name} style={style} value={value} />
         </section>
       </section>
-      {state?.error?.message ? <InputState state={state.error.message} /> : null}
+      {error?.message ? <InputState state={error.message} /> : null}
     </InputColorStyle>
   );
 };

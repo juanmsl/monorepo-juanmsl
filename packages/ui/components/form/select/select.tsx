@@ -1,8 +1,25 @@
-import { InputProps, SelectProps } from '../types';
+import { InputProps } from '../types';
 import React, { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { StyledSelect } from './select.style';
 import { Options } from './options';
 import { Field } from '../field';
+
+type SelectProps<T> = {
+  options: Array<T>;
+  renderOption: (item: T) => React.ReactNode;
+  renderOptions?: (item: Array<T>) => React.ReactNode;
+  isEqualComparator?: (a: T, b: T) => boolean;
+  onChange?: never;
+  searchQueryValue?: string;
+  searchQueryPlaceholder?: string;
+  onSearchQuery?: (value: string) => void;
+  loadMore?: () => void;
+  isLoading?: boolean;
+  hasNextPage?: boolean;
+  multiselect?: boolean;
+  maxOptions?: number;
+  showSelectedOptionsOnTop?: boolean;
+};
 
 export const Select = <T extends string | number | Record<string, unknown> | unknown>({
   name,
@@ -13,13 +30,12 @@ export const Select = <T extends string | number | Record<string, unknown> | unk
   disabled = false,
   leftIcon,
   rightIcon = 'caret-right',
-  variant = 'standard',
   placeholder = 'Select an option',
   label,
   renderOption,
   renderOptions,
   isEqualComparator,
-  state,
+  error,
   maxOptions = 4,
   options,
   setValue,
@@ -116,7 +132,7 @@ export const Select = <T extends string | number | Record<string, unknown> | unk
       style={style}
       ref={divRef}
       onBlur={onBlur}
-      className={`${variant} ${disabled ? 'disabled' : ''} ${className}`}
+      className={`${disabled ? 'disabled' : ''} ${className}`}
     >
       <Field
         id={id}
@@ -125,7 +141,7 @@ export const Select = <T extends string | number | Record<string, unknown> | unk
         onClickLeftIcon={() => openSelect(true)}
         rightIcon={rightIcon}
         onClickRightIcon={() => openSelect(true)}
-        error={state?.error?.message}
+        error={error?.message}
       >
         <section className="input-container">
           <button
@@ -161,7 +177,9 @@ export const Select = <T extends string | number | Record<string, unknown> | unk
             selectOption={(selectedOption: T) => {
               if (multiselect) {
                 const prevValue = Array.isArray(value) ? value : [];
-                if (prevValue.length >= maxOptions) return;
+                if (prevValue.length >= maxOptions) {
+                  return;
+                }
                 setValue([...prevValue, selectedOption]);
               } else {
                 setValue(selectedOption);

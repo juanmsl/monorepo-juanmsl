@@ -1,6 +1,6 @@
-import { IconT } from '.';
+import {IconT} from '.';
 
-export type ObjectIconsT = Record<'eye-close' | 'eye-open' | 'magnifying-glass' | 'trash-can' | 'save' | 'edit', IconT>;
+export type ObjectIconsT = Record<'eye-close' | 'eye-open' | 'magnifying-glass' | 'trash-can' | 'save' | 'edit' | 'envelope', IconT>;
 
 export const ObjectIcons: ObjectIconsT = {
   'eye-close': {
@@ -90,6 +90,15 @@ export const ObjectIcons: ObjectIconsT = {
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
+      />
+    ),
+  },
+  envelope: {
+    viewBox: '0 0 16 12',
+    svg: (fill) => (
+      <path
+        d="M15.2158 4.46484C15.3301 4.37402 15.5 4.45898 15.5 4.60254V10.5938C15.5 11.3701 14.8701 12 14.0938 12H1.90625C1.12988 12 0.5 11.3701 0.5 10.5938V4.60547C0.5 4.45898 0.666992 4.37695 0.78418 4.46777C1.44043 4.97754 2.31055 5.625 5.29883 7.7959C5.91699 8.24707 6.95996 9.19629 8 9.19043C9.0459 9.19922 10.1094 8.22949 10.7041 7.7959C13.6924 5.625 14.5596 4.97461 15.2158 4.46484ZM8 8.25C8.67969 8.26172 9.6582 7.39453 10.1504 7.03711C14.0381 4.21582 14.334 3.96973 15.2305 3.2666C15.4004 3.13477 15.5 2.92969 15.5 2.71289V2.15625C15.5 1.37988 14.8701 0.75 14.0938 0.75H1.90625C1.12988 0.75 0.5 1.37988 0.5 2.15625V2.71289C0.5 2.92969 0.599609 3.13184 0.769531 3.2666C1.66602 3.9668 1.96191 4.21582 5.84961 7.03711C6.3418 7.39453 7.32031 8.26172 8 8.25Z"
+        fill={fill}
       />
     ),
   },

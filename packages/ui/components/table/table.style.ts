@@ -52,7 +52,6 @@ export const TableStyle = styled.section<TableStyleProps>`
     position: sticky;
     top: 0;
     z-index: 1;
-    background: white;
     padding: 0 10px;
   }
 

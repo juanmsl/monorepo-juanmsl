@@ -1,4 +1,4 @@
-import { Input } from 'ui';
+import {Input} from "@juanmsl/ui";
 
 export default function Page() {
   return (

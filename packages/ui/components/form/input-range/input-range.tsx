@@ -1,8 +1,14 @@
 import { withController } from '../with-controller';
-import { InputProps, RangeProps } from '../types';
+import { InputProps } from '../types';
 import { Field } from '../field';
 import { useId } from 'react';
 import { useInputHandlers } from '@juanmsl/hooks';
+
+type RangeProps = {
+  min?: number;
+  max?: number;
+  step?: number;
+};
 
 export const InputRange = ({
   name,
@@ -14,7 +20,7 @@ export const InputRange = ({
   label,
   leftIcon,
   rightIcon,
-  state,
+  error,
 }: InputProps<RangeProps, number>) => {
   const id = useId();
   const { isFocus, handlers } = useInputHandlers({
@@ -28,7 +34,7 @@ export const InputRange = ({
       label={label}
       leftIcon={leftIcon}
       rightIcon={rightIcon}
-      error={state?.error?.message}
+      error={error?.message}
       isFocus={isFocus}
     >
       <input id={id} type="range" name={name} className={className} style={style} value={value} {...handlers} />

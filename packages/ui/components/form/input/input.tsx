@@ -1,9 +1,12 @@
 import { withController } from '../with-controller';
-import { InputProps, InputTextProps } from '../types';
+import { InputProps } from '../types';
 import { Field } from '../field';
 import { useId } from 'react';
 import { useInputHandlers } from '@juanmsl/hooks';
 
+type InputTextProps = {
+  type?: 'email' | 'number' | 'search' | 'tel' | 'text' | 'url';
+};
 export const Input = ({
   name,
   type = 'text',
@@ -18,7 +21,7 @@ export const Input = ({
   autoComplete = 'off',
   placeholder,
   label,
-  state,
+  error,
   disabled,
 }: InputProps<InputTextProps, string>) => {
   const id = useId();
@@ -33,7 +36,7 @@ export const Input = ({
       label={label}
       leftIcon={leftIcon}
       rightIcon={rightIcon}
-      error={state?.error?.message}
+      error={error?.message}
       isFocus={isFocus}
     >
       <input

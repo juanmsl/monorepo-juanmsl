@@ -1,8 +1,12 @@
 import { withController } from '../with-controller';
-import { InputDateProps, InputProps } from '../types';
+import { InputProps } from '../types';
 import { Field } from '../field';
 import { useId } from 'react';
 import { useInputHandlers } from '@juanmsl/hooks';
+
+type InputDateProps = {
+  type?: 'date' | 'datetime-local' | 'month' | 'time' | 'week';
+};
 
 export const InputDate = ({
   name,
@@ -18,7 +22,7 @@ export const InputDate = ({
   autoComplete = 'off',
   placeholder,
   label,
-  state,
+  error,
 }: InputProps<InputDateProps, string>) => {
   const id = useId();
   const { isFocus, handlers } = useInputHandlers({
@@ -32,7 +36,7 @@ export const InputDate = ({
       label={label}
       leftIcon={leftIcon}
       rightIcon={rightIcon}
-      error={state?.error?.message}
+      error={error?.message}
       isFocus={isFocus}
     >
       <input

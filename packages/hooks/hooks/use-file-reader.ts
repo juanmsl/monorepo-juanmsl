@@ -1,5 +1,5 @@
-import { useUtilities } from './use-utilities';
 import { useEffect, useState } from 'react';
+import {formatBytes} from "@juanmsl/helpers";
 
 export enum FileTypeEnum {
   PNG = 'image/png',
@@ -16,7 +16,6 @@ export type FileResolvedT = {
 
 export const useFileReader = (inputFiles: Array<File>) => {
   const [files, setFiles] = useState<Array<FileResolvedT>>([]);
-  const { formatBytes } = useUtilities();
 
   useEffect(() => {
     const fileReaders: Array<FileReader> = [];

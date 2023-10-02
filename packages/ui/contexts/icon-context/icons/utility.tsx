@@ -1,6 +1,6 @@
-import { IconT } from '.';
+import {IconT} from '.';
 
-export type UtilityIconsT = Record<'check-mark' | 'exclamation' | 'not-found' | 'spinner', IconT>;
+export type UtilityIconsT = Record<'check-mark' | 'exclamation' | 'not-found' | 'spinner' | 'pin', IconT>;
 
 export const UtilityIcons: UtilityIconsT = {
   'check-mark': {
@@ -69,6 +69,23 @@ export const UtilityIcons: UtilityIconsT = {
         <path
           fill={fill}
           d="M17.6569 20.4853C16.8758 19.7042 16.8758 18.4379 17.6569 17.6568C18.4379 16.8758 19.7042 16.8758 20.4853 17.6568C21.2663 18.4379 21.2663 19.7042 20.4853 20.4853C19.7042 21.2663 18.4379 21.2663 17.6569 20.4853Z"
+        />
+      </>
+    ),
+  },
+  pin: {
+    viewBox: '0 0 12 17',
+    svg: (fill) => (
+      <>
+        <path
+          d="M6 9.5C7.65685 9.5 9 8.15685 9 6.5C9 4.84315 7.65685 3.5 6 3.5C4.34315 3.5 3 4.84315 3 6.5C3 8.15685 4.34315 9.5 6 9.5Z"
+          fill={fill}
+        />
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M6 0.5C9.31371 0.5 12 3.186 12 6.5C12 9.8 8.7 14.1 8 15C7.95375 15.0595 7.90882 15.1176 7.86496 15.1744C7.24497 15.9767 6.84054 16.5 6 16.5C5.20691 16.5 4.9574 16.1894 4.29345 15.3629C4.20395 15.2515 4.10691 15.1307 4 15C3.1 13.9 0 9.8 0 6.5C0 3.186 2.68629 0.5 6 0.5ZM6 10.5C8.20914 10.5 10 8.70914 10 6.5C10 4.29086 8.20914 2.5 6 2.5C3.79086 2.5 2 4.29086 2 6.5C2 8.70914 3.79086 10.5 6 10.5Z"
+          fill={fill}
         />
       </>
     ),

@@ -5,7 +5,7 @@ export type FileTypeIconsT = Record<'pdf' | 'png', IconT>;
 export const FileTypeIcons: FileTypeIconsT = {
   pdf: {
     viewBox: '0 0 512 512',
-    svg: (fill) => (
+    svg: () => (
       <>
         <path
           fill="#E2E5E7"
@@ -37,7 +37,7 @@ export const FileTypeIcons: FileTypeIconsT = {
   },
   png: {
     viewBox: '0 0 512 512',
-    svg: (fill) => (
+    svg: () => (
       <>
         <path
           fill="#E2E5E7"

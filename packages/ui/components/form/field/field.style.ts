@@ -10,6 +10,20 @@ export const FieldStyle = styled.section<FieldStyleProps>`
   grid-template-rows: auto auto auto;
   gap: 4px;
 
+  input, textarea {
+    color: currentColor;
+    font-family: inherit;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+
+  input {
+    border: 0;
+    outline: 0;
+    padding: 8px 0;
+  }
+
   .field-label {
     grid-area: fieldLabel;
   }

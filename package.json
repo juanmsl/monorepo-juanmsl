@@ -3,18 +3,18 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
+    "portfolio:dev": "turbo run dev --filter=portfolio",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md,js}\""
   },
   "devDependencies": {
-    "@turbo/gen": "^1.9.7",
-    "eslint": "^7.32.0",
+    "eslint": "^8.48.0",
     "eslint-config-custom": "*",
-    "prettier": "^2.5.1",
-    "turbo": "^1.9.7"
+    "prettier": "^3.0.3",
+    "turbo": "latest"
   },
   "name": "juanmsl",
-  "packageManager": "npm@8.1.2",
+  "packageManager": "yarn@1.22.19",
   "workspaces": [
     "apps/*",
     "packages/*"
