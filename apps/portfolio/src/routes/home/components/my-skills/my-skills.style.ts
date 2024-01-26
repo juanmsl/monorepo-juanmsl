@@ -5,18 +5,23 @@ export const MySkillsStyle = styled.section`
 
   .layout-content {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 2fr 1fr;
+    align-content: stretch;
+    align-items: center;
     gap: 100px;
   }
 
   .left {
     display: grid;
     gap: 20px;
-    justify-content: start;
+    place-content: start;
   }
 
   .right {
-
+    display: grid;
+    gap: 10px;
+    align-content: center;
+    outline: 1px solid red;
   }
 
   .skills-categories {

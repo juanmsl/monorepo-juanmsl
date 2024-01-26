@@ -13,9 +13,7 @@ export const LoaderComponent = ({
   if (isPending) {
     return (
       <LoaderComponentStyle>
-        <div className="layout-content">
-          <Icon name='spinner' />
-        </div>
+        <Icon name='spinner' className='loader-icon' />
       </LoaderComponentStyle>
     );
   }

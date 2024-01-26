@@ -60,40 +60,24 @@ export const CompanyDetailsStyle = styled.div`
     .company-logo {
       border-radius: 50%;
       padding: 5px;
-      background: ${props => props.theme.colors.primary};
+      background: ${props => props.theme.colors.white};
       transition: all 300ms ease;
       width: 72px;
       height: 72px;
 
       img {
-        background: ${props => props.theme.colors.text};
+        background: ${props => props.theme.colors.white}55;
         width: 100%;
         height: 100%;
         display: block;
         object-fit: cover;
         transition: all 300ms ease;
+        padding: 5px;
         border-radius: 50%;
       }
 
       &:hover img {
-        transform: perspective(100px) translateZ(40px);
-        border-radius: 5px;
-        padding: 5px;
-      }
-    }
-
-    .company-logo-1 {
-      padding: .5em;
-      background: ${props => props.theme.colors.text};
-      width: 72px;
-      height: 72px;
-      display: block;
-      object-fit: cover;
-      transition: all 300ms ease;
-      border-radius: 50%;
-
-      &:hover {
-        transform: perspective(100px) translateZ(25px);
+        border-radius: 50%;
       }
     }
   }

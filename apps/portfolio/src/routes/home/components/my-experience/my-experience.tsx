@@ -5,7 +5,7 @@ import {useGetJobExperience} from "@/hooks";
 import {useMemo, useState} from "react";
 import {CompanyListItem} from "./company-list-item.tsx";
 import {CompanyDetails} from "@/routes/home/components/my-experience/company-details.tsx";
-import {LoaderLogo} from "@/components/ui";
+import {LoaderComponent} from "@/components/ui";
 
 export const MyExperience = () => {
   const { t } = useTranslation();
@@ -29,16 +29,14 @@ export const MyExperience = () => {
         <SectionTitle>
           {t('home:myExperience.title')}
         </SectionTitle>
-        {isPending || !jobExperience?.[index] ? (
-          <LoaderLogo />
-        ) : (
+        <LoaderComponent isPending={isPending || !jobExperience?.[index]}>
           <div className="my-experience-content">
             <div className="companies-list">
               {renderedCompanies}
             </div>
             <CompanyDetails company={jobExperience[index]} />
           </div>
-        )}
+        </LoaderComponent>
       </div>
     </MyExperienceStyle>
   );
