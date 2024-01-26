@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React, { HTMLAttributes, useMemo} from "react";
 import {TypographyStyle} from "./typography.style";
 import {useClassNames} from "@juanmsl/hooks";
 
@@ -19,10 +19,9 @@ export enum TypographyWeight {
   BOLD = 'bold',
 }
 
-type TypographyProps = {
+type TypographyProps = HTMLAttributes<HTMLElement> & {
   variant?: `${TypographyVariant}`;
   nowrap?: boolean;
-  className?: string;
   as?: keyof React.ReactHTML;
   weight?: `${TypographyWeight}`;
   children: React.ReactNode;
@@ -36,6 +35,7 @@ export const Typography = ({
   as,
   weight,
   withoutPadding = false,
+  ...props
 }: TypographyProps) => {
 
   const className = useClassNames({
@@ -78,10 +78,11 @@ export const Typography = ({
       {React.createElement(
         component,
         {
+          ...props,
           children,
           className,
           style: { fontWeight: weight },
-       }
+        }
       )}
     </>
   );
