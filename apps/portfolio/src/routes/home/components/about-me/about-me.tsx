@@ -1,6 +1,6 @@
 import {AboutMeStyle} from "./about-me.style.ts";
 import {SectionTitle} from "@/components/modules";
-import {Typography} from "@juanmsl/ui";
+import {HoverCard, Typography} from "@juanmsl/ui";
 import {useTranslation} from "react-i18next";
 import {Button} from "@juanmsl/ui";
 import {useState} from "react";
@@ -46,13 +46,15 @@ export const AboutMe = () => {
             {t('home:aboutMe.text3')}
           </Typography>
           <div className="button-ctas">
-            <Button
-              leftIcon='instagram'
-              onClick={handleClick}
-              isLoading={isLoading}
-            >
-              {t('home:aboutMe.button1')}
-            </Button>
+            <HoverCard translationZ='15px'>
+              <Button
+                leftIcon='instagram'
+                onClick={handleClick}
+                isLoading={isLoading}
+              >
+                {t('home:aboutMe.button1')}
+              </Button>
+            </HoverCard>
             <Button
               leftIcon='linkedin'
               onClick={handleClick}

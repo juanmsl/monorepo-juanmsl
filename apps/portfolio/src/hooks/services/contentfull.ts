@@ -8,6 +8,7 @@ import {
 } from "@/core";
 import {useQuery, UseQueryResult} from "@tanstack/react-query";
 import {useTranslation} from "react-i18next";
+import {ContentFullAPIAdapter} from "@/core/api/contentfull/adapter";
 
 
 export const ContentFullKeys = {
@@ -30,17 +31,52 @@ export const ContentFullKeys = {
 }
 
 export const useGetSocialContact = (): UseQueryResult<Array<ContactEntity>> => {
-  const controllerAPI = new ContentFullAPI();
+  const adapter = new ContentFullAPIAdapter();
+  const controllerAPI = new ContentFullAPI(adapter);
   const { i18n } = useTranslation();
 
   return useQuery({
-    queryKey: ContentFullKeys.contactsLocale(i18n.language),
-    queryFn: () => controllerAPI.getSocialContact(i18n.language),
+    queryKey: ContentFullKeys.contactsLocale(i18n.languages[0]),
+    queryFn: () => controllerAPI.getSocialContact(i18n.languages[0]),
+  });
+};
+
+export const useGetJobExperience = (): UseQueryResult<Array<JobExperienceEntity>> => {
+  const adapter = new ContentFullAPIAdapter();
+  const controllerAPI = new ContentFullAPI(adapter);
+  const { i18n } = useTranslation();
+
+  return useQuery({
+    queryKey: ContentFullKeys.jobExperiencesLocale(i18n.languages[0]),
+    queryFn: () => controllerAPI.getJobExperience(i18n.languages[0]),
+  });
+};
+
+export const useGetProfessionalSkills = (): UseQueryResult<Array<ProfessionalSkillsEntity>> => {
+  const adapter = new ContentFullAPIAdapter();
+  const controllerAPI = new ContentFullAPI(adapter);
+  const { i18n } = useTranslation();
+
+  return useQuery({
+    queryKey: ContentFullKeys.professionalSkillsLocale(i18n.languages[0]),
+    queryFn: () => controllerAPI.getProfessionalSkills(i18n.languages[0]),
+  });
+};
+
+export const useGetTechnologies = (): UseQueryResult<Array<TechnologyEntity>> => {
+  const adapter = new ContentFullAPIAdapter();
+  const controllerAPI = new ContentFullAPI(adapter);
+  const { i18n } = useTranslation();
+
+  return useQuery({
+    queryKey: ContentFullKeys.technologiesLocale(i18n.languages[0]),
+    queryFn: () => controllerAPI.getTechnologies(i18n.languages[0]),
   });
 };
 
 export const useAsset = (assetId: string): UseQueryResult<AssetEntity> => {
-  const controllerAPI = new ContentFullAPI();
+  const adapter = new ContentFullAPIAdapter();
+  const controllerAPI = new ContentFullAPI(adapter);
 
   return useQuery({
     queryKey: ContentFullKeys.assetId(assetId),
@@ -48,32 +84,3 @@ export const useAsset = (assetId: string): UseQueryResult<AssetEntity> => {
   });
 };
 
-export const useGetJobExperience = (): UseQueryResult<Array<JobExperienceEntity>> => {
-  const controllerAPI = new ContentFullAPI();
-  const { i18n } = useTranslation();
-
-  return useQuery({
-    queryKey: ContentFullKeys.jobExperiencesLocale(i18n.language),
-    queryFn: () => controllerAPI.getJobExperience(i18n.language),
-  });
-};
-
-export const useGetProfessionalSkills = (): UseQueryResult<Array<ProfessionalSkillsEntity>> => {
-  const controllerAPI = new ContentFullAPI();
-  const { i18n } = useTranslation();
-
-  return useQuery({
-    queryKey: ContentFullKeys.professionalSkillsLocale(i18n.language),
-    queryFn: () => controllerAPI.getProfessionalSkills(i18n.language),
-  });
-};
-
-export const useGetTechnologies = (): UseQueryResult<Array<TechnologyEntity>> => {
-  const controllerAPI = new ContentFullAPI();
-  const { i18n } = useTranslation();
-
-  return useQuery({
-    queryKey: ContentFullKeys.technologiesLocale(i18n.language),
-    queryFn: () => controllerAPI.getTechnologies(i18n.language),
-  });
-};

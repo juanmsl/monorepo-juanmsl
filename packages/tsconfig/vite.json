@@ -17,7 +17,5 @@
     "useDefineForClassFields": true,
     "allowImportingTsExtensions": true,
     "allowSyntheticDefaultImports": true
-  },
-  "include": ["src"],
-  "exclude": ["node_modules"]
+  }
 }

@@ -1,21 +1,17 @@
 import React from 'react';
-import { FileTypeIcons, FileTypeIconsT } from './file-types';
-import { ObjectIcons, ObjectIconsT } from './objects';
-import { SymbolIcons, SymbolIconsT } from './symbols';
-import { UtilityIcons, UtilityIconsT } from './utility';
-import {BrandIcons, BrandIconsT} from "./brands";
+import { SymbolIcons, SymbolIconsT } from './symbol';
+import { SocialIcons, SocialIconsT } from './social';
+import { ObjectIcons, ObjectIconsT } from './object';
 
 export type IconT = {
   viewBox: string;
   svg: (fill: string) => React.ReactNode;
 };
 
-export type IconCollectionT = BrandIconsT & FileTypeIconsT & ObjectIconsT & SymbolIconsT & UtilityIconsT;
+export type IconCollectionT = SymbolIconsT & SocialIconsT & ObjectIconsT;
 
 export const Icons: IconCollectionT = {
-  ...BrandIcons,
-  ...FileTypeIcons,
-  ...ObjectIcons,
   ...SymbolIcons,
-  ...UtilityIcons,
+  ...SocialIcons,
+  ...ObjectIcons,
 };

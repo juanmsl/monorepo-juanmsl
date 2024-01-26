@@ -11,7 +11,7 @@ type HoverCardProps = {
 export const HoverCard = ({
   children,
   threshold = 5,
-  translationZ = '25px'
+  translationZ = '25px',
 }: HoverCardProps) => {
   const refCard = useRef<HTMLElement>(null);
   const refLayer1 = useRef<HTMLElement>(null);

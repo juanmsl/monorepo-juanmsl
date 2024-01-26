@@ -1,0 +1,13 @@
+{
+  "extends": "tsconfig/nodejs.json",
+  "include": ["src"],
+  "exclude": ["icons", "svg", "node_modules", "build"],
+  "compilerOptions": {
+    "rootDir": "src",
+    "baseUrl": "src",
+    "outDir": "build"
+  },
+  "ts-node": {
+    "esm": true
+  }
+}

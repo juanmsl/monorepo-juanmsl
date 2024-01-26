@@ -3,9 +3,6 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
-  "engines": {
-    "node": "16"
-  },
   "scripts": {
     "dev": "storybook dev -p 6006",
     "build": "tsc && storybook build",

@@ -6,16 +6,20 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint \"**/*.ts*\"",
-    "generate:component": "turbo gen react-component"
+    "transform-svgs": "node ../../node_modules/@juanmsl/svg-to-react",
+    "transform-svgs2": "node @juanmsl/svg-to-react"
   },
   "devDependencies": {
     "@types/color": "^3.0.3",
     "@types/react": "^18.2.0",
     "@types/styled-components": "^5.1.26",
+    "@types/xml2js": "^0.4.14",
     "eslint": "^7.32.0",
     "eslint-config-custom": "*",
     "tsconfig": "*",
-    "typescript": "^4.5.2"
+    "@juanmsl/svg-to-react": "*",
+    "typescript": "^4.5.2",
+    "xml2js": "^0.6.2"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.1.0",

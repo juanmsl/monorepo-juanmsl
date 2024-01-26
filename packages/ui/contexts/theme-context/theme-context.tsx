@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, {Suspense, useCallback, useContext, useEffect, useState} from 'react';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 import { DarkTheme, LightTheme, ThemeConstants, ThemeEntity } from "./themes";
 
@@ -22,7 +22,7 @@ type ThemeProviderProps = {
 export const ThemeProvider = ({
   children,
 }: ThemeProviderProps) => {
-  const [themeName, setThemeName] = useState<`${THEME}`>(THEME.LIGHT);
+  const [themeName, setThemeName] = useState<`${THEME}`>(THEME.DARK);
 
   useEffect(() => {
     const mqListener = (e: MediaQueryListEvent) => {
@@ -45,18 +45,20 @@ export const ThemeProvider = ({
   };
 
   return (
-    <ThemeContext.Provider value={{
-      themeName,
-      changeTheme,
-      toggleTheme,
-    }}>
-      <StyledThemeProvider theme={{
-        colors: themes[themeName],
-        constants: ThemeConstants,
+    <Suspense>
+      <ThemeContext.Provider value={{
+        themeName,
+        changeTheme,
+        toggleTheme,
       }}>
-        {children}
-      </StyledThemeProvider>
-    </ThemeContext.Provider>
+        <StyledThemeProvider theme={{
+          colors: themes[themeName],
+          constants: ThemeConstants,
+        }}>
+          {children}
+        </StyledThemeProvider>
+      </ThemeContext.Provider>
+    </Suspense>
   );
 };
 

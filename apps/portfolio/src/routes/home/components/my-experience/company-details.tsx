@@ -1,7 +1,7 @@
 import {JobExperienceEntity} from "@/core";
 import {CompanyDetailsStyle} from "./my-experience.style.ts";
-import {Tag, Typography} from "@juanmsl/ui";
-import moment from "moment";
+import {HoverCard, Tag, Typography} from "@juanmsl/ui";
+import {formatDate, timeBetween} from "@juanmsl/helpers";
 
 type CompanyItemProps = {
   company: JobExperienceEntity;
@@ -12,19 +12,13 @@ export const CompanyDetails = ({
 }: CompanyItemProps) => {
   const { description, name, position, dateStart, dateEnd, icon, technologies } = company;
 
-  const formatDate = (date) => Date.parse(date) ? moment( date, 'YYYY-MM-DD' ).format( 'MMM YYYY' ) : date;
-
-  const timeBetween = (date_start, date_end) => {
-    const momentStart = moment( date_start );
-
-    return Date.parse(date_end) ? moment(date_end).from( momentStart, true ) : momentStart.fromNow();
-  };
-
   return (
     <CompanyDetailsStyle>
       <div className='company-details-header'>
         <div className="company-logo">
-          <img src={icon} alt='Company logo' />
+          <HoverCard>
+            <img src={icon} alt='Company logo' />
+          </HoverCard>
         </div>
         <div className="company-details-header--content">
           <Typography variant='label' withoutPadding>{name}</Typography>

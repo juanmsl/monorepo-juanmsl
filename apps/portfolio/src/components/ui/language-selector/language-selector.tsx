@@ -7,11 +7,11 @@ export const LanguageSelector = () => {
   const { t, i18n } = useTranslation();
   const enUSClassname = useClassNames({
     'language-item': true,
-    'selected': i18n.language === 'en'
+    'selected': i18n.languages.includes('en')
   });
   const esESClassname = useClassNames({
     'language-item': true,
-    'selected': i18n.language === 'es'
+    'selected': i18n.languages.includes('es')
   });
 
   return (
