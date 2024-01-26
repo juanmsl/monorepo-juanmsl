@@ -10,11 +10,13 @@ export const LoaderComponentStyle = styled.div`
     animation: rotate 750ms linear infinite, colors 1s linear infinite;
     font-size: 2.5em;
   }
+
   @keyframes rotate {
     to {
       transform: rotate(1turn);
     }
   }
+
   @keyframes colors {
     0%, 100% {
       color: ${props => props.theme.colors.text};

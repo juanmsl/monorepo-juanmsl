@@ -18,7 +18,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <ThemeProvider>
           <IconProvider>
             <QueryClientProvider client={queryClient}>
-              <Routes />
+                <Routes />
             </QueryClientProvider>
           </IconProvider>
         </ThemeProvider>

@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint \"**/*.ts*\"",
-    "generate:component": "turbo gen react-component"
+    "transform-svgs": "node ../../node_modules/@juanmsl/svg-to-react",
+    "transform-svgs2": "node @juanmsl/svg-to-react"
   },
   "devDependencies": {
     "@types/color": "^3.0.3",
@@ -15,6 +16,7 @@
     "eslint": "^7.32.0",
     "eslint-config-custom": "*",
     "tsconfig": "*",
+    "@juanmsl/svg-to-react": "*",
     "typescript": "^4.5.2"
   },
   "dependencies": {

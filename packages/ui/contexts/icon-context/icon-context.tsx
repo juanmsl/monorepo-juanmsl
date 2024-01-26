@@ -16,7 +16,7 @@ type IconProviderProps = {
 export const IconProvider = ({ children }: IconProviderProps): React.ReactElement => {
   const [icons] = useState<IconCollectionT>(Icons);
 
-  const getIcon = useCallback((name: IconNameT): IconT => icons[name] ?? icons['not-found'], [icons]);
+  const getIcon = useCallback((name: IconNameT): IconT => icons[name] ?? icons['warning'], [icons]);
 
   return <IconContext.Provider value={{ getIcon }}>{children}</IconContext.Provider>;
 };

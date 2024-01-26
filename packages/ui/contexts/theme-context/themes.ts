@@ -157,7 +157,7 @@ export type ThemeEntity = typeof DarkTheme;
 
 export const LightTheme: ThemeEntity = {
   ...CommonTheme,
-  background: '#F1F1F1FF',
+  background: '#FFFFFF',
   text: '#333333',
   primary: '#450b7c',
   primaryContrast: '#FFFFFF',
