@@ -82,7 +82,7 @@ export const Typography = ({
           children,
           className,
           style: { fontWeight: weight },
-       }
+        }
       )}
     </>
   );
