@@ -1,7 +1,7 @@
 import {FooterStyle} from "./footer.style.ts";
 import {useTranslation} from "react-i18next";
 import {Icon, Line, Typography} from "@juanmsl/ui";
-import {SocialIcons} from "@/components/modules";
+import {SocialIcons} from "@/components/ui";
 import {FooterTop} from "@/components/resources";
 
 export const Footer = () => {
@@ -21,7 +21,7 @@ export const Footer = () => {
 
         <div className="columns">
           <div className='location'>
-            <Icon name='pin' />
+            <Icon name='pin-location' />
             <Typography variant='label'>
               {t('common:location')}
             </Typography>

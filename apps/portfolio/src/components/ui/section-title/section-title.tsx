@@ -1,4 +1,4 @@
-import {SectionTitleStyle} from "./section-title.style.ts";
+import {SectionTitleStyle} from "./section-title.style";
 
 type SectionTitleProps = {
   children: React.ReactNode;

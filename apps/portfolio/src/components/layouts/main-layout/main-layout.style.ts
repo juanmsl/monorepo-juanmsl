@@ -55,8 +55,8 @@ export const MainLayoutStyle = styled.main`
     margin: 20px;
     z-index: 1000;
     display: grid;
-    grid-auto-flow: column;
-    gap: 40px;
+    grid-auto-flow: row;
+    gap: 20px;
     align-items: center;
   }
 

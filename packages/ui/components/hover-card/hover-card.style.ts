@@ -1,27 +1,17 @@
 import styled from "styled-components";
 
-type HoverCardStyleProps = {
-  $translationZ?: string;
-};
-
-export const HoverCardStyle = styled.span<HoverCardStyleProps>`
+export const HoverCardStyle = styled.span`
   display: inline-block;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: all 300ms ease;
 
-  .card-hover-layer-1 {
+  .card-hover-layer {
     transition: all 100ms ease;
-    display: inline-block;
     transform-style: preserve-3d;
     will-change: transform;
-  }
-
-  .card-hover-layer-2 {
-    transition: all 300ms ease;
-    display: inline-block;
-    transform-style: preserve-3d;
-    will-change: transform;
-  }
-
-  &:hover .card-hover-layer-2 {
-    transform: translateZ(${props => props.$translationZ ?? '25px'});
+    width: 100%;
+    height: 100%;
+    display: grid;
   }
 `;
