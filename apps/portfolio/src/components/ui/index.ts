@@ -2,4 +2,8 @@ export * from './footer';
 export * from './header';
 export * from './language-selector';
 export * from './loaders';
+export * from './section-title';
+export * from './social-icons';
 export * from './theme-selector';
+export * from './toggle-selector';
+export * from './progress-animation';

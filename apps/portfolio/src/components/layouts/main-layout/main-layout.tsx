@@ -7,8 +7,8 @@ export const MainLayout = () => {
     <MainLayoutStyle>
       <img className='layout-logo' src="/assets/images/logo.png" alt="logo" />
       <div className='layout-actions'>
-        <LanguageSelector />
         <ThemeSelector />
+        <LanguageSelector />
       </div>
       <Outlet />
       <Footer />

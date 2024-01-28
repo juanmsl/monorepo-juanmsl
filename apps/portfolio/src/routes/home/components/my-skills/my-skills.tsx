@@ -1,10 +1,10 @@
 import {MySkillsStyle} from "./my-skills.style.ts";
-import {SectionTitle} from "@/components/modules";
 import {useTranslation} from "react-i18next";
 import {useGetProfessionalSkills, useGetTechnologies} from "@/hooks";
 import {Tag, Tooltip, Typography} from "@juanmsl/ui";
-import {LoaderComponent} from "@/components/ui";
+import {LoaderComponent, ProgressAnimation, SectionTitle} from "@/components/ui";
 import {useState} from "react";
+import { easeQuadInOut } from 'd3-ease';
 import {ProfessionalSkillsEntity, TechnologyEntity} from "@/core";
 
 export const MySkills = () => {
@@ -51,6 +51,7 @@ export const MySkills = () => {
                   <Tag
                     isSelected={hoveredCategory.includes(technology.name)}
                     onMouseOver={() => setSelectedTechnology(technology)}
+                    onMouseLeave={() => setSelectedTechnology(null)}
                   >
                     {technology.name}
                   </Tag>
@@ -60,12 +61,21 @@ export const MySkills = () => {
           </div>
 
           <div className="right">
-            <LoaderComponent isPending={!selectedTechnology}>
-              <img src={selectedTechnology?.icon} alt='Technology icon' width='150px' />
-              <Typography withoutPadding variant='header4'>{selectedTechnology?.name}</Typography>
-              <Typography withoutPadding variant='body'>{t('home:mySkills.yearsOfExperience', { count: selectedTechnology?.yearsOfExperience })}</Typography>
-              <Typography withoutPadding variant='label' weight='bold'>{selectedTechnology?.seniority}%</Typography>
-            </LoaderComponent>
+            <div className="right-content">
+              <LoaderComponent isPending={!selectedTechnology}>
+                <img src={selectedTechnology?.icon} alt='Technology icon' width='150px' />
+                <ProgressAnimation
+                  duration={300}
+                  valueEnd={selectedTechnology?.yearsOfExperience}
+                  easingFunction={easeQuadInOut}
+                >
+                  {(value) => (
+                    <Typography withoutPadding variant='body'>{t('home:mySkills.yearsOfExperience', { count: value })}</Typography>
+                  )}
+                </ProgressAnimation>
+                <Typography withoutPadding variant='label' weight='bold'>{selectedTechnology?.seniority}%</Typography>
+              </LoaderComponent>
+            </div>
           </div>
         </div>
       </LoaderComponent>

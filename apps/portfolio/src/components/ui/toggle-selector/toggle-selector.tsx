@@ -1,0 +1,41 @@
+import {ToggleSelectorStyle} from "@/components/ui/toggle-selector/toggle-selector.style.ts";
+import {Tooltip, TooltipPosition} from "@juanmsl/ui";
+import {useClassNames} from "@juanmsl/hooks";
+
+type ToggleSelectorProps = {
+  children: [React.ReactNode, React.ReactNode];
+  leftLabel?: string;
+  rightLabel?: string;
+  position: 'left' | 'right';
+  toggle: () => void;
+  tooltipPosition?: `${TooltipPosition}`;
+};
+
+
+export const ToggleSelector = ({
+  children,
+  leftLabel,
+  rightLabel,
+  position,
+  toggle,
+  tooltipPosition = 'top'
+}: ToggleSelectorProps) => {
+  const className = useClassNames({
+    'right-position': position === 'right'
+  })
+
+  return (
+    <ToggleSelectorStyle className={className} onClick={toggle}>
+      <Tooltip content={leftLabel} disabled={!leftLabel} position={tooltipPosition}>
+        <span className="left-option">
+          {children[0]}
+        </span>
+      </Tooltip>
+      <Tooltip content={rightLabel} disabled={!rightLabel} position={tooltipPosition}>
+        <span className="right-option">
+          {children[1]}
+        </span>
+      </Tooltip>
+    </ToggleSelectorStyle>
+  );
+}

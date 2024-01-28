@@ -5,7 +5,7 @@ export const MySkillsStyle = styled.section`
 
   .layout-content {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr auto;
     align-content: stretch;
     align-items: center;
     gap: 100px;
@@ -20,8 +20,18 @@ export const MySkillsStyle = styled.section`
   .right {
     display: grid;
     gap: 10px;
-    align-content: center;
-    outline: 1px solid red;
+    place-content: center;
+    width: 430px;
+    height: 524px;
+    background: ${props => props.theme.colors.secondary};
+    color: ${props => props.theme.colors.secondaryContrast};
+
+    .right-content {
+      display: grid;
+      gap: 20px;
+      justify-items: center;
+      text-align: center;
+    }
   }
 
   .skills-categories {

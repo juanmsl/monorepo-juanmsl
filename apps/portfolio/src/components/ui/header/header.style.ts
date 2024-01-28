@@ -48,10 +48,11 @@ export const HeaderStyle = styled.header<HeaderStyleProps>`
       line-height: 1em;
       padding: .2em .5em;
       border-radius: 5px;
+      font-weight: 500;
 
       &:hover {
         color: ${props => props.theme.colors.primary};
-        background: ${props => props.theme.colors.primaryContrast}AA;
+        background: ${props => props.theme.colors.primaryContrast};
       }
     }
   }

@@ -1,17 +1,21 @@
-import {ThemeSelectorStyle} from "./theme-selector.style.ts";
-import {Icon, useMyTheme} from "@juanmsl/ui";
-import {useClassNames} from "@juanmsl/hooks";
+import {Icon, Tooltip, useMyTheme} from "@juanmsl/ui";
+import {ToggleSelector} from "@/components/ui";
+import {useTranslation} from "react-i18next";
 
 export const ThemeSelector = () => {
-  const { toggleTheme, themeName } = useMyTheme();
-  const className = useClassNames({
-    'light': themeName === 'light'
-  })
+  const { t } = useTranslation();
+  const { themeName, toggleTheme } = useMyTheme();
 
   return (
-    <ThemeSelectorStyle className={className} onClick={toggleTheme}>
-      <Icon name='moon' className='dark-icon' />
-      <Icon name='sun' className='light-icon' />
-    </ThemeSelectorStyle>
+    <Tooltip content={t('utility:themeSelector.changeTheme', { theme: t(`common:themes.${themeName}`) })} position='left'>
+      <ToggleSelector
+        position={themeName === 'dark' ? 'left' : 'right'}
+        tooltipPosition='bottom'
+        toggle={toggleTheme}
+      >
+        <Icon name='moon' />
+        <Icon name='sun' />
+      </ToggleSelector>
+    </Tooltip>
   );
-}
+};

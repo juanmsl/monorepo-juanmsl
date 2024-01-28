@@ -1,7 +1,7 @@
 import {HeaderStyle} from "./header.style.ts";
 import {useTranslation} from "react-i18next";
 import {Line, Typography} from "@juanmsl/ui";
-import {SocialIcons} from "@/components/modules";
+import {SocialIcons} from "@/components/ui";
 import {HeaderBottom} from "@/components/resources";
 import {useAsset} from "@/hooks";
 

@@ -10,25 +10,25 @@ export const HeaderBottom = ({
 
   return (
     <HeaderBottomStyle
-      viewBox="0 0 1920 336"
+      viewBox="0 0 1920 236"
       className={className}
       preserveAspectRatio="none"
     >
       <g filter="url(#filter-header-shadow)">
         <path
           id="backgroundColor"
-          d="M1356 177.247C977.624 177.247 660 408.849 0 30V326H1920V321C1830.5 263.099 1692 177.247 1356 177.247Z"
+          d="M1356 77.247C977.624 77.247 660 358.849 0 30V236H1920V221C1830.5 163.099 1692 77.247 1356 77.247Z"
           fill='none'
         />
         <path
           id="line"
-          d="M1356 177.247C977.624 177.247 660 408.849 0 30V35C660 413.849 977.624 182.247 1356 182.247C1692 182.247 1830.5 268.099 1920 326V321C1830.5 263.099 1692 177.247 1356 177.247Z"
+          d="M1356 77.247C977.624 77.247 660 358.849 0 30V40C660 368.849 977.624 87.247 1356 87.247C1692 87.247 1830.5 173.099 1920 231V221C1830.5 163.099 1692 77.247 1356 77.247Z"
           fill='none'
         />
       </g>
 
       <defs>
-        <filter id="filter-header-shadow" x="-20" y="0" width="1960" height="336" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+        <filter id="filter-header-shadow" x="-20" y="0" width="1960" height="236" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
           <feFlood floodOpacity="0" result="BackgroundImageFix"/>
           <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
           <feOffset dy="-10"/>

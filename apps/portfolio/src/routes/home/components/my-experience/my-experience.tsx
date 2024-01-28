@@ -1,11 +1,10 @@
 import {MyExperienceStyle} from "./my-experience.style.ts";
-import {SectionTitle} from "@/components/modules";
 import {useTranslation} from "react-i18next";
 import {useGetJobExperience} from "@/hooks";
 import {useMemo, useState} from "react";
 import {CompanyListItem} from "./company-list-item.tsx";
-import {CompanyDetails} from "@/routes/home/components/my-experience/company-details.tsx";
-import {LoaderComponent} from "@/components/ui";
+import {CompanyDetails} from "./company-details.tsx";
+import {LoaderComponent, SectionTitle} from "@/components/ui";
 
 export const MyExperience = () => {
   const { t } = useTranslation();

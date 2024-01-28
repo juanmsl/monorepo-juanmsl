@@ -6,15 +6,13 @@ export const HeaderBottomStyle = styled.svg`
   z-index: 100;
   bottom: 0;
   left: 0;
-  height: 250px;
+  height: 236px;
 
   #backgroundColor {
     fill: ${props => props.theme.colors.background};
-    transform: translate(0, 10px);
   }
 
   #line {
     fill: ${props => props.theme.colors.tertiary};
-    transform: translate(0, 10px);
   }
 `;

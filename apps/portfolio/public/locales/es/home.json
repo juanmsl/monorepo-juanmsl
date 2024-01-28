@@ -1,13 +1,31 @@
 {
   "aboutMe": {
-    "title": "Sobre mi",
+    "title": "Sobre mí",
     "subtitle1": "Mi pasión y lo que hago",
-    "subtitle2": "Contactame",
-    "text1": "Soy un ingeniero de software amante del código y con una gran pasión por el diseño. Actualmente me especializo en desarrollo web creando plataformas increíbles y profesionales. Cuidando la experiencia del usuario y aplicando buenas prácticas en el código para garantizar calidad y escalabilidad.",
+    "subtitle2": "Contáctame",
+    "text1": "Soy un ingeniero de software amante del código y con una gran pasión por el diseño. Actualmente me especializo en desarrollo web, creando plataformas increíbles y profesionales, cuidando la experiencia del usuario y aplicando buenas prácticas en el código para garantizar calidad y escalabilidad.",
     "text2": "Siempre buscando nuevas oportunidades para aprender y crecer profesional y personalmente.",
-    "text3": "¿Quieres empezar con tu proyecto y necesitas mi ayuda, o simplemente quieres trabajar conmigo? Por favor contáctame.",
+    "text3": "¿Quieres empezar con tu proyecto y necesitas mi ayuda, o simplemente quieres trabajar conmigo? Por favor, contáctame.",
     "button1": "Descargar mi CV",
-    "button2": "Contratame!"
+    "button2": "Contrátame!",
+    "characteristics": [
+      {
+        "title": "Código limpio",
+        "icon": "clean-computer"
+      },
+      {
+        "title": "Diseño moderno",
+        "icon": "design-ui"
+      },
+      {
+        "title": "Creativo",
+        "icon": "creative"
+      },
+      {
+        "title": "Curioso",
+        "icon": "thinking"
+      }
+    ]
   },
   "mySkills": {
     "title": "Mis habilidades",

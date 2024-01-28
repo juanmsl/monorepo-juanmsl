@@ -5,22 +5,22 @@ import {useEventListener} from "@juanmsl/hooks";
 type HoverCardProps = {
   children: React.ReactNode;
   threshold?: number;
-  translationZ?: string;
+  translationZ?: number;
 };
 
 export const HoverCard = ({
   children,
   threshold = 5,
-  translationZ = '25px',
+  translationZ = 25,
 }: HoverCardProps) => {
   const refCard = useRef<HTMLElement>(null);
-  const refLayer1 = useRef<HTMLElement>(null);
+  const refLayer = useRef<HTMLElement>(null);
 
   const mouseMoveCallback = useCallback((e: MouseEvent) => {
     const card = refCard.current;
-    const layer1 = refLayer1.current;
+    const layer = refLayer.current;
 
-    if (!card || !layer1) return;
+    if (!card || !layer) return;
 
     const {clientX, clientY, currentTarget} = e;
     const {clientWidth, clientHeight, } = currentTarget;
@@ -35,26 +35,27 @@ export const HoverCard = ({
     const rotateY = (relativePercentageY * threshold).toFixed(2);
     const rotateX = (relativePercentageX * threshold).toFixed(2);
 
-    layer1.style.transform = `perspective(${clientWidth}px) rotateX(${-rotateY}deg) rotateY(${rotateX}deg)`;
-  }, []);
+    layer.style.transform = `perspective(${clientWidth}px) rotateX(${-rotateY}deg) rotateY(${rotateX}deg)`;
+    card.style.transform = `perspective(${clientWidth}px) translateZ(${translationZ}px)`;
+  }, [translationZ]);
 
   const mouseLeaveCallback = useCallback<MouseEventHandler>((e) => {
-    const layer1 = refLayer1.current;
+    const card = refCard.current;
+    const layer = refLayer.current;
 
-    if (!layer1) return;
+    if (!card || !layer) return;
 
-    refLayer1.current.style.transform = `perspective(${e.currentTarget.clientWidth}px) rotateX(0) rotateY(0)`;
+    layer.style.transform = `perspective(${e.currentTarget.clientWidth}px) rotateX(0) rotateY(0)`;
+    card.style.transform = `perspective(${e.currentTarget.clientWidth}px) translateZ(0)`;
   }, []);
 
   useEventListener('mousemove', mouseMoveCallback as unknown as EventListener, refCard);
   useEventListener('mouseleave', mouseLeaveCallback as unknown as EventListener, refCard);
 
   return (
-    <HoverCardStyle ref={refCard} $translationZ={translationZ}>
-      <span className="card-hover-layer-1" ref={refLayer1} >
-        <span className="card-hover-layer-2" >
-          {children}
-        </span>
+    <HoverCardStyle ref={refCard}>
+      <span className="card-hover-layer" ref={refLayer} >
+        {children}
       </span>
     </HoverCardStyle>
   );

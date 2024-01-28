@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
-
-export const ThemeSelectorStyle = styled.span`
+export const ToggleSelectorStyle = styled.div`
   display: grid;
   grid-auto-flow: column;
   gap: 20px;
@@ -9,6 +8,7 @@ export const ThemeSelectorStyle = styled.span`
   position: relative;
   font-size: 1.5em;
   padding: 10px;
+  user-select: none;
 
   &::before {
     content: '';
@@ -25,18 +25,29 @@ export const ThemeSelectorStyle = styled.span`
     transition: all 0.3s ease;
   }
 
-  .dark-icon, .light-icon {
+  .left-option, .right-option {
     color: ${props => props.theme.colors.text};
+    width: 1em;
+    height: 1em;
+    display: block;
   }
 
-  .light-icon {
-    color: ${props => props.theme.colors.text};
+  .right-option {
+    filter: grayscale(100%);
   }
 
-  &.light {
+  &.right-position {
     &::before {
       left: 100%;
       transform: translateX(-100%);
+    }
+
+    .right-option {
+      filter: none;
+    }
+
+    .left-option {
+      filter: grayscale(100%);
     }
   }
 
