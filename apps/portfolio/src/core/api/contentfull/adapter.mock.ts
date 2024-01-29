@@ -1,6 +1,6 @@
 import {ContentFullAPIPort} from "./port.ts";
 import {
-  AssetEntity, ContactEntity,
+  AssetEntity, CharacteristicEntity, ContactEntity,
   JobExperienceEntity, ProfessionalSkillsEntity, TechnologyEntity,
 } from "./domain.ts";
 
@@ -69,6 +69,15 @@ export class ContentFullAPIAdapter implements ContentFullAPIPort {
         name: 'Dev',
         yearsOfExperience: 10,
         seniority: 100,
+        icon: 'https://rotulosmatesanz.com/wp-content/uploads/2017/09/2000px-Google_G_Logo.svg_.png'
+      }
+    ]), 3000));
+  }
+
+  async getCharacteristics() {
+    return new Promise<Array<CharacteristicEntity>>((resolve) => setTimeout(() => resolve([
+      {
+        title: 'Dev',
         icon: 'https://rotulosmatesanz.com/wp-content/uploads/2017/09/2000px-Google_G_Logo.svg_.png'
       }
     ]), 3000));

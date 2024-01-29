@@ -9,6 +9,7 @@ export const ToggleSelectorStyle = styled.div`
   font-size: 1.5em;
   padding: 10px;
   user-select: none;
+  width: fit-content;
 
   &::before {
     content: '';
@@ -54,6 +55,29 @@ export const ToggleSelectorStyle = styled.div`
   &:hover {
     &::before {
       aspect-ratio: 1.3/1;
+    }
+  }
+
+  &.vertical {
+    grid-auto-flow: row;
+
+    &::before {
+      width: 100%;
+      height: unset;
+    }
+
+    &.right-position {
+      &::before {
+        left: unset;
+        top: 100%;
+        transform: translateY(-100%);
+      }
+    }
+
+    &:hover {
+      &::before {
+        aspect-ratio: 1/1.3;
+      }
     }
   }
 `;

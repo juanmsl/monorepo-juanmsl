@@ -1,8 +1,10 @@
 import styled from "styled-components";
+import {SectionLayout} from "@/components/layouts";
 
-export const MyExperienceStyle = styled.section`
+export const MyExperienceStyle = styled(SectionLayout)`
   .layout-content {
     align-content: start;
+    gap: 40px;
   }
 
   .my-experience-content {

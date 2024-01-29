@@ -1,5 +1,5 @@
 import {
-  AssetEntity,
+  AssetEntity, CharacteristicEntity,
   ContactEntity,
   ContentFullAPI,
   JobExperienceEntity,
@@ -25,6 +25,9 @@ export const ContentFullKeys = {
 
   allTechnologies: () => [...ContentFullKeys.all, 'technologies'] as const,
   technologiesLocale: (locale: string) => [...ContentFullKeys.allTechnologies(), locale] as const,
+
+  allCharacteristics: () => [...ContentFullKeys.all, 'characteristics'] as const,
+  characteristicsLocale: (locale: string) => [...ContentFullKeys.allCharacteristics(), locale] as const,
 
   allAssets: () => [...ContentFullKeys.all, 'assets'] as const,
   assetId: (assetId: string) => [...ContentFullKeys.allAssets(), 'asset', assetId] as const,
@@ -71,6 +74,17 @@ export const useGetTechnologies = (): UseQueryResult<Array<TechnologyEntity>> =>
   return useQuery({
     queryKey: ContentFullKeys.technologiesLocale(i18n.languages[0]),
     queryFn: () => controllerAPI.getTechnologies(i18n.languages[0]),
+  });
+};
+
+export const useGetCharacteristics = (): UseQueryResult<Array<CharacteristicEntity>> => {
+  const adapter = new ContentFullAPIAdapter();
+  const controllerAPI = new ContentFullAPI(adapter);
+  const { i18n } = useTranslation();
+
+  return useQuery({
+    queryKey: ContentFullKeys.characteristicsLocale(i18n.languages[0]),
+    queryFn: () => controllerAPI.getCharacteristics(i18n.languages[0]),
   });
 };
 

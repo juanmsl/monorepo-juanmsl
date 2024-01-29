@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import {SectionLayout} from "@/components/layouts";
 
-export const AboutMeStyle = styled.section`
+export const AboutMeStyle = styled(SectionLayout)`
 
   .layout-content {
     grid-auto-flow: column;
@@ -34,7 +35,7 @@ export const AboutMeStyle = styled.section`
   }
 `;
 
-export const CharacteristicsStyle = styled.section`
+export const CharacteristicsStyle = styled(SectionLayout)`
   background: ${props => props.theme.colors.secondary};
   color: ${props => props.theme.colors.secondaryContrast};
   transition: all 0.5s ease;

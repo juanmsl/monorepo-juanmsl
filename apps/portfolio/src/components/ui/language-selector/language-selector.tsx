@@ -19,6 +19,7 @@ export const LanguageSelector = () => {
       rightLabel={t('common:languages.es')}
       tooltipPosition='bottom'
       toggle={handleToggle}
+      orientation='vertical'
     >
       <img
         className='language-image'

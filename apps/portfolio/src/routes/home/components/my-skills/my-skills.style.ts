@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import {SectionLayout} from "@/components/layouts";
 
-export const MySkillsStyle = styled.section`
+export const MySkillsStyle = styled(SectionLayout)`
   user-select: none;
 
   .layout-content {
@@ -19,12 +20,10 @@ export const MySkillsStyle = styled.section`
 
   .right {
     display: grid;
-    gap: 10px;
     place-content: center;
     width: 430px;
     height: 524px;
-    background: ${props => props.theme.colors.secondary};
-    color: ${props => props.theme.colors.secondaryContrast};
+    background: ${props => props.theme.colors.tertiary};
 
     .right-content {
       display: grid;
@@ -68,6 +67,15 @@ export const MySkillsStyle = styled.section`
         }
       }
     }
+  }
+
+  .technology-icon {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    padding: 10px;
+    background: ${props => props.theme.colors.white};
+    border-radius: 10px;
   }
 
   .skills-labels {

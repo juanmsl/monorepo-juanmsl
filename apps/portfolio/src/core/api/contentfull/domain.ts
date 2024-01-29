@@ -1,5 +1,3 @@
-
-
 export type QueryResponse<T> = {
   data: T;
 }
@@ -27,6 +25,13 @@ export type ContactEntity = {
 };
 
 export type ContactsCollection = QueryCollection<ContactEntity>;
+
+export type CharacteristicEntity = {
+  title: string;
+  icon: string;
+}
+
+export type CharacteristicCollection = QueryCollection<CharacteristicEntity>;
 
 export type TechnologyEntity = {
   name: string;

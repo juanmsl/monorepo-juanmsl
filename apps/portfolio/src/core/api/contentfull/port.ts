@@ -1,5 +1,5 @@
 import {
-  AssetEntity,
+  AssetEntity, CharacteristicEntity,
   ContactEntity,
   JobExperienceEntity, ProfessionalSkillsEntity, TechnologyEntity
 } from "./domain.ts";
@@ -11,4 +11,5 @@ export interface ContentFullAPIPort {
   getProfessionalSkills(locale: string): Promise<Array<ProfessionalSkillsEntity>>;
   getAssetById(assetId: string): Promise<AssetEntity>;
   getTechnologies(locale: string): Promise<Array<TechnologyEntity>>;
+  getCharacteristics(locale: string): Promise<Array<CharacteristicEntity>>;
 }
