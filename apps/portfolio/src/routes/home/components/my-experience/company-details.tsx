@@ -2,6 +2,7 @@ import {JobExperienceEntity} from "@/core";
 import {CompanyDetailsStyle} from "./my-experience.style.ts";
 import {HoverCard, Tag, Typography} from "@juanmsl/ui";
 import {formatDate, timeBetween} from "@juanmsl/helpers";
+import {Reveal} from "@/components/animations";
 
 type CompanyItemProps = {
   company: JobExperienceEntity;
@@ -35,7 +36,9 @@ export const CompanyDetails = ({
       </ul>
       <div className='company-details-labels'>
         {technologies.items.map((technology, key) => (
-          <Tag key={key}>{technology.name}</Tag>
+          <Reveal delay={50 * key} key={key}>
+            <Tag>{technology.name}</Tag>
+          </Reveal>
         ))}
       </div>
     </CompanyDetailsStyle>

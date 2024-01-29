@@ -28,4 +28,8 @@ export class ContentFullAPI implements ContentFullAPIPort {
     return await this.adapter.getTechnologies(locale);
   }
 
+  async getCharacteristics(locale: string) {
+    return await this.adapter.getCharacteristics(locale);
+  }
+
 }

@@ -2,6 +2,11 @@ import {ToggleSelectorStyle} from "@/components/ui/toggle-selector/toggle-select
 import {Tooltip, TooltipPosition} from "@juanmsl/ui";
 import {useClassNames} from "@juanmsl/hooks";
 
+enum ToggleSelectorOrientation {
+  VERTICAL = 'vertical',
+  HORIZONTAL = 'horizontal',
+}
+
 type ToggleSelectorProps = {
   children: [React.ReactNode, React.ReactNode];
   leftLabel?: string;
@@ -9,6 +14,7 @@ type ToggleSelectorProps = {
   position: 'left' | 'right';
   toggle: () => void;
   tooltipPosition?: `${TooltipPosition}`;
+  orientation?: `${ToggleSelectorOrientation}`;
 };
 
 
@@ -18,10 +24,12 @@ export const ToggleSelector = ({
   rightLabel,
   position,
   toggle,
-  tooltipPosition = 'top'
+  tooltipPosition = 'top',
+  orientation = ToggleSelectorOrientation.HORIZONTAL
 }: ToggleSelectorProps) => {
   const className = useClassNames({
-    'right-position': position === 'right'
+    'right-position': position === 'right',
+    'vertical': orientation === ToggleSelectorOrientation.VERTICAL,
   })
 
   return (

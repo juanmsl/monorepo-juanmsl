@@ -1,5 +1,6 @@
 import {ContentFullAPIPort} from "./port.ts";
 import {
+  CharacteristicCollection,
   ContactsCollection,
   JobExperienceCollection, ProfessionalSkillsCollection,
   QueryAssetResponse,
@@ -150,5 +151,28 @@ export class ContentFullAPIAdapter implements ContentFullAPIPort {
 
 
     return data.data.technologyCollection.items;
+  }
+
+  async getCharacteristics(locale: string) {
+    const { data } = await this.http<QueryResponse<{ characteristicCollection: CharacteristicCollection }>>({
+      data: {
+        query: `
+          query($locale: String) {
+            characteristicCollection(locale:$locale, order:[title_ASC]) {
+              items {
+                title
+                icon
+              }
+            }
+          }
+        `,
+        variables: {
+          locale: locale
+        }
+      }
+    });
+
+
+    return data.data.characteristicCollection.items;
   }
 }

@@ -27,7 +27,7 @@ type TypographyProps = HTMLAttributes<HTMLElement> & {
   children: React.ReactNode;
   withoutPadding?: boolean;
 };
-export const Typography = ({
+export const Typography = React.forwardRef(({
   variant = 'body',
   nowrap = false,
   className: customClassname = '',
@@ -36,7 +36,7 @@ export const Typography = ({
   weight,
   withoutPadding = false,
   ...props
-}: TypographyProps) => {
+}: TypographyProps, ref) => {
 
   const className = useClassNames({
     [variant]: true,
@@ -81,9 +81,10 @@ export const Typography = ({
           ...props,
           children,
           className,
+          ref,
           style: { fontWeight: weight },
         }
       )}
     </>
   );
-}
+});

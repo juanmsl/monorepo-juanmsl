@@ -8,6 +8,7 @@ export const MainLayoutStyle = styled.main`
   color: ${props => props.theme.colors.text};
   display: grid;
   position: relative;
+  transition: all 300ms ease;
 
   &::before, &::after {
     content: '';
@@ -17,6 +18,7 @@ export const MainLayoutStyle = styled.main`
     height: 100%;
     z-index: 500;
     background: ${props => props.theme.colors.primary};
+    transition: background 300ms ease;
   }
 
   &::before {
@@ -41,7 +43,6 @@ export const MainLayoutStyle = styled.main`
     width: 100%;
     max-width: ${props => props.theme.constants.breakpoints.laptopL};
     margin: 0 auto;
-    position: relative;
     padding: ${props => props.theme.constants.sectionPadding};
     min-height: ${props => props.theme.constants.sectionMinHeight};
     display: grid;
@@ -57,7 +58,7 @@ export const MainLayoutStyle = styled.main`
     display: grid;
     grid-auto-flow: row;
     gap: 20px;
-    align-items: center;
+    justify-items: end;
   }
 
   .layout-logo {
@@ -70,6 +71,7 @@ export const MainLayoutStyle = styled.main`
     z-index: 1000;
     border-radius: 50%;
     background: ${props => props.theme.colors.text};
+    transition: all 300ms ease;
     padding: 5px;
   }
 `;

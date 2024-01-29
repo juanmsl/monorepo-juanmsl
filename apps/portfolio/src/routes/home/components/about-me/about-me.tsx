@@ -3,18 +3,15 @@ import {SectionTitle} from "@/components/ui";
 import {HoverCard, Icon, Line, Typography} from "@juanmsl/ui";
 import {useTranslation} from "react-i18next";
 import {Button, IconNameT} from "@juanmsl/ui";
-import {useState} from "react";
+import {useMemo, useState} from "react";
 import {ProfilePicture} from "@/components/resources";
-
-type CharacteristicEntity = {
-  title: string;
-  icon: IconNameT;
-  description: string;
-};
+import {useGetCharacteristics} from "@/hooks";
+import {Reveal} from "@/components/animations";
 
 export const AboutMe = () => {
   const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
+  const { data = [] } = useGetCharacteristics();
 
   const handleClick = async () => {
     setIsLoading(true);
@@ -26,44 +23,61 @@ export const AboutMe = () => {
     setIsLoading(response);
   }
 
-  const characteristics = (t('home:aboutMe.characteristics', { returnObjects: true }) as Array<CharacteristicEntity>).map(({title, icon}, key) => (
-    <HoverCard translationZ={15}>
-      <CharacteristicStyle key={key}>
-        <Icon name={icon} className='characteristic-icon' />
-        <Line orientation='horizontal' className='characteristic-line' />
-        <Typography variant='body' className='characteristic-title'>{title}</Typography>
-      </CharacteristicStyle>
-    </HoverCard>
-  ))
+  const characteristics = useMemo(() => (
+    data.map(({title, icon}, key) => (
+      <HoverCard translationZ={15} key={key}>
+        <Reveal delay={100 * key}>
+          <CharacteristicStyle>
+            <Icon name={icon as IconNameT} className='characteristic-icon' />
+            <Line orientation='horizontal' className='characteristic-line' />
+            <Typography variant='body' className='characteristic-title'>{title}</Typography>
+          </CharacteristicStyle>
+        </Reveal>
+      </HoverCard>
+    ))
+  ), [data]);
 
   return (
     <>
       <AboutMeStyle>
-        <div className="layout-content">
-          <section className='left'>
-            <ProfilePicture className='profile-picture' />
-          </section>
-          <section className='right'>
+        <section className='left'>
+          <ProfilePicture className='profile-picture' />
+        </section>
+        <section className='right'>
+          <Reveal delay={100}>
             <SectionTitle>
               {t('home:aboutMe.title')}
             </SectionTitle>
+          </Reveal>
+          <Reveal delay={200}>
             <Typography variant='header4'>
               {t('home:aboutMe.subtitle1')}
             </Typography>
+          </Reveal>
+          <Reveal delay={300}>
             <Typography variant='body'>
               {t('home:aboutMe.text1')}
             </Typography>
+          </Reveal>
+          <Reveal delay={400}>
             <Typography variant='body'>
               {t('home:aboutMe.text2')}
             </Typography>
+          </Reveal>
+          <Reveal delay={500}>
             <Typography variant='header4'>
               {t('home:aboutMe.subtitle2')}
             </Typography>
+          </Reveal>
+          <Reveal delay={600}>
             <Typography variant='body'>
               {t('home:aboutMe.text3')}
             </Typography>
-            <div className="button-ctas">
-              <HoverCard translationZ={15}>
+          </Reveal>
+
+          <div className="button-ctas">
+            <HoverCard translationZ={15}>
+              <Reveal delay={700}>
                 <Button
                   leftIcon='instagram'
                   onClick={handleClick}
@@ -71,7 +85,10 @@ export const AboutMe = () => {
                 >
                   {t('home:aboutMe.button1')}
                 </Button>
-              </HoverCard>
+              </Reveal>
+            </HoverCard>
+
+            <Reveal delay={800}>
               <Button
                 leftIcon='linkedin'
                 onClick={handleClick}
@@ -80,15 +97,13 @@ export const AboutMe = () => {
               >
                 {t('home:aboutMe.button2')}
               </Button>
-            </div>
-          </section>
-        </div>
+            </Reveal>
+          </div>
+        </section>
       </AboutMeStyle>
       <CharacteristicsStyle>
-        <div className="layout-content">
-          <div className="characteristics-gallery">
-            {characteristics}
-          </div>
+        <div className="characteristics-gallery">
+          {characteristics}
         </div>
       </CharacteristicsStyle>
     </>

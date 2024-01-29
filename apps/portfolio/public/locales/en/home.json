@@ -7,25 +7,7 @@
     "text2": "Always looking for new opportunities to learn and grow professionally and personally.",
     "text3": "Do you want to get started with your project and you need my help, or you just want to work with me? Please contact me.",
     "button1": "Download my CV",
-    "button2": "Hire me!",
-    "characteristics": [
-      {
-        "title": "Clean Code",
-        "icon": "clean-computer"
-      },
-      {
-        "title": "Modern Design",
-        "icon": "design-ui"
-      },
-      {
-        "title": "Creative",
-        "icon": "creative"
-      },
-      {
-        "title": "Curious",
-        "icon": "thinking"
-      }
-    ]
+    "button2": "Hire me!"
   },
   "mySkills": {
     "title": "My Skills",

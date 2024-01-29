@@ -6,4 +6,3 @@ export * from './section-title';
 export * from './social-icons';
 export * from './theme-selector';
 export * from './toggle-selector';
-export * from './progress-animation';

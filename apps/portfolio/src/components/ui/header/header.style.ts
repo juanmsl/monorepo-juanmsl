@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import {SectionLayout} from "@/components/layouts";
 
 type HeaderStyleProps = {
   $background: string;
 }
 
-export const HeaderStyle = styled.header<HeaderStyleProps>`
+export const HeaderStyle = styled(SectionLayout).attrs<HeaderStyleProps>(props => props)`
   display: grid;
   position: relative;
   color: ${props => props.theme.colors.primary};
@@ -18,7 +19,8 @@ export const HeaderStyle = styled.header<HeaderStyleProps>`
     height: 100%;
     background: url(${props => props.$background}) center center / cover no-repeat fixed ${props => props.theme.colors.secondary}B3;
     background-blend-mode: soft-light;
-    filter: opacity(50%) grayscale(15%);
+    filter: opacity(40%) grayscale(50%);
+    transition: all 300ms ease;
   }
 
   .container {
@@ -27,6 +29,7 @@ export const HeaderStyle = styled.header<HeaderStyleProps>`
     place-content: center;
     gap: 15px;
     user-select: none;
+    position: relative;
   }
 
   .names {

@@ -7,25 +7,7 @@
     "text2": "Siempre buscando nuevas oportunidades para aprender y crecer profesional y personalmente.",
     "text3": "¿Quieres empezar con tu proyecto y necesitas mi ayuda, o simplemente quieres trabajar conmigo? Por favor, contáctame.",
     "button1": "Descargar mi CV",
-    "button2": "Contrátame!",
-    "characteristics": [
-      {
-        "title": "Código limpio",
-        "icon": "clean-computer"
-      },
-      {
-        "title": "Diseño moderno",
-        "icon": "design-ui"
-      },
-      {
-        "title": "Creativo",
-        "icon": "creative"
-      },
-      {
-        "title": "Curioso",
-        "icon": "thinking"
-      }
-    ]
+    "button2": "Contrátame!"
   },
   "mySkills": {
     "title": "Mis habilidades",

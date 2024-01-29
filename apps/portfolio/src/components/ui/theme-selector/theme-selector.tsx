@@ -12,6 +12,7 @@ export const ThemeSelector = () => {
         position={themeName === 'dark' ? 'left' : 'right'}
         tooltipPosition='bottom'
         toggle={toggleTheme}
+        orientation='vertical'
       >
         <Icon name='moon' />
         <Icon name='sun' />

@@ -16,13 +16,4 @@ export const LoaderComponentStyle = styled.div`
       transform: rotate(1turn);
     }
   }
-
-  @keyframes colors {
-    0%, 100% {
-      color: ${props => props.theme.colors.text};
-    }
-    50% {
-      color: ${props => props.theme.colors.primary};
-    }
-  }
 `;
