@@ -1,5 +1,5 @@
 import { HttpClient } from "@juanmsl/ui";
-import {ENV} from "./constants";
+import {ENV} from "@core/env.ts";
 
 export type PokemonEntity = {
   name: string;

@@ -1,13 +1,15 @@
 import React, {Suspense} from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles.scss';
-
-import './core/i18n.tsx';
-import { ENV } from "./core";
+import {RouterProvider} from "react-router-dom";
+import {router} from "@router";
+import {LoaderLogo} from "@components/ui";
+import ViewportSize from "react-viewport-size";
+import {QueryClientProvider, QueryClient} from "@tanstack/react-query";
+import '@core/i18n';
+import {ENV} from "@core/env";
 import {FetchProvider, IconProvider, ThemeProvider} from "@juanmsl/ui";
-import {LoaderLogo} from "./components/ui";
-import {Routes} from "./routes";
-import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,12 +21,15 @@ const queryClient = new QueryClient({
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Suspense fallback={<LoaderLogo />}>
+    <Suspense fallback={<LoaderLogo/>}>
       <FetchProvider baseURL={ENV.API_URL}>
         <ThemeProvider>
           <IconProvider>
             <QueryClientProvider client={queryClient}>
-                <Routes />
+              <Suspense fallback={<LoaderLogo/>}>
+                <ViewportSize/>
+                <RouterProvider router={router}/>
+              </Suspense>
             </QueryClientProvider>
           </IconProvider>
         </ThemeProvider>

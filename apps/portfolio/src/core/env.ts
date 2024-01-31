@@ -1,0 +1,6 @@
+export const ENV = {
+  ENVIRONMENT: `${import.meta.env.VITE_APP_ENVIRONMENT}`,
+  API_URL: `${import.meta.env.VITE_APP_BACKEND_URL}`,
+  CONTENT_FULL_API_SPACE_ID: `${import.meta.env.VITE_APP_CONTENT_FULL_SPACE_ID}`,
+  CONTENT_FULL_API_ACCESS_TOKEN: `${import.meta.env.VITE_APP_CONTENT_FULL_ACCESS_TOKEN}`,
+};

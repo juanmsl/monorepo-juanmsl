@@ -1,9 +1,8 @@
 export const ThemeConstants = {
   fontFamily: '\'Montserrat Alternates\', sans-serif',
-  sectionPadding: '100px 50px',
   sectionMinHeight: '810px',
   breakpoints: {
-    mobile: '320px',
+    mobile: '360px',
     mobileL: '480px',
     tablet: '768px',
     laptopS: '1024px',
@@ -14,7 +13,7 @@ export const ThemeConstants = {
   },
   typography: {
     hero: {
-      fontSize: '65px',
+      fontSize: '60px',
       lineHeight: '120%',
       defaultWeight: 'bold',
       weights: {
@@ -22,7 +21,7 @@ export const ThemeConstants = {
       },
       breakpoints: [
         {
-          from: 'laptopL',
+          from: 'laptopS',
           fontSize: '80px',
           lineHeight: '120%',
         }
@@ -37,7 +36,7 @@ export const ThemeConstants = {
       },
       breakpoints: [
         {
-          from: 'laptopL',
+          from: 'laptopS',
           fontSize: '60px',
           lineHeight: '120%',
         }
@@ -52,7 +51,7 @@ export const ThemeConstants = {
       },
       breakpoints: [
         {
-          from: 'laptopL',
+          from: 'laptopS',
           fontSize: '50px',
           lineHeight: '120%',
         }
@@ -67,7 +66,7 @@ export const ThemeConstants = {
       },
       breakpoints: [
         {
-          from: 'laptopL',
+          from: 'laptopS',
           fontSize: '40px',
           lineHeight: '120%',
         }
@@ -83,7 +82,7 @@ export const ThemeConstants = {
       },
       breakpoints: [
         {
-          from: 'laptopL',
+          from: 'laptopS',
           fontSize: '30px',
           lineHeight: '120%',
         }
