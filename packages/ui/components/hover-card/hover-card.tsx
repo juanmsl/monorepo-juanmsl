@@ -6,12 +6,14 @@ type HoverCardProps = {
   children: React.ReactNode;
   threshold?: number;
   translationZ?: number;
+  width?: 'fit-content' | '100%';
 };
 
 export const HoverCard = ({
   children,
   threshold = 5,
   translationZ = 25,
+  width = 'fit-content'
 }: HoverCardProps) => {
   const refCard = useRef<HTMLElement>(null);
   const refLayer = useRef<HTMLElement>(null);
@@ -53,7 +55,7 @@ export const HoverCard = ({
   useEventListener('mouseleave', mouseLeaveCallback as unknown as EventListener, refCard);
 
   return (
-    <HoverCardStyle ref={refCard}>
+    <HoverCardStyle ref={refCard} style={{ width }}>
       <span className="card-hover-layer" ref={refLayer} >
         {children}
       </span>

@@ -73,7 +73,17 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': "/src",
+      "@core": "/src/core",
+      "@assets": "/src/assets",
+      "@helpers": "/src/helpers",
+      "@application": "/src/context/application",
+      "@domain": "/src/context/domain",
+      "@infrastructure": "/src/context/infrastructure",
+      "@components": "/src/react/components",
+      "@contexts": "/src/react/contexts",
+      "@features": "/src/react/features",
+      "@hooks": "/src/react/hooks",
+      "@router": "/src/react/router",
     },
   },
 });
