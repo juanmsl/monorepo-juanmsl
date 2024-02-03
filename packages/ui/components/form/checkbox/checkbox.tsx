@@ -1,7 +1,7 @@
 import { CheckBoxSC } from './checkbox.style';
 import { withController } from '../with-controller';
 import { InputProps } from '../types';
-import React, { useCallback, useId } from 'react';
+import { useCallback, useId } from 'react';
 
 type CheckboxProps = {};
 

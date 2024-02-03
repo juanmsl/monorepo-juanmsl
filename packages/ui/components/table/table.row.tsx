@@ -1,5 +1,5 @@
 import { Icon } from '../../contexts';
-import React, { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { RowComponentProps, TableColumn, TableDataGeneric } from './types';
 
 export const TableRow = <T extends TableDataGeneric>({
@@ -37,7 +37,7 @@ export const TableRow = <T extends TableDataGeneric>({
       width: '35px',
       fieldComponent: () => (
         <section className={`edit-cell ${editMode ? 'edit-mode' : ''}`} onClick={toggleEditMode}>
-          <Icon name={editMode ? (isTouched ? 'save' : 'close') : 'edit'} fill="#666666" />
+          <Icon name={editMode ? (isTouched ? 'warning' : 'cross') : 'warning'} fill="#666666" />
         </section>
       ),
     };

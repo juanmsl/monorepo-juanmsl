@@ -1,7 +1,7 @@
 import { Icon } from '../../contexts';
 import { InfiniteScrollStyle } from './infinity-scroll.style';
 import { useInView } from '@juanmsl/hooks';
-import React, { LegacyRef, useEffect } from 'react';
+import {LegacyRef, RefObject, useEffect} from 'react';
 
 type InfinityScrollProps<T> = {
   isLoading: boolean;
@@ -9,7 +9,7 @@ type InfinityScrollProps<T> = {
   loadMore: () => void;
   data: Array<T>;
   renderItem: (item: T, key: number) => React.ReactElement;
-  customLoadMoreElement?: (ref: LegacyRef<HTMLElement>) => React.ReactElement;
+  customLoadMoreElement?: (ref: RefObject<Element>) => React.ReactElement;
   emptyMessage?: string;
 };
 
@@ -39,7 +39,7 @@ export const InfinityScroll = <T,>({
         (customLoadMoreElement ? (
           customLoadMoreElement(ref)
         ) : (
-          <section ref={ref} className="loading">
+          <section ref={ref as LegacyRef<HTMLElement>} className="loading">
             {isLoading && <Icon name="spinner" className="loading--icon" />}
           </section>
         ))}

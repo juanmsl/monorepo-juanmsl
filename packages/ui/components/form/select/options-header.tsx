@@ -1,5 +1,5 @@
 import { Icon } from '../../../contexts';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { OptionsHeaderStyle } from './select.style';
 
 type OptionsHeaderProps<T> = {
@@ -18,7 +18,6 @@ type OptionsHeaderProps<T> = {
   renderOption: (option: T, key: number) => React.ReactNode;
 };
 export const OptionsHeader = <T,>({
-  name,
   isOpen,
   setIsOpen,
   placeholder,
@@ -81,7 +80,7 @@ export const OptionsHeader = <T,>({
           <li className="option option-selected-resume" tabIndex={-1}>
             <span className="text-content">{!!value && value !== '' && renderValue(value)}</span>
             <section className="icon-close" onClick={() => setValue('')}>
-              <Icon name="close" />
+              <Icon name="cross" />
             </section>
           </li>
         </ul>

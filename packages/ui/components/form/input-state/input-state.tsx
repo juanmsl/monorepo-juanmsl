@@ -1,4 +1,3 @@
-import React from 'react';
 import { InputStateStyle } from './input-state.style';
 
 type LabelProps = {

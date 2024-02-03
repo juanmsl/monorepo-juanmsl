@@ -1,5 +1,4 @@
 import { AnyObjectSchema } from 'yup';
-import React from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { DefaultValues, FieldValues, FormProvider, Mode, SubmitHandler, useForm } from 'react-hook-form';
 
