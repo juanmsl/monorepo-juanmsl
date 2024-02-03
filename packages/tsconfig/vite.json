@@ -17,11 +17,7 @@
     "target": "es5",
     "useDefineForClassFields": true,
     "allowImportingTsExtensions": false,
-    "allowSyntheticDefaultImports": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "outDir": "dist"
+    "allowSyntheticDefaultImports": true
   },
   "include": ["src"],
   "exclude": ["node_modules"]
