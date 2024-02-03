@@ -4,8 +4,8 @@ import {
   ContactEntity,
   JobExperienceEntity,
   ProfessionalSkillsEntity,
-  TechnologyEntity
-} from "@domain";
+  TechnologyEntity,
+} from '@domain';
 
 export interface ContentFullPort {
   getJobExperience(locale: string): Promise<Array<JobExperienceEntity>>;

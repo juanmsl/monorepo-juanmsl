@@ -1,18 +1,15 @@
-import {AboutMe, MyExperience, MySkills} from "@components/modules";
-import {Line} from "@juanmsl/ui";
-import {Header} from "@components/ui";
+import { Header } from '@components/ui';
+import { Line } from '@juanmsl/ui';
+import { AboutMe, MyExperience, MySkills } from '@components/modules';
 
-const Home = () => {
-
+export const Home = () => {
   return (
     <>
       <Header />
       <AboutMe />
       <MySkills />
-      <Line orientation='horizontal' style={{ width: '100px', margin: 'auto' }} />
+      <Line orientation="horizontal" style={{ width: '100px', margin: 'auto' }} />
       <MyExperience />
     </>
   );
-}
-
-export default Home;
+};

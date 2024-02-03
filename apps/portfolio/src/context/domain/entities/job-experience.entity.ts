@@ -1,5 +1,5 @@
-import {QueryCollection} from "./content-full.entity.ts";
-import {TechnologyEntity} from "./technology.entity.ts";
+import { QueryCollection } from './content-full.entity';
+import { TechnologyEntity } from './technology.entity';
 
 export type JobExperienceEntity = {
   name: string;

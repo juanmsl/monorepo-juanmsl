@@ -1,12 +1,12 @@
-import {lazy, Suspense} from "react";
-import {LoaderLogo} from "@components/ui";
+import { LoaderLogo } from '@components/ui';
+import { Suspense, lazy } from 'react';
 
-const NotFoundWrapper = lazy(() => import('./not-found'));
+const NotFoundWrapper = lazy(() => import('./not-found').then((module) => ({ default: module.NotFound })));
 
-export function LazyNotFound() {
+export const LazyNotFound = () => {
   return (
     <Suspense fallback={<LoaderLogo />}>
       <NotFoundWrapper />
     </Suspense>
   );
-}
+};

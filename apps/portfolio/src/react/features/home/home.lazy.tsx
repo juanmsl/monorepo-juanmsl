@@ -1,12 +1,12 @@
-import {lazy, Suspense} from "react";
-import {LoaderLogo} from "@components/ui";
+import { LoaderLogo } from '@components/ui';
+import { Suspense, lazy } from 'react';
 
-const HomeWrapper = lazy(() => import('./home'));
+const HomeWrapper = lazy(() => import('./home').then((module) => ({ default: module.Home })));
 
-export function LazyHome() {
+export const LazyHome = () => {
   return (
     <Suspense fallback={<LoaderLogo />}>
       <HomeWrapper />
     </Suspense>
   );
-}
+};

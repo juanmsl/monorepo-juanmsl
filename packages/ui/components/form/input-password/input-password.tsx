@@ -1,7 +1,7 @@
-import { IconNameT } from '../../../contexts';
-import { withController } from '../with-controller';
-import { InputProps } from '../types';
 import { Field } from '../field';
+import { IconNameT } from '../../../contexts';
+import { InputProps } from '../types';
+import { withController } from '../with-controller';
 import { useId, useMemo } from 'react';
 import { useInputHandlers, useToggleValues } from '@juanmsl/hooks';
 
@@ -30,9 +30,11 @@ export const InputPassword = ({
   });
 
   const iconName = useMemo<IconNameT>(() => {
-    if (type === 'password') return 'eye-close';
-    if (type === 'text') return 'eye-open';
-    return 'not-found';
+    if (type === 'password') return 'eye-open' as IconNameT;
+
+    if (type === 'text') return 'eye-hidden' as IconNameT;
+
+    return 'warning' as IconNameT;
   }, [type]);
 
   return (

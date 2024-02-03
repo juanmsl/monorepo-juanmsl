@@ -1,9 +1,5 @@
-import {DocumentStyle} from "./document.style.ts";
+import { DocumentStyle } from './document.style';
 
 export const Document = () => {
-  return (
-    <DocumentStyle>
-
-    </DocumentStyle>
-  )
+  return <DocumentStyle></DocumentStyle>;
 };

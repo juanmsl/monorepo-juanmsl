@@ -1,1 +1,1 @@
-export * from './loader-logo.tsx';
+export * from './loader-logo';

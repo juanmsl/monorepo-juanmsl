@@ -1,5 +1,4 @@
-import {ProfessionalSkillsEntity} from "@domain";
-
+import { ProfessionalSkillsEntity } from '@domain';
 
 export const ProfessionalSkillInstance: Array<ProfessionalSkillsEntity> = [
   {
@@ -9,8 +8,8 @@ export const ProfessionalSkillInstance: Array<ProfessionalSkillsEntity> = [
       items: [
         {
           name: 'Code',
-        }
-      ]
-    }
-  }
+        },
+      ],
+    },
+  },
 ];

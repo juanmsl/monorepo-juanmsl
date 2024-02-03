@@ -1,9 +1,18 @@
 {
-  "name": "eslint-config-custom",
+  "name": "@juanmsl/eslint-config",
   "version": "0.0.0",
-  "main": "index.js",
+  "private": true,
+  "files": [
+    "vite-react.js",
+    "library.js",
+    "next.js",
+    "react-internal.js"
+  ],
   "license": "MIT",
-  "dependencies": {
+  "devDependencies": {
+    "@vercel/style-guide": "^5.1.0",
+    "eslint-config-turbo": "^1.11.3",
+    "eslint-plugin-only-warn": "^1.1.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "eslint": "^8.45.0",
@@ -15,7 +24,8 @@
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "prettier": "^3.0.3"
+    "prettier": "^3.0.3",
+    "typescript": "^5.3.3"
   },
   "publishConfig": {
     "access": "public"

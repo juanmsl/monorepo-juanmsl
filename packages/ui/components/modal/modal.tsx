@@ -1,7 +1,7 @@
 import { Icon } from '../../contexts';
-import React, { FC, ReactNode, useEffect, useId, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { ModalOverlay, ModalWrapper } from './modal.style';
+import React, { FC, ReactNode, useEffect, useId, useState } from 'react';
 
 type ModalProps = {
   isOpen: boolean;
@@ -75,7 +75,7 @@ export const Modal: FC<ModalProps> = ({
             <span />
           ) : (
             <button className="modal-close" onClick={onClose}>
-              <Icon name="close" />
+              <Icon name="exclamation-close" />
             </button>
           )}
         </div>

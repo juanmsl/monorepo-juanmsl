@@ -1,1 +1,1 @@
-export * from './footer-top.tsx';
+export * from './footer-top';

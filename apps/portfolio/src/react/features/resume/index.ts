@@ -1,1 +1,1 @@
-export * from './resume.lazy.tsx';
+export * from './resume.lazy';

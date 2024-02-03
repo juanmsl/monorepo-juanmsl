@@ -1,15 +1,14 @@
-import {useQuery, UseQueryResult} from "@tanstack/react-query";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next';
 import {
   AssetEntity,
   CharacteristicEntity,
   ContactEntity,
   JobExperienceEntity,
   ProfessionalSkillsEntity,
-  TechnologyEntity
-} from "@domain";
-import {ContentFullAdapter, ContentFullAPI} from "@infrastructure";
-
+  TechnologyEntity,
+} from '@domain';
+import { ContentFullAPI, ContentFullAdapter } from '@infrastructure';
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
 
 export const ContentFullKeys = {
   all: ['all'] as const,
@@ -31,7 +30,7 @@ export const ContentFullKeys = {
 
   allAssets: () => [...ContentFullKeys.all, 'assets'] as const,
   assetId: (assetId: string) => [...ContentFullKeys.allAssets(), 'asset', assetId] as const,
-}
+};
 
 export const useGetSocialContact = (): UseQueryResult<Array<ContactEntity>> => {
   const adapter = new ContentFullAdapter();
@@ -97,4 +96,3 @@ export const useAsset = (assetId: string): UseQueryResult<AssetEntity> => {
     queryFn: () => controllerAPI.getAssetById(assetId),
   });
 };
-

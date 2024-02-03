@@ -1,4 +1,8 @@
+/** @type {import("eslint").Linter.Config} */
 module.exports = {
   root: true,
-  extends: ["turbo", "custom"],
-}
+  extends: ["@juanmsl/eslint-config/vite-react.js"],
+  parserOptions: {
+    project: true,
+  },
+};

@@ -1,5 +1,5 @@
 {
-  "extends": "tsconfig/nodejs.json",
+  "extends": "@juanmsl/tsconfig/nodejs.json",
   "include": ["src"],
   "exclude": ["icons", "svg", "node_modules", "build"],
   "compilerOptions": {

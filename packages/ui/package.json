@@ -5,18 +5,20 @@
   "types": "./index.ts",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint \"**/*.ts*\"",
+    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
     "transform-svgs": "node ../../node_modules/@juanmsl/svg-to-react",
     "transform-svgs2": "node @juanmsl/svg-to-react"
   },
   "devDependencies": {
+    "@juanmsl/svg-to-react": "*",
     "@types/color": "^3.0.3",
     "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.18",
     "@types/styled-components": "^5.1.26",
     "eslint": "^7.32.0",
     "eslint-config-custom": "*",
     "tsconfig": "*",
-    "@juanmsl/svg-to-react": "*",
     "typescript": "^4.5.2"
   },
   "dependencies": {

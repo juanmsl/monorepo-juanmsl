@@ -1,42 +1,43 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const MainLayoutStyle = styled.main`
   min-height: 100vh;
-  min-width: ${props => props.theme.constants.breakpoints.mobile};
-  font-family: ${props => props.theme.constants.fontFamily};
-  background: ${props => props.theme.colors.background};
-  color: ${props => props.theme.colors.text};
+  min-width: ${(props) => props.theme.constants.breakpoints.mobile};
+  font-family: ${(props) => props.theme.constants.fontFamily};
+  background: ${(props) => props.theme.colors.background};
+  color: ${(props) => props.theme.colors.text};
   display: grid;
   position: relative;
   transition: all 300ms ease;
   grid-template-rows: auto 1fr;
 
-  &::before, &::after {
+  &::before,
+  &::after {
     content: '';
     position: absolute;
     top: 0;
     width: 5px;
     height: 100%;
     z-index: 500;
-    background: ${props => props.theme.colors.primary};
+    background: ${(props) => props.theme.colors.primary};
     transition: background 300ms ease;
   }
 
   &::before {
     left: 0;
 
-    @media all and (min-width: calc(${props => props.theme.constants.breakpoints.laptopL} + 5px)) {
+    @media all and (min-width: calc(${(props) => props.theme.constants.breakpoints.laptopL} + 5px)) {
       left: 50%;
-      transform: translateX(calc(${props => props.theme.constants.breakpoints.laptopL}/ -2 + 2px));
+      transform: translateX(calc(${(props) => props.theme.constants.breakpoints.laptopL} / -2 + 2px));
     }
   }
 
   &::after {
     right: 0;
 
-    @media all and (min-width: calc(${props => props.theme.constants.breakpoints.laptopL} + 5px)) {
+    @media all and (min-width: calc(${(props) => props.theme.constants.breakpoints.laptopL} + 5px)) {
       right: 50%;
-      transform: translateX(calc(${props => props.theme.constants.breakpoints.laptopL}/ 2 - 1px));
+      transform: translateX(calc(${(props) => props.theme.constants.breakpoints.laptopL} / 2 - 1px));
     }
   }
 
@@ -46,14 +47,14 @@ export const MainLayoutStyle = styled.main`
 
   .layout-content {
     width: 100%;
-    max-width: ${props => props.theme.constants.breakpoints.laptopL};
+    max-width: ${(props) => props.theme.constants.breakpoints.laptopL};
     margin: 0 auto;
     padding: 50px 20px;
-    min-height: ${props => props.theme.constants.sectionMinHeight};
+    min-height: ${(props) => props.theme.constants.sectionMinHeight};
     display: grid;
     align-content: center;
 
-    @media all and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {
+    @media all and (min-width: ${(props) => props.theme.constants.breakpoints.tablet}) {
       padding: 100px 50px;
     }
   }
@@ -69,7 +70,7 @@ export const MainLayoutStyle = styled.main`
     gap: 20px;
     justify-items: end;
 
-    @media all and (min-width: ${props => props.theme.constants.breakpoints.mobileL}) {
+    @media all and (min-width: ${(props) => props.theme.constants.breakpoints.mobileL}) {
       display: grid;
     }
   }
@@ -83,7 +84,7 @@ export const MainLayoutStyle = styled.main`
     height: 40px;
     z-index: 1000;
     border-radius: 50%;
-    background: ${props => props.theme.colors.text};
+    background: ${(props) => props.theme.colors.text};
     transition: all 300ms ease;
     padding: 5px;
   }

@@ -1,21 +1,24 @@
-import {Icon, Tooltip, useMyTheme} from "@juanmsl/ui";
-import {useTranslation} from "react-i18next";
-import {ToggleSelector} from "@components/ui";
+import { ToggleSelector } from '@components/ui';
+import { useTranslation } from 'react-i18next';
+import { Icon, Tooltip, useMyTheme } from '@juanmsl/ui';
 
 export const ThemeSelector = () => {
   const { t } = useTranslation();
   const { themeName, toggleTheme } = useMyTheme();
 
   return (
-    <Tooltip content={t('utility:themeSelector.changeTheme', { theme: t(`common:themes.${themeName}`) })} position='left'>
+    <Tooltip
+      content={t('utility:themeSelector.changeTheme', { theme: t(`common:themes.${themeName}`) })}
+      position="left"
+    >
       <ToggleSelector
         position={themeName === 'dark' ? 'left' : 'right'}
-        tooltipPosition='bottom'
+        tooltipPosition="bottom"
         toggle={toggleTheme}
-        orientation='vertical'
+        orientation="vertical"
       >
-        <Icon name='moon' />
-        <Icon name='sun' />
+        <Icon name="moon" />
+        <Icon name="sun" />
       </ToggleSelector>
     </Tooltip>
   );

@@ -1,1 +1,1 @@
-export * from './content-full.ts';
+export * from './content-full';

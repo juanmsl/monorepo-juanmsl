@@ -1,13 +1,15 @@
-import axios, {AxiosInstance} from "axios";
-import {ENV} from "@core/env";
+import { ENV } from '@core/env';
 import {
   CharacteristicCollection,
-  ContactsCollection, ContentFullPort,
+  ContactsCollection,
+  ContentFullPort,
   JobExperienceCollection,
   ProfessionalSkillsCollection,
   QueryAssetResponse,
-  QueryResponse, TechnologiesCollection
-} from "@domain";
+  QueryResponse,
+  TechnologiesCollection,
+} from '@domain';
+import axios, { AxiosInstance } from 'axios';
 
 export class ContentFullAdapter implements ContentFullPort {
   private http: AxiosInstance;
@@ -17,9 +19,9 @@ export class ContentFullAdapter implements ContentFullPort {
       baseURL: `${ENV.API_URL}/content/v1/spaces/${ENV.CONTENT_FULL_API_SPACE_ID}/environments/${ENV.ENVIRONMENT}`,
       method: 'post',
       headers: {
-        'Authorization': `Bearer ${ENV.CONTENT_FULL_API_ACCESS_TOKEN}`,
-        "content-type": "application/json",
-      }
+        Authorization: `Bearer ${ENV.CONTENT_FULL_API_ACCESS_TOKEN}`,
+        'content-type': 'application/json',
+      },
     });
   }
 
@@ -34,15 +36,15 @@ export class ContentFullAdapter implements ContentFullPort {
             }
           }
         `,
-        variables: {}
-      }
+        variables: {},
+      },
     });
 
     return data.data.asset;
   }
 
   async getJobExperience(locale: string) {
-    const { data } = await this.http<QueryResponse<{jobExperienceCollection: JobExperienceCollection}>>({
+    const { data } = await this.http<QueryResponse<{ jobExperienceCollection: JobExperienceCollection }>>({
       data: {
         query: `
           query($locale: String) {
@@ -68,8 +70,8 @@ export class ContentFullAdapter implements ContentFullPort {
         `,
         variables: {
           locale: locale,
-        }
-      }
+        },
+      },
     });
 
     return data.data.jobExperienceCollection.items;
@@ -91,9 +93,9 @@ export class ContentFullAdapter implements ContentFullPort {
           }
         `,
         variables: {
-          locale: locale
-        }
-      }
+          locale: locale,
+        },
+      },
     });
 
     return data.data.contactCollection.items;
@@ -118,11 +120,10 @@ export class ContentFullAdapter implements ContentFullPort {
           }
         `,
         variables: {
-          locale: locale
-        }
-      }
+          locale: locale,
+        },
+      },
     });
-
 
     return data.data.professionalSkillsCollection.items;
   }
@@ -143,11 +144,10 @@ export class ContentFullAdapter implements ContentFullPort {
           }
         `,
         variables: {
-          locale: locale
-        }
-      }
+          locale: locale,
+        },
+      },
     });
-
 
     return data.data.technologyCollection.items;
   }
@@ -166,11 +166,10 @@ export class ContentFullAdapter implements ContentFullPort {
           }
         `,
         variables: {
-          locale: locale
-        }
-      }
+          locale: locale,
+        },
+      },
     });
-
 
     return data.data.characteristicCollection.items;
   }

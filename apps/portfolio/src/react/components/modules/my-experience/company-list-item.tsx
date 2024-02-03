@@ -1,33 +1,35 @@
-import {useClassNames} from "@juanmsl/hooks";
-import {CompaniesListItemStyle} from "./my-experience.style.ts";
-import {Icon, Typography} from "@juanmsl/ui";
-import {formatDate, timeBetween} from "@juanmsl/helpers";
-import {JobExperienceEntity} from "@domain";
-import {CompanyDetails} from "@components/modules/my-experience/company-details.tsx";
+import { CompaniesListItemStyle } from './my-experience.style';
+import { CompanyDetails } from '@components/modules/my-experience/company-details';
+import { JobExperienceEntity } from '@domain';
+import { useClassNames } from '@juanmsl/hooks';
+import { Icon, Typography } from '@juanmsl/ui';
+import { formatDate, timeBetween } from '@juanmsl/helpers';
 
 type CompanyItemProps = {
   selected?: boolean;
   selectCompany: () => void;
   company: JobExperienceEntity;
-}
+};
 
-export const CompanyListItem = ({
-  selected = false,
-  selectCompany,
-  company,
-}: CompanyItemProps) => {
-  const {name, dateStart, dateEnd, position} = company;
+export const CompanyListItem = ({ selected = false, selectCompany, company }: CompanyItemProps) => {
+  const { name, dateStart, dateEnd, position } = company;
   const className = useClassNames({
-    'selected': selected,
+    selected: selected,
   });
 
   return (
     <CompaniesListItemStyle className={className} onClick={selectCompany}>
       <div className="company-item-header">
         <div className="header-left">
-          <Typography variant='body' weight='bold' className='company-item-name' withoutPadding>{name}</Typography>
-          <Typography className='company-item-position' variant='header4' withoutPadding>{position}</Typography>
-          <Typography variant='label' withoutPadding>{formatDate(dateStart)} - {formatDate(dateEnd)} ({timeBetween(dateStart,dateEnd)})</Typography>
+          <Typography variant="body" weight="bold" className="company-item-name" withoutPadding>
+            {name}
+          </Typography>
+          <Typography className="company-item-position" variant="header4" withoutPadding>
+            {position}
+          </Typography>
+          <Typography variant="label" withoutPadding>
+            {formatDate(dateStart)} - {formatDate(dateEnd)} ({timeBetween(dateStart, dateEnd)})
+          </Typography>
         </div>
         <div className="header-right">
           <Icon name={selected ? 'caret-up' : 'caret-down'} />
@@ -38,4 +40,4 @@ export const CompanyListItem = ({
       </div>
     </CompaniesListItemStyle>
   );
-}
+};

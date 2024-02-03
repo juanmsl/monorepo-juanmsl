@@ -1,14 +1,14 @@
-import styled from "styled-components";
-import {SectionLayout} from "@components/layouts";
+import { SectionLayout } from '@components/layouts';
+import styled from 'styled-components';
 
 type HeaderStyleProps = {
   $background: string;
-}
+};
 
-export const HeaderStyle = styled(SectionLayout).attrs<HeaderStyleProps>(props => props)`
+export const HeaderStyle = styled(SectionLayout).attrs<HeaderStyleProps>((props) => props)`
   display: grid;
   position: relative;
-  color: ${props => props.theme.colors.primary};
+  color: ${(props) => props.theme.colors.primary};
   transition: all 300ms ease;
 
   &::before {
@@ -18,7 +18,7 @@ export const HeaderStyle = styled(SectionLayout).attrs<HeaderStyleProps>(props =
     left: 0;
     width: 100%;
     height: 100%;
-    background: url(${props => props.$background}) ${props => props.theme.colors.secondary}B3;
+    background: url(${(props) => props.$background}) ${(props) => props.theme.colors.secondary}B3;
     background-position: bottom center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -41,7 +41,6 @@ export const HeaderStyle = styled(SectionLayout).attrs<HeaderStyleProps>(props =
     text-transform: uppercase;
   }
 
-
   .user-labels {
     display: flex;
     flex-wrap: wrap;
@@ -49,19 +48,19 @@ export const HeaderStyle = styled(SectionLayout).attrs<HeaderStyleProps>(props =
     align-items: center;
     gap: 10px 20px;
     padding: 0 1rem;
-    color: ${props => props.theme.colors.text};
+    color: ${(props) => props.theme.colors.text};
     transition: all 300ms ease;
 
     .user-label {
       transition: all 0.3s ease;
       line-height: 1em;
-      padding: .2em .5em;
+      padding: 0.2em 0.5em;
       border-radius: 5px;
       font-weight: 500;
 
       &:hover {
-        color: ${props => props.theme.colors.primary};
-        background: ${props => props.theme.colors.primaryContrast};
+        color: ${(props) => props.theme.colors.primary};
+        background: ${(props) => props.theme.colors.primaryContrast};
       }
     }
   }

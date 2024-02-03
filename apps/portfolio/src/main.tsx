@@ -1,34 +1,31 @@
-import React, {Suspense} from 'react';
+import { ENV } from '@core/env';
+import { LoaderLogo } from '@components/ui';
 import ReactDOM from 'react-dom/client';
+import { RouterProvider } from 'react-router-dom';
+import { router } from '@router';
+import { FetchProvider, IconProvider, ThemeProvider } from '@juanmsl/ui';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import React, { Suspense } from 'react';
 import './styles.scss';
-import {RouterProvider} from "react-router-dom";
-import {router} from "@router";
-import {LoaderLogo} from "@components/ui";
-import ViewportSize from "react-viewport-size";
-import {QueryClientProvider, QueryClient} from "@tanstack/react-query";
 import '@core/i18n';
-import {ENV} from "@core/env";
-import {FetchProvider, IconProvider, ThemeProvider} from "@juanmsl/ui";
-
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: Infinity
-    }
-  }
+      staleTime: Infinity,
+    },
+  },
 });
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Suspense fallback={<LoaderLogo/>}>
+    <Suspense fallback={<LoaderLogo />}>
       <FetchProvider baseURL={ENV.API_URL}>
         <ThemeProvider>
           <IconProvider>
             <QueryClientProvider client={queryClient}>
-              <Suspense fallback={<LoaderLogo/>}>
-                <ViewportSize/>
-                <RouterProvider router={router}/>
+              <Suspense fallback={<LoaderLogo />}>
+                <RouterProvider router={router} />
               </Suspense>
             </QueryClientProvider>
           </IconProvider>

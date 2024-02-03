@@ -1,19 +1,12 @@
-import {FooterTopStyle} from "./footer-top.style.ts";
+import { FooterTopStyle } from './footer-top.style';
 
 type ProfilePictureProps = {
   className?: string;
 };
 
-export const FooterTop = ({
-  className
-}: ProfilePictureProps) => {
-
+export const FooterTop = ({ className }: ProfilePictureProps) => {
   return (
-    <FooterTopStyle
-      viewBox="0 0 1920 261"
-      className={className}
-      preserveAspectRatio="none"
-    >
+    <FooterTopStyle viewBox="0 0 1920 261" className={className} preserveAspectRatio="none">
       <g filter="url(#filter-footer-shadow)">
         <path
           id="backgroundColor"
@@ -27,18 +20,30 @@ export const FooterTop = ({
         />
       </g>
       <defs>
-        <filter id="filter-footer-shadow" x="-20" y="0" width="1960" height="261" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-          <feFlood floodOpacity="0" result="BackgroundImageFix"/>
-          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-          <feOffset dy="10"/>
-          <feGaussianBlur stdDeviation="10"/>
-          <feComposite in2="hardAlpha" operator="out"/>
-          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"/>
-          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1565_1674"/>
-          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1565_1674" result="shape"/>
+        <filter
+          id="filter-footer-shadow"
+          x="-20"
+          y="0"
+          width="1960"
+          height="261"
+          filterUnits="userSpaceOnUse"
+          colorInterpolationFilters="sRGB"
+        >
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dy="10" />
+          <feGaussianBlur stdDeviation="10" />
+          <feComposite in2="hardAlpha" operator="out" />
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" />
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1565_1674" />
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1565_1674" result="shape" />
         </filter>
       </defs>
-
     </FooterTopStyle>
   );
-}
+};
