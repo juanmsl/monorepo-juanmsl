@@ -2,6 +2,8 @@
   "extends": "@juanmsl/tsconfig/vite.json",
   "include": ["vite.config.ts", "**/vite-env.d.ts", "**/*.ts", "**/*.tsx"],
   "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "dist",
     "baseUrl": ".",
     "paths": {
       "@core/*": ["./src/core/*"],

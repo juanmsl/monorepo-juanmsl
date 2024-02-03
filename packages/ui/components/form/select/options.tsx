@@ -1,8 +1,8 @@
 import { InfinityScroll } from '../../infinity-scroll';
-import { useCallback } from 'react';
-import { SelectOption } from './select-option';
 import { OptionsHeader } from './options-header';
 import { OptionsStyle } from './select.style';
+import { SelectOption } from './select-option';
+import { useCallback } from 'react';
 
 type OptionsProps<T> = {
   isOpen: boolean;
@@ -102,16 +102,15 @@ export const Options = <T,>({
             </li>
           </ul>
         ) : (
-          <InfinityScroll
-            isLoading={isLoading}
-            hasNextPage={hasNextPage}
-            loadMore={loadMore}
-            data={options}
-            renderItem={renderInternalOption}
-            role="listbox"
-            tabIndex={-1}
-            className="options-list"
-          />
+          <ul className="options-list" role="listbox" tabIndex={-1}>
+            <InfinityScroll
+              isLoading={isLoading}
+              hasNextPage={hasNextPage}
+              loadMore={loadMore}
+              data={options}
+              renderItem={renderInternalOption}
+            />
+          </ul>
         )}
       </section>
     </OptionsStyle>
