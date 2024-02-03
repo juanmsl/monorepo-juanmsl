@@ -1,4 +1,3 @@
-import React from 'react';
 import { FieldStyle } from './field.style';
 import { Icon, IconNameT } from '../../../contexts';
 import { Label } from '../label';

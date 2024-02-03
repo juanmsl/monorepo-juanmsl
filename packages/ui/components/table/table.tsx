@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { TableStyle } from './table.style';
 import { InfinityScroll } from '../infinity-scroll';
 import { Icon } from '../../contexts';
@@ -24,7 +24,7 @@ export const Table = <T extends TableDataGeneric>({
   headersAlignment = 'left',
   fullWidth = false,
 }: TableProps<T>): React.ReactElement => {
-  const [selectedValues, setSelectedValues] = useState<Record<React.Key, T>>({});
+  const [selectedValues, setSelectedValues] = useState<Record<string, T>>({});
 
   useEffect(() => {
     onChange(Object.values(selectedValues));

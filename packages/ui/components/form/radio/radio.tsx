@@ -1,7 +1,7 @@
 import { RadioSC } from './radio.style';
 import { withController } from '../with-controller';
 import { InputProps } from '../types';
-import React, { useCallback, useId } from 'react';
+import { useCallback, useId } from 'react';
 
 type RadioProps = {
   radioValue: string;

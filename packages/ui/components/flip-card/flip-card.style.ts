@@ -2,17 +2,17 @@ import { CSSProperties } from 'react';
 import styled from 'styled-components';
 
 type FlipCardStyleProps = {
-  cardZIndex: CSSProperties['zIndex'];
-  isFlipped: boolean;
-  flipSpeedFrontToBack: number;
-  flipSpeedBackToFront: number;
-  frontRotate: CSSProperties['transform'];
-  backRotate: CSSProperties['transform'];
+  $cardZIndex: CSSProperties['zIndex'];
+  $isFlipped: boolean;
+  $flipSpeedFrontToBack: number;
+  $flipSpeedBackToFront: number;
+  $frontRotate: CSSProperties['transform'];
+  $backRotate: CSSProperties['transform'];
 };
 
-export const FlipCardStyle = styled.section.attrs<FlipCardStyleProps>((attrs) => attrs)`
+export const FlipCardStyle = styled.section<FlipCardStyleProps>`
   perspective: 1000px;
-  z-index: ${({ cardZIndex }) => cardZIndex};
+  z-index: ${({ $cardZIndex }) => $cardZIndex};
 
   .flipper {
     height: 100%;
@@ -33,15 +33,15 @@ export const FlipCardStyle = styled.section.attrs<FlipCardStyleProps>((attrs) =>
   }
 
   .front {
-    position: ${({ isFlipped }) => (isFlipped ? 'absolute' : 'relative')};
-    transform: ${({ frontRotate }) => frontRotate};
-    transition: ${({ flipSpeedBackToFront }) => flipSpeedBackToFront}ms;
+    position: ${({ $isFlipped }) => ($isFlipped ? 'absolute' : 'relative')};
+    transform: ${({ $frontRotate }) => $frontRotate};
+    transition: ${({ $flipSpeedBackToFront }) => $flipSpeedBackToFront}ms;
     z-index: 2;
   }
 
   .back {
-    position: ${({ isFlipped }) => (isFlipped ? 'relative' : 'absolute')};
-    transform: ${({ backRotate }) => backRotate};
-    transition: ${({ flipSpeedFrontToBack }) => flipSpeedFrontToBack}ms;
+    position: ${({ $isFlipped }) => ($isFlipped ? 'relative' : 'absolute')};
+    transform: ${({ $backRotate }) => $backRotate};
+    transition: ${({ $flipSpeedFrontToBack }) => $flipSpeedFrontToBack}ms;
   }
 `;

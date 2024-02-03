@@ -4,7 +4,7 @@
   "extends": "./base.json",
   "compilerOptions": {
     "composite": true,
-    "declaration": false,
+    "declaration": true,
     "declarationMap": false,
     "incremental": true,
     "jsx": "react-jsx",
@@ -20,7 +20,8 @@
     "allowSyntheticDefaultImports": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "outDir": "dist"
   },
   "include": ["src"],
   "exclude": ["node_modules"]

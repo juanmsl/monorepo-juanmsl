@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, useMemo} from "react";
+import {createElement, forwardRef, HTMLAttributes, useMemo} from "react";
 import {TypographyStyle} from "./typography.style";
 import {useClassNames} from "@juanmsl/hooks";
 
@@ -27,7 +27,7 @@ type TypographyProps = HTMLAttributes<HTMLElement> & {
   children: React.ReactNode;
   withoutPadding?: boolean;
 };
-export const Typography = React.forwardRef(({
+export const Typography = forwardRef(({
   variant = 'body',
   nowrap = false,
   className: customClassname = '',
@@ -75,7 +75,7 @@ export const Typography = React.forwardRef(({
   return (
     <>
       <TypographyStyle />
-      {React.createElement(
+      {createElement(
         component,
         {
           ...props,

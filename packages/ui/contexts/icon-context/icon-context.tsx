@@ -1,5 +1,5 @@
 import { IconT, Icons, IconCollectionT } from './icons';
-import React, { createContext, useCallback, useContext, useState } from 'react';
+import { createContext, useCallback, useContext, useState } from 'react';
 
 export type IconNameT = keyof IconCollectionT;
 

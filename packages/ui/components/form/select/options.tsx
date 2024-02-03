@@ -1,5 +1,5 @@
 import { InfinityScroll } from '../../infinity-scroll';
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { SelectOption } from './select-option';
 import { OptionsHeader } from './options-header';
 import { OptionsStyle } from './select.style';

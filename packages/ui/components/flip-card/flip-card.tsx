@@ -1,5 +1,5 @@
 import { FlipCardStyle } from './flip-card.style';
-import React, { CSSProperties, useEffect, useMemo, useState } from 'react';
+import { CSSProperties, useEffect, useMemo, useState } from 'react';
 
 type FlipCardProps = {
   cardZIndex?: CSSProperties['zIndex'];
@@ -48,12 +48,12 @@ export const FlipCard = ({
 
   return (
     <FlipCardStyle
-      cardZIndex={cardZIndex}
-      flipSpeedBackToFront={flipSpeedBackToFront}
-      flipSpeedFrontToBack={flipSpeedFrontToBack}
-      isFlipped={isFlipped}
-      frontRotate={frontRotate}
-      backRotate={backRotate}
+      $cardZIndex={cardZIndex}
+      $flipSpeedBackToFront={flipSpeedBackToFront}
+      $flipSpeedFrontToBack={flipSpeedFrontToBack}
+      $isFlipped={isFlipped}
+      $frontRotate={frontRotate}
+      $backRotate={backRotate}
     >
       <section className="flipper">
         <section className="front">{getComponent(0)}</section>

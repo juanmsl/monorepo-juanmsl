@@ -3,7 +3,7 @@ import { Icon, IconNameT } from '../../../contexts';
 import { FileResolvedT, FileTypeEnum, useFileReader } from '@juanmsl/hooks';
 import { withController } from '../with-controller';
 import { InputProps } from '../types';
-import React, { useEffect, useId, useMemo, useState } from 'react';
+import { useEffect, useId, useMemo, useState } from 'react';
 import {formatBytes} from "@juanmsl/helpers";
 
 type InputFileProps = {
@@ -79,11 +79,11 @@ export const InputFile = ({
 
   const getIconType = (type: FileTypeEnum): IconNameT => {
     const iconTypes: Record<FileTypeEnum, IconNameT> = {
-      [FileTypeEnum.PNG]: 'png',
-      [FileTypeEnum.PDF]: 'pdf',
+      [FileTypeEnum.PNG]: 'warning',
+      [FileTypeEnum.PDF]: 'warning',
     };
 
-    return iconTypes[type] ?? 'not-found';
+    return iconTypes[type] ?? 'warning';
   };
 
   const deleteFile = (index: number) => {

@@ -1,6 +1,6 @@
 import { Icon } from '../../../contexts';
-import { Checkbox } from '../checkbox/checkbox';
-import React, { useCallback } from 'react';
+import { Checkbox } from '../checkbox';
+import { useCallback } from 'react';
 
 type SelectOptionProps<T> = {
   id: string;
@@ -72,7 +72,7 @@ export const SelectOption = <T,>({
       <section className="content">{renderOption(data)}</section>
       {selected && !multiselect && (
         <section className="icon-close" onClick={clearOption(data)}>
-          <Icon name="close" />
+          <Icon name="cross" />
         </section>
       )}
     </li>

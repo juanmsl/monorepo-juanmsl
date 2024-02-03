@@ -52,7 +52,7 @@ module.exports = {
     'eqeqeq': ['error', 'always'],
     'guard-for-in': 'warn',
     'sort-imports': ['error', { 'memberSyntaxSortOrder': ['single', 'all', 'multiple', 'none'] }],
-    'import/no-default-export': 'error',
+    'import/no-default-export': 'off',
     'import/no-named-as-default': 'error',
     'import/no-named-default': 'error',
     'import/no-namespace': 'error',
