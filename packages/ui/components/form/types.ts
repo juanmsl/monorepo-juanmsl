@@ -1,4 +1,4 @@
-import { FieldError } from 'react-hook-form/dist/types';
+import { FieldError } from 'react-hook-form';
 import { IconNameT } from '../../contexts';
 import React from 'react';
 
@@ -36,4 +36,3 @@ type ControllerHOCProps<V> = {
 
 // These are the general props for the form component, it means ALL props that component could receive
 export type InputProps<T extends Props, V> = T & CommonInputProps & ControllerHOCProps<V>;
-
