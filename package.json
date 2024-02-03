@@ -1,23 +1,24 @@
 {
+  "name": "juanmsl",
   "private": true,
-  "engines": {
-    "node": "^18"
-  },
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "portfolio:dev": "turbo run dev --filter=portfolio",
-    "lint": "turbo run lint",
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "portfolio:dev": "turbo dev --filter=portfolio",
+    "lint": "turbo lint",
+    "lint:fix": "turbo lint:fix",
     "format": "prettier --write \"**/*.{ts,tsx,md,js}\""
   },
   "devDependencies": {
-    "eslint": "^8.48.0",
-    "eslint-config-custom": "*",
-    "prettier": "^3.0.3",
+    "@juanmsl/eslint-config": "*",
+    "@juanmsl/tsconfig": "*",
+    "prettier": "^3.1.1",
     "turbo": "latest"
   },
-  "name": "juanmsl",
-  "packageManager": "yarn@1.22.19",
+  "engines": {
+    "node": "^18"
+  },
+  "packageManager": "yarn@1.22.21",
   "workspaces": [
     "apps/*",
     "packages/*"

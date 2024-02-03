@@ -1,9 +1,5 @@
-import {LoaderLogoStyle} from "./loader-logo.style.ts";
+import { LoaderLogoStyle } from './loader-logo.style';
 
 export const LoaderLogo = () => {
-  return (
-    <LoaderLogoStyle>
-      🌀 Loading...
-    </LoaderLogoStyle>
-  );
-}
+  return <LoaderLogoStyle>🌀 Loading...</LoaderLogoStyle>;
+};

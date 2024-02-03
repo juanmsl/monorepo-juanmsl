@@ -1,4 +1,4 @@
-import {ContentFullPort} from "@domain";
+import { ContentFullPort } from '@domain';
 
 export class ContentFullAPI implements ContentFullPort {
   private adapter: ContentFullPort;
@@ -7,28 +7,27 @@ export class ContentFullAPI implements ContentFullPort {
     this.adapter = adapter;
   }
 
-  async getAssetById(assetId: string) {
-    return await this.adapter.getAssetById(assetId);
+  getAssetById(assetId: string) {
+    return this.adapter.getAssetById(assetId);
   }
 
-  async getJobExperience(locale: string) {
-    return await this.adapter.getJobExperience(locale);
+  getJobExperience(locale: string) {
+    return this.adapter.getJobExperience(locale);
   }
 
-  async getSocialContact(locale: string) {
-    return await this.adapter.getSocialContact(locale);
+  getSocialContact(locale: string) {
+    return this.adapter.getSocialContact(locale);
   }
 
-  async getProfessionalSkills(locale: string) {
-    return await this.adapter.getProfessionalSkills(locale);
+  getProfessionalSkills(locale: string) {
+    return this.adapter.getProfessionalSkills(locale);
   }
 
-  async getTechnologies(locale: string) {
-    return await this.adapter.getTechnologies(locale);
+  getTechnologies(locale: string) {
+    return this.adapter.getTechnologies(locale);
   }
 
-  async getCharacteristics(locale: string) {
-    return await this.adapter.getCharacteristics(locale);
+  getCharacteristics(locale: string) {
+    return this.adapter.getCharacteristics(locale);
   }
-
 }

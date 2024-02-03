@@ -12,11 +12,15 @@
     "module": "esnext",
     "noEmit": true,
     "resolveJsonModule": true,
+    "moduleResolution": "bundler",
     "strict": false,
     "target": "es5",
     "useDefineForClassFields": true,
-    "allowImportingTsExtensions": true,
-    "allowSyntheticDefaultImports": true
+    "allowImportingTsExtensions": false,
+    "allowSyntheticDefaultImports": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
   },
   "include": ["src"],
   "exclude": ["node_modules"]

@@ -1,1 +1,1 @@
-export * from './home.lazy.tsx';
+export * from './home.lazy';

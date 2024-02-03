@@ -1,1 +1,1 @@
-export * from './social-icons.tsx';
+export * from './social-icons';

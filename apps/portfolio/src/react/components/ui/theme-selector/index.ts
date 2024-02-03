@@ -1,1 +1,1 @@
-export * from './theme-selector.tsx';
+export * from './theme-selector';

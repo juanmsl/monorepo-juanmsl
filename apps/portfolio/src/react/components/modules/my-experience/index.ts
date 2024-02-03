@@ -1,1 +1,1 @@
-export * from './my-experience.tsx';
+export * from './my-experience';

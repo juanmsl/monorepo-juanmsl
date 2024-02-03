@@ -1,4 +1,4 @@
-import {QueryCollection} from "./content-full.entity.ts";
+import { QueryCollection } from './content-full.entity';
 
 export type ContactEntity = {
   icon: string;

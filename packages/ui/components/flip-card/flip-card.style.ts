@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { CSSProperties } from 'react';
+import styled from 'styled-components';
 
 type FlipCardStyleProps = {
   cardZIndex: CSSProperties['zIndex'];
@@ -10,9 +10,11 @@ type FlipCardStyleProps = {
   backRotate: CSSProperties['transform'];
 };
 
-export const FlipCardStyle = styled.section.attrs((attrs: FlipCardStyleProps) => attrs)`
+export const FlipCardStyle = styled.section.attrs<FlipCardStyleProps>((attrs) => attrs)`
   perspective: 1000px;
-  z-index: ${({ cardZIndex }) => cardZIndex}, .flipper {
+  z-index: ${({ cardZIndex }) => cardZIndex};
+
+  .flipper {
     height: 100%;
     position: relative;
     width: 100%;

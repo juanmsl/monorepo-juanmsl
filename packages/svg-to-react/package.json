@@ -19,7 +19,7 @@
     "@types/node": "^20.11.6",
     "@types/xml2js": "^0.4.14",
     "ts-node": "^10.9.2",
-    "tsconfig": "*",
+    "@juanmsl/tsconfig": "*",
     "tsup": "^8.0.1",
     "typescript": "^5.3.3"
   }

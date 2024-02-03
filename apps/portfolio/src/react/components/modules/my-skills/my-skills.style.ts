@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import {SectionLayout} from "@components/layouts";
+import { SectionLayout } from '@components/layouts';
+import styled from 'styled-components';
 
 export const MySkillsStyle = styled(SectionLayout)`
   user-select: none;
@@ -10,7 +10,7 @@ export const MySkillsStyle = styled(SectionLayout)`
     align-content: stretch;
     align-items: center;
 
-    @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopM}) {
+    @media all and (min-width: ${(props) => props.theme.constants.breakpoints.laptopM}) {
       grid-template-columns: 1fr auto;
       gap: 100px;
     }
@@ -27,9 +27,9 @@ export const MySkillsStyle = styled(SectionLayout)`
     place-content: center;
     width: 430px;
     height: 524px;
-    background: ${props => props.theme.colors.tertiary};
+    background: ${(props) => props.theme.colors.tertiary};
 
-    @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopM}) {
+    @media all and (min-width: ${(props) => props.theme.constants.breakpoints.laptopM}) {
       display: grid;
     }
 
@@ -66,10 +66,10 @@ export const MySkillsStyle = styled(SectionLayout)`
       }
 
       &:hover {
-        color: ${props => props.theme.colors.primary};
+        color: ${(props) => props.theme.colors.primary};
 
         &::before {
-          background: ${props => props.theme.colors.primary};
+          background: ${(props) => props.theme.colors.primary};
           width: 5px;
           height: 5px;
         }
@@ -82,7 +82,7 @@ export const MySkillsStyle = styled(SectionLayout)`
     height: 150px;
     object-fit: contain;
     padding: 10px;
-    background: ${props => props.theme.colors.white};
+    background: ${(props) => props.theme.colors.white};
     border-radius: 10px;
   }
 

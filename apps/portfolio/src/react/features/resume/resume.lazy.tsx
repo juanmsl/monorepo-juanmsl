@@ -1,12 +1,12 @@
-import {lazy, Suspense} from "react";
-import {LoaderLogo} from "@components/ui";
+import { LoaderLogo } from '@components/ui';
+import { Suspense, lazy } from 'react';
 
-const ResumeWrapper = lazy(() => import('./resume.tsx'));
+const ResumeWrapper = lazy(() => import('./resume').then((module) => ({ default: module.Resume })));
 
-export function LazyResume() {
+export const LazyResume = () => {
   return (
     <Suspense fallback={<LoaderLogo />}>
       <ResumeWrapper />
     </Suspense>
   );
-}
+};

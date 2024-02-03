@@ -1,11 +1,11 @@
-import {MySkillsStyle} from "./my-skills.style.ts";
-import {useTranslation} from "react-i18next";
-import {useDeferredValue, useState} from "react";
-import {useGetProfessionalSkills, useGetTechnologies} from "@hooks";
-import {ProfessionalSkillsEntity, TechnologyEntity} from "@domain";
-import {LoaderComponent, SectionTitle} from "@components/ui";
-import {Reveal} from "@components/animations";
-import {Tag, Tooltip, Typography} from "@juanmsl/ui";
+import { MySkillsStyle } from './my-skills.style';
+import { Reveal } from '@components/animations';
+import { useTranslation } from 'react-i18next';
+import { LoaderComponent, SectionTitle } from '@components/ui';
+import { ProfessionalSkillsEntity, TechnologyEntity } from '@domain';
+import { Tag, Tooltip, Typography } from '@juanmsl/ui';
+import { useDeferredValue, useState } from 'react';
+import { useGetProfessionalSkills, useGetTechnologies } from '@hooks';
 
 export const MySkills = () => {
   const { t } = useTranslation();
@@ -16,25 +16,20 @@ export const MySkills = () => {
   const technology = useDeferredValue(selectedTechnology);
 
   const getHoveredTechnologiesOfCategory = (category: ProfessionalSkillsEntity) => {
-    setHoveredCategory(category.technologies.items.map(tech => tech.name));
+    setHoveredCategory(category.technologies.items.map((tech) => tech.name));
   };
 
   return (
     <MySkillsStyle>
       <div className="left">
-        <SectionTitle>
-          {t('home:mySkills.title')}
-        </SectionTitle>
+        <SectionTitle>{t('home:mySkills.title')}</SectionTitle>
 
         <div className="skills-categories">
           {professionalSkills.map((skill, key) => (
-            <Reveal
-              key={key}
-              delay={(key + 1) * 100}
-            >
+            <Reveal key={key} delay={(key + 1) * 100}>
               <Typography
-                variant='body'
-                className='skill-category'
+                variant="body"
+                className="skill-category"
                 onMouseOver={() => getHoveredTechnologiesOfCategory(skill)}
                 onMouseLeave={() => setHoveredCategory([])}
               >
@@ -68,11 +63,13 @@ export const MySkills = () => {
         <LoaderComponent isPending={!technology}>
           <Reveal key={technology?.name} duration={100}>
             <div className="right-content">
-              <img src={technology?.icon} alt='Technology icon' className='technology-icon' />
-              <Typography withoutPadding variant='body'>
+              <img src={technology?.icon} alt="Technology icon" className="technology-icon" />
+              <Typography withoutPadding variant="body">
                 {t('home:mySkills.yearsOfExperience', { count: technology?.yearsOfExperience })}
               </Typography>
-              <Typography withoutPadding variant='label' weight='bold'>{technology?.seniority}%</Typography>
+              <Typography withoutPadding variant="label" weight="bold">
+                {technology?.seniority}%
+              </Typography>
             </div>
           </Reveal>
         </LoaderComponent>

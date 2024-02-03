@@ -1,8 +1,7 @@
-import {createBrowserRouter, Navigate} from "react-router-dom";
-import {PATHS} from "@core/constants";
-import {LazyHome, LazyNotFound, LazyResume} from "@features";
-import {MainLayout} from "@components/layouts";
-
+import { MainLayout } from '@components/layouts';
+import { PATHS } from '@core/constants';
+import { LazyHome, LazyNotFound, LazyResume } from '@features';
+import { Navigate, createBrowserRouter } from 'react-router-dom';
 
 export const router = createBrowserRouter([
   {
@@ -12,14 +11,14 @@ export const router = createBrowserRouter([
       {
         element: <LazyHome />,
         errorElement: <LazyNotFound />,
-        index: true
+        index: true,
       },
       {
         path: PATHS.RESUME_URL,
         errorElement: <LazyNotFound />,
         element: <LazyResume />,
       },
-    ]
+    ],
   },
   {
     path: '*',

@@ -1,28 +1,22 @@
-import {ProfilePictureStyle} from "./profile-picture.style.ts";
-import {HoverCard} from "@juanmsl/ui";
-import {useAsset} from "@hooks";
-import {Reveal} from "@components/animations";
-
+import { HoverCard } from '@juanmsl/ui';
+import { ProfilePictureStyle } from './profile-picture.style';
+import { Reveal } from '@components/animations';
+import { useAsset } from '@hooks';
 
 type ProfilePictureProps = {
   className?: string;
 };
 
-export const ProfilePicture = ({
-  className
-}: ProfilePictureProps) => {
+export const ProfilePicture = ({ className }: ProfilePictureProps) => {
   const { data } = useAsset('2bpAl3x9cptUHnD2UQ8LlR');
 
   return (
     <ProfilePictureStyle className={className}>
-      <Reveal width='100%'>
-        <HoverCard width='100%'>
-          <svg
-            viewBox="0 0 496 610"
-            preserveAspectRatio="none"
-          >
+      <Reveal width="100%">
+        <HoverCard width="100%">
+          <svg viewBox="0 0 496 610" preserveAspectRatio="none">
             <path
-              id='background'
+              id="background"
               fillRule="evenodd"
               clipRule="evenodd"
               d="M236.588 609.928C115.833 606.089 24.1113 499.002 2.78099 380.024C-15.8432 276.14 61.9035 191.022 151.497 135.297C247.532 75.5657 372.588 21.7911 456.067 98.0897C536.682 171.77 477.319 293.338 434.265 393.742C391.714 492.973 344.452 613.358 236.588 609.928Z"
@@ -30,7 +24,7 @@ export const ProfilePicture = ({
             />
             <mask
               id="mask0"
-              style={{maskType: 'alpha'}}
+              style={{ maskType: 'alpha' }}
               maskUnits="userSpaceOnUse"
               x="0"
               y="0"
@@ -45,18 +39,18 @@ export const ProfilePicture = ({
               />
             </mask>
             <g mask="url(#mask0)">
-              <rect width="496" height="610" fill="url(#pattern0)"/>
+              <rect width="496" height="610" fill="url(#pattern0)" />
             </g>
 
             <defs>
               <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-                <use xlinkHref="#profilePicture" transform="scale(0.00201613 0.00163934)"/>
+                <use xlinkHref="#profilePicture" transform="scale(0.00201613 0.00163934)" />
               </pattern>
-              <image id="profilePicture" width="496" height="610" xlinkHref={data?.url}/>
+              <image id="profilePicture" width="496" height="610" xlinkHref={data?.url} />
             </defs>
           </svg>
         </HoverCard>
       </Reveal>
     </ProfilePictureStyle>
   );
-}
+};

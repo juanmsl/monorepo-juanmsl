@@ -1,17 +1,17 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ProfilePictureStyle = styled.section`
   width: 100%;
   max-width: 400px;
-  color: ${props => props.theme.colors.primary};
+  color: ${(props) => props.theme.colors.primary};
   transition: all 300ms ease;
 
-  @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
+  @media all and (min-width: ${(props) => props.theme.constants.breakpoints.laptopS}) {
     width: 400px;
     max-width: unset;
   }
 
-  @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopM}) {
+  @media all and (min-width: ${(props) => props.theme.constants.breakpoints.laptopM}) {
     width: 496px;
   }
 
@@ -25,6 +25,6 @@ export const ProfilePictureStyle = styled.section`
   }
 
   &:hover svg {
-    filter: drop-shadow(0 5px 15px ${props => props.theme.colors.text}55);
+    filter: drop-shadow(0 5px 15px ${(props) => props.theme.colors.text}55);
   }
 `;

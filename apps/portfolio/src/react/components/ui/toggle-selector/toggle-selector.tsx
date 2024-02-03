@@ -1,6 +1,6 @@
-import {ToggleSelectorStyle} from "./toggle-selector.style.ts";
-import {Tooltip, TooltipPosition} from "@juanmsl/ui";
-import {useClassNames} from "@juanmsl/hooks";
+import { ToggleSelectorStyle } from './toggle-selector.style';
+import { useClassNames } from '@juanmsl/hooks';
+import { Tooltip, TooltipPosition } from '@juanmsl/ui';
 
 enum ToggleSelectorOrientation {
   VERTICAL = 'vertical',
@@ -17,7 +17,6 @@ type ToggleSelectorProps = {
   orientation?: `${ToggleSelectorOrientation}`;
 };
 
-
 export const ToggleSelector = ({
   children,
   leftLabel,
@@ -25,25 +24,21 @@ export const ToggleSelector = ({
   position,
   toggle,
   tooltipPosition = 'top',
-  orientation = ToggleSelectorOrientation.HORIZONTAL
+  orientation = ToggleSelectorOrientation.HORIZONTAL,
 }: ToggleSelectorProps) => {
   const className = useClassNames({
     'right-position': position === 'right',
-    'vertical': orientation === ToggleSelectorOrientation.VERTICAL,
-  })
+    vertical: orientation === ToggleSelectorOrientation.VERTICAL,
+  });
 
   return (
     <ToggleSelectorStyle className={className} onClick={toggle}>
       <Tooltip content={leftLabel} disabled={!leftLabel} position={tooltipPosition}>
-        <span className="left-option">
-          {children[0]}
-        </span>
+        <span className="left-option">{children[0]}</span>
       </Tooltip>
       <Tooltip content={rightLabel} disabled={!rightLabel} position={tooltipPosition}>
-        <span className="right-option">
-          {children[1]}
-        </span>
+        <span className="right-option">{children[1]}</span>
       </Tooltip>
     </ToggleSelectorStyle>
   );
-}
+};

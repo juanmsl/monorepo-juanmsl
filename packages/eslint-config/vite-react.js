@@ -1,3 +1,8 @@
+const { resolve } = require("node:path");
+
+const project = resolve(process.cwd(), "tsconfig.json");
+
+/** @type {import("eslint").Linter.Config} */
 module.exports = {
   env: {
     browser: true,
@@ -12,8 +17,13 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:react/recommended',
     'plugin:prettier/recommended',
+    'eslint-config-turbo',
     'prettier',
   ],
+  globals: {
+    React: true,
+    JSX: true,
+  },
   ignorePatterns: ['dist', '!**/*', '**/node_modules/**', '*.js', '*.d.ts'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -96,7 +106,7 @@ module.exports = {
     'prettier/prettier': 'warn',
     'quotes': ['error', 'single'],
     'react/destructuring-assignment': ['error', 'always'],
-    'react/jsx-fragments': ['error', 'element'],
+    'react/jsx-fragments': ['error', 'syntax'],
     'react/jsx-no-useless-fragment': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/function-component-definition': ['error', { 'namedComponents': 'arrow-function', 'unnamedComponents': 'arrow-function' }],
@@ -108,7 +118,9 @@ module.exports = {
   },
   settings: {
     'import/resolver': {
-      typescript: true,
+      typescript: {
+        project
+      },
     },
     react: {
       version: 'detect',

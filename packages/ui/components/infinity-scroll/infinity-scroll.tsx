@@ -1,7 +1,7 @@
 import { Icon } from '../../contexts';
 import { InfiniteScrollStyle } from './infinity-scroll.style';
-import React, { LegacyRef, useEffect } from 'react';
 import { useInView } from '@juanmsl/hooks';
+import React, { LegacyRef, useEffect } from 'react';
 
 type InfinityScrollProps<T> = {
   isLoading: boolean;
@@ -31,7 +31,7 @@ export const InfinityScroll = <T,>({
   }, [hasNextPage, isLoading, loadMore, inView]);
 
   return (
-    <React.Fragment>
+    <>
       <InfiniteScrollStyle />
       {!!emptyMessage && data.length === 0 && !isLoading && <p className="empty-message">{emptyMessage}</p>}
       {data.map(renderItem)}
@@ -43,6 +43,6 @@ export const InfinityScroll = <T,>({
             {isLoading && <Icon name="spinner" className="loading--icon" />}
           </section>
         ))}
-    </React.Fragment>
+    </>
   );
 };
