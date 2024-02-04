@@ -1,21 +1,10 @@
+import { ButtonHTMLAttributes } from 'react';
 import { ButtonStyle } from './button.style';
 import { useClassNames } from '@juanmsl/hooks';
+import { ButtonSize, ButtonVariant } from './button.constants';
 import { Icon, IconNameT } from '../../../contexts';
-import { ButtonHTMLAttributes } from 'react';
 
-export enum ButtonSize {
-  SMALL = 'small',
-  REGULAR = 'regular',
-  LARGE = 'large',
-}
-
-export enum ButtonVariant {
-  DEFAULT = 'default',
-  GHOST = 'ghost',
-  FLAT = 'flat',
-}
-
-type ButtonProps = {
+export type ButtonProps = {
   children: string;
   disabled?: boolean;
   isLoading?: boolean;

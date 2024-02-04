@@ -1,13 +1,7 @@
 import React from 'react';
+import { TooltipPosition } from './tooltip.constants';
 import { TooltipStyle } from './tooltip.style';
 import { useClassNames } from '@juanmsl/hooks';
-
-export enum TooltipPosition {
-  TOP = 'top',
-  BOTTOM = 'bottom',
-  LEFT = 'left',
-  RIGHT = 'right',
-}
 
 export type TooltipProps = {
   position?: `${TooltipPosition}`;

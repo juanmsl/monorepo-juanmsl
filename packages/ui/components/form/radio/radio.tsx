@@ -1,6 +1,6 @@
+import { InputProps } from '../types';
 import { RadioSC } from './radio.style';
 import { withController } from '../with-controller';
-import { InputProps } from '../types';
 import { useCallback, useId } from 'react';
 
 type RadioProps = {

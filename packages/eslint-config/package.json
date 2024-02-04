@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "files": [
-    "vite-react.js",
+    "react.js",
     "library.js",
     "next.js",
     "react-internal.js"

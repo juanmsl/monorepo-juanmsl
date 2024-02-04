@@ -1,6 +1,6 @@
 import { Icon } from '../../contexts';
-import { useCallback, useMemo, useState } from 'react';
 import { RowComponentProps, TableColumn, TableDataGeneric } from './types';
+import { useCallback, useMemo, useState } from 'react';
 
 export const TableRow = <T extends TableDataGeneric>({
   id,
@@ -93,7 +93,7 @@ export const TableRow = <T extends TableDataGeneric>({
         </td>
       );
     },
-    [editMode, onUpdate, editedData, id, setInternalEditedData],
+    [data, editMode, onUpdate, editedData, id, setInternalEditedData],
   );
 
   const renderedRow = useMemo(

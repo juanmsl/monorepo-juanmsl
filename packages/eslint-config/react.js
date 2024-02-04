@@ -4,13 +4,7 @@ const project = resolve(process.cwd(), 'tsconfig.json');
 
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
-  env: {
-    browser: true,
-    es6: true,
-    node: true,
-  },
   extends: [
-    'prettier',
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
@@ -20,19 +14,6 @@ module.exports = {
     'eslint-config-turbo',
     'prettier',
   ],
-  globals: {
-    React: true,
-    JSX: true,
-  },
-  ignorePatterns: ['dist', '!**/*', '**/node_modules/**', '*.js', '*.d.ts'],
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true,
-    },
-  },
   plugins: [
     '@typescript-eslint',
     'eslint-plugin-react',
@@ -43,6 +24,34 @@ module.exports = {
     'react-hooks',
     'react-refresh',
   ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
+  env: {
+    browser: true,
+    es6: true,
+    node: true,
+  },
+  settings: {
+    'import/resolver': {
+      typescript: {
+        project,
+      },
+    },
+    react: {
+      version: 'detect',
+    },
+  },
+  globals: {
+    React: true,
+    JSX: true,
+  },
+  ignorePatterns: ['dist', '!**/*', '**/node_modules/**', '*.js', '*.d.ts'],
   rules: {
     '@typescript-eslint/array-type': ['error', { default: 'generic' }],
     '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
@@ -113,20 +122,10 @@ module.exports = {
       'error',
       { namedComponents: 'arrow-function', unnamedComponents: 'arrow-function' },
     ],
-    'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+    'react-refresh/only-export-components': ['off', { allowConstantExport: true }],
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',
     semi: 'error',
     yoda: 'error',
-  },
-  settings: {
-    'import/resolver': {
-      typescript: {
-        project,
-      },
-    },
-    react: {
-      version: 'detect',
-    },
   },
 };

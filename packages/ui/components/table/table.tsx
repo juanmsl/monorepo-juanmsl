@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { TableStyle } from './table.style';
-import { InfinityScroll } from '../infinity-scroll';
 import { Icon } from '../../contexts';
-import { TableColumn, TableDataGeneric, TableProps } from './types';
-import { TableRow } from './table.row';
+import { InfinityScroll } from '../infinity-scroll';
 import { TableHeader } from './table.header';
+import { TableRow } from './table.row';
+import { TableStyle } from './table.style';
+import { TableColumn, TableDataGeneric, TableProps } from './types';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 export const Table = <T extends TableDataGeneric>({
   data,
@@ -47,6 +47,7 @@ export const Table = <T extends TableDataGeneric>({
         setSelectedValues((prev) => {
           const copy = { ...prev };
           delete copy[id];
+
           return copy;
         });
       }
@@ -76,6 +77,7 @@ export const Table = <T extends TableDataGeneric>({
 
   useEffect(() => {
     const selectedKeys = Object.keys(selectedValues);
+
     if (allowSelection === true && selectedKeys.length > 1) {
       setSelectedValues({
         [selectedKeys[0]]: selectedValues[selectedKeys[0]],
@@ -86,6 +88,7 @@ export const Table = <T extends TableDataGeneric>({
   const renderRow = useCallback(
     (item: T, key: number) => {
       const rowKey = `${rowId ? (item[rowId] as string | number) : key}`;
+
       return <TableRow id={rowKey} data={item} columns={finalColumns} key={rowKey} onUpdate={onRowUpdate} />;
     },
     [finalColumns, onRowUpdate, rowId],

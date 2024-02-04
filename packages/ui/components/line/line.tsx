@@ -1,10 +1,6 @@
-import { LineStyle, LineStyleProps } from './line.style';
+import { LineOrientation } from './line.constants';
 import { useClassNames } from '@juanmsl/hooks';
-
-export enum LineOrientation {
-  VERTICAL = 'vertical',
-  HORIZONTAL = 'horizontal',
-}
+import { LineStyle, LineStyleProps } from './line.style';
 
 type LineProps = LineStyleProps & {
   orientation: `${LineOrientation}`;

@@ -1,12 +1,11 @@
-import { InputControllerProps, InputProps, Props } from './types';
 import { Controller, useFormContext } from 'react-hook-form';
+import { InputControllerProps, InputProps, Props } from './types';
 
-export const withController =
-  <T extends Props, V>(
-    Component: React.FC<InputProps<T, V>>,
-    componentDefaultValue: V,
-  ): React.FC<InputControllerProps<T>> =>
-  (inputControllerProps: InputControllerProps<T>): React.ReactElement => {
+export const withController = <T extends Props, V>(
+  Component: React.FC<InputProps<T, V>>,
+  componentDefaultValue: V,
+): React.FC<InputControllerProps<T>> => {
+  const ControllerWrapper = (inputControllerProps: InputControllerProps<T>): React.ReactElement => {
     const { name, defaultValue, ...inputProps } = inputControllerProps;
     const { control, setValue } = useFormContext();
 
@@ -33,3 +32,6 @@ export const withController =
       />
     );
   };
+
+  return ControllerWrapper;
+};

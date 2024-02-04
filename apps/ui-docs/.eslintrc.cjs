@@ -2,7 +2,7 @@
 module.exports = {
   root: true,
   extends: [
-    "@juanmsl/eslint-config/vite-react.js",
+    "@juanmsl/eslint-config/react.js",
     "plugin:storybook/recommended"
   ],
   parser: "@typescript-eslint/parser",

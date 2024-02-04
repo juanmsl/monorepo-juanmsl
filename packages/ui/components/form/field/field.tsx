@@ -1,7 +1,7 @@
 import { FieldStyle } from './field.style';
-import { Icon, IconNameT } from '../../../contexts';
-import { Label } from '../label';
 import { InputState } from '../input-state';
+import { Label } from '../label';
+import { Icon, IconNameT } from '../../../contexts';
 
 type FieldInputProps = {
   id: string;
