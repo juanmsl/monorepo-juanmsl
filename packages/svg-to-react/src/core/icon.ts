@@ -1,6 +1,6 @@
-import fs from "fs";
-import xml2js from "xml2js";
-import {camelCase} from "../helpers";
+import fs from 'fs';
+import xml2js from 'xml2js';
+import { camelCase } from '../helpers';
 
 interface IconEntity {
   name: string;
@@ -9,7 +9,6 @@ interface IconEntity {
 
   init(): void;
 }
-
 
 export class Icon implements IconEntity {
   private readonly _category: string;
@@ -35,8 +34,8 @@ export class Icon implements IconEntity {
 
     const data = await xml2js.parseStringPromise(file, {
       explicitArray: false,
-      attrNameProcessors: [name => camelCase(name, '-')],
-      attrValueProcessors: [(value, name) => name === 'fill' ? '{fill}' : value]
+      attrNameProcessors: [(name) => camelCase(name, '-')],
+      attrValueProcessors: [(value, name) => (name === 'fill' ? '{fill}' : value)],
     });
 
     this.viewBox = data.svg.$.viewBox;
@@ -48,8 +47,8 @@ export class Icon implements IconEntity {
     const icon = builder.buildObject({
       g: {
         ...data.svg,
-        '$': {}
-      }
+        $: {},
+      },
     });
 
     this.svg = icon.split('fill="{fill}"').join('fill={fill}');

@@ -10,7 +10,8 @@ export const FieldStyle = styled.section<FieldStyleProps>`
   grid-template-rows: auto auto auto;
   gap: 4px;
 
-  input, textarea {
+  input,
+  textarea {
     color: currentColor;
     font-family: inherit;
     padding: 0;

@@ -12,7 +12,7 @@ export default defineConfig({
         name: 'Juanmsl | Portfolio',
         short_name: 'Juanmsl Portfolio',
         description:
-          'Hello, I\'m a Fullstack web developer and Infrastructure engineer, I love design and create things to innovate and inspirate people. Know me visiting my portfolio.',
+          "Hello, I'm a Fullstack web developer and Infrastructure engineer, I love design and create things to innovate and inspirate people. Know me visiting my portfolio.",
         scope: '/',
         id: '/',
         start_url: '/',

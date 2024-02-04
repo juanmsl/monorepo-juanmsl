@@ -10,7 +10,7 @@ export const Users: Array<UserEntity> = [
     website: 'https://juanmsl.com',
     picture: 'https://via.placeholder.com/30/92c952',
     username: 'juanmsl',
-    country: 'col'
+    country: 'col',
   },
   {
     id: '2',
@@ -20,6 +20,6 @@ export const Users: Array<UserEntity> = [
     email: 'linanieto@mail.com',
     picture: 'https://via.placeholder.com/30/92c952',
     username: 'linanieto',
-    country: 'col'
-  }
+    country: 'col',
+  },
 ];

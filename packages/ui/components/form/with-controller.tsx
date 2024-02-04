@@ -1,13 +1,12 @@
 import { InputControllerProps, InputProps, Props } from './types';
 import { Controller, useFormContext } from 'react-hook-form';
 
-
-export const withController = <T extends Props, V>(
-  Component: React.FC<InputProps<T, V>>,
-  componentDefaultValue: V,
-): React.FC<InputControllerProps<T>> =>
+export const withController =
+  <T extends Props, V>(
+    Component: React.FC<InputProps<T, V>>,
+    componentDefaultValue: V,
+  ): React.FC<InputControllerProps<T>> =>
   (inputControllerProps: InputControllerProps<T>): React.ReactElement => {
-
     const { name, defaultValue, ...inputProps } = inputControllerProps;
     const { control, setValue } = useFormContext();
 

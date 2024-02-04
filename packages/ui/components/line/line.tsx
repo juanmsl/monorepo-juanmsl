@@ -1,5 +1,5 @@
-import {LineStyle, LineStyleProps} from "./line.style";
-import {useClassNames} from "@juanmsl/hooks";
+import { LineStyle, LineStyleProps } from './line.style';
+import { useClassNames } from '@juanmsl/hooks';
 
 export enum LineOrientation {
   VERTICAL = 'vertical',
@@ -12,17 +12,11 @@ type LineProps = LineStyleProps & {
   style?: React.CSSProperties;
 };
 
-export const Line = ({
-  orientation,
-  color = 'currentColor',
-  size = '1px',
-  className = '',
-  style = {}
-}: LineProps) => {
+export const Line = ({ orientation, color = 'currentColor', size = '1px', className = '', style = {} }: LineProps) => {
   const classNames = useClassNames({
     [orientation]: true,
-    [className]: !!className
-  })
+    [className]: !!className,
+  });
 
   return <LineStyle className={classNames} color={color} size={size} style={style} />;
-}
+};

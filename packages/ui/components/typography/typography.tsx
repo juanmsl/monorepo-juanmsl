@@ -1,6 +1,6 @@
-import {createElement, forwardRef, HTMLAttributes, useMemo} from "react";
-import {TypographyStyle} from "./typography.style";
-import {useClassNames} from "@juanmsl/hooks";
+import { createElement, forwardRef, HTMLAttributes, useMemo } from 'react';
+import { TypographyStyle } from './typography.style';
+import { useClassNames } from '@juanmsl/hooks';
 
 export enum TypographyVariant {
   HERO = 'hero',
@@ -27,64 +27,65 @@ type TypographyProps = HTMLAttributes<HTMLElement> & {
   children: React.ReactNode;
   withoutPadding?: boolean;
 };
-export const Typography = forwardRef(({
-  variant = 'body',
-  nowrap = false,
-  className: customClassname = '',
-  children,
-  as,
-  weight,
-  withoutPadding = false,
-  ...props
-}: TypographyProps, ref) => {
+export const Typography = forwardRef(
+  (
+    {
+      variant = 'body',
+      nowrap = false,
+      className: customClassname = '',
+      children,
+      as,
+      weight,
+      withoutPadding = false,
+      ...props
+    }: TypographyProps,
+    ref,
+  ) => {
+    const className = useClassNames({
+      [variant]: true,
+      [customClassname]: !!customClassname,
+      [weight ?? '']: !!weight,
+      'no-padding': withoutPadding,
+      nowrap: nowrap,
+    });
 
-  const className = useClassNames({
-    [variant]: true,
-    [customClassname]: !!customClassname,
-    [weight ?? '']: !!weight,
-    'no-padding': withoutPadding,
-    'nowrap': nowrap
-  });
+    const component = useMemo<keyof React.ReactHTML>(() => {
+      if (as) {
+        return as;
+      }
 
-  const component = useMemo<keyof React.ReactHTML>(() => {
-    if (as) {
-      return as;
-    }
+      switch (variant) {
+        case TypographyVariant.HERO:
+        case TypographyVariant.HEADER1:
+          return 'h1';
+        case TypographyVariant.HEADER2:
+          return 'h2';
+        case TypographyVariant.HEADER3:
+          return 'h3';
+        case TypographyVariant.HEADER4:
+          return 'h4';
+        case TypographyVariant.BODY:
+          return 'p';
+        case TypographyVariant.LABEL:
+          return 'label';
+        case TypographyVariant.SMALL:
+          return 'small';
+        default:
+          return 'p';
+      }
+    }, [variant]);
 
-    switch (variant) {
-      case TypographyVariant.HERO:
-      case TypographyVariant.HEADER1:
-        return 'h1';
-      case TypographyVariant.HEADER2:
-        return 'h2';
-      case TypographyVariant.HEADER3:
-        return 'h3';
-      case TypographyVariant.HEADER4:
-        return 'h4';
-      case TypographyVariant.BODY:
-        return 'p';
-      case TypographyVariant.LABEL:
-        return 'label';
-      case TypographyVariant.SMALL:
-        return 'small';
-      default:
-        return 'p';
-    }
-  }, [variant]);
-
-  return (
-    <>
-      <TypographyStyle />
-      {createElement(
-        component,
-        {
+    return (
+      <>
+        <TypographyStyle />
+        {createElement(component, {
           ...props,
           children,
           className,
           ref,
           style: { fontWeight: weight },
-        }
-      )}
-    </>
-  );
-});
+        })}
+      </>
+    );
+  },
+);

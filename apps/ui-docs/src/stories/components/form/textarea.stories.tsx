@@ -5,9 +5,7 @@ import { useCallback, useState } from 'react';
 export default {
   title: 'Components/Form/Textarea',
   component: Textarea,
-  argTypes: {
-
-  },
+  argTypes: {},
   args: {
     name: 'fieldName',
     autoComplete: 'off',
@@ -26,9 +24,7 @@ export default {
         setValue(value);
       }, []);
 
-      return (
-        <Textarea value={value} setValue={handleChange} {...args} />
-      );
+      return <Textarea value={value} setValue={handleChange} {...args} />;
     };
 
     return <Wrapper />;
@@ -39,6 +35,6 @@ type Template = StoryObj<typeof Textarea>;
 
 export const Data: Template = {
   args: {
-    name: 'fieldName'
+    name: 'fieldName',
   },
 };

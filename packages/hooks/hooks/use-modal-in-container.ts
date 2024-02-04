@@ -1,11 +1,10 @@
 import React, { RefObject, useCallback, useEffect, useRef, useState } from 'react';
-import {useEventListener} from "./use-event-listener";
-import {useOnClickOutsideRef} from "./use-on-click-outside-ref";
+import { useEventListener } from './use-event-listener';
+import { useOnClickOutsideRef } from './use-on-click-outside-ref';
 
-export const useModalInContainer = <
-  Container extends HTMLElement,
-  Modal extends HTMLElement = Container
->(offset = 5) => {
+export const useModalInContainer = <Container extends HTMLElement, Modal extends HTMLElement = Container>(
+  offset = 5,
+) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [modalStyle, setModalStyle] = useState<React.CSSProperties>({});
 
@@ -16,21 +15,29 @@ export const useModalInContainer = <
     }
   });
 
-  const getCalendarPosition = useCallback((modalRef: RefObject<HTMLElement>) => {
-    const modal = modalRef.current?.getClientRects()[0];
-    const container = containerRef.current?.getClientRects()[0];
+  const getCalendarPosition = useCallback(
+    (modalRef: RefObject<HTMLElement>) => {
+      const modal = modalRef.current?.getClientRects()[0];
+      const container = containerRef.current?.getClientRects()[0];
 
-    const nextStyles = modal && container ? {
-      left: container.x + modal.width + offset > window.innerWidth
-        ? container.left - (container.x + modal.width - window.innerWidth) - offset
-        : container.left,
-      top: container.y + modal.height + offset > window.innerHeight
-        ? container.top - (container.y + modal.height - window.innerHeight) - offset
-        : container.top,
-    } : {};
+      const nextStyles =
+        modal && container
+          ? {
+              left:
+                container.x + modal.width + offset > window.innerWidth
+                  ? container.left - (container.x + modal.width - window.innerWidth) - offset
+                  : container.left,
+              top:
+                container.y + modal.height + offset > window.innerHeight
+                  ? container.top - (container.y + modal.height - window.innerHeight) - offset
+                  : container.top,
+            }
+          : {};
 
-    setModalStyle(nextStyles);
-  }, [offset]);
+      setModalStyle(nextStyles);
+    },
+    [offset],
+  );
 
   const callback = useCallback(() => {
     if (isVisible) {
@@ -47,6 +54,6 @@ export const useModalInContainer = <
     setIsVisible,
     modalStyle,
     containerRef,
-    modalRef
+    modalRef,
   };
 };

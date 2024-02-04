@@ -1,5 +1,5 @@
-import {useEventListener} from "./use-event-listener";
-import {useRef} from "react";
+import { useEventListener } from './use-event-listener';
+import { useRef } from 'react';
 
 export const useOnClickOutsideRef = (callback: () => void) => {
   const containerRef = useRef<Element>(null);

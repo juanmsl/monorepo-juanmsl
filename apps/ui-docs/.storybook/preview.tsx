@@ -2,14 +2,14 @@ import { Preview } from '@storybook/react';
 import { IconProvider, ThemeProvider } from '@juanmsl/ui';
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     matchers: {
       color: /(background|color)$/i,
       date: /Date$/,
     },
   },
-}
+};
 
 const AppDecorator = (Story) => {
   return (
@@ -75,7 +75,7 @@ const preview: Preview = {
           { value: 'en', title: 'English', left: '🇺🇸' },
           { value: 'es', title: 'Spanish', left: '🇪🇸' },
         ],
-        dynamicTitle: true
+        dynamicTitle: true,
       },
     },
     theme: {

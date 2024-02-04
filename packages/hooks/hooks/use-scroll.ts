@@ -5,7 +5,6 @@ export const useScroll = () => {
   const [position, setPosition] = useState([0, 0]);
 
   useEffect(() => {
-
     const element = ref.current;
 
     const handleScroll = () => {
@@ -27,6 +26,6 @@ export const useScroll = () => {
 
   return {
     ref,
-    position
+    position,
   };
 };
