@@ -13,7 +13,7 @@
     "@juanmsl/eslint-config": "*",
     "@juanmsl/tsconfig": "*",
     "prettier": "^3.1.1",
-    "turbo": "latest"
+    "turbo": "^1.12.2"
   },
   "engines": {
     "node": "^18"
