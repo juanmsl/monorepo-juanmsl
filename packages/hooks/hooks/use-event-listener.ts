@@ -1,5 +1,5 @@
-import {useEffect, useLayoutEffect, useRef} from 'react';
-import { RefObject } from 'react'
+import { useEffect, useLayoutEffect, useRef } from 'react';
+import { RefObject } from 'react';
 
 function useEventListener<EventName extends keyof MediaQueryListEventMap>(
   eventName: EventName,
@@ -15,10 +15,7 @@ function useEventListener<EventName extends keyof WindowEventMap>(
   options?: boolean | AddEventListenerOptions,
 ): void;
 
-function useEventListener<
-  EventName extends keyof HTMLElementEventMap,
-  ElementRef extends HTMLElement = HTMLDivElement,
->(
+function useEventListener<EventName extends keyof HTMLElementEventMap, ElementRef extends HTMLElement = HTMLDivElement>(
   eventName: EventName,
   callback: (event: HTMLElementEventMap[EventName]) => void,
   element: RefObject<ElementRef>,
@@ -54,22 +51,22 @@ function useEventListener<
   const callbackRef = useRef<EventListener>(callback);
 
   useEffect(() => {
-    callbackRef.current = callback
+    callbackRef.current = callback;
   }, [callback]);
 
   useLayoutEffect(() => {
-    const targetElement = element?.current ?? window
+    const targetElement = element?.current ?? window;
 
-    if (!(targetElement && targetElement.addEventListener)) return
+    if (!(targetElement && targetElement.addEventListener)) return;
 
-    const listener: typeof callback = event => callbackRef.current(event)
+    const listener: typeof callback = (event) => callbackRef.current(event);
 
-    targetElement.addEventListener(eventName, listener, options)
+    targetElement.addEventListener(eventName, listener, options);
 
     return () => {
-      targetElement.removeEventListener(eventName, listener, options)
-    }
-  }, [eventName, element, options])
+      targetElement.removeEventListener(eventName, listener, options);
+    };
+  }, [eventName, element, options]);
 }
 
 export { useEventListener };

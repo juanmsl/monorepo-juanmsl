@@ -5,9 +5,7 @@ import { useCallback, useState } from 'react';
 export default {
   title: 'Components/Form/Radio',
   component: Radio,
-  argTypes: {
-
-  },
+  argTypes: {},
   args: {
     autoComplete: 'off',
     autoFocus: false,
@@ -26,11 +24,11 @@ export default {
 
       return (
         <section>
-          <Radio name='option' radioValue='a' label='Option A' value={value} setValue={handleChange} {...args} />
-          <Radio name='option' radioValue='b' label='Option B' value={value} setValue={handleChange} {...args} />
-          <Radio name='option' radioValue='c' label='Option C' value={value} setValue={handleChange} {...args} />
-          <Radio name='option' radioValue='d' label='Option D' value={value} setValue={handleChange} {...args} />
-          <Radio name='option' radioValue='e' label='Option E' value={value} setValue={handleChange} {...args} />
+          <Radio name="option" radioValue="a" label="Option A" value={value} setValue={handleChange} {...args} />
+          <Radio name="option" radioValue="b" label="Option B" value={value} setValue={handleChange} {...args} />
+          <Radio name="option" radioValue="c" label="Option C" value={value} setValue={handleChange} {...args} />
+          <Radio name="option" radioValue="d" label="Option D" value={value} setValue={handleChange} {...args} />
+          <Radio name="option" radioValue="e" label="Option E" value={value} setValue={handleChange} {...args} />
         </section>
       );
     };

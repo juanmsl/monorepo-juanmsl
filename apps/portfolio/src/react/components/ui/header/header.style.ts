@@ -18,11 +18,8 @@ export const HeaderStyle = styled(SectionLayout).attrs<HeaderStyleProps>((props)
     left: 0;
     width: 100%;
     height: 100%;
-    background: url(${(props) => props.$background}) ${(props) => props.theme.colors.secondary}B3;
-    background-position: bottom center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
+    background: url(${(props) => props.$background}) center center / cover no-repeat
+      ${(props) => props.theme.colors.secondary}B3;
     background-blend-mode: soft-light;
     filter: opacity(40%) grayscale(50%);
     transition: all 300ms ease;

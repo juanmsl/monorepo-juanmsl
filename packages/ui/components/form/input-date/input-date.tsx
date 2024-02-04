@@ -31,14 +31,7 @@ export const InputDate = ({
   });
 
   return (
-    <Field
-      id={id}
-      label={label}
-      leftIcon={leftIcon}
-      rightIcon={rightIcon}
-      error={error?.message}
-      isFocus={isFocus}
-    >
+    <Field id={id} label={label} leftIcon={leftIcon} rightIcon={rightIcon} error={error?.message} isFocus={isFocus}>
       <input
         id={id}
         {...handlers}

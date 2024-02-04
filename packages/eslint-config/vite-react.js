@@ -1,6 +1,6 @@
-const { resolve } = require("node:path");
+const { resolve } = require('node:path');
 
-const project = resolve(process.cwd(), "tsconfig.json");
+const project = resolve(process.cwd(), 'tsconfig.json');
 
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
@@ -44,14 +44,14 @@ module.exports = {
     'react-refresh',
   ],
   rules: {
-    '@typescript-eslint/array-type': ['error', {'default': 'generic'}],
+    '@typescript-eslint/array-type': ['error', { default: 'generic' }],
     '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
     '@typescript-eslint/no-explicit-any': ['error'],
     '@typescript-eslint/ban-types': ['off'],
     'array-callback-return': 'error',
-    'eqeqeq': ['error', 'always'],
+    eqeqeq: ['error', 'always'],
     'guard-for-in': 'warn',
-    'sort-imports': ['error', { 'memberSyntaxSortOrder': ['single', 'all', 'multiple', 'none'] }],
+    'sort-imports': ['error', { memberSyntaxSortOrder: ['single', 'all', 'multiple', 'none'] }],
     'import/no-default-export': 'off',
     'import/no-named-as-default': 'error',
     'import/no-named-default': 'error',
@@ -63,17 +63,17 @@ module.exports = {
     'import/group-exports': 'off',
     'import/newline-after-import': 'error',
     'import/no-absolute-path': 'error',
-    'import/no-cycle': ['error', { 'ignoreExternal': true }],
+    'import/no-cycle': ['error', { ignoreExternal: true }],
     'import/no-deprecated': 'error',
-    'import/no-extraneous-dependencies': ['error', { 'optionalDependencies': false }],
-    'import/no-useless-path-segments': ['error', { 'noUselessIndex': true }],
+    'import/no-extraneous-dependencies': ['error', { optionalDependencies: false }],
+    'import/no-useless-path-segments': ['error', { noUselessIndex: true }],
     'import/no-webpack-loader-syntax': 'error',
     'import/prefer-default-export': 'off',
     'line-comment-position': ['error', 'above'],
     'multiline-comment-style': ['error', 'starred-block'],
     'no-console': 'warn',
     'no-duplicate-imports': 'error',
-    'no-empty': ['error', { 'allowEmptyCatch': true }],
+    'no-empty': ['error', { allowEmptyCatch: true }],
     'no-implicit-globals': 'error',
     'no-invalid-this': 'error',
     'no-lone-blocks': 'error',
@@ -102,24 +102,27 @@ module.exports = {
       { blankLine: 'always', prev: '*', next: 'for' },
     ],
     'prefer-arrow-callback': ['error'],
-    'prefer-arrow/prefer-arrow-functions': ['error', {'disallowPrototype': true}],
+    'prefer-arrow/prefer-arrow-functions': ['error', { disallowPrototype: true }],
     'prettier/prettier': 'warn',
-    'quotes': ['error', 'single'],
+    quotes: ['error', 'single'],
     'react/destructuring-assignment': ['error', 'always'],
     'react/jsx-fragments': ['error', 'syntax'],
     'react/jsx-no-useless-fragment': 'off',
     'react/react-in-jsx-scope': 'off',
-    'react/function-component-definition': ['error', { 'namedComponents': 'arrow-function', 'unnamedComponents': 'arrow-function' }],
-    'react-refresh/only-export-components': ['warn', { 'allowConstantExport': true }],
+    'react/function-component-definition': [
+      'error',
+      { namedComponents: 'arrow-function', unnamedComponents: 'arrow-function' },
+    ],
+    'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',
-    'semi': 'error',
-    'yoda': 'error',
+    semi: 'error',
+    yoda: 'error',
   },
   settings: {
     'import/resolver': {
       typescript: {
-        project
+        project,
       },
     },
     react: {

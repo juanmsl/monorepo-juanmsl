@@ -4,7 +4,7 @@ import { FileResolvedT, FileTypeEnum, useFileReader } from '@juanmsl/hooks';
 import { withController } from '../with-controller';
 import { InputProps } from '../types';
 import { useEffect, useId, useMemo, useState } from 'react';
-import {formatBytes} from "@juanmsl/helpers";
+import { formatBytes } from '@juanmsl/helpers';
 
 type InputFileProps = {
   accept?: string;

@@ -5,9 +5,7 @@ import { useCallback, useState } from 'react';
 export default {
   title: 'Components/Form/Select',
   component: Select,
-  argTypes: {
-
-  },
+  argTypes: {},
   args: {
     name: 'fieldName',
     autoComplete: 'off',
@@ -26,9 +24,7 @@ export default {
         setValue(value);
       }, []);
 
-      return (
-        <Select value={value} setValue={handleChange} {...args} />
-      );
+      return <Select value={value} setValue={handleChange} {...args} />;
     };
 
     return <Wrapper />;
@@ -39,6 +35,6 @@ type Template = StoryObj<typeof Select>;
 
 export const Data: Template = {
   args: {
-    name: 'fieldName'
+    name: 'fieldName',
   },
 };

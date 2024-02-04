@@ -29,14 +29,7 @@ export const InputRange = ({
   });
 
   return (
-    <Field
-      id={id}
-      label={label}
-      leftIcon={leftIcon}
-      rightIcon={rightIcon}
-      error={error?.message}
-      isFocus={isFocus}
-    >
+    <Field id={id} label={label} leftIcon={leftIcon} rightIcon={rightIcon} error={error?.message} isFocus={isFocus}>
       <input id={id} type="range" name={name} className={className} style={style} value={value} {...handlers} />
     </Field>
   );

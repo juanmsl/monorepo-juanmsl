@@ -7,19 +7,19 @@ enum ScreenOrientation {
 }
 
 type UseViewportData = {
-  width: number,
-  height: number,
-  orientation: ScreenOrientation
-}
+  width: number;
+  height: number;
+  orientation: ScreenOrientation;
+};
 
 export const useViewport = (): UseViewportData => {
   const getData = (): UseViewportData => {
-    const { innerWidth, innerHeight,  } = window;
+    const { innerWidth, innerHeight } = window;
 
     return {
       width: innerWidth,
       height: innerHeight,
-      orientation: innerWidth > innerHeight ? ScreenOrientation.LANDSCAPE : ScreenOrientation.PORTRAIT
+      orientation: innerWidth > innerHeight ? ScreenOrientation.LANDSCAPE : ScreenOrientation.PORTRAIT,
     };
   };
 

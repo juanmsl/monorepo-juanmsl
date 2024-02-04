@@ -5,9 +5,7 @@ import { useCallback, useState } from 'react';
 export default {
   title: 'Components/Form/Input File',
   component: InputFile,
-  argTypes: {
-
-  },
+  argTypes: {},
   args: {
     name: 'fieldName',
     autoComplete: 'off',
@@ -26,9 +24,7 @@ export default {
         setValue(value);
       }, []);
 
-      return (
-        <InputFile value={value} setValue={handleChange} {...args} />
-      );
+      return <InputFile value={value} setValue={handleChange} {...args} />;
     };
 
     return <Wrapper />;
@@ -39,6 +35,6 @@ type Template = StoryObj<typeof InputFile>;
 
 export const Data: Template = {
   args: {
-    name: 'fieldName'
+    name: 'fieldName',
   },
 };

@@ -1,6 +1,6 @@
-import {Icon} from "./icon";
-import {titleCase} from "../helpers";
-import fs from "fs";
+import { Icon } from './icon';
+import { titleCase } from '../helpers';
+import fs from 'fs';
 
 interface CategoryEntity {
   addIcon(icon: Icon): void;
@@ -24,16 +24,15 @@ export class Category implements CategoryEntity {
     const fileName = `${this.name}.tsx`;
     console.log(`Creating file: ${outputFolder}/${fileName}`);
 
-    await Promise.all(this.icons.map(icon => icon.init()));
+    await Promise.all(this.icons.map((icon) => icon.init()));
 
-    const types = this.icons.map(icon => `'${icon.name}'`).join(' | ');
+    const types = this.icons.map((icon) => `'${icon.name}'`).join(' | ');
     const categoryTitleCase = titleCase(this.name);
     const categoryType = `export type ${categoryTitleCase}IconsT = Record<${types}, IconT>;`;
     const categoryObject = `export const ${categoryTitleCase}Icons: ${categoryTitleCase}IconsT`;
-    const iconsRendered = this.icons.map(icon => icon.jsx).join(',\n');
+    const iconsRendered = this.icons.map((icon) => icon.jsx).join(',\n');
 
-    const data =
-      `import { IconT } from '.';
+    const data = `import { IconT } from '.';
 
 ${categoryType}
 

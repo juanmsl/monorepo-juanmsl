@@ -1,6 +1,6 @@
-import {HoverCardStyle} from "./hover-card.style";
-import {MouseEvent, MouseEventHandler, useCallback, useRef} from "react";
-import {useEventListener} from "@juanmsl/hooks";
+import { HoverCardStyle } from './hover-card.style';
+import { MouseEvent, MouseEventHandler, useCallback, useRef } from 'react';
+import { useEventListener } from '@juanmsl/hooks';
 
 type HoverCardProps = {
   children: React.ReactNode;
@@ -9,37 +9,35 @@ type HoverCardProps = {
   width?: 'fit-content' | '100%';
 };
 
-export const HoverCard = ({
-  children,
-  threshold = 5,
-  translationZ = 25,
-  width = 'fit-content'
-}: HoverCardProps) => {
+export const HoverCard = ({ children, threshold = 5, translationZ = 25, width = 'fit-content' }: HoverCardProps) => {
   const refCard = useRef<HTMLElement>(null);
   const refLayer = useRef<HTMLElement>(null);
 
-  const mouseMoveCallback = useCallback((e: MouseEvent) => {
-    const card = refCard.current;
-    const layer = refLayer.current;
+  const mouseMoveCallback = useCallback(
+    (e: MouseEvent) => {
+      const card = refCard.current;
+      const layer = refLayer.current;
 
-    if (!card || !layer) return;
+      if (!card || !layer) return;
 
-    const {clientX, clientY, currentTarget} = e;
-    const {clientWidth, clientHeight, } = currentTarget;
-    const { top, left } = refCard?.current?.getBoundingClientRect();
+      const { clientX, clientY, currentTarget } = e;
+      const { clientWidth, clientHeight } = currentTarget;
+      const { top, left } = refCard?.current?.getBoundingClientRect();
 
-    const horizontal = (clientX - left) / clientWidth;
-    const vertical = (clientY - top) / clientHeight;
+      const horizontal = (clientX - left) / clientWidth;
+      const vertical = (clientY - top) / clientHeight;
 
-    const relativePercentageX = horizontal * 2 - 1;
-    const relativePercentageY = vertical * 2 - 1;
+      const relativePercentageX = horizontal * 2 - 1;
+      const relativePercentageY = vertical * 2 - 1;
 
-    const rotateY = (relativePercentageY * threshold).toFixed(2);
-    const rotateX = (relativePercentageX * threshold).toFixed(2);
+      const rotateY = (relativePercentageY * threshold).toFixed(2);
+      const rotateX = (relativePercentageX * threshold).toFixed(2);
 
-    layer.style.transform = `perspective(${clientWidth}px) rotateX(${-rotateY}deg) rotateY(${rotateX}deg)`;
-    card.style.transform = `perspective(${clientWidth}px) translateZ(${translationZ}px)`;
-  }, [translationZ]);
+      layer.style.transform = `perspective(${clientWidth}px) rotateX(${-rotateY}deg) rotateY(${rotateX}deg)`;
+      card.style.transform = `perspective(${clientWidth}px) translateZ(${translationZ}px)`;
+    },
+    [translationZ],
+  );
 
   const mouseLeaveCallback = useCallback<MouseEventHandler>((e) => {
     const card = refCard.current;
@@ -56,7 +54,7 @@ export const HoverCard = ({
 
   return (
     <HoverCardStyle ref={refCard} style={{ width }}>
-      <span className="card-hover-layer" ref={refLayer} >
+      <span className="card-hover-layer" ref={refLayer}>
         {children}
       </span>
     </HoverCardStyle>

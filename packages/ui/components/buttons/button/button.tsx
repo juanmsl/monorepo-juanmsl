@@ -1,7 +1,7 @@
-import {ButtonStyle} from "./button.style";
-import {useClassNames} from "@juanmsl/hooks";
-import {Icon, IconNameT} from "../../../contexts";
-import {ButtonHTMLAttributes} from "react";
+import { ButtonStyle } from './button.style';
+import { useClassNames } from '@juanmsl/hooks';
+import { Icon, IconNameT } from '../../../contexts';
+import { ButtonHTMLAttributes } from 'react';
 
 export enum ButtonSize {
   SMALL = 'small',
@@ -25,7 +25,7 @@ type ButtonProps = {
   leftIcon?: IconNameT;
   rightIcon?: IconNameT;
   onClick?: ButtonHTMLAttributes<HTMLButtonElement>['onClick'];
-}
+};
 
 export const Button = ({
   children,
@@ -36,7 +36,7 @@ export const Button = ({
   variant = ButtonVariant.DEFAULT,
   leftIcon,
   rightIcon,
-  onClick
+  onClick,
 }: ButtonProps) => {
   const className = useClassNames({
     rounded: rounded,
@@ -44,14 +44,14 @@ export const Button = ({
     large: size === ButtonSize.LARGE,
     ghost: variant === ButtonVariant.GHOST,
     flat: variant === ButtonVariant.FLAT,
-    'is-loading': isLoading
+    'is-loading': isLoading,
   });
 
   return (
     <ButtonStyle className={className} disabled={disabled} onClick={onClick}>
-      { leftIcon && !isLoading && <Icon className='button-left-icon' name={leftIcon}/> }
-      <span>{isLoading ? <Icon name='spinner' /> : children }</span>
-      { rightIcon && !isLoading && <Icon className='button-right-icon' name={rightIcon}/> }
+      {leftIcon && !isLoading && <Icon className="button-left-icon" name={leftIcon} />}
+      <span>{isLoading ? <Icon name="spinner" /> : children}</span>
+      {rightIcon && !isLoading && <Icon className="button-right-icon" name={rightIcon} />}
     </ButtonStyle>
   );
-}
+};

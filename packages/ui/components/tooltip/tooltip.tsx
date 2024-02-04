@@ -1,6 +1,6 @@
-import React from "react";
-import {TooltipStyle} from "./tooltip.style";
-import {useClassNames} from "@juanmsl/hooks";
+import React from 'react';
+import { TooltipStyle } from './tooltip.style';
+import { useClassNames } from '@juanmsl/hooks';
 
 export enum TooltipPosition {
   TOP = 'top',
@@ -22,14 +22,14 @@ export const Tooltip = ({
   children,
   content,
   offset = 10,
-  disabled = false
+  disabled = false,
 }: TooltipProps) => {
   const classNames = useClassNames({
     'tooltip-container': true,
     left: position === TooltipPosition.LEFT,
     right: position === TooltipPosition.RIGHT,
     top: position === TooltipPosition.TOP,
-    bottom: position === TooltipPosition.BOTTOM
+    bottom: position === TooltipPosition.BOTTOM,
   });
 
   if (disabled) return children;
@@ -37,9 +37,7 @@ export const Tooltip = ({
   return (
     <TooltipStyle offset={offset}>
       <div className={classNames}>
-        <span className='tooltip-content'>
-          {content}
-        </span>
+        <span className="tooltip-content">{content}</span>
       </div>
       {children}
     </TooltipStyle>

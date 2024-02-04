@@ -1,4 +1,4 @@
-import axios, {AxiosInstance} from "axios";
+import axios, { AxiosInstance } from 'axios';
 
 export class HttpClient {
   private _instance: AxiosInstance;

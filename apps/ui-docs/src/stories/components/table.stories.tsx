@@ -4,7 +4,6 @@ import { useCallback, useState } from 'react';
 // import { UserEntity, Users } from '@ui-docs/shared/domain';
 import { UserEntity, Users } from '../../shared/domain';
 
-
 export default {
   title: 'Components/Table',
   component: Table,
@@ -19,7 +18,7 @@ export default {
     },
     withoutHeader: {
       control: 'boolean',
-      description: 'Remove column\'s headers or not',
+      description: "Remove column's headers or not",
       defaultValue: false,
     },
     fullWidth: {
@@ -84,33 +83,28 @@ export default {
         header: '',
         fieldComponent: ({ data }) => <img src={data.picture} alt={`${data.id}`} />,
       },
-      { header: 'Names', field: 'names', },
+      { header: 'Names', field: 'names' },
       { header: 'Lastnames', field: 'lastnames' },
       {
         header: 'Age',
-        fieldComponent: ({data}) => {
+        fieldComponent: ({ data }) => {
           const birthday = +new Date(data.birthdate);
-          return ~~((Date.now() - birthday) / (31557600000));
-        }
+          return ~~((Date.now() - birthday) / 31557600000);
+        },
       },
       { header: 'Username', fieldComponent: ({ data }) => `@${data.username}` },
       { header: 'Email', field: 'email' },
       {
         header: 'Website',
-        fieldComponent: ({data}) => (
-          data.website
-            ? (
-              <a
-                href={data.website}
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                {data.website}
-              </a>
-            )
-            : '- -'
-        ),
-        editable: true
+        fieldComponent: ({ data }) =>
+          data.website ? (
+            <a href={data.website} target="_blank" rel="noopener noreferrer">
+              {data.website}
+            </a>
+          ) : (
+            '- -'
+          ),
+        editable: true,
       },
     ] as Array<TableColumn<UserEntity>>,
     withoutHeader: false,
@@ -130,9 +124,7 @@ export default {
         setData((prev) => prev.map((item) => (item.id === data.id ? data : item)));
       }, []);
 
-      return (
-        <Table<UserEntity> {...args} data={data} onRowUpdate={handleUpdate} />
-      );
+      return <Table<UserEntity> {...args} data={data} onRowUpdate={handleUpdate} />;
     };
 
     return <TableWrapper />;
