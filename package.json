@@ -6,7 +6,7 @@
     "dev": "turbo dev",
     "portfolio:dev": "turbo dev --filter=portfolio",
     "lint": "turbo lint",
-    "lint:fix": "turbo lint:fix",
+    "lint:fix": "yarn format && turbo lint:fix",
     "format": "prettier --write \"**/*.{ts,tsx,md,js}\""
   },
   "devDependencies": {

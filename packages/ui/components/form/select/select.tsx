@@ -1,8 +1,8 @@
-import { InputProps } from '../types';
-import React, { useCallback, useEffect, useId, useRef, useState } from 'react';
-import { StyledSelect } from './select.style';
-import { Options } from './options';
 import { Field } from '../field';
+import { InputProps } from '../types';
+import { Options } from './options';
+import { StyledSelect } from './select.style';
+import React, { useCallback, useEffect, useId, useRef, useState } from 'react';
 
 type SelectProps<T> = {
   options: Array<T>;
@@ -65,6 +65,7 @@ export const Select = <T extends string | number | Record<string, unknown> | unk
       if (['number', 'string'].includes(typeof a)) {
         return a === b;
       }
+
       return !!isEqualComparator && isEqualComparator(a, b);
     },
     [isEqualComparator],
@@ -79,6 +80,7 @@ export const Select = <T extends string | number | Record<string, unknown> | unk
       if (['number', 'string'].includes(typeof a)) {
         return b.includes(a);
       }
+
       return b.some((item) => !!isEqualComparator && isEqualComparator(a, item));
     },
     [compareValuesIsEqual, isEqualComparator],
@@ -91,6 +93,7 @@ export const Select = <T extends string | number | Record<string, unknown> | unk
       if (renderOptions) {
         return renderOptions(values);
       }
+
       return `${values.length}/${maxOptions} item${values.length === 1 ? '' : 's'} selected`;
     },
     [maxOptions, renderOptions],
@@ -101,6 +104,7 @@ export const Select = <T extends string | number | Record<string, unknown> | unk
       if (Array.isArray(value)) {
         return renderMultipleValue(value);
       }
+
       return renderSingleValue(value);
     },
     [renderMultipleValue, renderSingleValue],
@@ -115,6 +119,7 @@ export const Select = <T extends string | number | Record<string, unknown> | unk
 
     document.addEventListener('click', handleListener);
     document.addEventListener('focusout', handleListener);
+
     return () => {
       document.removeEventListener('click', handleListener);
     };
@@ -177,9 +182,11 @@ export const Select = <T extends string | number | Record<string, unknown> | unk
             selectOption={(selectedOption: T) => {
               if (multiselect) {
                 const prevValue = Array.isArray(value) ? value : [];
+
                 if (prevValue.length >= maxOptions) {
                   return;
                 }
+
                 setValue([...prevValue, selectedOption]);
               } else {
                 setValue(selectedOption);

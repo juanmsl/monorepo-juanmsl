@@ -1,6 +1,6 @@
 import { HoverCardStyle } from './hover-card.style';
-import { MouseEvent, MouseEventHandler, useCallback, useRef } from 'react';
 import { useEventListener } from '@juanmsl/hooks';
+import { MouseEvent, MouseEventHandler, useCallback, useRef } from 'react';
 
 type HoverCardProps = {
   children: React.ReactNode;
@@ -36,7 +36,7 @@ export const HoverCard = ({ children, threshold = 5, translationZ = 25, width = 
       layer.style.transform = `perspective(${clientWidth}px) rotateX(${-rotateY}deg) rotateY(${rotateX}deg)`;
       card.style.transform = `perspective(${clientWidth}px) translateZ(${translationZ}px)`;
     },
-    [translationZ],
+    [threshold, translationZ],
   );
 
   const mouseLeaveCallback = useCallback<MouseEventHandler>((e) => {

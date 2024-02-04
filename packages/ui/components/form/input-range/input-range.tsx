@@ -1,8 +1,8 @@
-import { withController } from '../with-controller';
-import { InputProps } from '../types';
 import { Field } from '../field';
+import { InputProps } from '../types';
 import { useId } from 'react';
 import { useInputHandlers } from '@juanmsl/hooks';
+import { withController } from '../with-controller';
 
 type RangeProps = {
   min?: number;

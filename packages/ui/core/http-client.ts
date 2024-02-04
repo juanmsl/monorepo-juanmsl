@@ -2,16 +2,12 @@ import axios, { AxiosInstance } from 'axios';
 
 export class HttpClient {
   private _instance: AxiosInstance;
-  private _token: string | null;
-
-  public getToken = () => this._token;
+  private _token: string;
 
   public logout = () => localStorage.removeItem('token');
 
-  public login = (token: string) => localStorage.setItem('token', token);
-
   constructor(baseURL: string) {
-    this._token = localStorage.getItem('token');
+    this._token = localStorage.getItem('token') ?? '';
 
     this._instance = axios.create({
       baseURL: baseURL,
@@ -21,8 +17,9 @@ export class HttpClient {
     });
 
     this._instance.interceptors.request.use((req) => {
-      const token = this.getToken();
+      const token = this.token;
       token !== null && req.headers.setAuthorization(`Bearer ${token}`);
+
       return req;
     });
 
@@ -37,5 +34,14 @@ export class HttpClient {
 
   public get instance(): AxiosInstance {
     return this._instance;
+  }
+
+  public get token() {
+    return this._token;
+  }
+
+  public set token(token: string) {
+    this._token = token;
+    localStorage.setItem('token', token);
   }
 }

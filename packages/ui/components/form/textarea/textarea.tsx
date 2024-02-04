@@ -1,9 +1,9 @@
-import { TextareaSC } from './textarea.style';
-import { withController } from '../with-controller';
 import { InputProps } from '../types';
-import React, { useId } from 'react';
 import { Label } from '../label';
+import { TextareaSC } from './textarea.style';
 import { useInputHandlers } from '@juanmsl/hooks';
+import { withController } from '../with-controller';
+import React, { useId } from 'react';
 
 type TextareaProps = {
   rows?: number;

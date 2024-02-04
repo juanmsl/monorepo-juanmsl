@@ -1,11 +1,11 @@
-import { withController } from '../with-controller';
-import { InputProps } from '../types';
-import { InputColorStyle } from './input-color.style';
-import { useInputHandlers } from '@juanmsl/hooks';
-import { Label } from '../label';
-import { InputState } from '../input-state';
-import { Icon } from '../../../contexts';
 import Color from 'color';
+import { Icon } from '../../../contexts';
+import { InputColorStyle } from './input-color.style';
+import { InputProps } from '../types';
+import { InputState } from '../input-state';
+import { Label } from '../label';
+import { useInputHandlers } from '@juanmsl/hooks';
+import { withController } from '../with-controller';
 import { useId, useMemo } from 'react';
 
 type ColorProps = {};
@@ -33,6 +33,7 @@ export const InputColor = ({
 
   const backgroundColor = useMemo(() => {
     const color = Color(value === '' ? '#000000' : value);
+
     if (color.isLight()) {
       return '#000000AA';
     }

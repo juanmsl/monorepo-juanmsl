@@ -1,5 +1,5 @@
-import { IconT, Icons, IconCollectionT } from './icons';
-import { createContext, useCallback, useContext, useState } from 'react';
+import { HTMLAttributes, createContext, useCallback, useContext, useState } from 'react';
+import { IconCollectionT, IconT, Icons } from './icons';
 
 export type IconNameT = keyof IconCollectionT;
 
@@ -31,9 +31,7 @@ const useIcon = (name: IconNameT): IconT => {
   return context.getIcon(name);
 };
 
-type IconProps = {
-  style?: React.CSSProperties;
-  className?: string;
+type IconProps = HTMLAttributes<SVGSVGElement> & {
   size?: number | string;
   width?: number;
   height?: number;

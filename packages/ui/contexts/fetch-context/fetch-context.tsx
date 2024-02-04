@@ -1,5 +1,5 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import axios, { AxiosInstance } from 'axios';
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 
 type UserT = {
   name: string;
@@ -74,6 +74,7 @@ export const FetchProvider = ({ children, baseURL }: FetchProviderProps) => {
     instance.interceptors.request.use((req) => {
       const token = getToken();
       token !== null && req.headers.setAuthorization(`Bearer ${token}`);
+
       return req;
     });
 

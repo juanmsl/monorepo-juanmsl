@@ -5,8 +5,8 @@
   "types": "./index.ts",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "lint:fix": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "yarn lint --fix",
     "transform-svgs": "node ../../node_modules/@juanmsl/svg-to-react",
     "transform-svgs2": "node @juanmsl/svg-to-react"
   },
@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.1.0",
+    "@juanmsl/helpers": "*",
     "@juanmsl/hooks": "*",
     "axios": "^1.4.0",
     "color": "^4.2.3",

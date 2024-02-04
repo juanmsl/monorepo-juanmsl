@@ -1,5 +1,5 @@
-import { Icon } from '../../../contexts';
 import { Checkbox } from '../checkbox';
+import { Icon } from '../../../contexts';
 import { useCallback } from 'react';
 
 type SelectOptionProps<T> = {

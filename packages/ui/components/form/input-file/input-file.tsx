@@ -1,10 +1,10 @@
-import { FileCardSC, InputFileSC } from './input-file.style';
-import { Icon, IconNameT } from '../../../contexts';
-import { FileResolvedT, FileTypeEnum, useFileReader } from '@juanmsl/hooks';
-import { withController } from '../with-controller';
 import { InputProps } from '../types';
-import { useEffect, useId, useMemo, useState } from 'react';
 import { formatBytes } from '@juanmsl/helpers';
+import { withController } from '../with-controller';
+import { FileCardSC, InputFileSC } from './input-file.style';
+import { FileResolvedT, FileTypeEnum, useFileReader } from '@juanmsl/hooks';
+import { Icon, IconNameT } from '../../../contexts';
+import { useEffect, useId, useMemo, useState } from 'react';
 
 type InputFileProps = {
   accept?: string;
@@ -51,9 +51,11 @@ export const InputFile = ({
 
     for (let i = 0; i < files.length; i++) {
       const file = files.item(i);
+
       if (!file) {
         continue;
       }
+
       if (file.size < limitSize) {
         finalFiles.push(file);
       } else {
@@ -72,6 +74,7 @@ export const InputFile = ({
   const handleDrop = (e: React.DragEvent<HTMLInputElement>) => {
     e.preventDefault();
     e.stopPropagation();
+
     if (e.dataTransfer.files && e.dataTransfer.files.length) {
       saveFiles(e.dataTransfer.files);
     }

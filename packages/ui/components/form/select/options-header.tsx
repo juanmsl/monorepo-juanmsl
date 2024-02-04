@@ -1,6 +1,6 @@
 import { Icon } from '../../../contexts';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { OptionsHeaderStyle } from './select.style';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 type OptionsHeaderProps<T> = {
   name: string;
@@ -50,7 +50,9 @@ export const OptionsHeader = <T,>({
 
   const selectedValuesRendered = useMemo(() => {
     if (value === '' || !showSelectedOptionsOnTop) return [];
+
     const valuesToRender = Array.isArray(value) ? value : [value];
+
     return valuesToRender.map(renderOption);
   }, [renderOption, showSelectedOptionsOnTop, value]);
 
