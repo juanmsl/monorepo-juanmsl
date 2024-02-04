@@ -5,7 +5,7 @@ type HeaderStyleProps = {
   $background: string;
 };
 
-export const HeaderStyle = styled(SectionLayout).attrs<HeaderStyleProps>((props) => props)`
+export const HeaderStyle = styled(SectionLayout).attrs<HeaderStyleProps, HeaderStyleProps>((props) => props)`
   display: grid;
   position: relative;
   color: ${(props) => props.theme.colors.primary};
