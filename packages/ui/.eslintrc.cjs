@@ -3,4 +3,7 @@ module.exports = {
   root: true,
   extends: ["@juanmsl/eslint-config/react.js"],
   parser: "@typescript-eslint/parser",
+  parserOptions: {
+    project: true,
+  },
 };

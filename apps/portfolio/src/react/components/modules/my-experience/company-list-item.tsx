@@ -1,9 +1,7 @@
 import { CompaniesListItemStyle } from './my-experience.style';
 import { CompanyDetails } from '@components/modules/my-experience/company-details';
 import { JobExperienceEntity } from '@domain';
-import { useClassNames } from '@juanmsl/hooks';
-import { Icon, Typography } from '@juanmsl/ui';
-import { formatDate, timeBetween } from '@juanmsl/helpers';
+import { Icon, Typography, formatDate, timeBetween, useClassNames } from '@juanmsl/ui';
 
 type CompanyItemProps = {
   selected?: boolean;

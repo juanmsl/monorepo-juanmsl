@@ -11,8 +11,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@juanmsl/helpers": "*",
-    "@juanmsl/hooks": "*",
     "@juanmsl/ui": "*",
     "@tanstack/react-query": "^5.17.19",
     "axios": "^1.6.5",
@@ -32,8 +30,9 @@
     "@juanmsl/tsconfig": "*",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
-    "@vitejs/plugin-react-swc": "^3.5.0",
+    "@types/styled-components": "^5.1.34",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@vitejs/plugin-react-swc": "^3.5.0",
     "eslint-plugin-prettier": "^5.0.0",
     "sass": "^1.62.1",
     "typescript": "^5.2.2",

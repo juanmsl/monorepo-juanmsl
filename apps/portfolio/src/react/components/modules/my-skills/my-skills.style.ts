@@ -24,10 +24,10 @@ export const MySkillsStyle = styled(SectionLayout)`
 
   .right {
     display: none;
-    place-content: center;
+    align-content: center;
+    justify-content: start;
     width: 430px;
     height: 524px;
-    background: ${(props) => props.theme.colors.tertiary};
 
     @media all and (min-width: ${(props) => props.theme.constants.breakpoints.laptopM}) {
       display: grid;
@@ -38,6 +38,7 @@ export const MySkillsStyle = styled(SectionLayout)`
       gap: 20px;
       justify-items: center;
       text-align: center;
+      width: 200px;
     }
   }
 
@@ -92,5 +93,37 @@ export const MySkillsStyle = styled(SectionLayout)`
     justify-content: start;
     flex-wrap: wrap;
     padding-top: 20px;
+  }
+
+  .seniority-container {
+    display: grid;
+    width: 100%;
+  }
+
+  .seniority-bar {
+    width: 100%;
+    height: 10px;
+    border-radius: 10px;
+    background: ${(props) => props.theme.colors.primaryContrast};
+    border: 1px solid ${(props) => props.theme.colors.primary};
+    position: relative;
+
+    .seniority-bar-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      border-radius: 10px;
+      background: ${(props) => props.theme.colors.primary};
+    }
+  }
+
+  .seniority-labels {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
   }
 `;

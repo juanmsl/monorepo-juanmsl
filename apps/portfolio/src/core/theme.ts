@@ -1,4 +1,4 @@
-import { CommonThemeEntity, PaletteThemeEntity, ThemeConstantsEntity } from '@juanmsl/ui/contexts/theme-context/themes';
+import { CommonThemeEntity, PaletteThemeEntity, ThemeConstantsEntity } from '@juanmsl/ui';
 
 export const ThemeConstants: ThemeConstantsEntity = {
   fontFamily: '"Montserrat Alternates", sans-serif',
