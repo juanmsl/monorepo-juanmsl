@@ -1,25 +1,19 @@
 import { ProfilePicture } from '@components/resources';
 import { Reveal } from '@components/animations';
 import { SectionTitle } from '@components/ui';
-import { useGetCharacteristics } from '@hooks';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AboutMeStyle, CharacteristicStyle, CharacteristicsStyle } from './about-me.style';
 import { Button, HoverCard, Icon, IconNameT, Line, Typography } from '@juanmsl/ui';
-import { useMemo, useState } from 'react';
+import { useAsset, useGetCharacteristics } from '@hooks';
 
 export const AboutMe = () => {
   const { t } = useTranslation();
-  const [isLoading, setIsLoading] = useState(false);
   const { data = [] } = useGetCharacteristics();
+  const { data: resume } = useAsset('2Sb2cM6MN8osN8kXMizuUd');
 
   const handleClick = async () => {
-    setIsLoading(true);
-    const response = await new Promise<boolean>((resolve) => {
-      setTimeout(() => {
-        resolve(false);
-      }, 3000);
-    });
-    setIsLoading(response);
+    window.open(resume.url, '_blank');
   };
 
   const characteristics = useMemo(
@@ -71,14 +65,14 @@ export const AboutMe = () => {
           <div className="button-ctas">
             <HoverCard translationZ={15}>
               <Reveal delay={700}>
-                <Button leftIcon="instagram" onClick={handleClick} isLoading={isLoading}>
+                <Button leftIcon="instagram" onClick={handleClick}>
                   {t('home:aboutMe.button1')}
                 </Button>
               </Reveal>
             </HoverCard>
 
             <Reveal delay={800}>
-              <Button leftIcon="linkedin" onClick={handleClick} isLoading={isLoading} variant="ghost">
+              <Button leftIcon="linkedin" onClick={handleClick} variant="ghost">
                 {t('home:aboutMe.button2')}
               </Button>
             </Reveal>
