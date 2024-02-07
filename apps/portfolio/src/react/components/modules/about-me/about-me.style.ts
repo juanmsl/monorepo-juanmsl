@@ -6,6 +6,7 @@ export const AboutMeStyle = styled(SectionLayout)`
     gap: 50px;
     justify-content: center;
     transition: all 300ms ease;
+    text-wrap: balance;
 
     @media all and (min-width: ${(props) => props.theme.constants.breakpoints.laptopS}) {
       align-items: center;

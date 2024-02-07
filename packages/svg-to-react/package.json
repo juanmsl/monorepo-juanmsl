@@ -3,13 +3,13 @@
   "version": "0.0.1",
   "license": "MIT",
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/src/index.js",
+  "module": "./dist/src/index.mjs",
+  "types": "./dist/src/index.d.ts",
   "scripts": {
     "develop": "ts-node ./src/index.ts",
     "fix": "yarn run prettier:fix && yarn run lint:fix",
-    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "build": "tsc && tsup",
     "dev": "yarn run build --watch"
   },
   "dependencies": {

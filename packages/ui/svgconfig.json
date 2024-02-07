@@ -1,4 +1,4 @@
 {
-  "rootSVGDirectory": "./contexts/icon-context/svg",
-  "outputDirectory": "./contexts/icon-context/icons"
+  "rootSVGDirectory": "./src/contexts/icon-context/svg",
+  "outputDirectory": "./src/contexts/icon-context/icons"
 }

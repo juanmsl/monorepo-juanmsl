@@ -61,17 +61,28 @@ export const MySkills = () => {
 
       <div className="right">
         <LoaderComponent isPending={!technology}>
-          <Reveal key={technology?.name} duration={100}>
-            <div className="right-content">
-              <img src={technology?.icon} alt="Technology icon" className="technology-icon" />
-              <Typography withoutPadding variant="body">
-                {t('home:mySkills.yearsOfExperience', { count: technology?.yearsOfExperience })}
-              </Typography>
-              <Typography withoutPadding variant="label" weight="bold">
-                {technology?.seniority}%
-              </Typography>
+          <div className="right-content">
+            <img src={technology?.icon} alt="Technology icon" className="technology-icon" />
+            <Typography withoutPadding variant="body">
+              {t('home:mySkills.yearsOfExperience', { count: technology?.yearsOfExperience })}
+            </Typography>
+            <div className="seniority-container">
+              <div className="seniority-bar">
+                <div className="seniority-bar-line" style={{ width: `${technology?.seniority}%` }} />
+              </div>
+              <div className="seniority-labels">
+                <Typography variant="label" weight="bold">
+                  Jr
+                </Typography>
+                <Typography variant="label" weight="bold">
+                  SSr
+                </Typography>
+                <Typography variant="label" weight="bold">
+                  Sr
+                </Typography>
+              </div>
             </div>
-          </Reveal>
+          </div>
         </LoaderComponent>
       </div>
     </MySkillsStyle>
