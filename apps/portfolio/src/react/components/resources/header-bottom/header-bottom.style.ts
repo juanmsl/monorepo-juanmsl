@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const HeaderBottomStyle = styled.svg`
   position: absolute;
   width: 100%;
-  z-index: 100;
+  z-index: 1;
   bottom: 0;
   left: 0;
   aspect-ratio: 8.73 / 1;

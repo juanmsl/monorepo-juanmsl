@@ -80,6 +80,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'line-comment-position': ['error', 'above'],
     'multiline-comment-style': ['error', 'starred-block'],
+    "no-confusing-arrow": ["error", { "allowParens": false }],
     'no-console': 'warn',
     'no-duplicate-imports': 'error',
     'no-empty': ['error', { allowEmptyCatch: true }],
