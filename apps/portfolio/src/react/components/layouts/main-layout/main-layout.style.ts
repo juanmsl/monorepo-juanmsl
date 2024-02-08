@@ -18,7 +18,7 @@ export const MainLayoutStyle = styled.main`
     top: 0;
     width: 5px;
     height: 100%;
-    z-index: 500;
+    z-index: 5;
     background: ${(props) => props.theme.colors.primary};
     transition: background 300ms ease;
   }
@@ -64,7 +64,7 @@ export const MainLayoutStyle = styled.main`
     top: 0;
     right: 0;
     margin: 20px;
-    z-index: 1000;
+    z-index: 6;
     display: none;
     grid-auto-flow: row;
     gap: 20px;
@@ -82,7 +82,7 @@ export const MainLayoutStyle = styled.main`
     margin: 20px;
     width: 40px;
     height: 40px;
-    z-index: 1000;
+    z-index: 6;
     border-radius: 50%;
     background: ${(props) => props.theme.colors.text};
     transition: all 300ms ease;
