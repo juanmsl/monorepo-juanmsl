@@ -5,40 +5,36 @@ export const MySkillsStyle = styled(SectionLayout)`
   user-select: none;
 
   .layout-content {
-    display: grid;
-    grid-template-columns: 1fr;
-    align-content: stretch;
-    align-items: center;
-
-    @media all and (min-width: ${(props) => props.theme.constants.breakpoints.laptopM}) {
-      grid-template-columns: 1fr auto;
-      gap: 100px;
-    }
-  }
-
-  .left {
-    display: grid;
+    min-height: unset;
+    justify-content: center;
+    justify-items: center;
     gap: 20px;
-    place-content: start;
+    padding-top: 0;
   }
 
-  .right {
-    display: none;
-    align-content: center;
-    justify-content: start;
-    width: 430px;
-    height: 524px;
-
-    @media all and (min-width: ${(props) => props.theme.constants.breakpoints.laptopM}) {
-      display: grid;
+  &:has(.skill-category:hover) {
+    .technology-icon:not(.is-selected) {
+      filter: grayscale(100%) blur(5px);
     }
+  }
 
-    .right-content {
-      display: grid;
-      gap: 20px;
-      justify-items: center;
-      text-align: center;
-      width: 200px;
+  &:has(.technology-icon:hover) {
+    .technology-icon:not(:hover) {
+      filter: grayscale(100%) blur(1px);
+    }
+  }
+
+  .technology-icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    display: block;
+    transition: all 300ms ease;
+
+    &.is-selected,
+    &:hover {
+      filter: grayscale(0) drop-shadow(0 0 4px ${props => props.theme.colors.text}33);
+      transform: perspective(100px) translateZ(20px);
     }
   }
 
@@ -46,7 +42,7 @@ export const MySkillsStyle = styled(SectionLayout)`
     display: flex;
     gap: 10px 40px;
     align-items: center;
-    justify-content: start;
+    justify-content: center;
     flex-wrap: wrap;
 
     .skill-category {
@@ -78,52 +74,11 @@ export const MySkillsStyle = styled(SectionLayout)`
     }
   }
 
-  .technology-icon {
-    width: 150px;
-    height: 150px;
-    object-fit: contain;
-    padding: 10px;
-    background: ${(props) => props.theme.colors.white};
-    border-radius: 10px;
-  }
-
   .skills-labels {
     display: flex;
-    gap: 15px 20px;
-    justify-content: start;
+    gap: 20px;
+    justify-content: center;
     flex-wrap: wrap;
     padding-top: 20px;
-  }
-
-  .seniority-container {
-    display: grid;
-    width: 100%;
-  }
-
-  .seniority-bar {
-    width: 100%;
-    height: 10px;
-    border-radius: 10px;
-    background: ${(props) => props.theme.colors.primaryContrast};
-    border: 1px solid ${(props) => props.theme.colors.primary};
-    position: relative;
-
-    .seniority-bar-line {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      border-radius: 10px;
-      background: ${(props) => props.theme.colors.primary};
-    }
-  }
-
-  .seniority-labels {
-    display: grid;
-    grid-auto-flow: column;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    width: 100%;
   }
 `;

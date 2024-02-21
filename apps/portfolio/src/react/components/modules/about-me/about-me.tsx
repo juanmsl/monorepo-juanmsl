@@ -1,40 +1,18 @@
+import { AboutMeStyle } from './about-me.style';
 import { ProfilePicture } from '@components/resources';
 import { Reveal } from '@components/animations';
 import { SectionTitle } from '@components/ui';
-import { useMemo } from 'react';
+import { useAsset } from '@hooks';
 import { useTranslation } from 'react-i18next';
-import { AboutMeStyle, CharacteristicStyle, CharacteristicsStyle } from './about-me.style';
-import { Button, HoverCard, Icon, IconNameT, Line, Typography } from '@juanmsl/ui';
-import { useAsset, useGetCharacteristics } from '@hooks';
+import { Button, HoverCard, Typography } from '@juanmsl/ui';
 
 export const AboutMe = () => {
   const { t } = useTranslation();
-  const { data = [] } = useGetCharacteristics();
   const { data: resume } = useAsset('2Sb2cM6MN8osN8kXMizuUd');
 
   const handleClick = async () => {
     window.open(resume.url, '_blank');
   };
-
-  const characteristics = useMemo(
-    () =>
-      data.map(({ title, icon }, key) => (
-        <CharacteristicStyle key={key}>
-          <HoverCard translationZ={15}>
-            <Reveal delay={100 * key}>
-              <div className="characteristic-container">
-                <Icon name={icon as IconNameT} className="characteristic-icon" />
-                <Line orientation="horizontal" className="characteristic-line" />
-                <Typography variant="body" className="characteristic-title">
-                  {title}
-                </Typography>
-              </div>
-            </Reveal>
-          </HoverCard>
-        </CharacteristicStyle>
-      )),
-    [data],
-  );
 
   return (
     <>
@@ -79,9 +57,6 @@ export const AboutMe = () => {
           </div>
         </section>
       </AboutMeStyle>
-      <CharacteristicsStyle>
-        <div className="characteristics-gallery">{characteristics}</div>
-      </CharacteristicsStyle>
     </>
   );
 };
