@@ -3,7 +3,7 @@ import { PATHS } from '@core/constants';
 import { LazyHome, LazyNotFound, LazyResume } from '@features';
 import { Navigate, createBrowserRouter } from 'react-router-dom';
 
-export const router = createBrowserRouter([
+const routes = [
   {
     path: PATHS.HOME_URL,
     element: <MainLayout />,
@@ -24,4 +24,5 @@ export const router = createBrowserRouter([
     path: '*',
     element: <Navigate to={PATHS.HOME_URL} />,
   },
-]);
+];
+export const router = createBrowserRouter(routes);
