@@ -1,3 +1,4 @@
+import { AnimatePresence } from 'framer-motion';
 import { ENV } from '@core/env';
 import { LoaderLogo } from '@components/ui';
 import ReactDOM from 'react-dom/client';
@@ -25,7 +26,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <IconProvider>
           <QueryClientProvider client={queryClient}>
             <Suspense fallback={<LoaderLogo />}>
-              <RouterProvider router={router} />
+              <AnimatePresence mode="wait">
+                <RouterProvider router={router} />
+              </AnimatePresence>
             </Suspense>
           </QueryClientProvider>
         </IconProvider>
