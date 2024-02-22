@@ -2,10 +2,10 @@ import { AboutMeStyle } from './about-me.style';
 import { ProfilePicture } from '@components/resources';
 import { Reveal } from '@components/animations';
 import { SectionTitle } from '@components/ui';
-import { useAsset, useGetTechnologies } from '@hooks';
+import { TechnologyEntity } from '@domain';
 import { useTranslation } from 'react-i18next';
 import { Button, HoverCard, Tooltip, Typography } from '@juanmsl/ui';
-import { TechnologyEntity } from '@domain';
+import { useAsset, useGetTechnologies } from '@hooks';
 
 export const AboutMe = () => {
   const { t } = useTranslation();
