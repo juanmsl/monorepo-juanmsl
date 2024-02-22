@@ -15,7 +15,7 @@ export const CompanyDetails = ({ company }: CompanyItemProps) => {
     <CompanyDetailsStyle>
       <div className="company-details-header">
         <div className="company-logo">
-          <HoverCard>
+          <HoverCard width="100%">
             <img src={icon} alt="Company logo" />
           </HoverCard>
         </div>
