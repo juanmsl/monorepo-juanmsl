@@ -43,4 +43,34 @@ export const AboutMeStyle = styled(SectionLayout)`
       gap: 20px;
     }
   }
+
+  &:has(.technology-icon:hover) {
+    .technology-icon:not(:hover) {
+      filter: grayscale(100%) blur(1px);
+    }
+  }
+
+  .skills-labels {
+    margin-top: 40px;
+    display: grid;
+    width: 100%;
+    gap: 10px;
+    justify-content: start;
+    grid-template-columns: repeat(auto-fit, 32px);
+    padding-top: 20px;
+
+    .technology-icon {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      display: block;
+      transition: all 300ms ease;
+
+      &.is-selected,
+      &:hover {
+        filter: grayscale(0) drop-shadow(0 0 4px ${props => props.theme.colors.text}33);
+        transform: perspective(100px) translateZ(20px);
+      }
+    }
+  }
 `;

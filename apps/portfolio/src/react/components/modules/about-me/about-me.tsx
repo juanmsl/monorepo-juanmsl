@@ -2,17 +2,27 @@ import { AboutMeStyle } from './about-me.style';
 import { ProfilePicture } from '@components/resources';
 import { Reveal } from '@components/animations';
 import { SectionTitle } from '@components/ui';
-import { useAsset } from '@hooks';
+import { useAsset, useGetTechnologies } from '@hooks';
 import { useTranslation } from 'react-i18next';
-import { Button, HoverCard, Typography } from '@juanmsl/ui';
+import { Button, HoverCard, Tooltip, Typography } from '@juanmsl/ui';
+import { TechnologyEntity } from '@domain';
 
 export const AboutMe = () => {
   const { t } = useTranslation();
   const { data: resume } = useAsset('2Sb2cM6MN8osN8kXMizuUd');
+  const { data: technologies = [] } = useGetTechnologies();
 
   const handleClick = async () => {
     window.open(resume.url, '_blank');
   };
+
+  const renderTechnology = ({ name, icon }: TechnologyEntity, key: number) => (
+    <Tooltip content={name} key={key}>
+      <Reveal key={key} delay={(key + 1) * 50}>
+        <img className="technology-icon" src={icon} alt={name} />
+      </Reveal>
+    </Tooltip>
+  );
 
   return (
     <>
@@ -55,6 +65,8 @@ export const AboutMe = () => {
               </Button>
             </Reveal>
           </div>
+
+          <div className="skills-labels">{technologies.map(renderTechnology)}</div>
         </section>
       </AboutMeStyle>
     </>
