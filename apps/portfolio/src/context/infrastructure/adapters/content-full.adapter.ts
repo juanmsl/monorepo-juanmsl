@@ -113,6 +113,7 @@ export class ContentFullAdapter implements ContentFullPort {
                 technologies: technologiesCollection {
                   items {
                     name
+                    icon
                   }
                 }
               }
