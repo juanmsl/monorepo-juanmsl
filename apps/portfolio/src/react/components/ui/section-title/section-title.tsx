@@ -5,5 +5,5 @@ type SectionTitleProps = {
 };
 
 export const SectionTitle = ({ children }: SectionTitleProps) => {
-  return <SectionTitleStyle variant="header1">{children}</SectionTitleStyle>;
+  return <SectionTitleStyle variant='header1'>{children}</SectionTitleStyle>;
 };

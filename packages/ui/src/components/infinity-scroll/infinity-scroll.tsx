@@ -33,14 +33,14 @@ export const InfinityScroll = <T,>({
   return (
     <>
       <InfiniteScrollStyle />
-      {!!emptyMessage && data.length === 0 && !isLoading && <p className="empty-message">{emptyMessage}</p>}
+      {!!emptyMessage && data.length === 0 && !isLoading && <p className='empty-message'>{emptyMessage}</p>}
       {data.map(renderItem)}
       {(hasNextPage || isLoading) &&
         (customLoadMoreElement ? (
           customLoadMoreElement(ref)
         ) : (
-          <section ref={ref as LegacyRef<HTMLElement>} className="loading">
-            {isLoading && <Icon name="spinner" className="loading--icon" />}
+          <section ref={ref as LegacyRef<HTMLElement>} className='loading'>
+            {isLoading && <Icon name='spinner' className='loading--icon' />}
           </section>
         ))}
     </>

@@ -8,14 +8,14 @@ export const MainLayout = () => {
   return (
     <MainLayoutStyle>
       <NavLink to={PATHS.HOME_URL}>
-        <img className="layout-logo" src="/assets/images/logo.png" alt="logo" />
+        <img className='layout-logo' src='/assets/images/logo.png' alt='logo' />
       </NavLink>
       <Navbar />
-      <div className="layout-actions">
+      <div className='layout-actions'>
         <ThemeSelector />
         <LanguageSelector />
       </div>
-      <div className="main-layout-content">
+      <div className='main-layout-content'>
         <Outlet />
       </div>
       <Footer />

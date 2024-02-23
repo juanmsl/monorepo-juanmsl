@@ -5,10 +5,10 @@ type HeaderStyleProps = {
   $background: string;
 };
 
-export const HeaderStyle = styled(SectionLayout).attrs<HeaderStyleProps, HeaderStyleProps>((props) => props)`
+export const HeaderStyle = styled(SectionLayout).attrs<HeaderStyleProps, HeaderStyleProps>(props => props)`
   display: grid;
   position: relative;
-  color: ${(props) => props.theme.colors.primary};
+  color: ${props => props.theme.colors.primary};
   transition: all 300ms ease;
 
   &::before {
@@ -18,8 +18,8 @@ export const HeaderStyle = styled(SectionLayout).attrs<HeaderStyleProps, HeaderS
     left: 0;
     width: 100%;
     height: 100%;
-    background: url(${(props) => props.$background}) center center / cover no-repeat
-      ${(props) => props.theme.colors.secondary}B3;
+    background: url(${props => props.$background}) center center / cover no-repeat
+      ${props => props.theme.colors.secondary}B3;
     background-blend-mode: soft-light;
     filter: opacity(40%) grayscale(50%);
     transition: all 300ms ease;
@@ -45,7 +45,7 @@ export const HeaderStyle = styled(SectionLayout).attrs<HeaderStyleProps, HeaderS
     align-items: center;
     gap: 10px 20px;
     padding: 0 1rem;
-    color: ${(props) => props.theme.colors.text};
+    color: ${props => props.theme.colors.text};
     transition: all 300ms ease;
 
     .user-label {
@@ -56,8 +56,8 @@ export const HeaderStyle = styled(SectionLayout).attrs<HeaderStyleProps, HeaderS
       font-weight: 500;
 
       &:hover {
-        color: ${(props) => props.theme.colors.primary};
-        background: ${(props) => props.theme.colors.primaryContrast};
+        color: ${props => props.theme.colors.primary};
+        background: ${props => props.theme.colors.primaryContrast};
       }
     }
   }

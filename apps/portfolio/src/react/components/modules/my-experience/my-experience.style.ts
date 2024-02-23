@@ -13,7 +13,7 @@ export const MyExperienceStyle = styled(SectionLayout)`
     gap: 40px;
     align-content: start;
 
-    @media all and (min-width: ${(props) => props.theme.constants.breakpoints.laptopS}) {
+    @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
       grid-template-columns: minmax(300px, auto) 1fr;
     }
   }
@@ -28,13 +28,13 @@ export const MyExperienceStyle = styled(SectionLayout)`
     display: none;
     align-content: start;
 
-    @media all and (min-width: ${(props) => props.theme.constants.breakpoints.laptopS}) {
+    @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
       display: grid;
     }
   }
 
   .companies-list-line-separator {
-    @media all and (min-width: ${(props) => props.theme.constants.breakpoints.laptopS}) {
+    @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
       display: none;
     }
   }
@@ -61,7 +61,7 @@ export const CompaniesListItemStyle = styled.div`
   }
 
   .header-right {
-    @media all and (min-width: ${(props) => props.theme.constants.breakpoints.laptopS}) {
+    @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
       display: none;
     }
   }
@@ -75,7 +75,7 @@ export const CompaniesListItemStyle = styled.div`
     align-content: start;
     margin-top: 20px;
 
-    @media all and (min-width: ${(props) => props.theme.constants.breakpoints.laptopS}) {
+    @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
       display: none;
     }
   }
@@ -86,8 +86,8 @@ export const CompaniesListItemStyle = styled.div`
 
   &:hover,
   &.selected {
-    @media all and (min-width: ${(props) => props.theme.constants.breakpoints.laptopS}) {
-      color: ${(props) => props.theme.colors.primary};
+    @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
+      color: ${props => props.theme.colors.primary};
       border-left: 3px solid;
       padding-left: 10px;
     }
@@ -95,13 +95,13 @@ export const CompaniesListItemStyle = styled.div`
 
   .company-item-position {
     display: none;
-    color: ${(props) => props.theme.colors.primary};
+    color: ${props => props.theme.colors.primary};
   }
 
   &.selected .company-item-position {
     display: inline-block;
 
-    @media all and (min-width: ${(props) => props.theme.constants.breakpoints.laptopS}) {
+    @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
       display: none;
     }
   }
@@ -111,7 +111,7 @@ export const CompanyDetailsStyle = styled.div`
   display: grid;
   gap: 40px;
   align-content: start;
-  color: ${(props) => props.theme.colors.text};
+  color: ${props => props.theme.colors.text};
 
   .company-details-header {
     display: none;
@@ -120,7 +120,7 @@ export const CompanyDetailsStyle = styled.div`
     align-content: center;
     justify-content: start;
 
-    @media all and (min-width: ${(props) => props.theme.constants.breakpoints.laptopS}) {
+    @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
       display: grid;
     }
 
@@ -130,24 +130,24 @@ export const CompanyDetailsStyle = styled.div`
     }
 
     .header4 {
-      color: ${(props) => props.theme.colors.primary};
+      color: ${props => props.theme.colors.primary};
     }
 
     .company-logo {
       border-radius: 50%;
       padding: 5px;
-      background: ${(props) => props.theme.colors.white};
+      background: ${props => props.theme.colors.white};
       transition: all 300ms ease;
       width: 72px;
       height: 72px;
       display: none;
 
-      @media all and (min-width: ${(props) => props.theme.constants.breakpoints.laptopS}) {
+      @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
         display: block;
       }
 
       img {
-        background: ${(props) => props.theme.colors.white}55;
+        background: ${props => props.theme.colors.white}55;
         width: 100%;
         height: 100%;
         display: block;

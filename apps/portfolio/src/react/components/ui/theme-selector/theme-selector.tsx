@@ -9,16 +9,16 @@ export const ThemeSelector = () => {
   return (
     <Tooltip
       content={t('utility:themeSelector.changeTheme', { theme: t(`common:themes.${themeName}`) })}
-      position="left"
+      position='left'
     >
       <ToggleSelector
         position={themeName === 'dark' ? 'left' : 'right'}
-        tooltipPosition="bottom"
+        tooltipPosition='bottom'
         toggle={toggleTheme}
-        orientation="vertical"
+        orientation='vertical'
       >
-        <Icon name="moon" />
-        <Icon name="sun" />
+        <Icon name='moon' />
+        <Icon name='sun' />
       </ToggleSelector>
     </Tooltip>
   );

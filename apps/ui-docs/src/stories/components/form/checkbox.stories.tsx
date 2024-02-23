@@ -1,8 +1,8 @@
-import { Meta, StoryObj } from '@storybook/react';
 import { Checkbox } from '@juanmsl/ui';
+import { Meta, StoryObj } from '@storybook/react';
 import { useCallback, useState } from 'react';
 
-export default {
+const CheckboxStory: Meta<typeof Checkbox> = {
   title: 'Components/Form/Checkbox',
   component: Checkbox,
   argTypes: {},
@@ -13,10 +13,10 @@ export default {
     placeholder: 'Placeholder',
     disabled: false,
     label: 'Field label',
-    rightIcon: 'save',
+    rightIcon: 'caret-right',
     leftIcon: 'magnifying-glass',
   },
-  render: (args) => {
+  render: args => {
     const Wrapper = () => {
       const [value, setValue] = useState('');
 
@@ -29,7 +29,9 @@ export default {
 
     return <Wrapper />;
   },
-} as Meta<typeof Checkbox>;
+};
+
+export default CheckboxStory;
 
 type Template = StoryObj<typeof Checkbox>;
 

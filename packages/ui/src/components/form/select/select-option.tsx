@@ -61,7 +61,7 @@ export const SelectOption = <T,>({
   return (
     <li
       id={id}
-      role="option"
+      role='option'
       aria-selected={selected}
       tabIndex={0}
       onKeyDown={handleKeyDown(data)}
@@ -69,10 +69,10 @@ export const SelectOption = <T,>({
       onClick={handleClick(data)}
     >
       {multiselect && <Checkbox name={id} value={selected} setValue={handleCheckboxChange(data)} />}
-      <section className="content">{renderOption(data)}</section>
+      <section className='content'>{renderOption(data)}</section>
       {selected && !multiselect && (
-        <section className="icon-close" onClick={clearOption(data)}>
-          <Icon name="cross" />
+        <section className='icon-close' onClick={clearOption(data)}>
+          <Icon name='cross' />
         </section>
       )}
     </li>

@@ -11,17 +11,17 @@ export const MySkills = () => {
   const [hoveredCategory, setHoveredCategory] = useState([]);
 
   const getHoveredTechnologiesOfCategory = (category: ProfessionalSkillsEntity) => {
-    setHoveredCategory(category.technologies.items.map((tech) => tech.name));
+    setHoveredCategory(category.technologies.items.map(tech => tech.name));
   };
 
   return (
     <MySkillsStyle>
-      <div className="skills-categories">
+      <div className='skills-categories'>
         {professionalSkills.map((skill, key) => (
           <Reveal key={key} delay={(key + 1) * 100}>
             <Typography
-              variant="body"
-              className="skill-category"
+              variant='body'
+              className='skill-category'
               onMouseOver={() => getHoveredTechnologiesOfCategory(skill)}
               onMouseLeave={() => setHoveredCategory([])}
             >
@@ -30,7 +30,7 @@ export const MySkills = () => {
           </Reveal>
         ))}
       </div>
-      <div className="skills-labels">
+      <div className='skills-labels'>
         {technologies.map((technology, key) => (
           <Tooltip content={technology.name} key={key}>
             <Reveal key={key} delay={(key + 1) * 50}>

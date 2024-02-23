@@ -4,13 +4,13 @@ import { useRef } from 'react';
 export const useOnClickOutsideRef = (callback: () => void) => {
   const containerRef = useRef<Element>(null);
 
-  useEventListener('keydown', (e) => {
+  useEventListener('keydown', e => {
     if (e.key === 'Escape') {
       callback();
     }
   });
 
-  useEventListener('mousedown', (event) => {
+  useEventListener('mousedown', event => {
     if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
       callback();
     }

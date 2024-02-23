@@ -71,7 +71,7 @@ export const FetchProvider = ({ children, baseURL }: FetchProviderProps) => {
       },
     });
 
-    instance.interceptors.request.use((req) => {
+    instance.interceptors.request.use(req => {
       const token = getToken();
       token !== null && req.headers.setAuthorization(`Bearer ${token}`);
 
@@ -79,8 +79,8 @@ export const FetchProvider = ({ children, baseURL }: FetchProviderProps) => {
     });
 
     instance.interceptors.response.use(
-      (response) => Promise.resolve(response),
-      (error) => {
+      response => Promise.resolve(response),
+      error => {
         error.response.status === 401 && logout();
         Promise.reject(error);
       },

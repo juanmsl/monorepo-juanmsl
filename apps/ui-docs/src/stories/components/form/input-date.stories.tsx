@@ -1,8 +1,8 @@
-import { Meta, StoryObj } from '@storybook/react';
 import { InputDate } from '@juanmsl/ui';
+import { Meta, StoryObj } from '@storybook/react';
 import { useCallback, useState } from 'react';
 
-export default {
+const InputDateStory: Meta<typeof InputDate> = {
   title: 'Components/Form/Input Date',
   component: InputDate,
   argTypes: {},
@@ -13,10 +13,10 @@ export default {
     placeholder: 'Placeholder',
     disabled: false,
     label: 'Field label',
-    rightIcon: 'save',
+    rightIcon: 'caret-right',
     leftIcon: 'magnifying-glass',
   },
-  render: (args) => {
+  render: args => {
     const Wrapper = () => {
       const [value, setValue] = useState('');
 
@@ -29,7 +29,9 @@ export default {
 
     return <Wrapper />;
   },
-} as Meta<typeof InputDate>;
+};
+
+export default InputDateStory;
 
 type Template = StoryObj<typeof InputDate>;
 

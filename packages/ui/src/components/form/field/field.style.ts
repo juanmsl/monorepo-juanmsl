@@ -39,13 +39,13 @@ export const FieldStyle = styled.section<FieldStyleProps>`
     grid-template-columns: auto 1fr auto;
     grid-template-areas: 'fieldLeftIcon fieldInputComponent fieldRightIcon';
     align-items: center;
-    border-bottom: 1px solid ${(props) => (props.isFocus ? props.theme.colors.primary : '#555555')};
+    border-bottom: 1px solid ${props => (props.isFocus ? props.theme.colors.primary : '#555555')};
 
     .field-icon {
       font-size: 0.9em;
       place-self: center;
       cursor: pointer;
-      color: ${(props) => (props.isFocus ? props.theme.colors.primary : 'inherit')};
+      color: ${props => (props.isFocus ? props.theme.colors.primary : 'inherit')};
     }
 
     .field-left-icon {

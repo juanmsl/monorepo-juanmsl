@@ -39,7 +39,7 @@ export const ThemeProvider = ({ children, commonTheme, lightTheme, darkTheme, co
   }, []);
 
   const changeTheme = useCallback((themeName: `${THEME}`) => setThemeName(themeName), []);
-  const toggleTheme = useCallback(() => setThemeName((prev) => (prev === 'light' ? 'dark' : 'light')), []);
+  const toggleTheme = useCallback(() => setThemeName(prev => (prev === 'light' ? 'dark' : 'light')), []);
 
   const themes: Record<THEME, ThemeEntity> = {
     light: {

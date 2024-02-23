@@ -65,22 +65,22 @@ export const Modal: FC<ModalProps> = ({
         className={classNames.wrapper}
         width={width}
         height={height}
-        onClick={(e) => e.stopPropagation()}
+        onClick={e => e.stopPropagation()}
         style={style}
       >
         <div className={`modal-header ${classNames.header ?? ''}`}>
-          <h5 className="modal-title">{title}</h5>
+          <h5 className='modal-title'>{title}</h5>
           {actions}
           {withoutCloseAction ? (
             <span />
           ) : (
-            <button className="modal-close" onClick={onClose}>
-              <Icon name="exclamation-close" />
+            <button className='modal-close' onClick={onClose}>
+              <Icon name='exclamation-close' />
             </button>
           )}
         </div>
-        <div className="modal-body">
-          <div className="modal-body--content">{children}</div>
+        <div className='modal-body'>
+          <div className='modal-body--content'>{children}</div>
         </div>
       </ModalWrapper>
     </ModalOverlay>,

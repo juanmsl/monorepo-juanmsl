@@ -9,7 +9,7 @@ export const SocialIconsStyle = styled.section<SocialIconsStyleProps>`
   grid-auto-flow: column;
   justify-content: center;
   align-items: center;
-  gap: ${(props) => props.$gap};
+  gap: ${props => props.$gap};
   font-size: 1.3em;
 
   .social-icon {
@@ -23,8 +23,8 @@ export const SocialIconsStyle = styled.section<SocialIconsStyleProps>`
     transition: all 0.3s ease;
 
     &:hover {
-      background: ${(props) => props.theme.colors.primary};
-      color: ${(props) => props.theme.colors.primaryContrast};
+      background: ${props => props.theme.colors.primary};
+      color: ${props => props.theme.colors.primaryContrast};
     }
   }
 `;

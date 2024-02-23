@@ -27,7 +27,7 @@ export const Textarea = ({
   const id = useId();
   const { isFocus, handlers } = useInputHandlers({
     onBlur: onBlur,
-    onChange: (value) => setValue(value),
+    onChange: value => setValue(value),
   });
 
   return (

@@ -17,14 +17,14 @@ export const InputFileSC = styled.section`
     &--text {
       font-size: 0.8em;
       display: grid;
-      color: ${(props) => props.theme.colors.gray5};
+      color: ${props => props.theme.colors.gray5};
     }
 
     &--icon {
       width: 32px;
       height: 32px;
       border-radius: 5px;
-      background: ${(props) => props.theme.colors.gray7};
+      background: ${props => props.theme.colors.gray7};
       display: grid;
       place-content: center;
     }
@@ -52,7 +52,7 @@ export const InputFileSC = styled.section`
 
       &,
       & label {
-        color: ${(props) => props.theme.colors.primary};
+        color: ${props => props.theme.colors.primary};
       }
     }
   }
@@ -93,7 +93,7 @@ export const InputFileSC = styled.section`
       width: 2em;
 
       &:hover {
-        background: ${(props) => props.theme.colors.primary};
+        background: ${props => props.theme.colors.primary};
         color: white;
       }
     }
@@ -112,14 +112,14 @@ export const FileCardSC = styled.section`
   }
 
   &:hover {
-    color: ${(props) => props.theme.colors.primary};
+    color: ${props => props.theme.colors.primary};
   }
 
   .file-card--image {
     width: 32px;
     height: 32px;
     border-radius: 5px;
-    background: ${(props) => props.theme.colors.gray7};
+    background: ${props => props.theme.colors.gray7};
     display: grid;
     place-content: center;
   }
@@ -138,12 +138,12 @@ export const FileCardSC = styled.section`
 
   .file-card--size {
     margin: 0;
-    color: ${(props) => props.theme.colors.gray5};
+    color: ${props => props.theme.colors.gray5};
   }
 
   .file-card--delete {
     border-radius: 5px;
-    background: ${(props) => props.theme.colors.gray7};
+    background: ${props => props.theme.colors.gray7};
     display: grid;
     place-content: center;
     width: 32px;
@@ -152,7 +152,7 @@ export const FileCardSC = styled.section`
     transition: all 0.3s ease;
 
     &:hover {
-      background: ${(props) => props.theme.colors.primary};
+      background: ${props => props.theme.colors.primary};
       color: white;
     }
   }

@@ -16,7 +16,7 @@ export const Tag = ({ children, className: customClassName = '', isSelected = fa
 
   return (
     <TagStyle className={className} {...props}>
-      <Typography variant="label">{children}</Typography>
+      <Typography variant='label'>{children}</Typography>
     </TagStyle>
   );
 };

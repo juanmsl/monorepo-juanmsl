@@ -58,31 +58,31 @@ export const OptionsHeader = <T,>({
 
   return (
     <OptionsHeaderStyle>
-      <span className="option-placeholder" onClick={() => setIsOpen(false)}>
+      <span className='option-placeholder' onClick={() => setIsOpen(false)}>
         {placeholder}
       </span>
       {onSearchQuery && (
         <input
-          name="query"
-          className="input-search"
+          name='query'
+          className='input-search'
           value={searchQueryValue ?? internalSearchQuery}
           onChange={handleSearchQuery}
           placeholder={searchQueryPlaceholder}
-          onClick={(e) => e.stopPropagation()}
+          onClick={e => e.stopPropagation()}
           ref={searchInputRef}
           autoFocus
         />
       )}
       {selectedValuesRendered.length > 0 ? (
-        <ul className="options-list options-selected" role="listbox" tabIndex={-1}>
+        <ul className='options-list options-selected' role='listbox' tabIndex={-1}>
           {selectedValuesRendered}
         </ul>
       ) : !!value && value !== '' ? (
-        <ul className="options-list options-selected" role="listbox" tabIndex={-1}>
-          <li className="option option-selected-resume" tabIndex={-1}>
-            <span className="text-content">{!!value && value !== '' && renderValue(value)}</span>
-            <section className="icon-close" onClick={() => setValue('')}>
-              <Icon name="cross" />
+        <ul className='options-list options-selected' role='listbox' tabIndex={-1}>
+          <li className='option option-selected-resume' tabIndex={-1}>
+            <span className='text-content'>{!!value && value !== '' && renderValue(value)}</span>
+            <section className='icon-close' onClick={() => setValue('')}>
+              <Icon name='cross' />
             </section>
           </li>
         </ul>

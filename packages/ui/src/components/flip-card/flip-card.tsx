@@ -23,7 +23,7 @@ export const FlipCard = ({
   const [rotation, setRotation] = useState(0);
 
   useEffect(() => {
-    setRotation((c) => c + 180);
+    setRotation(c => c + 180);
   }, [isFlipped]);
 
   const getComponent = (key: 0 | 1): React.ReactNode => {
@@ -55,10 +55,10 @@ export const FlipCard = ({
       $frontRotate={frontRotate}
       $backRotate={backRotate}
     >
-      <section className="flipper">
-        <section className="front">{getComponent(0)}</section>
+      <section className='flipper'>
+        <section className='front'>{getComponent(0)}</section>
 
-        <section className="back">{getComponent(1)}</section>
+        <section className='back'>{getComponent(1)}</section>
       </section>
     </FlipCardStyle>
   );

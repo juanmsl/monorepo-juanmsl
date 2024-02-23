@@ -63,10 +63,10 @@ export const MySkillsStyle = styled(SectionLayout)`
       }
 
       &:hover {
-        color: ${(props) => props.theme.colors.primary};
+        color: ${props => props.theme.colors.primary};
 
         &::before {
-          background: ${(props) => props.theme.colors.primary};
+          background: ${props => props.theme.colors.primary};
           width: 5px;
           height: 5px;
         }

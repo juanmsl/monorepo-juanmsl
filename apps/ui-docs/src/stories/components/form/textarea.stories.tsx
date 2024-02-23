@@ -1,8 +1,8 @@
-import { Meta, StoryObj } from '@storybook/react';
 import { Textarea } from '@juanmsl/ui';
+import { Meta, StoryObj } from '@storybook/react';
 import { useCallback, useState } from 'react';
 
-export default {
+const TextareaStory: Meta<typeof Textarea> = {
   title: 'Components/Form/Textarea',
   component: Textarea,
   argTypes: {},
@@ -13,10 +13,10 @@ export default {
     placeholder: 'Placeholder',
     disabled: false,
     label: 'Field label',
-    rightIcon: 'save',
+    rightIcon: 'caret-right',
     leftIcon: 'magnifying-glass',
   },
-  render: (args) => {
+  render: args => {
     const Wrapper = () => {
       const [value, setValue] = useState('');
 
@@ -29,7 +29,9 @@ export default {
 
     return <Wrapper />;
   },
-} as Meta<typeof Textarea>;
+};
+
+export default TextareaStory;
 
 type Template = StoryObj<typeof Textarea>;
 

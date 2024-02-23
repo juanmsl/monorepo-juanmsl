@@ -32,7 +32,7 @@ export const Radio = ({
       <input
         id={id}
         onChange={handleChange}
-        type="radio"
+        type='radio'
         name={name}
         className={className}
         style={style}
@@ -41,7 +41,7 @@ export const Radio = ({
         onBlur={onBlur}
       />
       {label !== undefined && (
-        <label htmlFor={id} className="label">
+        <label htmlFor={id} className='label'>
           {label}
         </label>
       )}

@@ -5,7 +5,7 @@ import { Typography } from '@juanmsl/ui';
 export const Resume = () => {
   return (
     <SectionLayout>
-      <Typography variant="hero">Resume</Typography>
+      <Typography variant='hero'>Resume</Typography>
       <Document />
     </SectionLayout>
   );

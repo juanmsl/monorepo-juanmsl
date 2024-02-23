@@ -13,8 +13,8 @@ const config: ConfigFile = JSON.parse(configFile);
 
 const icons: Array<Icon> = fs
   .readdirSync(config.rootSVGDirectory)
-  .filter((file) => file.endsWith('.svg'))
-  .map<Icon>((file) => new Icon(config.rootSVGDirectory, file));
+  .filter(file => file.endsWith('.svg'))
+  .map<Icon>(file => new Icon(config.rootSVGDirectory, file));
 
 type IconCategories = {
   [index: string]: Category;
@@ -27,7 +27,7 @@ const categoryFiles = icons.reduce<IconCategories>((categories, icon) => {
   return categories;
 }, {});
 
-Object.values(categoryFiles).forEach(async (category) => {
+Object.values(categoryFiles).forEach(async category => {
   await category.createFile(config.outputDirectory);
 });
 
@@ -35,17 +35,17 @@ console.log(`Creating file: ${config.outputDirectory}/index.ts`);
 
 const indexFile = `import React from 'react';
 ${Object.keys(categoryFiles)
-  .map((category) => `import { ${titleCase(category)}Icons, ${titleCase(category)}IconsT } from './${category}';`)
+  .map(category => `import { ${titleCase(category)}Icons, ${titleCase(category)}IconsT } from './${category}';`)
   .join('\n')}\n
 export type IconT = {
   viewBox: string;
   svg: (fill: string) => React.ReactNode;
 };\n
 export type IconCollectionT = ${Object.keys(categoryFiles)
-  .map((category) => `${titleCase(category)}IconsT`)
+  .map(category => `${titleCase(category)}IconsT`)
   .join(' & ')};\n
 export const Icons: IconCollectionT = {\n${Object.keys(categoryFiles)
-  .map((category) => `  ...${titleCase(category)}Icons,`)
+  .map(category => `  ...${titleCase(category)}Icons,`)
   .join('\n')}\n};`;
 
 fs.writeFileSync(`${config.outputDirectory}/index.ts`, indexFile);

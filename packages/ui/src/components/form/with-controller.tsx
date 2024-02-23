@@ -23,7 +23,7 @@ export const withController = <T extends Props, V>(
               invalid: fieldState.invalid,
               isTouched: fieldState.isTouched,
               isDirty: fieldState.isDirty,
-              setValue: (value) => setValue(name, value),
+              setValue: value => setValue(name, value),
               onBlur,
               ...inputProps,
             } as InputProps<T, V>)}

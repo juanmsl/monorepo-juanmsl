@@ -60,7 +60,7 @@ export const useAsync = <T>(
     (promise: Promise<T>) => {
       dispatch({ type: 'pending' });
       promise.then(
-        (data) => {
+        data => {
           dispatch({ type: 'resolved', data });
         },
         (error: Error) => {

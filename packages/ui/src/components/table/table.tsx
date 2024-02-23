@@ -33,7 +33,7 @@ export const Table = <T extends TableDataGeneric>({
   const selectValue = useCallback(
     (id: string, isSelected: boolean, item: T) => {
       if (isSelected) {
-        setSelectedValues((prev) => {
+        setSelectedValues(prev => {
           if (allowSelection === 'many') {
             return {
               ...prev,
@@ -44,7 +44,7 @@ export const Table = <T extends TableDataGeneric>({
           return allowSelection ? { [id]: item } : prev;
         });
       } else {
-        setSelectedValues((prev) => {
+        setSelectedValues(prev => {
           const copy = { ...prev };
           delete copy[id];
 
@@ -63,9 +63,9 @@ export const Table = <T extends TableDataGeneric>({
       fieldComponent: ({ id, data }) => (
         <input
           id={id}
-          type="checkbox"
+          type='checkbox'
           checked={id in selectedValues}
-          onChange={(e) => {
+          onChange={e => {
             selectValue(id, e.target.checked, data);
           }}
         />
@@ -106,17 +106,17 @@ export const Table = <T extends TableDataGeneric>({
               loadMore={loadMore}
               data={data}
               renderItem={renderRow}
-              customLoadMoreElement={(ref) => (
+              customLoadMoreElement={ref => (
                 <tr ref={ref as React.LegacyRef<HTMLTableRowElement>}>
-                  <td colSpan={finalColumns.length} align="center">
-                    {isLoading && <Icon name="spinner" className="loading--icon" />}
+                  <td colSpan={finalColumns.length} align='center'>
+                    {isLoading && <Icon name='spinner' className='loading--icon' />}
                   </td>
                 </tr>
               )}
             />
           ) : (
             <tr>
-              <td colSpan={finalColumns.length} align="center">
+              <td colSpan={finalColumns.length} align='center'>
                 {emptyMessage}
               </td>
             </tr>
