@@ -14,7 +14,7 @@ export const useInView = (initOptions: IntersectionObserverInit = {}) => {
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [initOptions]);
 
   return { ref, inView };
 };

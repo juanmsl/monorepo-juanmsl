@@ -29,7 +29,7 @@ export const Checkbox = ({
       <input
         id={id}
         onChange={handleChange}
-        type="checkbox"
+        type='checkbox'
         name={name}
         className={className}
         style={style}
@@ -37,7 +37,7 @@ export const Checkbox = ({
         onBlur={onBlur}
       />
       {label !== undefined && (
-        <label htmlFor={id} className="label">
+        <label htmlFor={id} className='label'>
           {label}
         </label>
       )}

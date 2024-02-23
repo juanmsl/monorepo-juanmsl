@@ -35,7 +35,7 @@ export const Form = <T extends FieldValues = FieldValues>({
 
   return (
     <FormProvider {...methods}>
-      <form autoComplete="off" onSubmit={methods.handleSubmit(onSubmit)} className={className} style={style}>
+      <form autoComplete='off' onSubmit={methods.handleSubmit(onSubmit)} className={className} style={style}>
         {children}
       </form>
     </FormProvider>

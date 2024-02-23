@@ -34,7 +34,7 @@ export class Icon implements IconEntity {
 
     const data = await xml2js.parseStringPromise(file, {
       explicitArray: false,
-      attrNameProcessors: [(name) => camelCase(name, '-')],
+      attrNameProcessors: [name => camelCase(name, '-')],
       attrValueProcessors: [(value, name) => (name === 'fill' ? '{fill}' : value)],
     });
 

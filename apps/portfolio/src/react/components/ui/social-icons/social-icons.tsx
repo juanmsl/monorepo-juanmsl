@@ -16,7 +16,7 @@ export const SocialIcons = ({ position, gap = '20px' }: SocialIconsProps) => {
       {icons.map(({ icon, url, name }, key) => (
         <Tooltip content={isPending ? 'Is pending' : name} position={position} key={key}>
           <Reveal delay={key * 100}>
-            <a href={url} target="_blank" rel="noopener noreferrer" className="social-icon">
+            <a href={url} target='_blank' rel='noopener noreferrer' className='social-icon'>
               <Icon name={icon as IconNameT} />
             </a>
           </Reveal>

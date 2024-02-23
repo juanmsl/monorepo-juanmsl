@@ -1,8 +1,8 @@
-import { Meta, StoryObj } from '@storybook/react';
 import { Radio } from '@juanmsl/ui';
+import { Meta, StoryObj } from '@storybook/react';
 import { useCallback, useState } from 'react';
 
-export default {
+const RadioStory: Meta<typeof Radio> = {
   title: 'Components/Form/Radio',
   component: Radio,
   argTypes: {},
@@ -11,10 +11,10 @@ export default {
     autoFocus: false,
     placeholder: 'Placeholder',
     disabled: false,
-    rightIcon: 'save',
+    rightIcon: 'caret-right',
     leftIcon: 'magnifying-glass',
   },
-  render: (args) => {
+  render: args => {
     const Wrapper = () => {
       const [value, setValue] = useState('');
 
@@ -24,18 +24,20 @@ export default {
 
       return (
         <section>
-          <Radio name="option" radioValue="a" label="Option A" value={value} setValue={handleChange} {...args} />
-          <Radio name="option" radioValue="b" label="Option B" value={value} setValue={handleChange} {...args} />
-          <Radio name="option" radioValue="c" label="Option C" value={value} setValue={handleChange} {...args} />
-          <Radio name="option" radioValue="d" label="Option D" value={value} setValue={handleChange} {...args} />
-          <Radio name="option" radioValue="e" label="Option E" value={value} setValue={handleChange} {...args} />
+          <Radio name='option' radioValue='a' label='Option A' value={value} setValue={handleChange} {...args} />
+          <Radio name='option' radioValue='b' label='Option B' value={value} setValue={handleChange} {...args} />
+          <Radio name='option' radioValue='c' label='Option C' value={value} setValue={handleChange} {...args} />
+          <Radio name='option' radioValue='d' label='Option D' value={value} setValue={handleChange} {...args} />
+          <Radio name='option' radioValue='e' label='Option E' value={value} setValue={handleChange} {...args} />
         </section>
       );
     };
 
     return <Wrapper />;
   },
-} as Meta<typeof Radio>;
+};
+
+export default RadioStory;
 
 type Template = StoryObj<typeof Radio>;
 

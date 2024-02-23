@@ -10,7 +10,7 @@ export const LoaderComponent = ({ isPending, children }: LoaderComponentProps) =
   if (isPending) {
     return (
       <LoaderComponentStyle>
-        <Icon name="spinner" className="loader-icon" />
+        <Icon name='spinner' className='loader-icon' />
       </LoaderComponentStyle>
     );
   }

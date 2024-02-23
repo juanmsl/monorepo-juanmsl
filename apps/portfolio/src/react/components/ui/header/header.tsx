@@ -13,28 +13,28 @@ export const Header = () => {
 
   return (
     <HeaderStyle $background={data?.url}>
-      <div className="container">
-        <Reveal delay={200} width="100%">
-          <Line orientation="horizontal" size="3px" className="header-line" />
+      <div className='container'>
+        <Reveal delay={200} width='100%'>
+          <Line orientation='horizontal' size='3px' className='header-line' />
         </Reveal>
-        <Reveal delay={300} width="100%">
-          <Typography variant="hero" className="names" withoutPadding>
+        <Reveal delay={300} width='100%'>
+          <Typography variant='hero' className='names' withoutPadding>
             {t('common:shortName')}
           </Typography>
         </Reveal>
-        <Reveal delay={400} width="100%">
-          <Line orientation="horizontal" size="3px" className="header-line" />
+        <Reveal delay={400} width='100%'>
+          <Line orientation='horizontal' size='3px' className='header-line' />
         </Reveal>
-        <div className="user-labels">
+        <div className='user-labels'>
           {userLabels.map((label, key) => (
             <Reveal key={key} delay={100 * key + 500}>
-              <Typography variant="body" className="user-label">
+              <Typography variant='body' className='user-label'>
                 {label}
               </Typography>
             </Reveal>
           ))}
         </div>
-        <SocialIcons position="bottom" />
+        <SocialIcons position='bottom' />
       </div>
       <HeaderBottom />
     </HeaderStyle>

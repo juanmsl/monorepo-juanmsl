@@ -18,8 +18,8 @@ export const ModalWrapper = styled.div<{ width?: string; height?: string }>`
   border-radius: 4px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   background: white;
-  width: ${(props) => props.width || 'auto'};
-  height: ${(props) => props.height || 'auto'};
+  width: ${props => props.width || 'auto'};
+  height: ${props => props.height || 'auto'};
   max-width: 100%;
   max-height: 100%;
   display: grid;

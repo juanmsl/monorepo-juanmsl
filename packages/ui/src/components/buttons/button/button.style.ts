@@ -34,9 +34,9 @@ export const ButtonStyle = styled.button`
   }
 
   padding: 10px 20px;
-  font-size: ${(props) => props.theme.constants.typography.label.fontSize};
-  background: ${(props) => props.theme.colors.primary};
-  color: ${(props) => props.theme.colors.white};
+  font-size: ${props => props.theme.constants.typography.label.fontSize};
+  background: ${props => props.theme.colors.primary};
+  color: ${props => props.theme.colors.white};
 
   &:not(:disabled):hover {
     box-shadow: 0 0 5px;
@@ -47,8 +47,8 @@ export const ButtonStyle = styled.button`
   }
 
   &:disabled {
-    background: ${(props) => props.theme.colors.gray7};
-    color: ${(props) => props.theme.colors.white};
+    background: ${props => props.theme.colors.gray7};
+    color: ${props => props.theme.colors.white};
   }
 
   &.is-loading {
@@ -62,31 +62,31 @@ export const ButtonStyle = styled.button`
 
   &.small {
     padding: 5px 10px;
-    font-size: ${(props) => props.theme.constants.typography.small.fontSize};
+    font-size: ${props => props.theme.constants.typography.small.fontSize};
   }
 
   &.large {
     padding: 15px 30px;
-    font-size: ${(props) => props.theme.constants.typography.body.fontSize};
+    font-size: ${props => props.theme.constants.typography.body.fontSize};
   }
 
   &.ghost {
     background: transparent;
-    color: ${(props) => props.theme.colors.primary};
+    color: ${props => props.theme.colors.primary};
     border: 2px solid;
 
     &:not(:disabled):hover {
-      background: ${(props) => props.theme.colors.primary}22;
+      background: ${props => props.theme.colors.primary}22;
     }
   }
 
   &.flat {
     background: transparent;
-    color: ${(props) => props.theme.colors.primary};
+    color: ${props => props.theme.colors.primary};
     border: 1px solid transparent;
 
     &:not(:disabled):hover {
-      border: 1px solid ${(props) => props.theme.colors.primary};
+      border: 1px solid ${props => props.theme.colors.primary};
     }
   }
 `;

@@ -45,32 +45,32 @@ export const InputColor = ({
     <InputColorStyle>
       {label ? <Label id={id} label={label} isFocus={isFocus} /> : null}
       <section
-        className="content"
+        className='content'
         style={{
           background: value,
           color: value,
         }}
       >
         <section
-          className="color-box"
+          className='color-box'
           style={{
             background: value,
           }}
         />
         <section
-          className="color-content"
+          className='color-content'
           style={{
             background: backgroundColor,
           }}
         >
-          {!!leftIcon && <Icon name={leftIcon} className="field-icon field-left-icon" />}
-          <span className="color-text">{value}</span>
+          {!!leftIcon && <Icon name={leftIcon} className='field-icon field-left-icon' />}
+          <span className='color-text'>{value}</span>
           {!!rightIcon && (
-            <span className="field-icon field-right-icon">
+            <span className='field-icon field-right-icon'>
               <Icon name={rightIcon} />
             </span>
           )}
-          <input id={id} {...handlers} type="color" name={name} style={style} value={value} />
+          <input id={id} {...handlers} type='color' name={name} style={style} value={value} />
         </section>
       </section>
       {error?.message ? <InputState state={error.message} /> : null}

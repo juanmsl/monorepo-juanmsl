@@ -16,7 +16,7 @@ export class HttpClient {
       },
     });
 
-    this._instance.interceptors.request.use((req) => {
+    this._instance.interceptors.request.use(req => {
       const token = this.token;
       token !== null && req.headers.setAuthorization(`Bearer ${token}`);
 
@@ -24,8 +24,8 @@ export class HttpClient {
     });
 
     this._instance.interceptors.response.use(
-      (response) => Promise.resolve(response),
-      (error) => {
+      response => Promise.resolve(response),
+      error => {
         error.response.status === 401 && this.logout();
         Promise.reject(error);
       },

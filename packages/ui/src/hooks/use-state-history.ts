@@ -12,7 +12,7 @@ function useStateHistory<T = undefined>(
 
   useEffect(() => {
     if (state !== undefined) {
-      setHistory((prevHistory) => [...prevHistory, state]);
+      setHistory(prevHistory => [...prevHistory, state]);
     }
   }, [state]);
 

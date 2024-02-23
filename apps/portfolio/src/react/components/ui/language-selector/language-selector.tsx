@@ -17,24 +17,24 @@ export const LanguageSelector = () => {
       position={isEnglish ? 'left' : 'right'}
       leftLabel={t('common:languages.en')}
       rightLabel={t('common:languages.es')}
-      tooltipPosition="left"
+      tooltipPosition='left'
       toggle={handleToggle}
-      orientation="vertical"
+      orientation='vertical'
     >
       <img
-        className="language-image"
-        src="https://vectorflags.s3-us-west-2.amazonaws.com/flags/us-square-01.png"
+        className='language-image'
+        src='https://vectorflags.s3-us-west-2.amazonaws.com/flags/us-square-01.png'
         alt={t('common:languages.en')}
-        width="100%"
-        height="100%"
+        width='100%'
+        height='100%'
         style={{ borderRadius: '50%' }}
       />
       <img
-        className="language-image"
-        src="https://vectorflags.s3-us-west-2.amazonaws.com/flags/es-square-01.png"
+        className='language-image'
+        src='https://vectorflags.s3-us-west-2.amazonaws.com/flags/es-square-01.png'
         alt={t('common:languages.es')}
-        width="100%"
-        height="100%"
+        width='100%'
+        height='100%'
         style={{ borderRadius: '50%' }}
       />
     </ToggleSelector>

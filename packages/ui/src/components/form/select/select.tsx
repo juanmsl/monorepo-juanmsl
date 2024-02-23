@@ -81,7 +81,7 @@ export const Select = <T extends string | number | Record<string, unknown> | unk
         return b.includes(a);
       }
 
-      return b.some((item) => !!isEqualComparator && isEqualComparator(a, item));
+      return b.some(item => !!isEqualComparator && isEqualComparator(a, item));
     },
     [compareValuesIsEqual, isEqualComparator],
   );
@@ -148,11 +148,11 @@ export const Select = <T extends string | number | Record<string, unknown> | unk
         onClickRightIcon={() => openSelect(true)}
         error={error?.message}
       >
-        <section className="input-container">
+        <section className='input-container'>
           <button
-            type="button"
+            type='button'
             className={`input-button ${!!value && value !== '' ? '' : 'placeholder'}`}
-            aria-haspopup="listbox"
+            aria-haspopup='listbox'
             aria-expanded={isOpen}
             onFocus={() => openSelect(true)}
             onClick={() => openSelect(true)}
@@ -161,7 +161,7 @@ export const Select = <T extends string | number | Record<string, unknown> | unk
           </button>
           <Options
             isOpen={isOpen}
-            setIsOpen={(value) => openSelect(value)}
+            setIsOpen={value => openSelect(value)}
             placeholder={placeholder}
             value={value}
             compareValueOrValuesAreEqual={compareValueOrValuesAreEqual}
@@ -196,7 +196,7 @@ export const Select = <T extends string | number | Record<string, unknown> | unk
             unselectOption={(unselectedOption: T) => {
               if (multiselect) {
                 const prevValue = Array.isArray(value) ? value : [];
-                const filteredValues = prevValue.filter((item) => !compareValuesIsEqual(item, unselectedOption));
+                const filteredValues = prevValue.filter(item => !compareValuesIsEqual(item, unselectedOption));
                 setValue(filteredValues.length === 0 ? '' : filteredValues);
               } else {
                 setValue('');

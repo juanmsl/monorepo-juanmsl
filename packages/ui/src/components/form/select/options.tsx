@@ -94,15 +94,15 @@ export const Options = <T,>({
         isOpen={isOpen}
         renderOption={renderInternalOption}
       />
-      <section className="options-list-container">
+      <section className='options-list-container'>
         {options.length === 0 ? (
-          <ul className="options-list" role="listbox" tabIndex={-1}>
-            <li className="option option-empty" tabIndex={-1}>
+          <ul className='options-list' role='listbox' tabIndex={-1}>
+            <li className='option option-empty' tabIndex={-1}>
               No options to select
             </li>
           </ul>
         ) : (
-          <ul className="options-list" role="listbox" tabIndex={-1}>
+          <ul className='options-list' role='listbox' tabIndex={-1}>
             <InfinityScroll
               isLoading={isLoading}
               hasNextPage={hasNextPage}

@@ -11,11 +11,11 @@ export const NavbarStyle = styled.nav`
   padding: 20px 50px;
   justify-content: center;
   z-index: 2;
-  background: ${(props) => props.theme.colors.background}AA;
-  color: ${(props) => props.theme.colors.primary};
+  background: ${props => props.theme.colors.background}AA;
+  color: ${props => props.theme.colors.primary};
   transition: all 300ms ease;
 
-  @media screen and (min-width: ${(props) => props.theme.constants.breakpoints.tablet}) {
+  @media screen and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {
     display: grid;
   }
 
@@ -36,7 +36,7 @@ export const NavbarStyle = styled.nav`
       height: 0;
       opacity: 0;
       border-radius: 50%;
-      background: ${(props) => props.theme.colors.primary};
+      background: ${props => props.theme.colors.primary};
       transition: all 300ms ease;
       margin-top: 10px;
     }

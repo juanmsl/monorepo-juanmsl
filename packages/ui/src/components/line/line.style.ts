@@ -8,17 +8,17 @@ export type LineStyleProps = {
 export const LineStyle = styled.span<LineStyleProps>`
   &.horizontal,
   &.vertical {
-    background: ${(props) => props.color ?? 'currentColor'};
+    background: ${props => props.color ?? 'currentColor'};
     display: inline-block;
   }
 
   &.horizontal {
     width: 100%;
-    height: ${(props) => props.size ?? '1px'};
+    height: ${props => props.size ?? '1px'};
   }
 
   &.vertical {
     height: 100%;
-    width: ${(props) => props.size ?? '1px'};
+    width: ${props => props.size ?? '1px'};
   }
 `;

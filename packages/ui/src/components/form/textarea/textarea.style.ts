@@ -7,6 +7,6 @@ export const TextareaSC = styled.textarea`
   outline: 0;
 
   &:focus {
-    border-bottom-color: ${(props) => props.theme.colors.primary};
+    border-bottom-color: ${props => props.theme.colors.primary};
   }
 `;

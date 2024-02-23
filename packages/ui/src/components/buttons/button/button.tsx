@@ -38,9 +38,9 @@ export const Button = ({
 
   return (
     <ButtonStyle className={className} disabled={disabled} onClick={onClick}>
-      {leftIcon && !isLoading && <Icon className="button-left-icon" name={leftIcon} />}
-      <span>{isLoading ? <Icon name="spinner" /> : children}</span>
-      {rightIcon && !isLoading && <Icon className="button-right-icon" name={rightIcon} />}
+      {leftIcon && !isLoading && <Icon className='button-left-icon' name={leftIcon} />}
+      <span>{isLoading ? <Icon name='spinner' /> : children}</span>
+      {rightIcon && !isLoading && <Icon className='button-right-icon' name={rightIcon} />}
     </ButtonStyle>
   );
 };

@@ -8,7 +8,7 @@ export const AboutMeStyle = styled(SectionLayout)`
     transition: all 300ms ease;
     text-wrap: balance;
 
-    @media all and (min-width: ${(props) => props.theme.constants.breakpoints.laptopS}) {
+    @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
       align-items: center;
       grid-auto-flow: column;
       gap: 100px;
@@ -18,7 +18,7 @@ export const AboutMeStyle = styled(SectionLayout)`
       display: grid;
       justify-items: center;
 
-      @media all and (min-width: ${(props) => props.theme.constants.breakpoints.laptopM}) {
+      @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopM}) {
         justify-items: end;
       }
     }
@@ -36,7 +36,7 @@ export const AboutMeStyle = styled(SectionLayout)`
     justify-content: center;
     gap: 10px;
 
-    @media all and (min-width: ${(props) => props.theme.constants.breakpoints.tablet}) {
+    @media all and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {
       align-items: center;
       grid-auto-flow: column;
       justify-content: start;

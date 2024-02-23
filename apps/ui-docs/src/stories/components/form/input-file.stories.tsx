@@ -1,8 +1,8 @@
-import { Meta, StoryObj } from '@storybook/react';
 import { InputFile } from '@juanmsl/ui';
+import { Meta, StoryObj } from '@storybook/react';
 import { useCallback, useState } from 'react';
 
-export default {
+const InputFileStory: Meta<typeof InputFile> = {
   title: 'Components/Form/Input File',
   component: InputFile,
   argTypes: {},
@@ -13,10 +13,10 @@ export default {
     placeholder: 'Placeholder',
     disabled: false,
     label: 'Field label',
-    rightIcon: 'save',
+    rightIcon: 'caret-right',
     leftIcon: 'magnifying-glass',
   },
-  render: (args) => {
+  render: args => {
     const Wrapper = () => {
       const [value, setValue] = useState('');
 
@@ -29,7 +29,9 @@ export default {
 
     return <Wrapper />;
   },
-} as Meta<typeof InputFile>;
+};
+
+export default InputFileStory;
 
 type Template = StoryObj<typeof InputFile>;
 

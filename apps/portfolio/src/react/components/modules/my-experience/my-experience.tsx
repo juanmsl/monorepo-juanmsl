@@ -17,7 +17,7 @@ export const MyExperience = () => {
     () =>
       jobExperience.flatMap((company, key) => {
         const item = (
-          <Reveal delay={100 * key} key={key} width="100%">
+          <Reveal delay={100 * key} key={key} width='100%'>
             <CompanyListItem
               selected={jobExperience?.[index]?.name === company.name}
               selectCompany={() => setIndex(key)}
@@ -28,7 +28,7 @@ export const MyExperience = () => {
 
         return key === 0
           ? item
-          : [<Line orientation="horizontal" className="companies-list-line-separator" key={`${key}.5`} />, item];
+          : [<Line orientation='horizontal' className='companies-list-line-separator' key={`${key}.5`} />, item];
       }),
     [index, jobExperience],
   );
@@ -36,9 +36,9 @@ export const MyExperience = () => {
   return (
     <MyExperienceStyle>
       <SectionTitle>{t('home:myExperience.title')}</SectionTitle>
-      <div className="my-experience-content">
-        <div className="companies-list">{renderedCompanies}</div>
-        <div className="company-details">
+      <div className='my-experience-content'>
+        <div className='companies-list'>{renderedCompanies}</div>
+        <div className='company-details'>
           <LoaderComponent isPending={!jobExperience?.[index]}>
             <CompanyDetails company={jobExperience[index]} key={index} />
           </LoaderComponent>

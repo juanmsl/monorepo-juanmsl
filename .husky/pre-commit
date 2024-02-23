@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "Running pre-commit scripts..."
+
+yarn lint && \
+echo "" && \
+echo "The lint finished successfully! :D" && \
+echo "" || (\
+echo "The audit command failed, you forgot to run the 'fix' command?" && \
+echo "" && \
+echo "    yarn lint:fix" && \
+echo "" && \
+exit 1\
+)

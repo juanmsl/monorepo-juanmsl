@@ -9,7 +9,7 @@ export const Document = () => {
   return (
     <DocumentStyle>
       <LoaderComponent isPending={isPending}>
-        <object width="100%" height="100%" data={resume?.url} type="application/pdf">
+        <object width='100%' height='100%' data={resume?.url} type='application/pdf'>
           <section>
             <h4>Something happen loading the respective file</h4>
             <p>Please download it with the following button</p>

@@ -103,17 +103,17 @@ export const InputFile = ({
 
   const renderFileToCard = (file: FileResolvedT, key: number) => (
     <FileCardSC key={key}>
-      <section className="file-card--image">
+      <section className='file-card--image'>
         <Icon name={getIconType(file.type)} />
       </section>
-      <section className="file-card--data">
-        <p className="file-card--name">{file.name}</p>
-        <p className="file-card--size" title={`${file.size} bytes`}>
+      <section className='file-card--data'>
+        <p className='file-card--name'>{file.name}</p>
+        <p className='file-card--size' title={`${file.size} bytes`}>
           {file.formatSize}
         </p>
       </section>
-      <section className="file-card--delete" onClick={() => deleteFile(key)}>
-        <Icon name="trash-can" />
+      <section className='file-card--delete' onClick={() => deleteFile(key)}>
+        <Icon name='trash-can' />
       </section>
     </FileCardSC>
   );
@@ -122,32 +122,32 @@ export const InputFile = ({
     <InputFileSC>
       {fileList.length > 0 && (
         <>
-          <span className="total-info">
+          <span className='total-info'>
             <span>
               {fileList.length} files - {formatBytes(totalSize)}
             </span>
-            <span className="total-info--delete" onClick={deleteAll}>
-              <Icon name="trash-can" />
+            <span className='total-info--delete' onClick={deleteAll}>
+              <Icon name='trash-can' />
             </span>
           </span>
-          <section className="input-file--files">
-            <section className="input-file--files--content">{fileList.map(renderFileToCard)}</section>
+          <section className='input-file--files'>
+            <section className='input-file--files--content'>{fileList.map(renderFileToCard)}</section>
           </section>
         </>
       )}
-      <section className="input-file--box" onDrop={handleDrop}>
-        <section className="input-file--box--icon">
-          <Icon name="magnifying-glass" />
+      <section className='input-file--box' onDrop={handleDrop}>
+        <section className='input-file--box--icon'>
+          <Icon name='magnifying-glass' />
         </section>
-        <section className="input-file--box--text">
-          <label className="input-file--box--label" htmlFor={id}>
+        <section className='input-file--box--text'>
+          <label className='input-file--box--label' htmlFor={id}>
             {label}
           </label>
-          <span className="input-file--box--restrictions">Max size ({formatBytes(limitSize)})</span>
+          <span className='input-file--box--restrictions'>Max size ({formatBytes(limitSize)})</span>
         </section>
         <input
           id={id}
-          type="file"
+          type='file'
           accept={accept}
           multiple={multiple}
           name={name}
@@ -155,10 +155,10 @@ export const InputFile = ({
           className={className}
           onChange={handleChange}
           style={style}
-          value=""
+          value=''
         />
       </section>
-      {error !== null && <span className="error">{error}</span>}
+      {error !== null && <span className='error'>{error}</span>}
     </InputFileSC>
   );
 };

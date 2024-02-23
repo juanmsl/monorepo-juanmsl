@@ -60,7 +60,7 @@ export const Icon = ({
       className={className}
       style={style}
       onClick={onClick}
-      fill="none"
+      fill='none'
     >
       {svg(fill)}
     </svg>

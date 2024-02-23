@@ -12,34 +12,34 @@ export const CompanyDetails = ({ company }: CompanyItemProps) => {
 
   return (
     <CompanyDetailsStyle>
-      <div className="company-details-header">
-        <div className="company-logo">
-          <HoverCard width="100%">
-            <img src={icon} alt="Company logo" />
+      <div className='company-details-header'>
+        <div className='company-logo'>
+          <HoverCard width='100%'>
+            <img src={icon} alt='Company logo' />
           </HoverCard>
         </div>
-        <div className="company-details-header--content">
-          <Typography className="company-details-name" variant="label" withoutPadding>
+        <div className='company-details-header--content'>
+          <Typography className='company-details-name' variant='label' withoutPadding>
             {name}
           </Typography>
-          <Typography className="company-details-position" variant="header4" withoutPadding>
+          <Typography className='company-details-position' variant='header4' withoutPadding>
             {position}
           </Typography>
-          <Typography className="company-details-time" variant="small" withoutPadding>
+          <Typography className='company-details-time' variant='small' withoutPadding>
             {formatDate(dateStart)} - {formatDate(dateEnd)} ({timeBetween(dateStart, dateEnd)})
           </Typography>
         </div>
       </div>
-      <ul className="company-details-description">
+      <ul className='company-details-description'>
         {description.map((text, key) => (
           <li key={key}>
-            <Typography variant="body" withoutPadding>
+            <Typography variant='body' withoutPadding>
               {text}
             </Typography>
           </li>
         ))}
       </ul>
-      <div className="company-details-labels">
+      <div className='company-details-labels'>
         {technologies.items.map((technology, key) => (
           <Reveal delay={50 * key} key={key}>
             <Tag>{technology.name}</Tag>

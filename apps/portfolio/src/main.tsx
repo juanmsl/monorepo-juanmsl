@@ -26,7 +26,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <IconProvider>
           <QueryClientProvider client={queryClient}>
             <Suspense fallback={<LoaderLogo />}>
-              <AnimatePresence mode="wait">
+              <AnimatePresence mode='wait'>
                 <RouterProvider router={router} />
               </AnimatePresence>
             </Suspense>

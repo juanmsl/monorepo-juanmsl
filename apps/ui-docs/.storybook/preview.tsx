@@ -11,7 +11,7 @@ export const parameters = {
   },
 };
 
-const AppDecorator = (Story) => {
+const AppDecorator = Story => {
   return (
     <ThemeProvider lightTheme={{}} darkTheme={{}} constants={{}}>
       <IconProvider>

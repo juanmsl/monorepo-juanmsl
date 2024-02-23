@@ -24,7 +24,7 @@ export const useFileReader = (inputFiles: Array<File>) => {
     if (!Array.isArray(inputFiles) || inputFiles.length === 0) {
       setFiles([]);
     } else {
-      const promises = inputFiles.map((file) => {
+      const promises = inputFiles.map(file => {
         return new Promise<FileResolvedT>((resolve, reject) => {
           const fileReader = new FileReader();
           fileReaders.push(fileReader);
@@ -49,20 +49,16 @@ export const useFileReader = (inputFiles: Array<File>) => {
         });
       });
 
-      Promise.all(promises)
-        .then((files) => {
-          if (!isCancel) {
-            setFiles(files);
-          }
-        })
-        .catch((reason) => {
-          console.log(reason);
-        });
+      Promise.all(promises).then(files => {
+        if (!isCancel) {
+          setFiles(files);
+        }
+      });
     }
 
     return () => {
       isCancel = true;
-      fileReaders.forEach((fileReader) => {
+      fileReaders.forEach(fileReader => {
         if (fileReader.readyState === 1) {
           fileReader.abort();
         }

@@ -39,7 +39,7 @@ export const HoverCard = ({ children, threshold = 5, translationZ = 25, width = 
     [threshold, translationZ],
   );
 
-  const mouseLeaveCallback = useCallback<MouseEventHandler>((e) => {
+  const mouseLeaveCallback = useCallback<MouseEventHandler>(e => {
     const card = refCard.current;
     const layer = refLayer.current;
 
@@ -54,7 +54,7 @@ export const HoverCard = ({ children, threshold = 5, translationZ = 25, width = 
 
   return (
     <HoverCardStyle ref={refCard} style={{ width }}>
-      <span className="card-hover-layer" ref={refLayer}>
+      <span className='card-hover-layer' ref={refLayer}>
         {children}
       </span>
     </HoverCardStyle>

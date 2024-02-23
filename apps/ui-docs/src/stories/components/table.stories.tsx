@@ -1,10 +1,10 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { Table, TableColumn } from '@juanmsl/ui';
+import { UserEntity, Users } from '../../shared/domain';
 import { useCallback, useState } from 'react';
 // import { UserEntity, Users } from '@ui-docs/shared/domain';
-import { UserEntity, Users } from '../../shared/domain';
 
-export default {
+const TableStory: Meta<typeof Table<UserEntity>> = {
   title: 'Components/Table',
   component: Table,
   argTypes: {
@@ -18,7 +18,7 @@ export default {
     },
     withoutHeader: {
       control: 'boolean',
-      description: "Remove column's headers or not",
+      description: 'Remove columns headers or not',
       defaultValue: false,
     },
     fullWidth: {
@@ -89,6 +89,7 @@ export default {
         header: 'Age',
         fieldComponent: ({ data }) => {
           const birthday = +new Date(data.birthdate);
+
           return ~~((Date.now() - birthday) / 31557600000);
         },
       },
@@ -98,7 +99,7 @@ export default {
         header: 'Website',
         fieldComponent: ({ data }) =>
           data.website ? (
-            <a href={data.website} target="_blank" rel="noopener noreferrer">
+            <a href={data.website} target='_blank' rel='noopener noreferrer'>
               {data.website}
             </a>
           ) : (
@@ -116,12 +117,12 @@ export default {
     isLoading: false,
     hasNextPage: false,
   },
-  render: (args) => {
+  render: args => {
     const TableWrapper = () => {
       const [data, setData] = useState(args.data);
 
       const handleUpdate = useCallback((data: UserEntity) => {
-        setData((prev) => prev.map((item) => (item.id === data.id ? data : item)));
+        setData(prev => prev.map(item => (item.id === data.id ? data : item)));
       }, []);
 
       return <Table<UserEntity> {...args} data={data} onRowUpdate={handleUpdate} />;
@@ -129,7 +130,9 @@ export default {
 
     return <TableWrapper />;
   },
-} as Meta<typeof Table<UserEntity>>;
+};
+
+export default TableStory;
 
 type Template = StoryObj<typeof Table<UserEntity>>;
 

@@ -5,7 +5,7 @@ export default defineConfig({
   dts: true,
   format: ['esm', 'cjs'],
 
-  esbuildOptions: (options) => {
+  esbuildOptions: options => {
     options.external = [
       'react',
       'react-dom',

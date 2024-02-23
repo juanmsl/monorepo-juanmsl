@@ -25,12 +25,12 @@ export const InputRange = ({
   const id = useId();
   const { isFocus, handlers } = useInputHandlers({
     onBlur: onBlur,
-    onChange: (value) => setValue(+value),
+    onChange: value => setValue(+value),
   });
 
   return (
     <Field id={id} label={label} leftIcon={leftIcon} rightIcon={rightIcon} error={error?.message} isFocus={isFocus}>
-      <input id={id} type="range" name={name} className={className} style={style} value={value} {...handlers} />
+      <input id={id} type='range' name={name} className={className} style={style} value={value} {...handlers} />
     </Field>
   );
 };

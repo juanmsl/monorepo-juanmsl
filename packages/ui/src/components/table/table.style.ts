@@ -6,7 +6,7 @@ type TableStyleProps = {
 };
 
 export const TableStyle = styled.section<TableStyleProps>`
-  height: ${(props) => props.height};
+  height: ${props => props.height};
   overflow: auto;
 
   table {
@@ -14,7 +14,7 @@ export const TableStyle = styled.section<TableStyleProps>`
     border-spacing: 0;
     user-select: none;
     max-width: 100%;
-    width: ${(props) => (props.fullWidth ? '100%' : 'auto')};
+    width: ${props => (props.fullWidth ? '100%' : 'auto')};
   }
 
   thead {

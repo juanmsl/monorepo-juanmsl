@@ -40,7 +40,7 @@ const i18nConfig: InitOptions = {
   },
 };
 
-i18next.on('languageChanged', (lng) => {
+i18next.on('languageChanged', lng => {
   moment.locale(lng);
 });
 

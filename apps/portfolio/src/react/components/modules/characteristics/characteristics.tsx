@@ -13,10 +13,10 @@ export const Characteristics = () => {
         <CharacteristicStyle key={key}>
           <HoverCard translationZ={15}>
             <Reveal delay={100 * key}>
-              <div className="characteristic-container">
-                <Icon name={icon as IconNameT} className="characteristic-icon" />
-                <Line orientation="horizontal" className="characteristic-line" />
-                <Typography variant="body" className="characteristic-title">
+              <div className='characteristic-container'>
+                <Icon name={icon as IconNameT} className='characteristic-icon' />
+                <Line orientation='horizontal' className='characteristic-line' />
+                <Typography variant='body' className='characteristic-title'>
                   {title}
                 </Typography>
               </div>
@@ -29,7 +29,7 @@ export const Characteristics = () => {
 
   return (
     <CharacteristicsStyle>
-      <div className="characteristics-gallery">{characteristics}</div>
+      <div className='characteristics-gallery'>{characteristics}</div>
     </CharacteristicsStyle>
   );
 };

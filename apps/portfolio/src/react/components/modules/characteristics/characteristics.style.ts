@@ -2,15 +2,15 @@ import { SectionLayout } from '@components/layouts';
 import styled from 'styled-components';
 
 export const CharacteristicsStyle = styled(SectionLayout)`
-  background: ${(props) => props.theme.colors.secondary};
-  color: ${(props) => props.theme.colors.secondaryContrast};
+  background: ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.secondaryContrast};
   transition: all 0.5s ease;
   user-select: none;
   box-shadow:
-    inset 0 25px 20px -20px ${(props) => props.theme.colors.black},
-    inset 0 -25px 20px -20px ${(props) => props.theme.colors.black};
-  border-top: 10px solid ${(props) => props.theme.colors.tertiary};
-  border-bottom: 10px solid ${(props) => props.theme.colors.tertiary};
+    inset 0 25px 20px -20px ${props => props.theme.colors.black},
+    inset 0 -25px 20px -20px ${props => props.theme.colors.black};
+  border-top: 10px solid ${props => props.theme.colors.tertiary};
+  border-bottom: 10px solid ${props => props.theme.colors.tertiary};
 
   .layout-content {
     place-content: center;
@@ -29,7 +29,7 @@ export const CharacteristicStyle = styled.div`
   width: 150px;
   height: 150px;
 
-  @media all and (min-width: ${(props) => props.theme.constants.breakpoints.laptopS}) {
+  @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
     width: 200px;
     height: 200px;
   }
@@ -42,18 +42,18 @@ export const CharacteristicStyle = styled.div`
     border: 1px solid;
     transition: all 0.5s ease;
     align-content: center;
-    background: ${(props) => props.theme.colors.tertiaryContrast}08;
+    background: ${props => props.theme.colors.tertiaryContrast}08;
     border-radius: 50%;
     width: 150px;
     height: 150px;
 
-    @media all and (min-width: ${(props) => props.theme.constants.breakpoints.laptopS}) {
+    @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
       width: 200px;
       height: 200px;
     }
 
     &:hover {
-      box-shadow: 0 5px 25px ${(props) => props.theme.colors.text}55;
+      box-shadow: 0 5px 25px ${props => props.theme.colors.text}55;
     }
   }
 

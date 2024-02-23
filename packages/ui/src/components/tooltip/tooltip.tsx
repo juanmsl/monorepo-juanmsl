@@ -31,7 +31,7 @@ export const Tooltip = ({
   return (
     <TooltipStyle offset={offset}>
       <div className={classNames}>
-        <span className="tooltip-content">{content}</span>
+        <span className='tooltip-content'>{content}</span>
       </div>
       {children}
     </TooltipStyle>

@@ -58,7 +58,7 @@ function useEventListener<
 
     if (!(targetElement && targetElement.addEventListener)) return;
 
-    const listener: typeof callback = (event) => callbackRef.current(event);
+    const listener: typeof callback = event => callbackRef.current(event);
 
     targetElement.addEventListener(eventName, listener, options);
 

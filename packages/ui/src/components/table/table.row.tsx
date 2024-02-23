@@ -19,7 +19,7 @@ export const TableRow = <T extends TableDataGeneric>({
 
   const toggleEditMode = useCallback(() => {
     if (onUpdate) {
-      setEditMode((prev) => {
+      setEditMode(prev => {
         if (isTouched && prev) {
           setIsTouched(false);
           onUpdate(data, editedData);
@@ -37,7 +37,7 @@ export const TableRow = <T extends TableDataGeneric>({
       width: '35px',
       fieldComponent: () => (
         <section className={`edit-cell ${editMode ? 'edit-mode' : ''}`} onClick={toggleEditMode}>
-          <Icon name={editMode ? (isTouched ? 'warning' : 'cross') : 'warning'} fill="#666666" />
+          <Icon name={editMode ? (isTouched ? 'warning' : 'cross') : 'warning'} fill='#666666' />
         </section>
       ),
     };
@@ -69,10 +69,10 @@ export const TableRow = <T extends TableDataGeneric>({
           return (
             <td key={key} width={width} align={fieldAlign}>
               <input
-                className="field-input-editable"
+                className='field-input-editable'
                 value={(editedData[field] as string) ?? ''}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  setInternalEditedData((prev) => ({
+                  setInternalEditedData(prev => ({
                     ...prev,
                     [field]: e.target.value,
                   }));
