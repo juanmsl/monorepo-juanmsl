@@ -113,7 +113,19 @@ module.exports = {
     ],
     'prefer-arrow-callback': ['error'],
     'prefer-arrow/prefer-arrow-functions': 'off',
-    'prettier/prettier': 'warn',
+    'prettier/prettier': [
+      'warn',
+      {
+        "printWidth": 120,
+        "singleQuote": true,
+        "useTabs": false,
+        "tabWidth": 2,
+        "semi": true,
+        "arrowParens": "avoid",
+        "trailingComma": "all",
+        "jsxSingleQuote": true
+      }
+    ],
     quotes: ['error', 'single'],
     'react/destructuring-assignment': ['error', 'always'],
     'react/jsx-fragments': ['error', 'syntax'],

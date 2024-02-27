@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 
 export const MainLayoutStyle = styled.main`
-  min-height: 100vh;
   min-width: ${props => props.theme.constants.breakpoints.mobile};
-  font-family: ${props => props.theme.constants.fontFamily};
-  background: ${props => props.theme.colors.background};
-  color: ${props => props.theme.colors.text};
   display: grid;
   position: relative;
   transition: all 300ms ease;

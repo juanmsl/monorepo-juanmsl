@@ -1,9 +1,7 @@
-import { AnimatePresence } from 'framer-motion';
 import { ENV } from '@core/env';
 import { LoaderLogo } from '@components/ui';
+import { MainApp } from '@router';
 import ReactDOM from 'react-dom/client';
-import { RouterProvider } from 'react-router-dom';
-import { router } from '@router';
 import { CommonTheme, DarkTheme, LightTheme, ThemeConstants } from '@core/theme';
 import { FetchProvider, IconProvider, ThemeProvider } from '@juanmsl/ui';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -26,9 +24,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <IconProvider>
           <QueryClientProvider client={queryClient}>
             <Suspense fallback={<LoaderLogo />}>
-              <AnimatePresence mode='wait'>
-                <RouterProvider router={router} />
-              </AnimatePresence>
+              <MainApp />
             </Suspense>
           </QueryClientProvider>
         </IconProvider>
