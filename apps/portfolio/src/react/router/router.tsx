@@ -1,31 +1,8 @@
 import { AnimatePresence } from 'framer-motion';
 import { MainLayout } from '@components/layouts';
 import { PATHS } from '@core/constants';
-import { LazyHome, LazyNotFound, LazyResume } from '@features';
-import { Navigate, Route, Routes, createBrowserRouter, useLocation } from 'react-router-dom';
-
-export const router = createBrowserRouter([
-  {
-    path: PATHS.HOME_URL,
-    element: <MainLayout />,
-    children: [
-      {
-        element: <LazyHome />,
-        errorElement: <LazyNotFound />,
-        index: true,
-      },
-      {
-        path: PATHS.RESUME_URL,
-        errorElement: <LazyNotFound />,
-        element: <LazyResume />,
-      },
-    ],
-  },
-  {
-    path: '*',
-    element: <Navigate to={PATHS.HOME_URL} />,
-  },
-]);
+import { LazyHome, LazyResume } from '@features';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
 export const RouterAnimated = () => {
   const location = useLocation();
