@@ -22,6 +22,7 @@ export const LanguageSelector = () => {
       orientation='vertical'
     >
       <img
+        loading='lazy'
         className='language-image'
         src='https://vectorflags.s3-us-west-2.amazonaws.com/flags/us-square-01.png'
         alt={t('common:languages.en')}
@@ -30,6 +31,7 @@ export const LanguageSelector = () => {
         style={{ borderRadius: '50%' }}
       />
       <img
+        loading='lazy'
         className='language-image'
         src='https://vectorflags.s3-us-west-2.amazonaws.com/flags/es-square-01.png'
         alt={t('common:languages.es')}

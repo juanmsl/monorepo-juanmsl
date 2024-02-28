@@ -4,7 +4,6 @@ export const ProfilePictureStyle = styled.section`
   width: 100%;
   max-width: 400px;
   color: ${props => props.theme.colors.primary};
-  transition: all 300ms ease;
 
   @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
     width: 400px;
@@ -16,12 +15,7 @@ export const ProfilePictureStyle = styled.section`
   }
 
   svg {
-    transition: all 150ms ease-out;
     width: 100%;
-  }
-
-  #background {
-    transition: all 300ms ease;
   }
 
   &:hover svg {

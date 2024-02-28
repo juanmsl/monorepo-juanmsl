@@ -4,7 +4,7 @@ import { PATHS } from '@core/constants';
 import { LazyHome, LazyResume } from '@features';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
-export const RouterAnimated = () => {
+export const Router = () => {
   const location = useLocation();
 
   return (
