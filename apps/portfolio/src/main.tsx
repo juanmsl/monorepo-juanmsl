@@ -1,7 +1,7 @@
 import { ENV } from '@core/env';
 import { LoaderLogo } from '@components/ui';
-import { MainApp } from '@router';
 import ReactDOM from 'react-dom/client';
+import { RootLayout } from '@components/layouts';
 import { CommonTheme, DarkTheme, LightTheme, ThemeConstants } from '@core/theme';
 import { FetchProvider, IconProvider, ThemeProvider } from '@juanmsl/ui';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -24,7 +24,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <IconProvider>
           <QueryClientProvider client={queryClient}>
             <Suspense fallback={<LoaderLogo />}>
-              <MainApp />
+              <RootLayout />
             </Suspense>
           </QueryClientProvider>
         </IconProvider>

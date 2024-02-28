@@ -11,7 +11,7 @@ export const Footer = () => {
     <FooterStyle>
       <FooterTop />
       <div className='layout-content'>
-        <img className='footer-logo' src='/assets/images/logo.png' alt='logo' />
+        <img loading='lazy' className='footer-logo' src='/assets/images/logo.png' alt='logo' />
 
         <Typography variant='header3' className='name'>
           {t('common:shortName')}

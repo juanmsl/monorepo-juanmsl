@@ -55,22 +55,6 @@ export const MainLayoutStyle = styled.main`
     }
   }
 
-  .layout-actions {
-    position: fixed;
-    top: 0;
-    right: 0;
-    margin: 20px;
-    z-index: 6;
-    display: none;
-    grid-auto-flow: row;
-    gap: 20px;
-    justify-items: end;
-
-    @media all and (min-width: ${props => props.theme.constants.breakpoints.mobileL}) {
-      display: grid;
-    }
-  }
-
   .layout-logo {
     position: fixed;
     top: 0;

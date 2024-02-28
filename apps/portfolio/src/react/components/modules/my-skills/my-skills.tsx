@@ -35,6 +35,7 @@ export const MySkills = () => {
           <Tooltip content={technology.name} key={key}>
             <Reveal key={key} delay={(key + 1) * 50}>
               <img
+                loading='lazy'
                 className={`technology-icon ${hoveredCategory.includes(technology.name) ? 'is-selected' : ''}`}
                 src={technology.icon}
                 alt={technology.name}
