@@ -57,15 +57,15 @@ export const MainLayoutStyle = styled.main`
 
   .layout-logo {
     position: fixed;
-    top: 0;
-    left: 0;
-    margin: 20px;
+    top: 20px;
+    left: 50%;
     width: 40px;
     height: 40px;
     z-index: 6;
     border-radius: 50%;
     background: ${props => props.theme.colors.text};
     transition: all 300ms ease;
+    transform: translateX(-50%);
     padding: 5px;
   }
 `;
