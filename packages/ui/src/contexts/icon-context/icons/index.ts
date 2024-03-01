@@ -8,10 +8,10 @@ export type IconT = {
   svg: (fill: string) => React.ReactNode;
 };
 
-export type IconCollectionT = SymbolIconsT & ObjectIconsT & SocialIconsT;
+export type IconCollectionT = ObjectIconsT & SymbolIconsT & SocialIconsT;
 
 export const Icons: IconCollectionT = {
-  ...SymbolIcons,
   ...ObjectIcons,
+  ...SymbolIcons,
   ...SocialIcons,
 };

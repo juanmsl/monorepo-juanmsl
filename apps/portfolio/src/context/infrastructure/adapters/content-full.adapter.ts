@@ -4,6 +4,7 @@ import {
   ContactsCollection,
   ContentFullPort,
   JobExperienceCollection,
+  NavbarOptionCollection,
   ProfessionalSkillsCollection,
   QueryAssetResponse,
   QueryResponse,
@@ -172,5 +173,28 @@ export class ContentFullAdapter implements ContentFullPort {
     });
 
     return data.data.characteristicCollection.items;
+  }
+
+  async getNavbarOptions(locale: string) {
+    const { data } = await this.http<QueryResponse<{ navbarOptionCollection: NavbarOptionCollection }>>({
+      data: {
+        query: `
+          query($locale: String) {
+            navbarOptionCollection(locale:$locale, order:[order_ASC]) {
+              items {
+                label
+                page
+                icon
+              }
+            }
+          }
+        `,
+        variables: {
+          locale: locale,
+        },
+      },
+    });
+
+    return data.data.navbarOptionCollection.items;
   }
 }

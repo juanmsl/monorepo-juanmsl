@@ -3,6 +3,7 @@ export * from './use-async';
 export * from './use-classnames';
 export * from './use-constant';
 export * from './use-debounce';
+export * from './use-dimentions';
 export * from './use-event-listener';
 export * from './use-file-reader';
 export * from './use-in-view';

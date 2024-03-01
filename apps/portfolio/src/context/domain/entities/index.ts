@@ -4,4 +4,5 @@ export * from './technology.entity';
 export * from './content-full.entity';
 export * from './characteristic.entity';
 export * from './job-experience.entity';
+export * from './navbar-option.entity';
 export * from './professional-skill.entity';

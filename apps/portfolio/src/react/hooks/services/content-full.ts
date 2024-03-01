@@ -4,6 +4,7 @@ import {
   CharacteristicEntity,
   ContactEntity,
   JobExperienceEntity,
+  NavbarOptionEntity,
   ProfessionalSkillsEntity,
   TechnologyEntity,
 } from '@domain';
@@ -27,6 +28,9 @@ export const ContentFullKeys = {
 
   allCharacteristics: () => [...ContentFullKeys.all, 'characteristics'] as const,
   characteristicsLocale: (locale: string) => [...ContentFullKeys.allCharacteristics(), locale] as const,
+
+  allNavbarOptions: () => [...ContentFullKeys.all, 'navbar-options'] as const,
+  navbarOptionsLocale: (locale: string) => [...ContentFullKeys.allNavbarOptions(), locale] as const,
 
   allAssets: () => [...ContentFullKeys.all, 'assets'] as const,
   assetId: (assetId: string) => [...ContentFullKeys.allAssets(), 'asset', assetId] as const,
@@ -94,5 +98,16 @@ export const useAsset = (assetId: string): UseQueryResult<AssetEntity> => {
   return useQuery({
     queryKey: ContentFullKeys.assetId(assetId),
     queryFn: () => controllerAPI.getAssetById(assetId),
+  });
+};
+
+export const useGetNavbarOptions = (): UseQueryResult<Array<NavbarOptionEntity>> => {
+  const adapter = new ContentFullAdapter();
+  const controllerAPI = new ContentFullAPI(adapter);
+  const { i18n } = useTranslation();
+
+  return useQuery({
+    queryKey: ContentFullKeys.navbarOptionsLocale(i18n.languages[0]),
+    queryFn: () => controllerAPI.getNavbarOptions(i18n.languages[0]),
   });
 };

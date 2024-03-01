@@ -8,6 +8,8 @@ import {
   ContentFullPort,
   JobExperienceEntity,
   JobExperienceInstance,
+  NavbarOptionEntity,
+  NavbarOptionInstance,
   ProfessionalSkillInstance,
   ProfessionalSkillsEntity,
   TechnologyEntity,
@@ -49,6 +51,12 @@ export class ContentFullMockAdapter implements ContentFullPort {
   getCharacteristics() {
     return new Promise<Array<CharacteristicEntity>>(resolve => {
       setTimeout(() => resolve(CharacteristicInstance), ContentFullMockAdapter.timeout);
+    });
+  }
+
+  getNavbarOptions() {
+    return new Promise<Array<NavbarOptionEntity>>(resolve => {
+      setTimeout(() => resolve(NavbarOptionInstance), ContentFullMockAdapter.timeout);
     });
   }
 }

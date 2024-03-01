@@ -1,31 +1,25 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const useMediaQuery = (query: string): boolean => {
-  const getMatches = (query: string): boolean => {
-    if (typeof window !== 'undefined') {
-      return window.matchMedia(query).matches;
-    }
-
-    return false;
-  };
-
-  const [matches, setMatches] = useState<boolean>(getMatches(query));
-
-  const handleChange = useCallback(() => {
-    setMatches(getMatches(query));
-  }, [query]);
+  const [matches, setMatches] = useState(false);
 
   useEffect(() => {
-    const matchMedia = window.matchMedia(query);
+    const media = window.matchMedia(query);
 
-    handleChange();
+    if (media.matches !== matches) {
+      setMatches(media.matches);
+    }
 
-    matchMedia.addEventListener('change', handleChange);
+    const listener = () => {
+      setMatches(media.matches);
+    };
+
+    media.addEventListener('change', listener);
 
     return () => {
-      matchMedia.removeEventListener('change', handleChange);
+      media.removeEventListener('change', listener);
     };
-  }, [handleChange, query]);
+  }, [matches, query]);
 
   return matches;
 };

@@ -3,6 +3,7 @@ import {
   CharacteristicEntity,
   ContactEntity,
   JobExperienceEntity,
+  NavbarOptionEntity,
   ProfessionalSkillsEntity,
   TechnologyEntity,
 } from '@domain';
@@ -14,4 +15,5 @@ export interface ContentFullPort {
   getAssetById(assetId: string): Promise<AssetEntity>;
   getTechnologies(locale: string): Promise<Array<TechnologyEntity>>;
   getCharacteristics(locale: string): Promise<Array<CharacteristicEntity>>;
+  getNavbarOptions(locale: string): Promise<Array<NavbarOptionEntity>>;
 }

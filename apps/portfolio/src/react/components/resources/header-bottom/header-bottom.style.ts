@@ -8,6 +8,7 @@ export const HeaderBottomStyle = styled.svg`
   left: 0;
   aspect-ratio: 8.73 / 1;
   transition: all 300ms ease;
+  max-height: 250px;
 
   #backgroundColor {
     fill: ${props => props.theme.colors.background};
