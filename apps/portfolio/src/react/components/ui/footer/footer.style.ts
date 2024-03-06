@@ -16,10 +16,9 @@ export const FooterStyle = styled.footer`
     display: grid;
     gap: 20px;
     padding-top: 0 !important;
-    min-height: unset;
+    min-height: unset !important;
     height: 100%;
     align-content: unset;
-    grid-template-rows: auto auto 1fr auto auto auto;
   }
 
   .footer-logo {
@@ -36,7 +35,7 @@ export const FooterStyle = styled.footer`
     grid-auto-flow: column;
     justify-content: start;
     gap: 100px;
-    min-height: 350px;
+    min-height: 50px;
   }
 
   .location {

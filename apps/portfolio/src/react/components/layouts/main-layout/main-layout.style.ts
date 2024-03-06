@@ -17,6 +17,11 @@ export const MainLayoutStyle = styled.main`
     z-index: 5;
     background: ${props => props.theme.colors.primary};
     transition: background 300ms ease;
+    display: none;
+
+    @media all and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {
+      display: block;
+    }
   }
 
   &::before {
@@ -67,5 +72,10 @@ export const MainLayoutStyle = styled.main`
     transition: all 300ms ease;
     transform: translateX(-50%);
     padding: 5px;
+    display: none;
+
+    @media all and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {
+      display: block;
+    }
   }
 `;
