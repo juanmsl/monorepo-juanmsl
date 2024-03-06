@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const ProfilePictureStyle = styled.section`
-  width: 100%;
-  max-width: 400px;
+  width: 80%;
+  max-width: 350px;
   color: ${props => props.theme.colors.primary};
 
   @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
@@ -20,5 +20,16 @@ export const ProfilePictureStyle = styled.section`
 
   &:hover svg {
     filter: drop-shadow(0 5px 15px ${props => props.theme.colors.text}55);
+  }
+
+  #profilePicture {
+    filter: grayscale(100%);
+    transition: all 300ms ease;
+  }
+
+  &:hover {
+    #profilePicture {
+      filter: grayscale(0);
+    }
   }
 `;
