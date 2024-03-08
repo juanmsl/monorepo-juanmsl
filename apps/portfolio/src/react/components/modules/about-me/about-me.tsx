@@ -43,7 +43,7 @@ export const AboutMe = () => {
           <div className='button-ctas'>
             <HoverCard translationZ={15}>
               <Reveal delay={700}>
-                <Button leftIcon='envelope' onClick={handleClick}>
+                <Button leftIcon='download-cv' onClick={handleClick}>
                   {t('home:aboutMe.button1')}
                 </Button>
               </Reveal>
