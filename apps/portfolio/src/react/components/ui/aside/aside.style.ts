@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const AsideContainer = styled.main`
   display: grid;
   grid-auto-flow: row;
-  height: 100vh;
+  height: 100dvh;
   position: relative;
   grid-template-rows: 1fr auto;
 
@@ -47,6 +47,7 @@ export const AsideStyle = styled(motion.nav)`
   min-width: 300px;
   width: 100%;
   height: calc(100% - 60px);
+  overflow-y: auto;
   position: fixed;
   z-index: 10;
   top: 0;
