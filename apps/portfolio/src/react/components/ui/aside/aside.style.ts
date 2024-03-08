@@ -157,13 +157,14 @@ export const MobileMenuItem = styled(motion.span)`
     transition: all 300ms ease;
     position: relative;
     gap: 10px;
-    padding: 5px 10px;
+    padding: 2px;
     border-radius: 5px;
     border: 0;
     width: 40px;
     height: 40px;
     display: grid;
     place-content: center;
+    font-size: 1.5em;
 
     &.active {
       font-weight: bold;
