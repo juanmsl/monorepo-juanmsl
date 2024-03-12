@@ -1,3 +1,4 @@
+import { Image } from '@juanmsl/ui';
 import { ToggleSelector } from '@components/ui';
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -21,8 +22,7 @@ export const LanguageSelector = () => {
       toggle={handleToggle}
       orientation='vertical'
     >
-      <img
-        loading='lazy'
+      <Image
         className='language-image'
         src='https://vectorflags.s3-us-west-2.amazonaws.com/flags/us-square-01.png'
         alt={t('common:languages.en')}
@@ -30,8 +30,7 @@ export const LanguageSelector = () => {
         height='100%'
         style={{ borderRadius: '50%' }}
       />
-      <img
-        loading='lazy'
+      <Image
         className='language-image'
         src='https://vectorflags.s3-us-west-2.amazonaws.com/flags/es-square-01.png'
         alt={t('common:languages.es')}

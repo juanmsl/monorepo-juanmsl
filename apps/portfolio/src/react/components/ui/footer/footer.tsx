@@ -2,7 +2,7 @@ import { FooterStyle } from './footer.style';
 import { FooterTop } from '@components/resources';
 import { SocialIcons } from '@components/ui';
 import { useTranslation } from 'react-i18next';
-import { Icon, Line, Typography } from '@juanmsl/ui';
+import { Icon, Image, Line, Typography } from '@juanmsl/ui';
 
 export const Footer = () => {
   const { t } = useTranslation();
@@ -11,7 +11,7 @@ export const Footer = () => {
     <FooterStyle>
       <FooterTop />
       <div className='layout-content'>
-        <img loading='lazy' className='footer-logo' src='/assets/images/logo.png' alt='logo' />
+        <Image className='footer-logo' src='/assets/images/logo.png' alt='logo' />
 
         <Typography variant='header3' className='name'>
           {t('common:shortName')}
