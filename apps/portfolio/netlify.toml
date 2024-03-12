@@ -1,13 +1,12 @@
+[build]
+  publish = "apps/portfolio/dist/"
+  command = "turbo run build --filter @juanmsl/portfolio"
+  base = "/"
+
 [build.environment]
   YARN_FLAGS = "--frozen-lockfile"
   YARN_VERSION = "1.22.21"
   NODE_VERSION = "18.19.0"
-
-[[redirects]]
-  from = "/*"
-  to = "/:splat"
-  status = 200
-  force = true
 
 [[redirects]]
   from = "https://www.juanmsl.com/*"
@@ -24,5 +23,11 @@
 [[redirects]]
   from = "https://v3.juanmsl.com/*"
   to = "https://juanmsl.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/:splat"
   status = 301
   force = true
