@@ -12,22 +12,18 @@
   from = "https://www.juanmsl.com/*"
   to = "https://juanmsl.com/:splat"
   status = 301
-  force = true
 
 [[redirects]]
   from = "https://juanmsl-portfolio-v3.netlify.app/*"
   to = "https://juanmsl.com/:splat"
   status = 301
-  force = true
 
 [[redirects]]
   from = "https://v3.juanmsl.com/*"
   to = "https://juanmsl.com/:splat"
   status = 301
-  force = true
 
 [[redirects]]
   from = "/*"
   to = "/:splat"
   status = 301
-  force = true
