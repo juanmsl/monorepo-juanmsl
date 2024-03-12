@@ -2,7 +2,7 @@ import { MySkillsStyle } from './my-skills.style';
 import { ProfessionalSkillsEntity } from '@domain';
 import { Reveal } from '@components/animations';
 import { useState } from 'react';
-import { Tooltip, Typography } from '@juanmsl/ui';
+import { Image, Tooltip, Typography } from '@juanmsl/ui';
 import { useGetProfessionalSkills, useGetTechnologies } from '@hooks';
 
 export const MySkills = () => {
@@ -34,8 +34,7 @@ export const MySkills = () => {
         {technologies.map((technology, key) => (
           <Tooltip content={technology.name} key={key}>
             <Reveal key={key} delay={(key + 1) * 50}>
-              <img
-                loading='lazy'
+              <Image
                 className={`technology-icon ${hoveredCategory.includes(technology.name) ? 'is-selected' : ''}`}
                 src={technology.icon}
                 alt={technology.name}

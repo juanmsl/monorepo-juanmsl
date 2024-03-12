@@ -1,7 +1,7 @@
 import { CompanyDetailsStyle } from './my-experience.style';
 import { JobExperienceEntity } from '@domain';
 import { Reveal } from '@components/animations';
-import { HoverCard, Tag, Typography, formatDate, timeBetween } from '@juanmsl/ui';
+import { HoverCard, Image, Tag, Typography, formatDate, timeBetween } from '@juanmsl/ui';
 
 type CompanyItemProps = {
   company: JobExperienceEntity;
@@ -15,7 +15,7 @@ export const CompanyDetails = ({ company }: CompanyItemProps) => {
       <div className='company-details-header'>
         <div className='company-logo'>
           <HoverCard width='100%'>
-            <img loading='lazy' src={icon} alt='Company logo' />
+            <Image src={icon} alt='Company logo' />
           </HoverCard>
         </div>
         <div className='company-details-header--content'>

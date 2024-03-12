@@ -13,7 +13,7 @@ import {
   MobileTrigger,
   Trigger,
 } from './aside.style';
-import { Button, Icon, IconNameT, Line, Typography, useMediaQuery, useViewport } from '@juanmsl/ui';
+import { Button, Icon, IconNameT, Image, Line, Typography, useMediaQuery, useViewport } from '@juanmsl/ui';
 import React, { useMemo } from 'react';
 import { motion, useCycle } from 'framer-motion';
 import { useAsset, useGetNavbarOptions } from '@hooks';
@@ -168,7 +168,7 @@ export const Aside = ({ children }: AsideProps) => {
       {/* ------------ ASIDE */}
       <AsideStyle initial='closed' animate={isOpen ? 'open' : 'closed'} variants={variants.aside}>
         <NavLink to={PATHS.HOME_URL}>
-          <img loading='lazy' className='aside-logo' src='/assets/images/logo.png' alt='logo' />
+          <Image className='aside-logo' src='/assets/images/logo.png' alt='logo' />
         </NavLink>
         <section className='aside-items'>{menuItems}</section>
         <footer className='aside-footer'>
@@ -183,7 +183,7 @@ export const Aside = ({ children }: AsideProps) => {
       {/* ------------ MOBILE ASIDE */}
       <MobileAside initial='closed' animate={isTablet ? 'closed' : 'open'} variants={variants.mobileAside}>
         <NavLink to={PATHS.HOME_URL}>
-          <img loading='lazy' className='aside-logo' src='/assets/images/logo.png' alt='logo' />
+          <Image className='aside-logo' src='/assets/images/logo.png' alt='logo' />
         </NavLink>
         <section className='aside-items'>{mobileMenuItems}</section>
         <MobileTrigger onClick={() => toggleOpen()}>
