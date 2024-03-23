@@ -10,6 +10,8 @@ export const HeaderStyle = styled(SectionLayout)`
   display: grid;
   position: relative;
   transition: all 300ms ease;
+  max-width: 100vw;
+  overflow: hidden;
 
   .layout-content {
     min-height: unset;
@@ -28,5 +30,6 @@ export const HeaderStyle = styled(SectionLayout)`
 
   .names {
     text-transform: uppercase;
+    overflow: hidden;
   }
 `;

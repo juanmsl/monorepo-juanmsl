@@ -4,12 +4,7 @@ import { Reveal } from '@components/animations';
 import { useAsset } from '@hooks';
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, HoverCard, useDimensions } from '@juanmsl/ui';
-import { Document as Doc, Page, pdfjs } from 'react-pdf';
-import 'react-pdf/dist/Page/TextLayer.css';
-import 'react-pdf/dist/Page/AnnotationLayer.css';
-
-pdfjs.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/legacy/build/pdf.worker.min.js', import.meta.url).toString();
+import { Button, HoverCard, PdfViewer, useDimensions } from '@juanmsl/ui';
 
 export const Document = () => {
   const { t } = useTranslation();
@@ -27,15 +22,20 @@ export const Document = () => {
       <HoverCard translationZ={15}>
         <Reveal delay={700}>
           <Button leftIcon='download-cv' onClick={handleClick}>
-            {t('home:aboutMe.button1')}
+            {t('resume:download-button')}
           </Button>
         </Reveal>
       </HoverCard>
 
       <section className='document-container' onClick={handleClick} ref={containerRef}>
-        <Doc file={resume?.url} key={width} loading={<LoaderLogo className='loader' />}>
-          <Page pageNumber={1} width={width} />
-        </Doc>
+        <HoverCard width='100%' threshold={2}>
+          <PdfViewer
+            key={width}
+            fileUrl={resume?.url}
+            loadingElement={<LoaderLogo className='loader' />}
+            width={width}
+          />
+        </HoverCard>
       </section>
     </DocumentStyle>
   );
