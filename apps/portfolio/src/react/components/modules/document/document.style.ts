@@ -1,14 +1,26 @@
 import styled from 'styled-components';
 
-export const DocumentStyle = styled.div`
+export const DocumentStyle = styled.section`
   border: 1px solid ${props => props.theme.colors.background};
   transition: all 300ms ease;
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  max-height: 90dvh;
-  margin: 3rem 0;
+  display: grid;
+  justify-items: center;
+  gap: 40px;
 
-  &:hover {
-    box-shadow: 0 20px 100px -10px ${props => props.theme.colors.black};
+  .loader {
+    min-height: 500px;
+  }
+
+  .document-container {
+    outline: 4px solid ${props => props.theme.colors.primary};
+    transition: all 300ms ease;
+    width: 100%;
+    max-width: 750px;
+    cursor: pointer;
+    overflow: auto;
+
+    &:hover {
+      box-shadow: 0 20px 100px -10px ${props => props.theme.colors.black};
+    }
   }
 `;

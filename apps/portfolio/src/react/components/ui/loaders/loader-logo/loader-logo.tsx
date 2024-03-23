@@ -1,9 +1,13 @@
 import { LoaderLogoStyle } from './loader-logo.style';
 import { Icon, Image, Typography } from '@juanmsl/ui';
 
-export const LoaderLogo = () => {
+type LoaderLogoProps = {
+  className?: string;
+};
+
+export const LoaderLogo = ({ className }: LoaderLogoProps) => {
   return (
-    <LoaderLogoStyle>
+    <LoaderLogoStyle className={className}>
       <Image src='/assets/images/logo.png' alt='logo' />
       <Icon name='spinner' className='loader-icon' />
       <Typography variant='body' weight='bold'>
