@@ -34,7 +34,7 @@ import 'moment/locale/es.js';
 const i18nConfig: InitOptions = {
   load: 'languageOnly',
   supportedLngs: ['en', 'es'],
-  ns: ['common', 'footer', 'home', 'utility'],
+  ns: ['blog', 'common', 'footer', 'home', 'projects', 'resume', 'utility'],
   interpolation: {
     escapeValue: false,
   },

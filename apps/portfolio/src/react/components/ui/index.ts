@@ -1,6 +1,6 @@
 export * from './aside';
 export * from './footer';
-export * from './header';
+export * from './headers';
 export * from './language-selector';
 export * from './layout-actions';
 export * from './loaders';

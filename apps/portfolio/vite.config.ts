@@ -92,7 +92,7 @@ export default defineConfig({
       '@infrastructure': '/src/context/infrastructure',
       '@components': '/src/react/components',
       '@contexts': '/src/react/contexts',
-      '@features': '/src/react/features',
+      '@pages': '/src/react/pages',
       '@hooks': '/src/react/hooks',
       '@router': '/src/react/router',
     },

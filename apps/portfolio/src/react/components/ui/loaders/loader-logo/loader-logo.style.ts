@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const LoaderLogoStyle = styled.section`
   height: 100%;
-  min-height: 100vh;
+  min-height: 100dvh;
   font-family: ${props => props.theme.constants.fontFamily};
   display: grid;
   place-content: center;

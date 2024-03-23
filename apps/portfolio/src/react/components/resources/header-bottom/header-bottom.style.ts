@@ -1,14 +1,12 @@
 import styled from 'styled-components';
 
 export const HeaderBottomStyle = styled.svg`
-  position: absolute;
   width: 100%;
-  z-index: 1;
-  bottom: 0;
-  left: 0;
   aspect-ratio: 8.73 / 1;
   transition: all 300ms ease;
-  max-height: 250px;
+  position: relative;
+  top: 4px;
+  max-height: 206px;
 
   #backgroundColor {
     fill: ${props => props.theme.colors.background};

@@ -1,18 +1,18 @@
 import { HeaderBottom } from '@components/resources';
-import { HeaderStyle } from './header.style';
+import { HomeHeaderStyle } from './home-header.style';
 import { Reveal } from '@components/animations';
 import { SocialIcons } from '@components/ui';
 import { useAsset } from '@hooks';
 import { useTranslation } from 'react-i18next';
 import { Line, Typography } from '@juanmsl/ui';
 
-export const Header = () => {
+export const HomeHeader = () => {
   const { t } = useTranslation();
   const userLabels = t('common:userLabels', { returnObjects: true }) as Array<string>;
   const { data } = useAsset('7kZGbgXgeL1PtS0eyjA1VL');
 
   return (
-    <HeaderStyle $background={data?.url}>
+    <HomeHeaderStyle $background={data?.url}>
       <div className='container'>
         <Reveal delay={200} width='100%'>
           <Line orientation='horizontal' size='3px' className='header-line' />
@@ -36,7 +36,7 @@ export const Header = () => {
         </div>
         <SocialIcons position='bottom' />
       </div>
-      <HeaderBottom />
-    </HeaderStyle>
+      <HeaderBottom className='home-header-svg' />
+    </HomeHeaderStyle>
   );
 };
