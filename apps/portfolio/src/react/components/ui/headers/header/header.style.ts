@@ -13,7 +13,11 @@ export const HeaderStyle = styled(SectionLayout)`
 
   .layout-content {
     min-height: unset;
-    margin-top: 200px;
+    padding-top: 100px;
+
+    @media all and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {
+      padding-top: 200px;
+    }
   }
 
   .container {

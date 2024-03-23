@@ -9,6 +9,7 @@ export const LoaderLogoStyle = styled.section`
   justify-items: center;
   text-align: center;
   gap: 40px;
+  padding: 100px 50px;
   background: linear-gradient(-45deg, ${props => props.theme.colors.primary}, ${props => props.theme.colors.secondary});
 
   .loader-icon {

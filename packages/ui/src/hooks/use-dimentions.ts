@@ -1,12 +1,19 @@
-import React, { useEffect, useRef } from 'react';
+import { useEventListener } from './use-event-listener';
+import React, { useEffect, useState } from 'react';
 
 export const useDimensions = (ref: React.RefObject<HTMLElement>) => {
-  const dimensions = useRef({ width: 0, height: 0 });
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
-  useEffect(() => {
-    dimensions.current.width = ref.current?.offsetWidth ?? 0;
-    dimensions.current.height = ref.current?.offsetHeight ?? 0;
-  }, [ref]);
+  const getSize = () => {
+    setDimensions({
+      width: ref.current?.offsetWidth ?? 0,
+      height: ref.current?.offsetHeight ?? 0,
+    });
+  };
 
-  return dimensions.current;
+  useEventListener('resize', getSize);
+
+  useEffect(getSize, [ref]);
+
+  return dimensions;
 };
