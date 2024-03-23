@@ -13,11 +13,10 @@ export const DocumentStyle = styled.section`
 
   .document-container {
     outline: 4px solid ${props => props.theme.colors.primary};
-    transition: all 300ms ease;
     width: 100%;
     max-width: 750px;
     cursor: pointer;
-    overflow: auto;
+    transition: all 300ms ease;
 
     &:hover {
       box-shadow: 0 20px 100px -10px ${props => props.theme.colors.black};
