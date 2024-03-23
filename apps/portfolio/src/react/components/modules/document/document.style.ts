@@ -5,7 +5,7 @@ export const DocumentStyle = styled.div`
   transition: all 300ms ease;
   width: 100%;
   aspect-ratio: 3 / 4;
-  max-height: 90vh;
+  max-height: 90dvh;
   margin: 3rem 0;
 
   &:hover {

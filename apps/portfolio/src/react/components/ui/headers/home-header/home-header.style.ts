@@ -5,11 +5,19 @@ type HeaderStyleProps = {
   $background: string;
 };
 
-export const HeaderStyle = styled(SectionLayout).attrs<HeaderStyleProps, HeaderStyleProps>(props => props)`
+export const HomeHeaderStyle = styled(SectionLayout).attrs<HeaderStyleProps, HeaderStyleProps>(props => props)`
   display: grid;
   position: relative;
   color: ${props => props.theme.colors.primary};
   transition: all 300ms ease;
+
+  .home-header-svg {
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    top: unset;
+  }
 
   &::before {
     content: '';

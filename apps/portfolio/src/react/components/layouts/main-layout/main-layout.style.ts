@@ -7,38 +7,40 @@ export const MainLayoutStyle = styled.main`
   transition: all 300ms ease;
   grid-template-rows: auto 1fr;
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    width: 5px;
-    height: 100%;
-    z-index: 5;
-    background: ${props => props.theme.colors.primary};
-    transition: background 300ms ease;
-    display: none;
+  &.lines {
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 5px;
+      height: 100%;
+      z-index: 5;
+      background: ${props => props.theme.colors.primary};
+      transition: background 300ms ease;
+      display: none;
 
-    @media all and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {
-      display: block;
+      @media all and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {
+        display: block;
+      }
     }
-  }
 
-  &::before {
-    left: 0;
+    &::before {
+      left: 0;
 
-    @media all and (min-width: calc(${props => props.theme.constants.breakpoints.laptopL} + 5px)) {
-      left: 50%;
-      transform: translateX(calc(${props => props.theme.constants.breakpoints.laptopL} / -2 + 2px));
+      @media all and (min-width: calc(${props => props.theme.constants.breakpoints.laptopL} + 5px)) {
+        left: 50%;
+        transform: translateX(calc(${props => props.theme.constants.breakpoints.laptopL} / -2 + 2px));
+      }
     }
-  }
 
-  &::after {
-    right: 0;
+    &::after {
+      right: 0;
 
-    @media all and (min-width: calc(${props => props.theme.constants.breakpoints.laptopL} + 5px)) {
-      right: 50%;
-      transform: translateX(calc(${props => props.theme.constants.breakpoints.laptopL} / 2 - 1px));
+      @media all and (min-width: calc(${props => props.theme.constants.breakpoints.laptopL} + 5px)) {
+        right: 50%;
+        transform: translateX(calc(${props => props.theme.constants.breakpoints.laptopL} / 2 - 1px));
+      }
     }
   }
 

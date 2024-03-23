@@ -1,11 +1,11 @@
 import { Characteristics } from '@components/modules/characteristics';
-import { Header } from '@components/ui';
+import { HomeHeader } from '@components/ui';
 import { AboutMe, MyExperience, MySkills } from '@components/modules';
 
 export const Home = () => {
   return (
     <>
-      <Header />
+      <HomeHeader />
       <AboutMe />
       <MySkills />
       <Characteristics />
