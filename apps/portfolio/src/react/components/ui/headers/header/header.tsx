@@ -11,13 +11,13 @@ export const Header = ({ title }: HeaderProps) => {
   return (
     <HeaderContainerStyle>
       <HeaderStyle>
-        <div className='container'>
+        <section className='container'>
           <Reveal delay={300} width='100%'>
             <Typography variant='hero' className='names' withoutPadding>
               {title}
             </Typography>
           </Reveal>
-        </div>
+        </section>
       </HeaderStyle>
       <HeaderBottom />
     </HeaderContainerStyle>

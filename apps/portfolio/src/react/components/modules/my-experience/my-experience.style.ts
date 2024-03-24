@@ -40,7 +40,7 @@ export const MyExperienceStyle = styled(SectionLayout)`
   }
 `;
 
-export const CompaniesListItemStyle = styled.div`
+export const CompaniesListItemStyle = styled.section`
   display: grid;
   transition:
     padding 50ms ease,
@@ -107,7 +107,7 @@ export const CompaniesListItemStyle = styled.div`
   }
 `;
 
-export const CompanyDetailsStyle = styled.div`
+export const CompanyDetailsStyle = styled.section`
   display: grid;
   gap: 40px;
   align-content: start;

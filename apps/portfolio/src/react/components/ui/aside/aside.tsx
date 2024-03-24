@@ -1,4 +1,5 @@
 import { AsideTrigger } from './menu-toggle';
+import { ENV } from '@core/env';
 import { NavLink } from 'react-router-dom';
 import { PATHS } from '@core/constants';
 import { SocialIcons } from '@components/ui';
@@ -107,7 +108,7 @@ export const Aside = ({ children }: AsideProps) => {
   const { height, width } = useViewport();
   const isTablet = useMediaQuery('(min-width: 768px)');
   const { t } = useTranslation();
-  const { data: resume } = useAsset('2Sb2cM6MN8osN8kXMizuUd');
+  const { data: resume } = useAsset(ENV.ASSET_ID_CV);
   const { data: navbarOptions = [] } = useGetNavbarOptions();
 
   const handleClick = async () => {

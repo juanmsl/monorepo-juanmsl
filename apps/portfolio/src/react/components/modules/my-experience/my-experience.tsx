@@ -36,14 +36,14 @@ export const MyExperience = () => {
   return (
     <MyExperienceStyle>
       <SectionTitle>{t('home:myExperience.title')}</SectionTitle>
-      <div className='my-experience-content'>
-        <div className='companies-list'>{renderedCompanies}</div>
-        <div className='company-details'>
+      <section className='my-experience-content'>
+        <section className='companies-list'>{renderedCompanies}</section>
+        <section className='company-details'>
           <LoaderComponent isPending={!jobExperience?.[index]}>
             <CompanyDetails company={jobExperience[index]} key={index} />
           </LoaderComponent>
-        </div>
-      </div>
+        </section>
+      </section>
     </MyExperienceStyle>
   );
 };

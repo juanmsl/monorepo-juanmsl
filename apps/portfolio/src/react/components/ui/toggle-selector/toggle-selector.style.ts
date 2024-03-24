@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ToggleSelectorStyle = styled.div`
+export const ToggleSelectorStyle = styled.section`
   display: grid;
   grid-auto-flow: column;
   gap: 20px;

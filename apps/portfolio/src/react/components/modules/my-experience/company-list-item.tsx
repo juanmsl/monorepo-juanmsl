@@ -17,8 +17,8 @@ export const CompanyListItem = ({ selected = false, selectCompany, company }: Co
 
   return (
     <CompaniesListItemStyle className={className} onClick={selectCompany}>
-      <div className='company-item-header'>
-        <div className='header-left'>
+      <section className='company-item-header'>
+        <section className='header-left'>
           <Typography variant='body' weight='bold' className='company-item-name' withoutPadding>
             {name}
           </Typography>
@@ -28,14 +28,14 @@ export const CompanyListItem = ({ selected = false, selectCompany, company }: Co
           <Typography variant='label' withoutPadding>
             {formatDate(dateStart)} - {formatDate(dateEnd)} ({timeBetween(dateStart, dateEnd)})
           </Typography>
-        </div>
-        <div className='header-right'>
+        </section>
+        <section className='header-right'>
           <Icon name={selected ? 'caret-up' : 'caret-down'} />
-        </div>
-      </div>
-      <div className='company-item-body'>
+        </section>
+      </section>
+      <section className='company-item-body'>
         <CompanyDetails company={company} />
-      </div>
+      </section>
     </CompaniesListItemStyle>
   );
 };

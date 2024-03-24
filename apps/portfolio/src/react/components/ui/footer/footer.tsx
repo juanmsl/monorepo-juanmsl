@@ -10,30 +10,30 @@ export const Footer = () => {
   return (
     <FooterStyle>
       <FooterTop />
-      <div className='layout-content'>
+      <section className='layout-content'>
         <Image className='footer-logo' src='/assets/images/logo.png' alt='logo' />
 
         <Typography variant='header3' className='name'>
           {t('common:shortName')}
         </Typography>
 
-        <div className='footer-content'></div>
+        <section className='footer-content'></section>
 
-        <div className='columns'>
-          <div className='location'>
+        <section className='columns'>
+          <section className='location'>
             <Icon name='pin-location' />
             <Typography variant='label'>{t('common:location')}</Typography>
-          </div>
+          </section>
 
           <SocialIcons position='top' gap='10px' />
-        </div>
+        </section>
 
         <Line orientation='horizontal' />
 
         <Typography variant='small' className='copyright' as='p'>
           {t('footer:copyright', { version: '3.0.0' })}
         </Typography>
-      </div>
+      </section>
     </FooterStyle>
   );
 };

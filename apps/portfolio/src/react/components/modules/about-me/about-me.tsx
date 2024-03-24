@@ -1,4 +1,5 @@
 import { AboutMeStyle } from './about-me.style';
+import { ENV } from '@core/env';
 import { ProfilePicture } from '@components/resources';
 import { Reveal } from '@components/animations';
 import { SectionTitle } from '@components/ui';
@@ -8,7 +9,7 @@ import { Button, HoverCard, Typography } from '@juanmsl/ui';
 
 export const AboutMe = () => {
   const { t } = useTranslation();
-  const { data: resume } = useAsset('2Sb2cM6MN8osN8kXMizuUd');
+  const { data: resume } = useAsset(ENV.ASSET_ID_CV);
 
   const handleClick = async () => {
     window.open(resume.url, '_blank');
@@ -40,7 +41,7 @@ export const AboutMe = () => {
             <Typography variant='body'>{t('home:aboutMe.text3')}</Typography>
           </Reveal>
 
-          <div className='button-ctas'>
+          <section className='button-ctas'>
             <HoverCard translationZ={15}>
               <Reveal delay={700}>
                 <Button leftIcon='download-cv' onClick={handleClick}>
@@ -54,7 +55,7 @@ export const AboutMe = () => {
                 {t('home:aboutMe.button2')}
               </Button>
             </Reveal>
-          </div>
+          </section>
         </section>
       </AboutMeStyle>
     </>

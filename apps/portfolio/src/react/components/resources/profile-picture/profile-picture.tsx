@@ -1,3 +1,4 @@
+import { ENV } from '@core/env';
 import { HoverCard } from '@juanmsl/ui';
 import { ProfilePictureStyle } from './profile-picture.style';
 import { Reveal } from '@components/animations';
@@ -8,7 +9,7 @@ type ProfilePictureProps = {
 };
 
 export const ProfilePicture = ({ className }: ProfilePictureProps) => {
-  const { data } = useAsset('2bpAl3x9cptUHnD2UQ8LlR');
+  const { data } = useAsset(ENV.ASSET_ID_PROFILE_PICTURE);
 
   return (
     <ProfilePictureStyle className={className}>

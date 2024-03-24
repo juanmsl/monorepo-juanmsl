@@ -25,7 +25,7 @@ export const AsideContainer = styled.main`
   }
 `;
 
-export const Background = styled(motion.div)`
+export const Background = styled(motion.section)`
   position: absolute;
   top: 0;
   left: 0;

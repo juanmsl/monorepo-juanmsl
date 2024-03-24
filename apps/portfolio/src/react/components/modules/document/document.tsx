@@ -1,4 +1,5 @@
 import { DocumentStyle } from './document.style';
+import { ENV } from '@core/env';
 import { LoaderLogo } from '@components/ui';
 import { Reveal } from '@components/animations';
 import { useAsset } from '@hooks';
@@ -8,7 +9,7 @@ import { Button, HoverCard, PdfViewer, useDimensions } from '@juanmsl/ui';
 
 export const Document = () => {
   const { t } = useTranslation();
-  const { data: resume } = useAsset('2Sb2cM6MN8osN8kXMizuUd');
+  const { data: resume } = useAsset(ENV.ASSET_ID_CV);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { width } = useDimensions(containerRef);

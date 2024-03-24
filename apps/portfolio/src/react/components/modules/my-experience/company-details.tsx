@@ -12,13 +12,13 @@ export const CompanyDetails = ({ company }: CompanyItemProps) => {
 
   return (
     <CompanyDetailsStyle>
-      <div className='company-details-header'>
-        <div className='company-logo'>
+      <section className='company-details-header'>
+        <section className='company-logo'>
           <HoverCard width='100%'>
             <Image src={icon} alt='Company logo' />
           </HoverCard>
-        </div>
-        <div className='company-details-header--content'>
+        </section>
+        <section className='company-details-header--content'>
           <Typography className='company-details-name' variant='label' withoutPadding>
             {name}
           </Typography>
@@ -28,8 +28,8 @@ export const CompanyDetails = ({ company }: CompanyItemProps) => {
           <Typography className='company-details-time' variant='small' withoutPadding>
             {formatDate(dateStart)} - {formatDate(dateEnd)} ({timeBetween(dateStart, dateEnd)})
           </Typography>
-        </div>
-      </div>
+        </section>
+      </section>
       <ul className='company-details-description'>
         {description.map((text, key) => (
           <li key={key}>
@@ -39,13 +39,13 @@ export const CompanyDetails = ({ company }: CompanyItemProps) => {
           </li>
         ))}
       </ul>
-      <div className='company-details-labels'>
+      <section className='company-details-labels'>
         {technologies.items.map((technology, key) => (
           <Reveal delay={50 * key} key={key}>
             <Tag>{technology.name}</Tag>
           </Reveal>
         ))}
-      </div>
+      </section>
     </CompanyDetailsStyle>
   );
 };

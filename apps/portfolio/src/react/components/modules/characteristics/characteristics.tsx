@@ -13,13 +13,13 @@ export const Characteristics = () => {
         <CharacteristicStyle key={key}>
           <HoverCard translationZ={15}>
             <Reveal delay={100 * key}>
-              <div className='characteristic-container'>
+              <section className='characteristic-container'>
                 <Icon name={icon as IconNameT} className='characteristic-icon' />
                 <Line orientation='horizontal' className='characteristic-line' />
                 <Typography variant='body' className='characteristic-title'>
                   {title}
                 </Typography>
-              </div>
+              </section>
             </Reveal>
           </HoverCard>
         </CharacteristicStyle>
@@ -29,7 +29,7 @@ export const Characteristics = () => {
 
   return (
     <CharacteristicsStyle>
-      <div className='characteristics-gallery'>{characteristics}</div>
+      <section className='characteristics-gallery'>{characteristics}</section>
     </CharacteristicsStyle>
   );
 };
