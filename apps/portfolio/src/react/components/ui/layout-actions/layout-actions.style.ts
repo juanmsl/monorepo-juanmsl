@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const LayoutActionsStyle = styled.div`
+export const LayoutActionsStyle = styled.section`
   position: fixed;
   top: 0;
   right: 0;

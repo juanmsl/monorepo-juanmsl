@@ -25,7 +25,7 @@ export const CharacteristicsStyle = styled(SectionLayout)`
   }
 `;
 
-export const CharacteristicStyle = styled.div`
+export const CharacteristicStyle = styled.section`
   width: 150px;
   height: 150px;
 

@@ -16,7 +16,7 @@ export const MySkills = () => {
 
   return (
     <MySkillsStyle>
-      <div className='skills-categories'>
+      <section className='skills-categories'>
         {professionalSkills.map((skill, key) => (
           <Reveal key={key} delay={(key + 1) * 100}>
             <Typography
@@ -29,8 +29,8 @@ export const MySkills = () => {
             </Typography>
           </Reveal>
         ))}
-      </div>
-      <div className='skills-labels'>
+      </section>
+      <section className='skills-labels'>
         {technologies.map((technology, key) => (
           <Tooltip content={technology.name} key={key}>
             <Reveal key={key} delay={(key + 1) * 50}>
@@ -42,7 +42,7 @@ export const MySkills = () => {
             </Reveal>
           </Tooltip>
         ))}
-      </div>
+      </section>
     </MySkillsStyle>
   );
 };

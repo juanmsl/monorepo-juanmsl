@@ -14,9 +14,9 @@ export const MainLayout = () => {
           <NavLink to={PATHS.HOME_URL}>
             <Image className='layout-logo' src='/assets/images/logo.png' alt='logo' />
           </NavLink>
-          <div className='main-layout-content'>
+          <section className='main-layout-content'>
             <Outlet />
-          </div>
+          </section>
           <Footer />
         </Aside>
       </MainLayoutStyle>

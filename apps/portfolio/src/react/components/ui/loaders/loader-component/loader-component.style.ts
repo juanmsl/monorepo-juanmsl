@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const LoaderComponentStyle = styled.div`
+export const LoaderComponentStyle = styled.section`
   width: 100%;
   height: 100%;
   display: grid;

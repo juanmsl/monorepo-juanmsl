@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-export const PageTransitionStyle = styled(motion.div)`
+export const PageTransitionStyle = styled(motion.section)`
   position: fixed;
   top: 0;
   width: 100vw;

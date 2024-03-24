@@ -1,3 +1,4 @@
+import { ENV } from '@core/env';
 import { HeaderBottom } from '@components/resources';
 import { HomeHeaderStyle } from './home-header.style';
 import { Reveal } from '@components/animations';
@@ -9,11 +10,11 @@ import { Line, Typography } from '@juanmsl/ui';
 export const HomeHeader = () => {
   const { t } = useTranslation();
   const userLabels = t('common:userLabels', { returnObjects: true }) as Array<string>;
-  const { data } = useAsset('7kZGbgXgeL1PtS0eyjA1VL');
+  const { data } = useAsset(ENV.ASSET_ID_BACKGROUND);
 
   return (
     <HomeHeaderStyle $background={data?.url}>
-      <div className='container'>
+      <section className='container'>
         <Reveal delay={200} width='100%'>
           <Line orientation='horizontal' size='3px' className='header-line' />
         </Reveal>
@@ -25,7 +26,7 @@ export const HomeHeader = () => {
         <Reveal delay={400} width='100%'>
           <Line orientation='horizontal' size='3px' className='header-line' />
         </Reveal>
-        <div className='user-labels'>
+        <section className='user-labels'>
           {userLabels.map((label, key) => (
             <Reveal key={key} delay={100 * key + 500}>
               <Typography variant='body' className='user-label'>
@@ -33,9 +34,9 @@ export const HomeHeader = () => {
               </Typography>
             </Reveal>
           ))}
-        </div>
+        </section>
         <SocialIcons position='bottom' />
-      </div>
+      </section>
       <HeaderBottom className='home-header-svg' />
     </HomeHeaderStyle>
   );
