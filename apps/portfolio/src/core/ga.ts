@@ -1,9 +1,7 @@
 import { ENV } from '@core/env';
 import ReactGA, { EventArgs } from 'react-ga';
 
-ReactGA.initialize(ENV.GOOGLE_ANALYTICS, {
-  debug: process.env.environment !== 'production',
-});
+ReactGA.initialize(ENV.GOOGLE_ANALYTICS);
 
 enum GACategory {
   JS_DEPENDENCIES = 'JS Dependencies',
