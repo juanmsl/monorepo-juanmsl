@@ -14,7 +14,7 @@
     "resolveJsonModule": true,
     "moduleResolution": "bundler",
     "strict": false,
-    "target": "es5",
+    "target": "es6",
     "useDefineForClassFields": true,
     "allowImportingTsExtensions": false,
     "allowSyntheticDefaultImports": true
