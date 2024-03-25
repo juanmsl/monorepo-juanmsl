@@ -4877,11 +4877,6 @@ dotenv-expand@^10.0.0:
   resolved "https://registry.yarnpkg.com/dotenv-expand/-/dotenv-expand-10.0.0.tgz#12605d00fb0af6d0a592e6558585784032e4ef37"
   integrity sha512-GopVGCpVS1UKH75VKHGuQFqS1Gusej0z4FyQkPdwjil2gNIv+LNsqBlboOzpJFZKVT95GkCyWJbBSdFEFUWI2A==
 
-dotenv@16.0.3:
-  version "16.0.3"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.3.tgz#115aec42bac5053db3c456db30cc243a5a836a07"
-  integrity sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==
-
 dotenv@^16.0.0:
   version "16.4.5"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.4.5.tgz#cdd3b3b604cb327e286b4762e13502f717cb099f"
@@ -5265,13 +5260,6 @@ eslint-config-prettier@^9.0.0:
   resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-9.1.0.tgz#31af3d94578645966c082fcb71a5846d3c94867f"
   integrity sha512-NSWl5BFQWEPi1j4TjVNItzYV7dZXZ+wP6I6ZhrBGpChQhZRUaElihE9uRRkcbRnNb76UMKDF3r+WTmNcGPKsqw==
 
-eslint-config-turbo@^1.11.3, eslint-config-turbo@^1.9.3:
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-turbo/-/eslint-config-turbo-1.13.0.tgz#a8d8fe29708501f56a0214fe46cb994ba92735c0"
-  integrity sha512-xV13WrEjAJLeo6yqR1YEv5R5WPwNMyw8f4FlK2C4zWMr7e8ZiRg81jajltabEOZdeVboHIQ6gGn+FnSmgdVSSQ==
-  dependencies:
-    eslint-plugin-turbo "1.13.0"
-
 eslint-import-resolver-alias@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/eslint-import-resolver-alias/-/eslint-import-resolver-alias-1.1.2.tgz#297062890e31e4d6651eb5eba9534e1f6e68fc97"
@@ -5478,13 +5466,6 @@ eslint-plugin-tsdoc@^0.2.17:
   dependencies:
     "@microsoft/tsdoc" "0.14.2"
     "@microsoft/tsdoc-config" "0.16.2"
-
-eslint-plugin-turbo@1.13.0:
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-turbo/-/eslint-plugin-turbo-1.13.0.tgz#d72f65cc0fc67197bf24b8884955822dca458e02"
-  integrity sha512-y9YRXMSOc43SijAFFkDnrFpstV2k/w6Qmbr5mO/w7tUGzDWkHc87btLa0e/L2PJxod5bzNwsmzeyj8c/AsMMCQ==
-  dependencies:
-    dotenv "16.0.3"
 
 eslint-plugin-unicorn@^48.0.1:
   version "48.0.1"
@@ -9854,6 +9835,11 @@ wcwidth@^1.0.1:
   integrity sha512-XHPEwS0q6TaxcvG85+8EYkbiCux2XtWG2mkc47Ng2A77BQu9+DqIOJldST4HgPkuea7dvKSj5VgX3P1d4rW8Tg==
   dependencies:
     defaults "^1.0.3"
+
+web-vitals@^3.5.2:
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/web-vitals/-/web-vitals-3.5.2.tgz#5bb58461bbc173c3f00c2ddff8bfe6e680999ca9"
+  integrity sha512-c0rhqNcHXRkY/ogGDJQxZ9Im9D19hDihbzSQJrsioex+KnFgmMzBiy57Z1EjkhX/+OjyBpclDCzz2ITtjokFmg==
 
 webidl-conversions@^3.0.0:
   version "3.0.1"

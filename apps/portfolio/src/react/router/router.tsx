@@ -11,6 +11,7 @@ export const Router = () => {
 
   useEffect(() => {
     GA.pageView(location.pathname + location.search);
+    GA.webVitals();
   }, [location]);
 
   useEffect(() => {
