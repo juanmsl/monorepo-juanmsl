@@ -1,4 +1,5 @@
 import { AnimatePresence } from 'framer-motion';
+import { GATracker } from '@core/ga';
 import { MainLayout } from '@components/layouts';
 import { PATHS } from '@core/constants';
 import { LazyBlog, LazyHome, LazyProjects, LazyResume } from '@pages';
@@ -9,15 +10,17 @@ export const Router = () => {
 
   return (
     <AnimatePresence mode='wait'>
-      <Routes location={location} key={location.pathname}>
-        <Route path='/' element={<MainLayout />}>
-          <Route path={PATHS.HOME_URL} element={<LazyHome />} index />
-          <Route path={PATHS.RESUME_URL} element={<LazyResume />} />
-          <Route path={PATHS.BLOG_URL} element={<LazyBlog />} />
-          <Route path={PATHS.PROJECTS_URL} element={<LazyProjects />} />
-          <Route path='*' element={<Navigate to={PATHS.HOME_URL} />} />
-        </Route>
-      </Routes>
+      <GATracker>
+        <Routes location={location} key={location.pathname}>
+          <Route path='/' element={<MainLayout />}>
+            <Route path={PATHS.HOME_URL} element={<LazyHome />} index />
+            <Route path={PATHS.RESUME_URL} element={<LazyResume />} />
+            <Route path={PATHS.BLOG_URL} element={<LazyBlog />} />
+            <Route path={PATHS.PROJECTS_URL} element={<LazyProjects />} />
+            <Route path='*' element={<Navigate to={PATHS.HOME_URL} />} />
+          </Route>
+        </Routes>
+      </GATracker>
     </AnimatePresence>
   );
 };
