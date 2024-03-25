@@ -1,19 +1,12 @@
 import { AboutMeStyle } from './about-me.style';
-import { ENV } from '@core/env';
 import { ProfilePicture } from '@components/resources';
 import { Reveal } from '@components/animations';
-import { SectionTitle } from '@components/ui';
-import { useAsset } from '@hooks';
+import { Typography } from '@juanmsl/ui';
 import { useTranslation } from 'react-i18next';
-import { Button, HoverCard, Typography } from '@juanmsl/ui';
+import { DownloadCvButton, SectionTitle } from '@components/ui';
 
 export const AboutMe = () => {
   const { t } = useTranslation();
-  const { data: resume } = useAsset(ENV.ASSET_ID_CV);
-
-  const handleClick = async () => {
-    window.open(resume.url, '_blank');
-  };
 
   return (
     <>
@@ -42,19 +35,7 @@ export const AboutMe = () => {
           </Reveal>
 
           <section className='button-ctas'>
-            <HoverCard translationZ={15}>
-              <Reveal delay={700}>
-                <Button leftIcon='download-cv' onClick={handleClick}>
-                  {t('home:aboutMe.button1')}
-                </Button>
-              </Reveal>
-            </HoverCard>
-
-            <Reveal delay={800}>
-              <Button leftIcon='linkedin' onClick={handleClick} variant='ghost'>
-                {t('home:aboutMe.button2')}
-              </Button>
-            </Reveal>
+            <DownloadCvButton>{t('home:aboutMe.button1')}</DownloadCvButton>
           </section>
         </section>
       </AboutMeStyle>
