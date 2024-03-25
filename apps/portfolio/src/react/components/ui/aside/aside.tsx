@@ -1,8 +1,7 @@
 import { AsideTrigger } from './menu-toggle';
-import { ENV } from '@core/env';
 import { NavLink } from 'react-router-dom';
 import { PATHS } from '@core/constants';
-import { SocialIcons } from '@components/ui';
+import { useGetNavbarOptions } from '@hooks';
 import { useTranslation } from 'react-i18next';
 import {
   AsideContainer,
@@ -14,10 +13,10 @@ import {
   MobileTrigger,
   Trigger,
 } from './aside.style';
-import { Button, Icon, IconNameT, Image, Line, Typography, useMediaQuery, useViewport } from '@juanmsl/ui';
+import { DownloadCvButton, SocialIcons } from '@components/ui';
+import { Icon, IconNameT, Image, Line, Typography, useMediaQuery, useViewport } from '@juanmsl/ui';
 import React, { useMemo } from 'react';
 import { motion, useCycle } from 'framer-motion';
-import { useAsset, useGetNavbarOptions } from '@hooks';
 
 const variants = {
   asideContent: {
@@ -108,12 +107,7 @@ export const Aside = ({ children }: AsideProps) => {
   const { height, width } = useViewport();
   const isTablet = useMediaQuery('(min-width: 768px)');
   const { t } = useTranslation();
-  const { data: resume } = useAsset(ENV.ASSET_ID_CV);
   const { data: navbarOptions = [] } = useGetNavbarOptions();
-
-  const handleClick = async () => {
-    window.open(resume.url, '_blank');
-  };
 
   const menuItems = useMemo(
     () =>
@@ -173,9 +167,7 @@ export const Aside = ({ children }: AsideProps) => {
         </NavLink>
         <section className='aside-items'>{menuItems}</section>
         <footer className='aside-footer'>
-          <Button leftIcon='envelope' onClick={handleClick}>
-            {t('home:aboutMe.button1')}
-          </Button>
+          <DownloadCvButton>{t('home:aboutMe.button1')}</DownloadCvButton>
           <Line orientation='horizontal' />
           <SocialIcons position='top' gap='5px' />
         </footer>

@@ -1,11 +1,11 @@
 import { DocumentStyle } from './document.style';
 import { ENV } from '@core/env';
-import { LoaderLogo } from '@components/ui';
-import { Reveal } from '@components/animations';
+import { GA } from '@core/ga';
 import { useAsset } from '@hooks';
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, HoverCard, PdfViewer, useDimensions } from '@juanmsl/ui';
+import { DownloadCvButton, LoaderLogo } from '@components/ui';
+import { HoverCard, PdfViewer, useDimensions } from '@juanmsl/ui';
 
 export const Document = () => {
   const { t } = useTranslation();
@@ -15,18 +15,16 @@ export const Document = () => {
   const { width } = useDimensions(containerRef);
 
   const handleClick = async () => {
+    GA.event({
+      action: 'User Download CV from CV image',
+      category: GA.categories.CV_DOWNLOAD,
+    });
     window.open(resume.url, '_blank');
   };
 
   return (
     <DocumentStyle>
-      <HoverCard translationZ={15}>
-        <Reveal delay={700}>
-          <Button leftIcon='download-cv' onClick={handleClick}>
-            {t('resume:download-button')}
-          </Button>
-        </Reveal>
-      </HoverCard>
+      <DownloadCvButton>{t('resume:download-button')}</DownloadCvButton>
 
       <section className='document-container' onClick={handleClick} ref={containerRef}>
         <HoverCard width='100%' threshold={2}>
