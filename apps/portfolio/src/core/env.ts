@@ -6,4 +6,5 @@ export const ENV = {
   ASSET_ID_CV: `${import.meta.env.VITE_APP_ASSET_ID_CV}`,
   ASSET_ID_BACKGROUND: `${import.meta.env.VITE_APP_ASSET_ID_BACKGROUND}`,
   ASSET_ID_PROFILE_PICTURE: `${import.meta.env.VITE_APP_ASSET_ID_PROFILE_PICTURE}`,
+  GOOGLE_ANALYTICS: `${import.meta.env.VITE_APP_GOOGLE_ANALYTICS}`,
 };

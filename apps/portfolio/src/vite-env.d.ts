@@ -8,6 +8,7 @@ interface ImportMetaEnv {
   readonly VITE_APP_ASSET_ID_CV: string;
   readonly VITE_APP_ASSET_ID_PROFILE_PICTURE: string;
   readonly VITE_APP_ASSET_ID_BACKGROUND: string;
+  readonly VITE_APP_GOOGLE_ANALYTICS: string;
 }
 
 interface ImportMeta {
