@@ -2,7 +2,7 @@ import { ENV } from '@core/env';
 import ReactGA, { EventArgs } from 'react-ga';
 
 ReactGA.initialize(ENV.GOOGLE_ANALYTICS, {
-  debug: ENV.ENVIRONMENT !== 'production',
+  debug: process.env.environment !== 'production',
 });
 
 enum GACategory {

@@ -17,7 +17,7 @@ export class ContentFullAdapter implements ContentFullPort {
 
   constructor() {
     this.http = axios.create({
-      baseURL: `${ENV.API_URL}/content/v1/spaces/${ENV.CONTENT_FULL_API_SPACE_ID}/environments/${ENV.ENVIRONMENT}`,
+      baseURL: `${ENV.API_URL}/content/v1/spaces/${ENV.CONTENT_FULL_API_SPACE_ID}/environments/${ENV.CONTENT_FULL_ENVIRONMENT}`,
       method: 'post',
       headers: {
         Authorization: `Bearer ${ENV.CONTENT_FULL_API_ACCESS_TOKEN}`,
