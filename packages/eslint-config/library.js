@@ -9,7 +9,6 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:prettier/recommended',
-    'eslint-config-turbo',
     'prettier',
   ],
   plugins: ['@typescript-eslint', 'import', 'prefer-arrow', 'prettier'],
