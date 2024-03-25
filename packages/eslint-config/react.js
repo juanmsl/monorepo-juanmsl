@@ -11,7 +11,6 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:react/recommended',
     'plugin:prettier/recommended',
-    'eslint-config-turbo',
     'prettier',
   ],
   plugins: [

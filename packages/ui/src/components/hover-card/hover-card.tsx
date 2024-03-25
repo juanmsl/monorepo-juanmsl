@@ -22,7 +22,7 @@ export const HoverCard = ({ children, threshold = 5, translationZ = 25, width = 
 
       const { clientX, clientY, currentTarget } = e;
       const { clientWidth, clientHeight } = currentTarget;
-      const { top, left } = refCard?.current?.getBoundingClientRect();
+      const { top, left } = card.getBoundingClientRect();
 
       const horizontal = (clientX - left) / clientWidth;
       const vertical = (clientY - top) / clientHeight;
