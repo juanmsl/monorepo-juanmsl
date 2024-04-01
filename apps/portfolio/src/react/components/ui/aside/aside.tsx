@@ -37,7 +37,7 @@ const variants = {
     open: ({ atPosition = '40px 40px', size }: { atPosition: string; size: number }) => ({
       clipPath: `circle(${size}px at ${atPosition})`,
       transition: {
-        type: 'spring',
+        duration: 1,
         stiffness: 20,
         restDelta: 2,
       },
@@ -45,10 +45,9 @@ const variants = {
     closed: ({ atPosition = '40px 40px' }: { atPosition: string }) => ({
       clipPath: `circle(20px at ${atPosition})`,
       transition: {
-        delay: 0.2,
-        type: 'spring',
+        duration: 0.5,
         stiffness: 400,
-        damping: 40,
+        damping: 60,
       },
     }),
   },
@@ -167,7 +166,7 @@ export const Aside = ({ children }: AsideProps) => {
         </NavLink>
         <section className='aside-items'>{menuItems}</section>
         <footer className='aside-footer'>
-          <DownloadCvButton>{t('home:aboutMe.button1')}</DownloadCvButton>
+          <DownloadCvButton width='100%'>{t('home:aboutMe.button1')}</DownloadCvButton>
           <Line orientation='horizontal' />
           <SocialIcons position='top' gap='5px' />
         </footer>

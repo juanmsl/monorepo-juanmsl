@@ -1,10 +1,11 @@
 import { CompanyDetails } from './company-details';
 import { CompanyListItem } from './company-list-item';
-import { Line } from '@juanmsl/ui';
 import { MyExperienceStyle } from './my-experience.style';
 import { Reveal } from '@components/animations';
+import { motion } from 'framer-motion';
 import { useGetJobExperience } from '@hooks';
 import { useTranslation } from 'react-i18next';
+import { Accordion, Image, Typography, formatDate, timeBetween } from '@juanmsl/ui';
 import { LoaderComponent, SectionTitle } from '@components/ui';
 import { useMemo, useState } from 'react';
 
@@ -15,28 +16,82 @@ export const MyExperience = () => {
 
   const renderedCompanies = useMemo(
     () =>
+      jobExperience.map(({ name, dateStart, dateEnd }, key) => (
+        <Reveal delay={100 * key} key={key} width='100%'>
+          <CompanyListItem
+            isSelected={jobExperience?.[index]?.name === name}
+            onClick={() => setIndex(key)}
+            title={name}
+            subtitle={`${formatDate(dateStart)} ${dateEnd ? '- ' + formatDate(dateEnd) : ''} (${timeBetween(
+              dateStart,
+              dateEnd,
+            )})`}
+          />
+        </Reveal>
+      )),
+    [index, jobExperience],
+  );
+
+  const renderedMobileCompanies = useMemo(
+    () =>
       jobExperience.flatMap((company, key) => {
-        const item = (
+        const { name, dateStart, dateEnd, icon, position } = company;
+
+        return (
           <Reveal delay={100 * key} key={key} width='100%'>
-            <CompanyListItem
-              selected={jobExperience?.[index]?.name === company.name}
-              selectCompany={() => setIndex(key)}
-              company={company}
-            />
+            <Accordion.Item
+              title={name}
+              subtitle={`${formatDate(dateStart)} ${dateEnd ? '- ' + formatDate(dateEnd) : ''} (${timeBetween(
+                dateStart,
+                dateEnd,
+              )})`}
+              startContent={() => (
+                <section className='company-logo'>
+                  <Image src={icon} alt={name} />
+                </section>
+              )}
+              middleContent={({ isOpen, title, subtitle }) => (
+                <section className='accordion-header-content'>
+                  <Typography variant='body' withoutPadding weight='bold'>
+                    {title}
+                  </Typography>
+                  <motion.section
+                    variants={{
+                      open: {
+                        height: 'auto',
+                        opacity: 1,
+                      },
+                      closed: {
+                        height: 0,
+                        opacity: 0,
+                      },
+                    }}
+                    initial='closed'
+                    animate={isOpen ? 'open' : 'closed'}
+                  >
+                    <Typography className='position' variant='header4' withoutPadding weight='bold'>
+                      {position}
+                    </Typography>
+                  </motion.section>
+                  <Typography variant='label' withoutPadding weight='light'>
+                    {subtitle}
+                  </Typography>
+                </section>
+              )}
+            >
+              <CompanyDetails company={company} />
+            </Accordion.Item>
           </Reveal>
         );
-
-        return key === 0
-          ? item
-          : [<Line orientation='horizontal' className='companies-list-line-separator' key={`${key}.5`} />, item];
       }),
-    [index, jobExperience],
+    [jobExperience],
   );
 
   return (
     <MyExperienceStyle>
       <SectionTitle>{t('home:myExperience.title')}</SectionTitle>
-      <section className='my-experience-content'>
+      <Accordion className='mobile-experience'>{renderedMobileCompanies}</Accordion>
+      <section className='laptop-experience'>
         <section className='companies-list'>{renderedCompanies}</section>
         <section className='company-details'>
           <LoaderComponent isPending={!jobExperience?.[index]}>

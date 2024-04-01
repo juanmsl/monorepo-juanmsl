@@ -50,7 +50,7 @@ export const TypographyComponent = (
       case TypographyVariant.BODY:
         return 'p';
       case TypographyVariant.LABEL:
-        return 'label';
+        return 'span';
       case TypographyVariant.SMALL:
         return 'small';
       default:

@@ -14,6 +14,7 @@ export type ButtonProps = {
   leftIcon?: IconNameT;
   rightIcon?: IconNameT;
   onClick?: ButtonHTMLAttributes<HTMLButtonElement>['onClick'];
+  width?: 'fit' | 'full';
 };
 
 export const Button = ({
@@ -26,6 +27,7 @@ export const Button = ({
   leftIcon,
   rightIcon,
   onClick,
+  width = 'fit',
 }: ButtonProps) => {
   const className = useClassNames({
     rounded: rounded,
@@ -33,6 +35,7 @@ export const Button = ({
     large: size === ButtonSize.LARGE,
     ghost: variant === ButtonVariant.GHOST,
     flat: variant === ButtonVariant.FLAT,
+    [width]: !!width,
     'is-loading': isLoading,
   });
 

@@ -16,11 +16,10 @@ export const Router = () => {
 
   useEffect(() => {
     if (window.performance) {
-      GA.event({
-        action: 'load',
-        label: 'timing_complete',
+      GA.gtag('event', 'timing_complete', {
+        name: 'load',
         value: Math.round(performance.now()),
-        category: GA.categories.JS_DEPENDENCIES,
+        event_category: GA.categories.JS_DEPENDENCIES,
       });
     }
   }, []);

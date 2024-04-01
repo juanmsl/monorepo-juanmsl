@@ -18,6 +18,14 @@ export const ButtonStyle = styled.button`
     border-radius: 500px;
   }
 
+  &.fit {
+    width: fit-content;
+  }
+
+  &.full {
+    width: 100%;
+  }
+
   .button-left-icon,
   .button-right-icon {
     font-size: 1.2em;
