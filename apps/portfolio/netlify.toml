@@ -6,7 +6,7 @@
 [build.environment]
   YARN_FLAGS = "--frozen-lockfile"
   YARN_VERSION = "1.22.21"
-  NODE_VERSION = "18.19.0"
+  NODE_VERSION = "20.11.0"
 
 [[redirects]]
   from = "https://www.juanmsl.com/*"
@@ -30,3 +30,4 @@
   from = "/*"
   to = "/index.html"
   status = 200
+

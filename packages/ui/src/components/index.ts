@@ -1,3 +1,4 @@
+export * from './accordion';
 export * from './buttons';
 export * from './flip-card';
 export * from './form';

@@ -26,7 +26,7 @@ export const CompanyDetails = ({ company }: CompanyItemProps) => {
             {position}
           </Typography>
           <Typography className='company-details-time' variant='small' withoutPadding>
-            {formatDate(dateStart)} - {formatDate(dateEnd)} ({timeBetween(dateStart, dateEnd)})
+            {formatDate(dateStart)} {dateEnd ? '- ' + formatDate(dateEnd) : ''} ({timeBetween(dateStart, dateEnd)})
           </Typography>
         </section>
       </section>

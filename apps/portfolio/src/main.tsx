@@ -1,4 +1,6 @@
 import { ENV } from '@core/env';
+import { ErrorBoundary } from 'react-error-boundary';
+import { GA } from '@core/ga';
 import { LoaderLogo } from '@components/ui';
 import ReactDOM from 'react-dom/client';
 import { RootLayout } from '@components/layouts';
@@ -24,7 +26,14 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <IconProvider>
           <QueryClientProvider client={queryClient}>
             <Suspense fallback={<LoaderLogo />}>
-              <RootLayout />
+              <ErrorBoundary
+                fallback={<p>Error</p>}
+                onError={error => {
+                  GA.error(error.message);
+                }}
+              >
+                <RootLayout />
+              </ErrorBoundary>
             </Suspense>
           </QueryClientProvider>
         </IconProvider>

@@ -7,9 +7,10 @@ import { Button, HoverCard } from '@juanmsl/ui';
 
 type DownloadCvButtonProps = {
   children: string;
+  width?: 'fit-content' | '100%';
 };
 
-export const DownloadCvButton = ({ children }: DownloadCvButtonProps) => {
+export const DownloadCvButton = ({ children, width }: DownloadCvButtonProps) => {
   const { data: resume } = useAsset(ENV.ASSET_ID_CV);
   const location = useLocation();
 
@@ -23,9 +24,9 @@ export const DownloadCvButton = ({ children }: DownloadCvButtonProps) => {
   };
 
   return (
-    <HoverCard translationZ={15}>
-      <Reveal delay={700}>
-        <Button leftIcon='download-cv' onClick={handleClick}>
+    <HoverCard translationZ={15} width={width}>
+      <Reveal delay={700} width={width}>
+        <Button width={width === 'fit-content' ? 'fit' : 'full'} leftIcon='download' onClick={handleClick}>
           {children}
         </Button>
       </Reveal>

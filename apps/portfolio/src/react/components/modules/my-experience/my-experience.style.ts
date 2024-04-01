@@ -7,103 +7,88 @@ export const MyExperienceStyle = styled(SectionLayout)`
     gap: 40px;
   }
 
-  .my-experience-content {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 40px;
-    align-content: start;
-
+  .mobile-experience {
     @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
-      grid-template-columns: minmax(300px, auto) 1fr;
+      display: none;
+    }
+
+    .accordion-header-content {
+      display: grid;
+      gap: 5px;
+    }
+
+    .position {
+      color: ${props => props.theme.colors.primary};
     }
   }
 
-  .companies-list {
-    display: grid;
-    gap: 20px;
-    align-content: start;
-  }
-
-  .company-details {
+  .laptop-experience {
     display: none;
+    grid-template-columns: minmax(300px, auto) 1fr;
+    gap: 40px;
     align-content: start;
 
     @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
       display: grid;
     }
+
+    .companies-list {
+      display: grid;
+      gap: 20px;
+      align-content: start;
+    }
+
+    .company-details {
+      display: grid;
+      align-content: start;
+    }
   }
 
-  .companies-list-line-separator {
+  .company-logo {
+    border-radius: 50%;
+    background: ${props => props.theme.colors.white};
+    transition: all 300ms ease;
+    width: 42px;
+    height: 42px;
+    display: block;
+    align-self: start;
+
     @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
-      display: none;
+      width: 72px;
+      height: 72px;
+      padding: 5px;
+    }
+
+    img {
+      background: ${props => props.theme.colors.white}55;
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: all 300ms ease;
+      padding: 5px;
+      border-radius: 50%;
+    }
+
+    &:hover img {
+      border-radius: 50%;
     }
   }
 `;
 
 export const CompaniesListItemStyle = styled.section`
+  cursor: pointer;
   display: grid;
+  gap: 4px;
   transition:
     padding 50ms ease,
     all 300ms ease;
 
-  .company-item-header {
-    cursor: pointer;
-    display: grid;
-    grid-auto-flow: column;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-  }
-
-  .header-left {
-    display: grid;
-    gap: 4px;
-  }
-
-  .header-right {
-    @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
-      display: none;
-    }
-  }
-
-  &:not(.selected) .company-item-body {
-    display: none;
-  }
-
-  &.selected .company-item-body {
-    display: grid;
-    align-content: start;
-    margin-top: 20px;
-
-    @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
-      display: none;
-    }
-  }
-
-  label {
-    cursor: pointer;
-  }
-
   &:hover,
   &.selected {
-    @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
-      color: ${props => props.theme.colors.primary};
-      border-left: 3px solid;
-      padding-left: 10px;
-    }
-  }
-
-  .company-item-position {
-    display: none;
     color: ${props => props.theme.colors.primary};
-  }
-
-  &.selected .company-item-position {
-    display: inline-block;
-
-    @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
-      display: none;
-    }
+    border-left: 3px solid;
+    padding-left: 10px;
   }
 `;
 
@@ -131,35 +116,6 @@ export const CompanyDetailsStyle = styled.section`
 
     .header4 {
       color: ${props => props.theme.colors.primary};
-    }
-
-    .company-logo {
-      border-radius: 50%;
-      padding: 5px;
-      background: ${props => props.theme.colors.white};
-      transition: all 300ms ease;
-      width: 72px;
-      height: 72px;
-      display: none;
-
-      @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
-        display: block;
-      }
-
-      img {
-        background: ${props => props.theme.colors.white}55;
-        width: 100%;
-        height: 100%;
-        display: block;
-        object-fit: cover;
-        transition: all 300ms ease;
-        padding: 5px;
-        border-radius: 50%;
-      }
-
-      &:hover img {
-        border-radius: 50%;
-      }
     }
   }
 
