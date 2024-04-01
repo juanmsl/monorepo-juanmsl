@@ -64,6 +64,7 @@ export const MyExperience = () => {
                       closed: {
                         height: 0,
                         opacity: 0,
+                        overflow: 'hidden',
                       },
                     }}
                     initial='closed'
