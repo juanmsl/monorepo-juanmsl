@@ -1,8 +1,12 @@
 import ReactGA, { EventArgs } from 'react-ga';
+import TagManager from 'react-gtm-module';
 
 import { ENV } from '@core/env';
 
 ReactGA.initialize(ENV.GOOGLE_ANALYTICS);
+TagManager.initialize({
+  gtmId: ENV.GOOGLE_TAG_MANAGER,
+});
 
 enum GACategory {
   WEB_VITALS = 'Web Vitals',

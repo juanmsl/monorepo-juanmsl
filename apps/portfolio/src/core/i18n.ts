@@ -40,8 +40,13 @@ const i18nConfig: InitOptions = {
   },
 };
 
-i18next.on('languageChanged', lng => {
+const updateLng = (lng: string) => {
   moment.locale(lng);
-});
+  document.documentElement.setAttribute('lang', lng);
+};
+
+i18next.on('languageChanged', updateLng);
+
+i18next.on('added', updateLng);
 
 export const i18n = i18next.use(Backend).use(detector).use(initReactI18next).init(i18nConfig);

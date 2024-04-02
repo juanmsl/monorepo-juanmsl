@@ -6,8 +6,9 @@ import { ErrorBoundary } from 'react-error-boundary';
 
 import './styles.scss';
 
-import { RootLayout } from '@components/layouts';
 import { LoaderLogo } from '@components/ui';
+// eslint-disable-next-line
+import { RootLayout } from '@components/layouts';
 import { ENV } from '@core/env';
 import { GA } from '@core/ga';
 import '@core/i18n';
