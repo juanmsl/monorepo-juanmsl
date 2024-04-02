@@ -1,11 +1,13 @@
+import { HoverCard, PdfViewer, useDimensions } from '@juanmsl/ui';
+import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import { DocumentStyle } from './document.style';
+
+import { DownloadCvButton, LoaderLogo } from '@components/ui';
 import { ENV } from '@core/env';
 import { GA } from '@core/ga';
 import { useAsset } from '@hooks';
-import { useRef } from 'react';
-import { useTranslation } from 'react-i18next';
-import { DownloadCvButton, LoaderLogo } from '@components/ui';
-import { HoverCard, PdfViewer, useDimensions } from '@juanmsl/ui';
 
 export const Document = () => {
   const { t } = useTranslation();

@@ -1,7 +1,8 @@
+import { useTranslation } from 'react-i18next';
+
+import { SectionLayout } from '@components/layouts';
 import { Document } from '@components/modules';
 import { Header } from '@components/ui';
-import { SectionLayout } from '@components/layouts';
-import { useTranslation } from 'react-i18next';
 
 export const Resume = () => {
   const { t } = useTranslation();

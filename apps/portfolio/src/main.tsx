@@ -1,15 +1,17 @@
-import { ENV } from '@core/env';
-import { ErrorBoundary } from 'react-error-boundary';
-import { GA } from '@core/ga';
-import { LoaderLogo } from '@components/ui';
-import ReactDOM from 'react-dom/client';
-import { RootLayout } from '@components/layouts';
-import { CommonTheme, DarkTheme, LightTheme, ThemeConstants } from '@core/theme';
 import { FetchProvider, IconProvider, ThemeProvider } from '@juanmsl/ui';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React, { Suspense } from 'react';
+import ReactDOM from 'react-dom/client';
+import { ErrorBoundary } from 'react-error-boundary';
+
 import './styles.scss';
+
+import { RootLayout } from '@components/layouts';
+import { LoaderLogo } from '@components/ui';
+import { ENV } from '@core/env';
+import { GA } from '@core/ga';
 import '@core/i18n';
+import { CommonTheme, DarkTheme, LightTheme, ThemeConstants } from '@core/theme';
 
 const queryClient = new QueryClient({
   defaultOptions: {

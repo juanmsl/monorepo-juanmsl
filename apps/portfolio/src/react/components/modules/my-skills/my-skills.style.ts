@@ -1,5 +1,6 @@
-import { SectionLayout } from '@components/layouts';
 import styled from 'styled-components';
+
+import { SectionLayout } from '@components/layouts';
 
 export const MySkillsStyle = styled(SectionLayout)`
   user-select: none;

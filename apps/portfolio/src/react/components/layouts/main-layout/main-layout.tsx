@@ -1,9 +1,11 @@
 import { Image } from '@juanmsl/ui';
+import { NavLink, Outlet } from 'react-router-dom';
+
 import { MainLayoutStyle } from './main-layout.style';
-import { PATHS } from '@core/constants';
+
 import { PageTransition } from '@components/animations';
 import { Aside, Footer, LayoutActions } from '@components/ui';
-import { NavLink, Outlet } from 'react-router-dom';
+import { PATHS } from '@core/constants';
 
 export const MainLayout = () => {
   return (

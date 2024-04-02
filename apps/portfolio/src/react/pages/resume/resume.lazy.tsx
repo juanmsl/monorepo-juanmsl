@@ -1,5 +1,6 @@
-import { LoaderLogo } from '@components/ui';
 import { Suspense, lazy } from 'react';
+
+import { LoaderLogo } from '@components/ui';
 
 const ResumeWrapper = lazy(() => import('./resume').then(module => ({ default: module.Resume })));
 

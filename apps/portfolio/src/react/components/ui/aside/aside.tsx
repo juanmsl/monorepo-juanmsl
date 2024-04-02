@@ -1,8 +1,9 @@
-import { AsideTrigger } from './menu-toggle';
-import { NavLink } from 'react-router-dom';
-import { PATHS } from '@core/constants';
-import { useGetNavbarOptions } from '@hooks';
+import { Icon, IconNameT, Image, Line, Typography, useMediaQuery, useViewport } from '@juanmsl/ui';
+import { motion, useCycle } from 'framer-motion';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { NavLink } from 'react-router-dom';
+
 import {
   AsideContainer,
   AsideStyle,
@@ -13,10 +14,11 @@ import {
   MobileTrigger,
   Trigger,
 } from './aside.style';
+import { AsideTrigger } from './menu-toggle';
+
 import { DownloadCvButton, SocialIcons } from '@components/ui';
-import { Icon, IconNameT, Image, Line, Typography, useMediaQuery, useViewport } from '@juanmsl/ui';
-import React, { useMemo } from 'react';
-import { motion, useCycle } from 'framer-motion';
+import { PATHS } from '@core/constants';
+import { useGetNavbarOptions } from '@hooks';
 
 const variants = {
   asideContent: {

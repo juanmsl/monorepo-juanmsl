@@ -1,7 +1,9 @@
-import { ENV } from '@core/env';
 import { HoverCard } from '@juanmsl/ui';
+
 import { ProfilePictureStyle } from './profile-picture.style';
+
 import { Reveal } from '@components/animations';
+import { ENV } from '@core/env';
 import { useAsset } from '@hooks';
 
 type ProfilePictureProps = {

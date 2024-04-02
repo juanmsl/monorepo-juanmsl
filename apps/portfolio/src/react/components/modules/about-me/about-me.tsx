@@ -1,8 +1,10 @@
-import { AboutMeStyle } from './about-me.style';
-import { ProfilePicture } from '@components/resources';
-import { Reveal } from '@components/animations';
 import { Typography } from '@juanmsl/ui';
 import { useTranslation } from 'react-i18next';
+
+import { AboutMeStyle } from './about-me.style';
+
+import { Reveal } from '@components/animations';
+import { ProfilePicture } from '@components/resources';
 import { DownloadCvButton, SectionTitle } from '@components/ui';
 
 export const AboutMe = () => {

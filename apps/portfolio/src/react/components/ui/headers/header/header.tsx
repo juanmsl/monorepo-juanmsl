@@ -1,7 +1,9 @@
-import { HeaderBottom } from '@components/resources';
-import { Reveal } from '@components/animations';
 import { Typography } from '@juanmsl/ui';
+
 import { HeaderContainerStyle, HeaderStyle } from './header.style';
+
+import { Reveal } from '@components/animations';
+import { HeaderBottom } from '@components/resources';
 
 type HeaderProps = {
   title: string;

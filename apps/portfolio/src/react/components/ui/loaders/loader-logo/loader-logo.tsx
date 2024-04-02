@@ -1,5 +1,6 @@
-import { LoaderLogoStyle } from './loader-logo.style';
 import { Icon, Image, Typography } from '@juanmsl/ui';
+
+import { LoaderLogoStyle } from './loader-logo.style';
 
 type LoaderLogoProps = {
   className?: string;

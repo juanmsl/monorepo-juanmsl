@@ -1,5 +1,6 @@
-import { ENV } from '@core/env';
 import ReactGA, { EventArgs } from 'react-ga';
+
+import { ENV } from '@core/env';
 
 ReactGA.initialize(ENV.GOOGLE_ANALYTICS);
 
@@ -22,12 +23,15 @@ const reportWebVitals = onPerfEntry => {
   }
 };
 
-const sendToGA = ({ id, name, value }) => {
+const sendToGA = ({ id, name, value, delta }) => {
   ReactGA.ga('event', name, {
     event_category: GACategory.WEB_VITALS,
     event_label: id,
-    value: Math.round(name === 'CLS' ? value * 1000 : value),
+    value: delta,
     nonInteraction: true,
+    metric_id: id,
+    metric_value: value,
+    metric_delta: delta,
   });
 };
 

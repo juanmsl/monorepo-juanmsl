@@ -1,5 +1,6 @@
-import { SectionLayout } from '@components/layouts';
 import styled from 'styled-components';
+
+import { SectionLayout } from '@components/layouts';
 
 export const MyExperienceStyle = styled(SectionLayout)`
   .layout-content {

@@ -1,13 +1,15 @@
+import { Accordion, Image, Typography, formatDate, timeBetween } from '@juanmsl/ui';
+import { motion } from 'framer-motion';
+import { useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import { CompanyDetails } from './company-details';
 import { CompanyListItem } from './company-list-item';
 import { MyExperienceStyle } from './my-experience.style';
+
 import { Reveal } from '@components/animations';
-import { motion } from 'framer-motion';
-import { useGetJobExperience } from '@hooks';
-import { useTranslation } from 'react-i18next';
-import { Accordion, Image, Typography, formatDate, timeBetween } from '@juanmsl/ui';
 import { LoaderComponent, SectionTitle } from '@components/ui';
-import { useMemo, useState } from 'react';
+import { useGetJobExperience } from '@hooks';
 
 export const MyExperience = () => {
   const { t } = useTranslation();

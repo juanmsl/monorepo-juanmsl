@@ -1,8 +1,10 @@
+import { Icon, Image, Line, Typography } from '@juanmsl/ui';
+import { useTranslation } from 'react-i18next';
+
 import { FooterStyle } from './footer.style';
+
 import { FooterTop } from '@components/resources';
 import { SocialIcons } from '@components/ui';
-import { useTranslation } from 'react-i18next';
-import { Icon, Image, Line, Typography } from '@juanmsl/ui';
 
 export const Footer = () => {
   const { t } = useTranslation();

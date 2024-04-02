@@ -1,11 +1,13 @@
-import { ENV } from '@core/env';
-import { HeaderBottom } from '@components/resources';
-import { HomeHeaderStyle } from './home-header.style';
-import { Reveal } from '@components/animations';
-import { SocialIcons } from '@components/ui';
-import { useAsset } from '@hooks';
-import { useTranslation } from 'react-i18next';
 import { Line, Typography } from '@juanmsl/ui';
+import { useTranslation } from 'react-i18next';
+
+import { HomeHeaderStyle } from './home-header.style';
+
+import { Reveal } from '@components/animations';
+import { HeaderBottom } from '@components/resources';
+import { SocialIcons } from '@components/ui';
+import { ENV } from '@core/env';
+import { useAsset } from '@hooks';
 
 export const HomeHeader = () => {
   const { t } = useTranslation();

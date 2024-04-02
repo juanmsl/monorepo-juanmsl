@@ -1,5 +1,6 @@
-import { CompaniesListItemStyle } from './my-experience.style';
 import { Typography, useClassNames } from '@juanmsl/ui';
+
+import { CompaniesListItemStyle } from './my-experience.style';
 
 type CompanyItemProps = {
   isSelected?: boolean;

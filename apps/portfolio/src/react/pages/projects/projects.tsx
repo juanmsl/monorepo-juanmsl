@@ -1,6 +1,7 @@
-import { Header } from '@components/ui';
-import { SectionLayout } from '@components/layouts';
 import { useTranslation } from 'react-i18next';
+
+import { SectionLayout } from '@components/layouts';
+import { Header } from '@components/ui';
 
 export const Projects = () => {
   const { t } = useTranslation();

@@ -1,5 +1,6 @@
-import { LoaderLogo } from '@components/ui';
 import { Suspense, lazy } from 'react';
+
+import { LoaderLogo } from '@components/ui';
 
 const HomeWrapper = lazy(() => import('./home').then(module => ({ default: module.Home })));
 
