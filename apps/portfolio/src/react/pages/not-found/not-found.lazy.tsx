@@ -1,5 +1,6 @@
-import { LoaderLogo } from '@components/ui';
 import { Suspense, lazy } from 'react';
+
+import { LoaderLogo } from '@components/ui';
 
 const NotFoundWrapper = lazy(() => import('./not-found').then(module => ({ default: module.NotFound })));
 

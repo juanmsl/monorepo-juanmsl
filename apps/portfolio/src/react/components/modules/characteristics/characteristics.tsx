@@ -1,8 +1,10 @@
+import { HoverCard, Icon, IconNameT, Line, Typography } from '@juanmsl/ui';
+import { useMemo } from 'react';
+
+import { CharacteristicStyle, CharacteristicsStyle } from './characteristics.style';
+
 import { Reveal } from '@components/animations';
 import { useGetCharacteristics } from '@hooks';
-import { useMemo } from 'react';
-import { CharacteristicStyle, CharacteristicsStyle } from './characteristics.style';
-import { HoverCard, Icon, IconNameT, Line, Typography } from '@juanmsl/ui';
 
 export const Characteristics = () => {
   const { data = [] } = useGetCharacteristics();

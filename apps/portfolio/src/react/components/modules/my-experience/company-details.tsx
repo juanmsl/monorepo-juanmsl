@@ -1,7 +1,9 @@
-import { CompanyDetailsStyle } from './my-experience.style';
-import { JobExperienceEntity } from '@domain';
-import { Reveal } from '@components/animations';
 import { HoverCard, Image, Tag, Typography, formatDate, timeBetween } from '@juanmsl/ui';
+
+import { CompanyDetailsStyle } from './my-experience.style';
+
+import { Reveal } from '@components/animations';
+import { JobExperienceEntity } from '@domain';
 
 type CompanyItemProps = {
   company: JobExperienceEntity;

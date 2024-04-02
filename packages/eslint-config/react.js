@@ -59,7 +59,6 @@ module.exports = {
     'array-callback-return': 'error',
     eqeqeq: ['error', 'always'],
     'guard-for-in': 'warn',
-    'sort-imports': ['error', { memberSyntaxSortOrder: ['single', 'all', 'multiple', 'none'] }],
     'import/no-default-export': 'off',
     'import/no-named-as-default': 'error',
     'import/no-named-default': 'error',
@@ -77,6 +76,25 @@ module.exports = {
     'import/no-useless-path-segments': ['error', { noUselessIndex: true }],
     'import/no-webpack-loader-syntax': 'error',
     'import/prefer-default-export': 'off',
+    'import/order': [
+      'error',
+      {
+        'newlines-between': 'always',
+        warnOnUnassignedImports: true,
+        groups: ['builtin', 'external', 'parent', 'sibling', 'internal', 'index', 'object', 'type', 'unknown'],
+        pathGroups: [
+          {
+            pattern: 'react',
+            group: 'external',
+            position: 'before',
+          },
+        ],
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: false,
+        },
+      },
+    ],
     'line-comment-position': ['error', 'above'],
     'multiline-comment-style': ['error', 'starred-block'],
     'no-confusing-arrow': 'off',
@@ -134,7 +152,7 @@ module.exports = {
       'error',
       { namedComponents: 'arrow-function', unnamedComponents: 'arrow-function' },
     ],
-    'react-refresh/only-export-components': ['off', { allowConstantExport: true }],
+    'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',
     semi: 'error',

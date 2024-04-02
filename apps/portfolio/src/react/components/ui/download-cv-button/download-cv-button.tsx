@@ -1,9 +1,10 @@
+import { Button, HoverCard } from '@juanmsl/ui';
+import { useLocation } from 'react-router-dom';
+
+import { Reveal } from '@components/animations';
 import { ENV } from '@core/env';
 import { GA } from '@core/ga';
-import { Reveal } from '@components/animations';
 import { useAsset } from '@hooks';
-import { useLocation } from 'react-router-dom';
-import { Button, HoverCard } from '@juanmsl/ui';
 
 type DownloadCvButtonProps = {
   children: string;

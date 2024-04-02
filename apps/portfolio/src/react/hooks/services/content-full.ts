@@ -1,4 +1,6 @@
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
+
 import {
   AssetEntity,
   CharacteristicEntity,
@@ -9,7 +11,6 @@ import {
   TechnologyEntity,
 } from '@domain';
 import { ContentFullAPI, ContentFullAdapter } from '@infrastructure';
-import { UseQueryResult, useQuery } from '@tanstack/react-query';
 
 export const ContentFullKeys = {
   all: ['all'] as const,

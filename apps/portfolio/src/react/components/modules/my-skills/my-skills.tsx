@@ -1,8 +1,10 @@
-import { MySkillsStyle } from './my-skills.style';
-import { ProfessionalSkillsEntity } from '@domain';
-import { Reveal } from '@components/animations';
-import { useState } from 'react';
 import { Image, Tooltip, Typography } from '@juanmsl/ui';
+import { useState } from 'react';
+
+import { MySkillsStyle } from './my-skills.style';
+
+import { Reveal } from '@components/animations';
+import { ProfessionalSkillsEntity } from '@domain';
 import { useGetProfessionalSkills, useGetTechnologies } from '@hooks';
 
 export const MySkills = () => {

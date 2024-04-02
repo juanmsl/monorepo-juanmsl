@@ -1,7 +1,8 @@
 import { Image } from '@juanmsl/ui';
-import { ToggleSelector } from '@components/ui';
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import { ToggleSelector } from '@components/ui';
 
 export const LanguageSelector = () => {
   const { t, i18n } = useTranslation();

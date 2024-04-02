@@ -1,9 +1,9 @@
-import Backend from 'i18next-http-backend';
-import detector from 'i18next-browser-languagedetector';
-import { initReactI18next } from 'react-i18next';
-import moment from 'moment/moment';
 import i18next, { InitOptions } from 'i18next';
+import detector from 'i18next-browser-languagedetector';
+import Backend from 'i18next-http-backend';
 import 'moment/locale/es.js';
+import moment from 'moment/moment';
+import { initReactI18next } from 'react-i18next';
 
 /*
  * [supportedLngs] -> Here should be only the locales already supported in the locales folder

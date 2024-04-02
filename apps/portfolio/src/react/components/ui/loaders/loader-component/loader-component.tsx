@@ -1,4 +1,5 @@
 import { Icon } from '@juanmsl/ui';
+
 import { LoaderComponentStyle } from './loader-component.style';
 
 type LoaderComponentProps = {

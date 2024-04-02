@@ -1,5 +1,6 @@
-import { ToggleSelectorStyle } from './toggle-selector.style';
 import { Tooltip, TooltipPosition, useClassNames } from '@juanmsl/ui';
+
+import { ToggleSelectorStyle } from './toggle-selector.style';
 
 enum ToggleSelectorOrientation {
   VERTICAL = 'vertical',

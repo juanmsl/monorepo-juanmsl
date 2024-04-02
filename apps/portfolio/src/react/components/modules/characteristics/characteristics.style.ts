@@ -1,5 +1,6 @@
-import { SectionLayout } from '@components/layouts';
 import styled from 'styled-components';
+
+import { SectionLayout } from '@components/layouts';
 
 export const CharacteristicsStyle = styled(SectionLayout)`
   background: ${props => props.theme.colors.secondary};

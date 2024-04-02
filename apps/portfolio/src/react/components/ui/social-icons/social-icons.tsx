@@ -1,9 +1,11 @@
-import { GA } from '@core/ga';
-import { Reveal } from '@components/animations';
-import { SocialIconsStyle } from './social-icons.style';
-import { useCallback } from 'react';
-import { useGetSocialContact } from '@hooks';
 import { Icon, IconNameT, Tooltip, TooltipProps } from '@juanmsl/ui';
+import { useCallback } from 'react';
+
+import { SocialIconsStyle } from './social-icons.style';
+
+import { Reveal } from '@components/animations';
+import { GA } from '@core/ga';
+import { useGetSocialContact } from '@hooks';
 
 type SocialIconsProps = {
   position: TooltipProps['position'];

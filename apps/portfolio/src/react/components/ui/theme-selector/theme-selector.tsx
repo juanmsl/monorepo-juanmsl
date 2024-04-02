@@ -1,6 +1,7 @@
-import { ToggleSelector } from '@components/ui';
-import { useTranslation } from 'react-i18next';
 import { Icon, Tooltip, useMyTheme } from '@juanmsl/ui';
+import { useTranslation } from 'react-i18next';
+
+import { ToggleSelector } from '@components/ui';
 
 export const ThemeSelector = () => {
   const { t } = useTranslation();

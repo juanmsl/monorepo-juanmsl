@@ -1,10 +1,11 @@
 import { AnimatePresence } from 'framer-motion';
-import { GA } from '@core/ga';
+import { useEffect } from 'react';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+
 import { MainLayout } from '@components/layouts';
 import { PATHS } from '@core/constants';
-import { useEffect } from 'react';
+import { GA } from '@core/ga';
 import { LazyBlog, LazyHome, LazyProjects, LazyResume } from '@pages';
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
 export const Router = () => {
   const location = useLocation();

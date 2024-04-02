@@ -1,6 +1,7 @@
-import { PageTransitionStyle } from './page-transition.style';
-import React from 'react';
 import { motion } from 'framer-motion';
+import React from 'react';
+
+import { PageTransitionStyle } from './page-transition.style';
 
 type PageTransitionProps = {
   children: React.ReactNode;

@@ -1,3 +1,5 @@
+import axios, { AxiosInstance } from 'axios';
+
 import { ENV } from '@core/env';
 import {
   CharacteristicCollection,
@@ -10,7 +12,6 @@ import {
   QueryResponse,
   TechnologiesCollection,
 } from '@domain';
-import axios, { AxiosInstance } from 'axios';
 
 export class ContentFullAdapter implements ContentFullPort {
   private http: AxiosInstance;
