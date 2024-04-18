@@ -9,7 +9,7 @@
   NODE_VERSION = "20.11.0"
 
 [[redirects]]
-  from = "https://box-shadow-generator.netlify.app/*"
+  from = "https://juanmsl-box-shadow-generator.netlify.app/*"
   to = "https://box-shadow.juanmsl.com/:splat"
   status = 301
   force = true
