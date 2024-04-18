@@ -1,6 +1,8 @@
-import { ThemeProvider as StyledThemeProvider } from 'styled-components';
-import { CommonThemeEntity, PaletteThemeEntity, ThemeConstantsEntity, ThemeEntity } from './themes';
 import React, { Suspense, useCallback, useContext, useEffect, useState } from 'react';
+import { ThemeProvider as StyledThemeProvider } from 'styled-components';
+
+import { ThemeStyle } from './theme.style';
+import { CommonThemeEntity, PaletteThemeEntity, ThemeConstantsEntity, ThemeEntity } from './themes';
 
 export enum THEME {
   LIGHT = 'light',
@@ -11,6 +13,7 @@ type ThemeContext = {
   themeName: `${THEME}`;
   changeTheme: (theme: `${THEME}`) => void;
   toggleTheme: () => void;
+  setSystemTheme: () => void;
 };
 
 const ThemeContext = React.createContext<ThemeContext | null>(null);
@@ -25,21 +28,64 @@ type ThemeProviderProps = {
 
 export const ThemeProvider = ({ children, commonTheme, lightTheme, darkTheme, constants }: ThemeProviderProps) => {
   const [themeName, setThemeName] = useState<`${THEME}`>(THEME.DARK);
+  const [systemThemeName, setSystemThemeName] = useState<`${THEME}`>(THEME.DARK);
+  const [useSystemTheme, setUseSystemTheme] = useState(false);
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme-name');
+
+    if (!savedTheme || ![THEME.DARK, THEME.LIGHT].includes(savedTheme as THEME)) {
+      setUseSystemTheme(true);
+      localStorage.setItem('theme-name', 'system');
+    } else {
+      setThemeName(savedTheme as `${THEME}`);
+      localStorage.setItem('theme-name', savedTheme);
+    }
+  }, []);
 
   useEffect(() => {
     const mqListener = (e: MediaQueryListEvent) => {
-      setThemeName(e.matches ? THEME.DARK : THEME.LIGHT);
+      setSystemThemeName(e.matches ? THEME.DARK : THEME.LIGHT);
     };
 
     const darkThemeMq = window.matchMedia('(prefers-color-scheme: dark)');
+    setSystemThemeName(darkThemeMq.matches ? THEME.DARK : THEME.LIGHT);
     darkThemeMq.addEventListener('change', mqListener);
-    setThemeName(darkThemeMq.matches ? THEME.DARK : THEME.LIGHT);
 
     return () => darkThemeMq.removeEventListener('change', mqListener);
   }, []);
 
-  const changeTheme = useCallback((themeName: `${THEME}`) => setThemeName(themeName), []);
-  const toggleTheme = useCallback(() => setThemeName(prev => (prev === 'light' ? 'dark' : 'light')), []);
+  const setSystemTheme = useCallback(() => {
+    localStorage.setItem('theme-name', 'system');
+    setUseSystemTheme(true);
+  }, []);
+
+  const changeTheme = useCallback(
+    (themeName: `${THEME}`) => {
+      setThemeName(themeName);
+      localStorage.setItem('theme-name', themeName);
+
+      if (useSystemTheme) {
+        setUseSystemTheme(false);
+      }
+    },
+    [useSystemTheme],
+  );
+
+  const toggleTheme = useCallback(() => {
+    setThemeName(prev => {
+      let theme = prev === 'light' ? 'dark' : 'light';
+
+      if (useSystemTheme) {
+        theme = systemThemeName === 'light' ? 'dark' : 'light';
+        setUseSystemTheme(false);
+      }
+
+      localStorage.setItem('theme-name', theme);
+
+      return theme as `${THEME}`;
+    });
+  }, [systemThemeName, useSystemTheme]);
 
   const themes: Record<THEME, ThemeEntity> = {
     light: {
@@ -56,18 +102,19 @@ export const ThemeProvider = ({ children, commonTheme, lightTheme, darkTheme, co
     <Suspense>
       <ThemeContext.Provider
         value={{
-          themeName,
+          themeName: useSystemTheme ? systemThemeName : themeName,
           changeTheme,
           toggleTheme,
+          setSystemTheme,
         }}
       >
         <StyledThemeProvider
           theme={{
-            colors: themes[themeName],
+            colors: themes[useSystemTheme ? systemThemeName : themeName],
             constants: constants,
           }}
         >
-          {children}
+          <ThemeStyle>{children}</ThemeStyle>
         </StyledThemeProvider>
       </ThemeContext.Provider>
     </Suspense>
