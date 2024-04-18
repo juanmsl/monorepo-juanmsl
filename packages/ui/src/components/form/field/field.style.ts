@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 type FieldStyleProps = {
-  isFocus: boolean;
+  $isFocus: boolean;
 };
 export const FieldStyle = styled.section<FieldStyleProps>`
   display: grid;
@@ -27,6 +27,7 @@ export const FieldStyle = styled.section<FieldStyleProps>`
 
   .field-label {
     grid-area: fieldLabel;
+    color: ${props => (props.$isFocus ? props.theme.colors.primary : 'inherit')};
   }
 
   .field-state {
@@ -39,13 +40,17 @@ export const FieldStyle = styled.section<FieldStyleProps>`
     grid-template-columns: auto 1fr auto;
     grid-template-areas: 'fieldLeftIcon fieldInputComponent fieldRightIcon';
     align-items: center;
-    border-bottom: 1px solid ${props => (props.isFocus ? props.theme.colors.primary : '#555555')};
+    border-bottom: 1px solid ${props => (props.$isFocus ? props.theme.colors.primary : '#555555')};
+
+    &.no-border-bottom {
+      border-bottom: 0;
+    }
 
     .field-icon {
       font-size: 0.9em;
       place-self: center;
       cursor: pointer;
-      color: ${props => (props.isFocus ? props.theme.colors.primary : 'inherit')};
+      color: ${props => (props.$isFocus ? props.theme.colors.primary : 'inherit')};
     }
 
     .field-left-icon {
