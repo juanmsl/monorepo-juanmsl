@@ -1,7 +1,9 @@
-import { Icon } from '../../contexts';
-import { InfiniteScrollStyle } from './infinity-scroll.style';
-import { useInView } from '../../hooks';
 import { LegacyRef, RefObject, useEffect } from 'react';
+
+import { Icon } from '../../contexts';
+import { useInView } from '../../hooks';
+
+import { InfiniteScrollStyle } from './infinity-scroll.style';
 
 type InfinityScrollProps<T> = {
   isLoading: boolean;
