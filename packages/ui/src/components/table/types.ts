@@ -1,5 +1,6 @@
-import { KeyValuesOf } from '../../types';
 import React from 'react';
+
+import { KeyValuesOf } from '../../types';
 
 type Alignment = 'left' | 'center' | 'right';
 
