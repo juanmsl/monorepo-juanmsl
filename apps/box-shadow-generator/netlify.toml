@@ -1,0 +1,21 @@
+[build]
+  publish = "apps/box-shadow-generator/dist/"
+  command = "turbo run build --filter @juanmsl/box-shadow-generator"
+  base = "/"
+
+[build.environment]
+  YARN_FLAGS = "--frozen-lockfile"
+  YARN_VERSION = "1.22.21"
+  NODE_VERSION = "20.11.0"
+
+[[redirects]]
+  from = "https://box-shadow-generator.netlify.app/*"
+  to = "https://box-shadow.juanmsl.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
