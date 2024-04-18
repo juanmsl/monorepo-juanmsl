@@ -1,7 +1,9 @@
-import { Icon } from '../../contexts';
-import ReactDOM from 'react-dom';
-import { ModalOverlay, ModalWrapper } from './modal.style';
 import React, { FC, ReactNode, useEffect, useId, useState } from 'react';
+import ReactDOM from 'react-dom';
+
+import { Icon } from '../../contexts';
+
+import { ModalOverlay, ModalWrapper } from './modal.style';
 
 type ModalProps = {
   isOpen: boolean;

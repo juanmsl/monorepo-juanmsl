@@ -1,6 +1,8 @@
-import { HoverCardStyle } from './hover-card.style';
-import { useEventListener } from '../../hooks';
 import { MouseEvent, MouseEventHandler, useCallback, useRef } from 'react';
+
+import { useEventListener } from '../../hooks';
+
+import { HoverCardStyle } from './hover-card.style';
 
 type HoverCardProps = {
   children: React.ReactNode;

@@ -1,5 +1,6 @@
-import { useEventListener } from './use-event-listener';
 import { useCallback, useRef, useState } from 'react';
+
+import { useEventListener } from './use-event-listener';
 
 export const useHover = () => {
   const [isHovered, setIsHovered] = useState(false);

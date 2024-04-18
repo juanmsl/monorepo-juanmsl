@@ -1,16 +1,25 @@
-import { TypographyStyle } from './typography.style';
-import { useClassNames } from '../../hooks';
-import { HTMLAttributes, createElement, forwardRef, useMemo } from 'react';
-import { TypographyVariant, TypographyWeight } from './typography.constants';
+import React, { HTMLAttributes, createElement, forwardRef, useMemo } from 'react';
 
-type TypographyProps = HTMLAttributes<HTMLElement> & {
+import { useClassNames } from '../../hooks';
+
+import {
+  TypographyVariant,
+  TypographyVariantsClassNames,
+  TypographyVariantsElements,
+  TypographyWeight,
+} from './typography.constants';
+import { TypographyStyle } from './typography.style';
+
+type TypographyProps = HTMLAttributes<HTMLElement | HTMLLabelElement> & {
   variant?: `${TypographyVariant}`;
   nowrap?: boolean;
   as?: keyof React.ReactHTML;
   weight?: `${TypographyWeight}`;
   children: React.ReactNode;
   withoutPadding?: boolean;
+  htmlFor?: string;
 };
+
 export const TypographyComponent = (
   {
     variant = 'body',
@@ -20,53 +29,34 @@ export const TypographyComponent = (
     as,
     weight,
     withoutPadding = false,
+    htmlFor,
     ...props
   }: TypographyProps,
   ref: React.ForwardedRef<unknown>,
 ) => {
   const className = useClassNames({
-    [variant]: true,
+    [TypographyVariantsClassNames[variant]]: TypographyVariantsClassNames[variant] !== undefined,
     [customClassname]: !!customClassname,
     [weight ?? '']: !!weight,
     'no-padding': withoutPadding,
     nowrap: nowrap,
   });
 
-  const component = useMemo<keyof React.ReactHTML>(() => {
-    if (as) {
-      return as;
-    }
-
-    switch (variant) {
-      case TypographyVariant.HERO:
-      case TypographyVariant.HEADER1:
-        return 'h1';
-      case TypographyVariant.HEADER2:
-        return 'h2';
-      case TypographyVariant.HEADER3:
-        return 'h3';
-      case TypographyVariant.HEADER4:
-        return 'h4';
-      case TypographyVariant.BODY:
-        return 'p';
-      case TypographyVariant.LABEL:
-        return 'span';
-      case TypographyVariant.SMALL:
-        return 'small';
-      default:
-        return 'p';
-    }
-  }, [as, variant]);
+  const component = useMemo(
+    () => TypographyVariantsElements[variant] ?? TypographyVariantsElements[TypographyVariant.BODY],
+    [variant],
+  );
 
   return (
     <>
       <TypographyStyle />
       {createElement(
-        component,
+        as ?? component,
         {
           ...props,
           className,
           ref,
+          htmlFor,
           style: { fontWeight: weight },
         },
         children,

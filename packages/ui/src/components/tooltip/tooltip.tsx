@@ -1,7 +1,9 @@
 import React from 'react';
+
+import { useClassNames } from '../../hooks';
+
 import { TooltipPosition } from './tooltip.constants';
 import { TooltipStyle } from './tooltip.style';
-import { useClassNames } from '../../hooks';
 
 export type TooltipProps = {
   position?: `${TooltipPosition}`;

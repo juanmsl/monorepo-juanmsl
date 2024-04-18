@@ -1,17 +1,14 @@
-import { LabelStyle } from './label.style';
+import { Typography } from '../../typography';
 
 type LabelProps = {
   id: string;
   label: string;
-  isFocus: boolean;
   className?: string;
   style?: React.CSSProperties;
 };
 
-export const Label = ({ id, label, isFocus, className = '', style = {} }: LabelProps): React.ReactElement => {
-  return (
-    <LabelStyle isFocus={isFocus} htmlFor={id} className={className} style={style}>
-      {label}
-    </LabelStyle>
-  );
-};
+export const Label = ({ id, label, className = '', style = {} }: LabelProps) => (
+  <Typography variant='label-form' htmlFor={id} className={className} style={style} weight='bold' nowrap>
+    {label}
+  </Typography>
+);
