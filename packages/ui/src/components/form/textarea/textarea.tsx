@@ -27,14 +27,14 @@ export const Textarea = ({
   label,
 }: InputProps<TextareaProps, string>) => {
   const id = useId();
-  const { isFocus, handlers } = useInputHandlers({
+  const { handlers } = useInputHandlers({
     onBlur: onBlur,
     onChange: value => setValue(value),
   });
 
   return (
     <section>
-      {!!label && <Label id={id} label={label} isFocus={isFocus} />}
+      {!!label && <Label id={id} label={label} />}
       <TextareaSC
         id={id}
         name={name}
