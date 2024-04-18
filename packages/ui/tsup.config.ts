@@ -14,6 +14,7 @@ export default defineConfig({
       'axios',
       'color',
       'react-hook-form',
+      'framer-motion',
       'yup',
     ];
   },
