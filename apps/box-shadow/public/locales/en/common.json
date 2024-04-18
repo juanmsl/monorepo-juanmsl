@@ -1,0 +1,13 @@
+{
+  "language": "English",
+  "fullName": "Juan Manuel Sánchez Lozano",
+  "shortName": "Juan Sánchez",
+  "languages": {
+    "es": "Español",
+    "en": "English"
+  },
+  "themes": {
+    "light": "Light",
+    "dark": "Dark"
+  }
+}
