@@ -1,7 +1,9 @@
-import { Meta, StoryObj } from '@storybook/react';
 import { Table, TableColumn } from '@juanmsl/ui';
-import { UserEntity, Users } from '../../shared/domain';
+import { Meta, StoryObj } from '@storybook/react';
 import { useCallback, useState } from 'react';
+
+import { UserEntity, Users } from '../../shared/domain';
+
 // import { UserEntity, Users } from '@ui-docs/shared/domain';
 
 const TableStory: Meta<typeof Table<UserEntity>> = {

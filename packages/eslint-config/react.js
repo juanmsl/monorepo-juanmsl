@@ -152,7 +152,7 @@ module.exports = {
       'error',
       { namedComponents: 'arrow-function', unnamedComponents: 'arrow-function' },
     ],
-    'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+    'react-refresh/only-export-components': ['off', { allowConstantExport: true }],
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',
     semi: 'error',
