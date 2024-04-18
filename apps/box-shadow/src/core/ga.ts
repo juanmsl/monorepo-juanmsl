@@ -9,10 +9,10 @@ TagManager.initialize({
 });
 
 enum GACategory {
-  WEB_VITALS = 'Web Vitals',
-  JS_DEPENDENCIES = 'JS Dependencies',
-  CV_DOWNLOAD = 'CV Downloaded',
-  SOCIAL_VISITED = 'Social network visited',
+  WEB_VITALS = 'web_vitals',
+  JS_DEPENDENCIES = 'js_dependencies',
+  CV_DOWNLOAD = 'cv_downloaded',
+  SOCIAL_VISITED = 'social_network_visited',
 }
 
 const reportWebVitals = onPerfEntry => {
