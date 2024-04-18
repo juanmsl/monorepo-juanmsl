@@ -1,10 +1,12 @@
-import { InputProps } from '../types';
-import { formatBytes } from '../../../helpers';
-import { withController } from '../with-controller';
-import { FileCardSC, InputFileSC } from './input-file.style';
-import { FileResolvedT, FileTypeEnum, useFileReader } from '../../../hooks';
-import { Icon, IconNameT } from '../../../contexts';
 import { useEffect, useId, useMemo, useState } from 'react';
+
+import { Icon, IconNameT } from '../../../contexts';
+import { formatBytes } from '../../../helpers';
+import { FileResolvedT, FileTypeEnum, useFileReader } from '../../../hooks';
+import { InputProps } from '../types';
+import { withController } from '../with-controller';
+
+import { FileCardSC, InputFileSC } from './input-file.style';
 
 type InputFileProps = {
   accept?: string;

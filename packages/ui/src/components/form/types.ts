@@ -1,6 +1,7 @@
-import { FieldError } from 'react-hook-form';
-import { IconNameT } from '../../contexts';
 import React from 'react';
+import { FieldError } from 'react-hook-form';
+
+import { IconNameT } from '../../contexts';
 
 export type Props = Record<string, unknown>;
 

@@ -1,8 +1,10 @@
+import React, { useCallback, useEffect, useId, useRef, useState } from 'react';
+
 import { Field } from '../field';
 import { InputProps } from '../types';
+
 import { Options } from './options';
 import { StyledSelect } from './select.style';
-import React, { useCallback, useEffect, useId, useRef, useState } from 'react';
 
 type SelectProps<T> = {
   options: Array<T>;

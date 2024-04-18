@@ -5,14 +5,16 @@ export const ButtonStyle = styled.button`
   cursor: pointer;
   font-weight: bold;
   display: grid;
-  grid-template-areas: 'leftIcon text rightIcon';
+  grid-template-areas: 'leftIcon buttonText rightIcon';
   grid-template-columns: auto 1fr auto;
   align-items: center;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
   transition: all 100ms ease;
+  justify-items: center;
   border-radius: 5px;
+  text-align: center;
 
   &.rounded {
     border-radius: 500px;
@@ -35,10 +37,16 @@ export const ButtonStyle = styled.button`
 
   .button-left-icon {
     margin-right: 10px;
+    grid-area: leftIcon;
   }
 
   .button-right-icon {
     margin-left: 10px;
+    grid-area: rightIcon;
+  }
+
+  .button-text {
+    grid-area: buttonText;
   }
 
   padding: 10px 20px;
