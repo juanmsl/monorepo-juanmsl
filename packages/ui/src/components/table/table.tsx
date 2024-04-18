@@ -1,12 +1,10 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
-
 import { Icon } from '../../contexts';
 import { InfinityScroll } from '../infinity-scroll';
-
 import { TableHeader } from './table.header';
 import { TableRow } from './table.row';
 import { TableStyle } from './table.style';
 import { TableColumn, TableDataGeneric, TableProps } from './types';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 export const Table = <T extends TableDataGeneric>({
   data,

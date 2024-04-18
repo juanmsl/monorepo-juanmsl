@@ -1,5 +1,4 @@
 import { Controller, useFormContext } from 'react-hook-form';
-
 import { InputControllerProps, InputProps, Props } from './types';
 
 export const withController = <T extends Props, V>(

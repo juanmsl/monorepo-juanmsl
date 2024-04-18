@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
-
 import { useEventListener } from './use-event-listener';
+import { useEffect, useState } from 'react';
 
 enum ScreenOrientation {
   PORTRAIT = 'portrait',

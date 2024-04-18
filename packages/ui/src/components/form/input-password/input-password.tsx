@@ -1,10 +1,9 @@
-import { useId, useMemo } from 'react';
-
-import { IconNameT } from '../../../contexts';
-import { useInputHandlers, useToggleValues } from '../../../hooks';
 import { Field } from '../field';
+import { IconNameT } from '../../../contexts';
 import { InputProps } from '../types';
 import { withController } from '../with-controller';
+import { useId, useMemo } from 'react';
+import { useInputHandlers, useToggleValues } from '../../../hooks';
 
 type InputPasswordProps = {};
 

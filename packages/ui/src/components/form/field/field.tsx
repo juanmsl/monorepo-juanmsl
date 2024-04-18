@@ -1,9 +1,7 @@
-import { Icon, IconNameT } from '../../../contexts';
-import { useClassNames } from '../../../hooks';
+import { FieldStyle } from './field.style';
 import { InputState } from '../input-state';
 import { Label } from '../label';
-
-import { FieldStyle } from './field.style';
+import { Icon, IconNameT } from '../../../contexts';
 
 type FieldInputProps = {
   id: string;
@@ -15,7 +13,6 @@ type FieldInputProps = {
   leftIcon?: IconNameT;
   onClickLeftIcon?: () => void;
   isFocus?: boolean;
-  noBorderBottom?: boolean;
 };
 
 export const Field = ({
@@ -27,18 +24,12 @@ export const Field = ({
   onClickLeftIcon,
   children,
   error,
-  isFocus = false,
-  noBorderBottom = false,
-}: FieldInputProps) => {
-  const fieldInputContainerClassName = useClassNames({
-    'field-input-container': true,
-    'no-border-bottom': noBorderBottom,
-  });
-
+  isFocus,
+}: FieldInputProps): React.ReactElement => {
   return (
-    <FieldStyle $isFocus={isFocus}>
-      {!!label && <Label id={id} label={label} className='field-label' />}
-      <section className={fieldInputContainerClassName}>
+    <FieldStyle isFocus={!!isFocus}>
+      {!!label && <Label id={id} label={label} isFocus={!!isFocus} className='field-label' />}
+      <section className='field-input-container'>
         {!!leftIcon && <Icon name={leftIcon} className='field-icon field-left-icon' onClick={onClickLeftIcon} />}
         <section className='input-component'>{children}</section>
         {!!rightIcon && (

@@ -1,10 +1,8 @@
-import { useCallback } from 'react';
-
 import { InfinityScroll } from '../../infinity-scroll';
-
 import { OptionsHeader } from './options-header';
-import { SelectOption } from './select-option';
 import { OptionsStyle } from './select.style';
+import { SelectOption } from './select-option';
+import { useCallback } from 'react';
 
 type OptionsProps<T> = {
   isOpen: boolean;

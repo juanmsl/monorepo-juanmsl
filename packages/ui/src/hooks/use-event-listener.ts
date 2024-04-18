@@ -29,18 +29,18 @@ function useEventListener<EventName extends keyof DocumentEventMap>(
 ): void;
 
 function useEventListener<
-  MediaQueryEventName extends keyof MediaQueryListEventMap,
   WindowEventName extends keyof WindowEventMap,
-  ElementEventName extends keyof HTMLElementEventMap,
   DocumentEventName extends keyof DocumentEventMap,
+  ElementEventName extends keyof HTMLElementEventMap,
+  MediaQueryEventName extends keyof MediaQueryListEventMap,
   ElementRef extends HTMLElement | MediaQueryList | Document | Window | void = void,
 >(
   eventName: WindowEventName | DocumentEventName | ElementEventName | MediaQueryEventName,
   callback: (
     event:
-      | MediaQueryListEventMap[MediaQueryEventName]
       | WindowEventMap[WindowEventName]
       | HTMLElementEventMap[ElementEventName]
+      | MediaQueryListEventMap[MediaQueryEventName]
       | DocumentEventMap[DocumentEventName]
       | Event,
   ) => void,

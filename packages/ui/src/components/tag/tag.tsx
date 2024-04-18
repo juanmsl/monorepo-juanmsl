@@ -1,9 +1,7 @@
 import { HTMLAttributes } from 'react';
-
-import { useClassNames } from '../../hooks';
-import { Typography } from '../typography';
-
 import { TagStyle } from './tag.style';
+import { Typography } from '../typography';
+import { useClassNames } from '../../hooks';
 
 type TagProps = HTMLAttributes<HTMLElement> & {
   children: string;

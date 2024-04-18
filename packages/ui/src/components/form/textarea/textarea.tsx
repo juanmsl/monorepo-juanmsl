@@ -1,11 +1,9 @@
-import React, { useId } from 'react';
-
-import { useInputHandlers } from '../../../hooks';
-import { Label } from '../label';
 import { InputProps } from '../types';
-import { withController } from '../with-controller';
-
+import { Label } from '../label';
 import { TextareaSC } from './textarea.style';
+import { useInputHandlers } from '../../../hooks';
+import { withController } from '../with-controller';
+import React, { useId } from 'react';
 
 type TextareaProps = {
   rows?: number;
@@ -27,14 +25,14 @@ export const Textarea = ({
   label,
 }: InputProps<TextareaProps, string>) => {
   const id = useId();
-  const { handlers } = useInputHandlers({
+  const { isFocus, handlers } = useInputHandlers({
     onBlur: onBlur,
     onChange: value => setValue(value),
   });
 
   return (
     <section>
-      {!!label && <Label id={id} label={label} />}
+      {!!label && <Label id={id} label={label} isFocus={isFocus} />}
       <TextareaSC
         id={id}
         name={name}

@@ -5,8 +5,6 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "portfolio:dev": "turbo dev --filter=portfolio",
-    "box-shadow-generator:dev": "turbo dev --filter=box-shadow-generator",
-    "world-app:dev": "turbo dev --filter=world-app",
     "lint": "turbo lint",
     "lint:fix": "yarn format && turbo lint:fix",
     "format": "prettier --write \"**/*.{ts,tsx,md,js}\"",

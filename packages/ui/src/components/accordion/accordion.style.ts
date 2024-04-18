@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 export const AccordionStyle = styled.section`
   display: grid;
+  gap: 20px;
 `;
 
 export const AccordionItemStyle = styled.section`
   display: grid;
-  position: relative;
 
   .accordion-header {
     display: grid;
@@ -14,10 +14,6 @@ export const AccordionItemStyle = styled.section`
     align-items: center;
     gap: 20px;
     cursor: pointer;
-    position: sticky;
-    top: 0;
-    background: ${props => props.theme.colors.background};
-    padding: 20px 0;
 
     &.has-start-content {
       grid-template-columns: auto 1fr auto;
@@ -26,6 +22,7 @@ export const AccordionItemStyle = styled.section`
 
   .accordion-header-content {
     display: grid;
+    gap: 5px;
   }
 
   .accordion-toggle-icon {
@@ -41,6 +38,6 @@ export const AccordionItemStyle = styled.section`
   }
 
   .accordion-body-content {
-    padding: 10px 0 20px;
+    padding: 20px 0;
   }
 `;

@@ -3,16 +3,16 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import { ErrorBoundary } from 'react-error-boundary';
-import { BrowserRouter } from 'react-router-dom';
 
 import './styles.scss';
 
 import { LoaderLogo } from '@components/ui';
+// eslint-disable-next-line
+import { RootLayout } from '@components/layouts';
 import { ENV } from '@core/env';
 import { GA } from '@core/ga';
 import '@core/i18n';
 import { CommonTheme, DarkTheme, LightTheme, ThemeConstants } from '@core/theme';
-import { Router } from '@router';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -35,9 +35,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                   GA.error(error.message);
                 }}
               >
-                <BrowserRouter>
-                  <Router />
-                </BrowserRouter>
+                <RootLayout />
               </ErrorBoundary>
             </Suspense>
           </QueryClientProvider>

@@ -1,25 +1,16 @@
-import React, { HTMLAttributes, createElement, forwardRef, useMemo } from 'react';
-
-import { useClassNames } from '../../hooks';
-
-import {
-  TypographyVariant,
-  TypographyVariantsClassNames,
-  TypographyVariantsElements,
-  TypographyWeight,
-} from './typography.constants';
 import { TypographyStyle } from './typography.style';
+import { useClassNames } from '../../hooks';
+import { HTMLAttributes, createElement, forwardRef, useMemo } from 'react';
+import { TypographyVariant, TypographyWeight } from './typography.constants';
 
-type TypographyProps = HTMLAttributes<HTMLElement | HTMLLabelElement> & {
+type TypographyProps = HTMLAttributes<HTMLElement> & {
   variant?: `${TypographyVariant}`;
   nowrap?: boolean;
   as?: keyof React.ReactHTML;
   weight?: `${TypographyWeight}`;
   children: React.ReactNode;
   withoutPadding?: boolean;
-  htmlFor?: string;
 };
-
 export const TypographyComponent = (
   {
     variant = 'body',
@@ -29,34 +20,53 @@ export const TypographyComponent = (
     as,
     weight,
     withoutPadding = false,
-    htmlFor,
     ...props
   }: TypographyProps,
   ref: React.ForwardedRef<unknown>,
 ) => {
   const className = useClassNames({
-    [TypographyVariantsClassNames[variant]]: TypographyVariantsClassNames[variant] !== undefined,
+    [variant]: true,
     [customClassname]: !!customClassname,
     [weight ?? '']: !!weight,
     'no-padding': withoutPadding,
     nowrap: nowrap,
   });
 
-  const component = useMemo(
-    () => TypographyVariantsElements[variant] ?? TypographyVariantsElements[TypographyVariant.BODY],
-    [variant],
-  );
+  const component = useMemo<keyof React.ReactHTML>(() => {
+    if (as) {
+      return as;
+    }
+
+    switch (variant) {
+      case TypographyVariant.HERO:
+      case TypographyVariant.HEADER1:
+        return 'h1';
+      case TypographyVariant.HEADER2:
+        return 'h2';
+      case TypographyVariant.HEADER3:
+        return 'h3';
+      case TypographyVariant.HEADER4:
+        return 'h4';
+      case TypographyVariant.BODY:
+        return 'p';
+      case TypographyVariant.LABEL:
+        return 'span';
+      case TypographyVariant.SMALL:
+        return 'small';
+      default:
+        return 'p';
+    }
+  }, [as, variant]);
 
   return (
     <>
       <TypographyStyle />
       {createElement(
-        as ?? component,
+        component,
         {
           ...props,
           className,
           ref,
-          htmlFor,
           style: { fontWeight: weight },
         },
         children,

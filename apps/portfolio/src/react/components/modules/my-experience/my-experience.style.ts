@@ -15,7 +15,7 @@ export const MyExperienceStyle = styled(SectionLayout)`
 
     .accordion-header-content {
       display: grid;
-      gap: 2px;
+      gap: 5px;
     }
 
     .position {

@@ -1,6 +1,5 @@
-import React, { useCallback, useMemo, useReducer } from 'react';
-
 import { useSafeDispatch } from './use-safe-dispatch';
+import React, { useCallback, useMemo, useReducer } from 'react';
 
 type AsyncState<T> =
   | {

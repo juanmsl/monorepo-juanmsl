@@ -1,33 +1,10 @@
-import { motion } from 'framer-motion';
-import React, { createContext, useCallback, useContext, useMemo, useState } from 'react';
-
-import { Icon, IconNameT, TypographyVariants } from '../../contexts';
-import { useClassNames } from '../../hooks';
 import { Line } from '../line';
 import { Typography } from '../typography';
-
+import { motion } from 'framer-motion';
+import { useClassNames } from '../../hooks';
 import { AccordionItemStyle, AccordionStyle } from './accordion.style';
-
-const variants = {
-  body: {
-    open: {
-      height: 'auto',
-      opacity: 1,
-      /*
-       * transition: {
-       *   type: 'spring',
-       *   damping: 10,
-       *   stiffness: 200,
-       *   restDelta: 0.01,
-       * },
-       */
-    },
-    closed: {
-      height: 0,
-      opacity: 0,
-    },
-  },
-};
+import { Icon, IconNameT, TypographyVariants } from '../../contexts';
+import React, { createContext, useCallback, useContext, useMemo, useState } from 'react';
 
 type AccordionContextState = {
   toggleItem: (id: string) => void;
@@ -96,17 +73,6 @@ type AccordionItemProps = {
   children: React.ReactNode;
   startContent?: (isOpen: boolean) => React.ReactNode;
   middleContent?: (data: { isOpen: boolean; title: string; subtitle?: string }) => React.ReactNode;
-  endContent?: (isOpen: boolean) => React.ReactNode;
-  className?: string;
-  style?: React.CSSProperties;
-  classNames?: {
-    header?: string;
-    headerContent?: string;
-    title?: string;
-    subtitle?: string;
-    toggleIcon?: string;
-    body?: string;
-  };
 };
 
 const AccordionItem = ({
@@ -118,82 +84,53 @@ const AccordionItem = ({
   icon = 'caret-left',
   startContent,
   middleContent,
-  endContent,
-  classNames = {},
-  className = '',
-  style = {},
 }: AccordionItemProps) => {
   const [isOpen, toggle] = useAccordionItem();
   const headerClassName = useClassNames({
     'accordion-header': true,
     'has-start-content': !!startContent,
-    [classNames?.header ?? '']: !!classNames?.header,
   });
-
-  const headerContentClassName = useClassNames({
-    'accordion-header-content': true,
-    [classNames?.headerContent ?? '']: !!classNames?.headerContent,
-  });
-
-  const toggleIconClassName = useClassNames({
-    'accordion-toggle-icon': true,
-    isOpen: isOpen,
-    [classNames?.toggleIcon ?? '']: !!classNames?.toggleIcon,
-  });
-
-  const bodyContentClassName = useClassNames({
-    'accordion-body-content': true,
-    [classNames?.body ?? '']: !!classNames?.body,
-  });
-
-  const headerStart = useMemo(() => (startContent ? startContent(isOpen) : null), [isOpen, startContent]);
-
-  const headerMiddle = useMemo(
-    () =>
-      middleContent ? (
-        middleContent({ isOpen, title, subtitle })
-      ) : (
-        <section className={headerContentClassName}>
-          <Typography className={classNames?.title} variant={titleVariant} withoutPadding weight='bold'>
-            {title}
-          </Typography>
-          <Typography className={classNames?.subtitle} variant={subtitleVariant} withoutPadding weight='light'>
-            {subtitle}
-          </Typography>
-        </section>
-      ),
-    [
-      classNames?.subtitle,
-      classNames?.title,
-      headerContentClassName,
-      isOpen,
-      middleContent,
-      subtitle,
-      subtitleVariant,
-      title,
-      titleVariant,
-    ],
-  );
-
-  const headerEnd = useMemo(
-    () => (endContent ? endContent(isOpen) : <Icon className={toggleIconClassName} name={icon} />),
-    [endContent, icon, isOpen, toggleIconClassName],
-  );
 
   return (
-    <AccordionItemStyle className={className} style={style}>
+    <AccordionItemStyle>
       <section className={headerClassName} onClick={toggle}>
-        {headerStart}
-        {headerMiddle}
-        {headerEnd}
+        {startContent ? startContent(isOpen) : null}
+        {middleContent ? (
+          middleContent({ isOpen, title, subtitle })
+        ) : (
+          <section className='accordion-header-content'>
+            <Typography variant={titleVariant} withoutPadding weight='bold'>
+              {title}
+            </Typography>
+            <Typography variant={subtitleVariant} withoutPadding weight='light'>
+              {subtitle}
+            </Typography>
+          </section>
+        )}
+        <Icon className={`accordion-toggle-icon ${isOpen ? 'isOpen' : ''}`} name={icon} />
       </section>
       <motion.section
-        variants={variants.body}
+        variants={{
+          open: {
+            height: 'auto',
+            opacity: 1,
+            transition: {
+              type: 'spring',
+              damping: 10,
+              stiffness: 200,
+              restDelta: 0.01,
+            },
+          },
+          closed: {
+            height: 0,
+            opacity: 0,
+          },
+        }}
         initial='closed'
         animate={isOpen ? 'open' : 'closed'}
         className='accordion-body'
       >
-        <section className={bodyContentClassName}>{children}</section>
+        <section className='accordion-body-content'>{children}</section>
       </motion.section>
     </AccordionItemStyle>
   );

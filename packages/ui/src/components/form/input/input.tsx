@@ -1,8 +1,7 @@
-import { useId } from 'react';
-
-import { useInputHandlers } from '../../../hooks';
 import { Field } from '../field';
 import { InputProps } from '../types';
+import { useId } from 'react';
+import { useInputHandlers } from '../../../hooks';
 import { withController } from '../with-controller';
 
 type InputTextProps = {

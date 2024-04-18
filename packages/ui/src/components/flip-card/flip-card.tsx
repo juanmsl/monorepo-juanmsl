@@ -1,6 +1,5 @@
-import { CSSProperties, useEffect, useMemo, useState } from 'react';
-
 import { FlipCardStyle } from './flip-card.style';
+import { CSSProperties, useEffect, useMemo, useState } from 'react';
 
 type FlipCardProps = {
   cardZIndex?: CSSProperties['zIndex'];

@@ -1,13 +1,11 @@
-import React, { ButtonHTMLAttributes } from 'react';
-
-import { Icon, IconNameT } from '../../../contexts';
-import { useClassNames } from '../../../hooks';
-
-import { ButtonSize, ButtonVariant } from './button.constants';
+import { ButtonHTMLAttributes } from 'react';
 import { ButtonStyle } from './button.style';
+import { useClassNames } from '../../../hooks';
+import { ButtonSize, ButtonVariant } from './button.constants';
+import { Icon, IconNameT } from '../../../contexts';
 
 export type ButtonProps = {
-  children?: React.ReactNode;
+  children: string;
   disabled?: boolean;
   isLoading?: boolean;
   rounded?: boolean;
@@ -44,7 +42,7 @@ export const Button = ({
   return (
     <ButtonStyle className={className} disabled={disabled} onClick={onClick}>
       {leftIcon && !isLoading && <Icon className='button-left-icon' name={leftIcon} />}
-      <span className='button-text'>{isLoading ? <Icon name='spinner' /> : children}</span>
+      <span>{isLoading ? <Icon name='spinner' /> : children}</span>
       {rightIcon && !isLoading && <Icon className='button-right-icon' name={rightIcon} />}
     </ButtonStyle>
   );

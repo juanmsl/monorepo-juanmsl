@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
-
 import { formatBytes } from '../helpers';
+import { useEffect, useState } from 'react';
 
 export enum FileTypeEnum {
   PNG = 'image/png',

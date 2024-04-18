@@ -1,8 +1,6 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-
 import { Icon } from '../../../contexts';
-
 import { OptionsHeaderStyle } from './select.style';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 type OptionsHeaderProps<T> = {
   name: string;
