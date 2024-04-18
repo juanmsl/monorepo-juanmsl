@@ -9,12 +9,10 @@ export default defineConfig({
     options.external = [
       'react',
       'react-dom',
-      'styled-components',
       '@hookform/resolvers',
       'axios',
       'color',
       'react-hook-form',
-      'framer-motion',
       'yup',
     ];
   },
