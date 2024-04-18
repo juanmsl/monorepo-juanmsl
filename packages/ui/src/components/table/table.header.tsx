@@ -1,5 +1,6 @@
-import { HeaderComponentProps, TableColumn, TableDataGeneric } from './types';
 import { useCallback, useMemo } from 'react';
+
+import { HeaderComponentProps, TableColumn, TableDataGeneric } from './types';
 
 export const TableHeader = <T extends TableDataGeneric>({ columns, defaultHeaderAlign }: HeaderComponentProps<T>) => {
   const renderHeader = useCallback(

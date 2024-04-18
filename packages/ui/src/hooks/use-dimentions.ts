@@ -1,5 +1,6 @@
-import { useEventListener } from './use-event-listener';
 import React, { useEffect, useState } from 'react';
+
+import { useEventListener } from './use-event-listener';
 
 export const useDimensions = (ref: React.RefObject<HTMLElement>) => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });

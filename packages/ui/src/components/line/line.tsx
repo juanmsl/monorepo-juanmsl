@@ -1,5 +1,6 @@
-import { LineOrientation } from './line.constants';
 import { useClassNames } from '../../hooks';
+
+import { LineOrientation } from './line.constants';
 import { LineStyle, LineStyleProps } from './line.style';
 
 type LineProps = LineStyleProps & {

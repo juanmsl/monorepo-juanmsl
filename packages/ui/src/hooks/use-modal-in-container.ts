@@ -1,6 +1,7 @@
+import React, { RefObject, useCallback, useEffect, useRef, useState } from 'react';
+
 import { useEventListener } from './use-event-listener';
 import { useOnClickOutsideRef } from './use-on-click-outside-ref';
-import React, { RefObject, useCallback, useEffect, useRef, useState } from 'react';
 
 export const useModalInContainer = <Container extends HTMLElement, Modal extends HTMLElement = Container>(
   offset = 5,

@@ -1,8 +1,10 @@
+import { useInputHandlers } from '../../../hooks';
+import { Typography } from '../../typography';
 import { Field } from '../field';
 import { InputProps } from '../types';
-import { useId } from 'react';
-import { useInputHandlers } from '../../../hooks';
 import { withController } from '../with-controller';
+
+import { InputRangeStyle } from './input-range.style';
 
 type RangeProps = {
   min?: number;
@@ -21,16 +23,50 @@ export const InputRange = ({
   leftIcon,
   rightIcon,
   error,
+  min,
+  max,
+  step,
 }: InputProps<RangeProps, number>) => {
-  const id = useId();
+  const id = crypto.randomUUID();
   const { isFocus, handlers } = useInputHandlers({
     onBlur: onBlur,
     onChange: value => setValue(+value),
   });
 
   return (
-    <Field id={id} label={label} leftIcon={leftIcon} rightIcon={rightIcon} error={error?.message} isFocus={isFocus}>
-      <input id={id} type='range' name={name} className={className} style={style} value={value} {...handlers} />
+    <Field
+      noBorderBottom
+      id={id}
+      label={label}
+      leftIcon={leftIcon}
+      rightIcon={rightIcon}
+      error={error?.message}
+      isFocus={isFocus}
+    >
+      <InputRangeStyle $isFocus={isFocus}>
+        {min !== undefined ? (
+          <Typography className='min-range-limit' variant='small'>
+            {min}
+          </Typography>
+        ) : null}
+        <input
+          id={id}
+          type='range'
+          name={name}
+          className={`input-range ${className}`}
+          style={style}
+          value={value}
+          min={min}
+          max={max}
+          step={step}
+          {...handlers}
+        />
+        {max !== undefined ? (
+          <Typography className='max-range-limit' variant='small'>
+            {max}
+          </Typography>
+        ) : null}
+      </InputRangeStyle>
     </Field>
   );
 };
