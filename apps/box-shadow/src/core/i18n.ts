@@ -32,7 +32,7 @@ import { initReactI18next } from 'react-i18next';
 const i18nConfig: InitOptions = {
   load: 'languageOnly',
   supportedLngs: ['en', 'es'],
-  ns: ['box-shadow', 'common', 'footer', 'navbar'],
+  ns: ['box-shadow', 'common', 'footer', 'metatags', 'navbar'],
   interpolation: {
     escapeValue: false,
   },
@@ -40,6 +40,20 @@ const i18nConfig: InitOptions = {
 
 const updateLng = (lng: string) => {
   document.documentElement.setAttribute('lang', lng);
+  document.querySelector('meta[name="language"]')?.setAttribute('content', lng);
+  document.querySelector('meta[property="og:locale"]')?.setAttribute('content', lng);
+
+  document.querySelector('meta[name="description"]')?.setAttribute('content', i18next.t('metatags:description'));
+  document.querySelector('meta[property="og:description"]')?.setAttribute('content', i18next.t('metatags:description'));
+
+  document.querySelector('meta[name="keywords"]')?.setAttribute('lang', lng);
+  document
+    .querySelector('meta[name="keywords"]')
+    ?.setAttribute('content', (i18next.t('metatags:keywords', { returnObjects: true }) as Array<string>).join(', '));
+
+  document.title = i18next.t('metatags:title');
+  document.querySelector('meta[property="og:site_name"]')?.setAttribute('content', i18next.t('metatags:title'));
+  document.querySelector('meta[property="og:title"]')?.setAttribute('content', i18next.t('metatags:og-title'));
 };
 
 i18next.on('languageChanged', updateLng);
