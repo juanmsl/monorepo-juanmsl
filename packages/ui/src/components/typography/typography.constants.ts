@@ -25,7 +25,7 @@ export const TypographyVariantsElements: Record<TypographyVariant, keyof React.R
 };
 
 export const TypographyVariantsClassNames: Record<TypographyVariant, string> = {
-  [TypographyVariant.HERO]: 'header1',
+  [TypographyVariant.HERO]: 'hero',
   [TypographyVariant.HEADER1]: 'header1',
   [TypographyVariant.HEADER2]: 'header2',
   [TypographyVariant.HEADER3]: 'header3',
