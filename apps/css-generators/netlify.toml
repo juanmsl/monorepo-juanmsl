@@ -1,6 +1,6 @@
 [build]
-  publish = "apps/box-shadow/dist/"
-  command = "turbo run build --filter @juanmsl/box-shadow"
+  publish = "apps/css-generators/dist/"
+  command = "turbo run build --filter @juanmsl/css-generators"
   base = "/"
 
 [build.environment]
@@ -9,8 +9,8 @@
   NODE_VERSION = "20.11.0"
 
 [[redirects]]
-  from = "https://juanmsl-box-shadow.netlify.app/*"
-  to = "https://box-shadow.juanmsl.com/:splat"
+  from = "https://css-generators.netlify.app/*"
+  to = "https://css-generators.juanmsl.com/:splat"
   status = 301
   force = true
 
