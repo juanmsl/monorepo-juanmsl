@@ -128,6 +128,7 @@ const AccordionItem = ({
     'accordion-header': true,
     'has-start-content': !!startContent,
     [classNames?.header ?? '']: !!classNames?.header,
+    'is-open': isOpen,
   });
 
   const headerContentClassName = useClassNames({

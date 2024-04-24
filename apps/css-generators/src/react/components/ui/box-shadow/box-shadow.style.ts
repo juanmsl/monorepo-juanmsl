@@ -35,6 +35,11 @@ export const BoxShadowStyle = styled.section`
 
   .shadows-item-header {
     padding: 20px;
+
+    &.is-open {
+      background: ${props => props.theme.colors.primary};
+      color: ${props => props.theme.colors.primaryContrast};
+    }
   }
 
   .shadows-item-body {
@@ -73,8 +78,8 @@ export const BoxShadowSandBoxStyle = styled.section`
     display: grid;
     place-content: center;
     padding: 1em;
-    box-shadow: 0 0 20px 0 ${props => props.theme.colors.black} inset;
-    border: 5px solid ${props => props.theme.colors.white};
+    box-shadow: 0 0 15px 0 ${props => props.theme.colors.black}88 inset;
+    border: 2px solid ${props => props.theme.colors.text};
 
     @media all and (min-width: ${props => props.theme.constants.breakpoints.mobileL}) {
       width: 300px;
