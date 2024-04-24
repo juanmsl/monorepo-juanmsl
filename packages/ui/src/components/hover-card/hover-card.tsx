@@ -9,9 +9,16 @@ type HoverCardProps = {
   threshold?: number;
   translationZ?: number;
   width?: 'fit-content' | '100%';
+  className?: string;
 };
 
-export const HoverCard = ({ children, threshold = 5, translationZ = 25, width = 'fit-content' }: HoverCardProps) => {
+export const HoverCard = ({
+  children,
+  threshold = 5,
+  translationZ = 25,
+  width = 'fit-content',
+  className = '',
+}: HoverCardProps) => {
   const refCard = useRef<HTMLElement>(null);
   const refLayer = useRef<HTMLElement>(null);
 
@@ -55,7 +62,7 @@ export const HoverCard = ({ children, threshold = 5, translationZ = 25, width = 
   useEventListener('mouseleave', mouseLeaveCallback as unknown as EventListener, refCard);
 
   return (
-    <HoverCardStyle ref={refCard} style={{ width }}>
+    <HoverCardStyle ref={refCard} style={{ width }} className={className}>
       <span className='card-hover-layer' ref={refLayer}>
         {children}
       </span>

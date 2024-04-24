@@ -1,64 +1,62 @@
 import styled from 'styled-components';
 
 export const HomeStyle = styled.main`
-  display: grid;
-  height: 100dvh;
-  grid-template-areas: 'homeContent' 'homeExamples';
-  grid-template-rows: 1fr auto;
+  max-width: ${props => props.theme.constants.breakpoints.laptopL};
+  width: 100%;
+  margin: 0 auto;
 
-  @media all and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {
-    grid-template-columns: auto 1fr;
-    grid-template-rows: unset;
-    grid-template-areas: 'homeExamples homeContent';
-  }
-
-  .home-examples {
+  .generators {
     display: grid;
-    grid-area: homeExamples;
-    grid-auto-flow: column;
-    width: 100%;
-    gap: 80px;
-    overflow: auto;
-    padding: 50px 100px;
-    box-shadow: 0 20px 30px -10px ${props => props.theme.colors.black} inset;
-    mask-image: linear-gradient(to right, transparent 2%, black 15%, black, black 85%, transparent 98%);
+    grid-template-columns: repeat(auto-fit, 280px);
+    place-content: start center;
+    gap: 40px;
+    padding: 50px clamp(20px, 5.555%, 100px);
+  }
 
-    @media all and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {
-      gap: 100px;
-      grid-auto-flow: row;
-      mask-image: linear-gradient(transparent 2%, black 15%, black, black 85%, transparent 98%);
-      box-shadow: -20px 0 30px -10px ${props => props.theme.colors.black} inset;
-      padding: 100px 50px;
-    }
+  .home-header {
+    text-align: center;
+    padding: 50px clamp(20px, 5.555%, 100px);
+  }
 
-    @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
-      padding: 100px;
+  .card {
+    aspect-ratio: 4/3;
+    border: 2px solid;
+    background: ${props => props.theme.colors.black}33;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    padding: 1em;
+    border-radius: 5px;
+    transition: all 300ms ease;
+    box-shadow: 0 0 36px 8px #000000 inset;
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      border-color: ${props => props.theme.colors.primary};
+      box-shadow:
+        0 -6px 30px 8px #000000 inset,
+        0 50px 100px -20px ${props => props.theme.colors.primary},
+        0 30px 60px -30px ${props => props.theme.colors.primary},
+        0 -2px 6px 0 ${props => props.theme.colors.primary} inset;
     }
   }
 
-  .home-body {
-    grid-area: homeContent;
+  .box-shadow {
+    width: 200px;
+    border: 1px solid;
     background: ${props => props.theme.colors.secondary};
-    color: ${props => props.theme.colors.secondaryContrast};
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    overflow: auto;
-    border-bottom: 2px solid ${props => props.theme.colors.white};
+    padding: 10px 10px 20px;
+    box-shadow:
+      10px 10px 0 0 #ffffff32,
+      20px 20px 0 0 #ffffff16,
+      30px 30px 0 0 #ffffff08;
+  }
 
-    @media all and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {
-      border-left: 2px solid ${props => props.theme.colors.white};
-      border-bottom: 0;
-    }
-
-    &--content {
-      padding: 50px 20px 100px;
-      display: grid;
-      gap: 50px;
-      align-content: start;
-
-      @media all and (min-width: ${props => props.theme.constants.breakpoints.mobileL}) {
-        padding: 50px 50px 100px;
-      }
-    }
+  .text-shadow {
+    text-shadow:
+      10px 10px 0 #ffffff32,
+      20px 20px 0 #ffffff16,
+      30px 30px 0 #ffffff08;
   }
 `;

@@ -2,9 +2,12 @@ import { AnimatePresence } from 'framer-motion';
 import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
+import { RouterStyle } from './router.style';
+
+import { Footer } from '@components/ui';
 import { PATHS } from '@core/constants';
 import { GA } from '@core/ga';
-import { LazyHome } from '@pages';
+import { LazyBoxShadow, LazyHome } from '@pages';
 
 export const Router = () => {
   const location = useLocation();
@@ -26,10 +29,14 @@ export const Router = () => {
 
   return (
     <AnimatePresence mode='wait'>
-      <Routes location={location} key={location.key}>
-        <Route path={PATHS.HOME_URL} element={<LazyHome />} index />
-        <Route path='*' element={<Navigate to={PATHS.HOME_URL} />} />
-      </Routes>
+      <RouterStyle>
+        <Routes location={location} key={location.key}>
+          <Route path={PATHS.HOME_URL} element={<LazyHome />} index />
+          <Route path={PATHS.BOX_SHADOW_URL} element={<LazyBoxShadow />} index />
+          <Route path='*' element={<Navigate to={PATHS.HOME_URL} />} />
+        </Routes>
+        <Footer />
+      </RouterStyle>
     </AnimatePresence>
   );
 };
