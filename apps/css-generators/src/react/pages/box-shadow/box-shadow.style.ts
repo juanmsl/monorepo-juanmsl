@@ -13,6 +13,7 @@ export const BoxShadowStyle = styled.main`
     place-content: start;
     padding: 60px;
     max-height: 60dvh;
+    max-width: 1000px;
     border: 1px solid;
     border-radius: 25px;
     justify-items: center;

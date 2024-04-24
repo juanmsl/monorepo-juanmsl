@@ -16,7 +16,6 @@ export const AccordionItemStyle = styled.section`
     cursor: pointer;
     position: sticky;
     top: 0;
-    background: ${props => props.theme.colors.background};
     padding: 20px 0;
 
     &.has-start-content {
