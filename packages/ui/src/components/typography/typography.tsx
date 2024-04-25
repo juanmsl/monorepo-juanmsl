@@ -25,6 +25,7 @@ export const TypographyComponent = (
     variant = 'body',
     nowrap = false,
     className: customClassname = '',
+    style = {},
     children,
     as,
     weight,
@@ -57,7 +58,10 @@ export const TypographyComponent = (
           className,
           ref,
           htmlFor,
-          style: { fontWeight: weight },
+          style: {
+            fontWeight: weight,
+            ...style,
+          },
         },
         children,
       )}

@@ -26,6 +26,7 @@ export const InputColorStyle = styled.section`
     &::before {
       content: '';
       position: absolute;
+      border-radius: 5px;
       top: 0;
       left: 0;
       width: 100%;
