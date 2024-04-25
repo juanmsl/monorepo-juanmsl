@@ -17,25 +17,6 @@ export const ControllerLayoutStyle = styled.section`
       'examples controller' auto
       / auto 1fr;
   }
-
-  .shadows-item-header {
-    padding: 20px;
-
-    &.is-open {
-      background: ${props => props.theme.colors.primary};
-      color: ${props => props.theme.colors.primaryContrast};
-    }
-  }
-
-  .shadows-item-body {
-    padding: 10px 20px 20px;
-
-    .input-ranges {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px 20px;
-    }
-  }
 `;
 
 export const ControllerStyle = styled.section`

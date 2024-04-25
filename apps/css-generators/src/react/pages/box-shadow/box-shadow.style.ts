@@ -27,6 +27,25 @@ export const BoxShadowStyle = styled.main`
     grid-auto-flow: column;
     justify-content: center;
   }
+
+  .shadows-item-header {
+    padding: 20px;
+
+    &.is-open {
+      background: ${props => props.theme.colors.primary};
+      color: ${props => props.theme.colors.primaryContrast};
+    }
+  }
+
+  .shadows-item-body {
+    padding: 10px 20px 20px;
+
+    .input-ranges {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 20px;
+    }
+  }
 `;
 
 export const AccordionHeader = styled.section`
