@@ -74,7 +74,7 @@ export const TextShadowPage = () => {
   const { t } = useTranslation();
   const theme = useTheme();
   const [selectedList, setSelectedList] = useState(textShadowList[0]);
-  const [boxColor, setBoxColor] = useState(theme.colors.primary);
+  const [textColor, setTextColor] = useState(theme.colors.primary);
   const [sandboxBackground, setSandboxBackground] = useState(theme.colors.white);
 
   const textShadow = useTextShadow(selectedList);
@@ -129,7 +129,7 @@ export const TextShadowPage = () => {
         sandboxBackground={sandboxBackground}
         renderActions={() => (
           <section className='text-shadow-container-controls'>
-            <InputColor name='boxColor' value={boxColor} setValue={setBoxColor} />
+            <InputColor name='textColor' value={textColor} setValue={setTextColor} />
             <InputColor name='backgroundColor' value={sandboxBackground} setValue={setSandboxBackground} />
           </section>
         )}
@@ -197,6 +197,7 @@ export const TextShadowPage = () => {
           className='text-shadow-box'
           animate={{
             textShadow: textShadow.filter(line => line).join(', '),
+            color: textColor,
           }}
           drag
           dragConstraints={{
