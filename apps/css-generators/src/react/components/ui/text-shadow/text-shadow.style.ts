@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
-export const BoxShadowExampleStyle = styled.section`
+export const TextShadowStyle = styled.section`
   width: 120px;
   height: 120px;
   border-radius: 5px;
-  background: ${props => props.theme.colors.tertiary};
-  color: ${props => props.theme.colors.tertiaryContrast};
+  border: 1px solid;
   display: grid;
   padding: 2em;
   place-content: center;

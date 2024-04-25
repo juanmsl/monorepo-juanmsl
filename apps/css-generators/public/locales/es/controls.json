@@ -1,0 +1,10 @@
+{
+  "x-position": "Posición X",
+  "y-position": "Posición Y",
+  "blur": "Difuminación",
+  "spread": "Propagación",
+  "is-inset": "Es interna",
+  "add-shadow": "Agregar sombra",
+  "copy-css": "Copiar CSS",
+  "copied": "Copiado!"
+}

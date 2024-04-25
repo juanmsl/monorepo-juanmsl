@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-export const BoxShadowStyle = styled.main`
+export const TextShadowStyle = styled.main`
   display: grid;
   grid-template-rows: auto 1fr;
   height: 100%;
   overflow: auto;
 
-  .box-shadow-box {
+  .text-shadow-box {
     width: 100px;
     height: 100px;
     border-radius: 5px;
@@ -21,7 +21,7 @@ export const BoxShadowStyle = styled.main`
     }
   }
 
-  .box-shadow-container-controls {
+  .text-shadow-container-controls {
     display: grid;
     gap: 20px;
     grid-auto-flow: column;
@@ -60,7 +60,7 @@ export const AccordionHeader = styled.section`
     }
   }
 
-  .box-shadow-css {
+  .text-shadow-css {
     font-family: monospace;
     display: none;
 
