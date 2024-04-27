@@ -2,92 +2,91 @@ import styled from 'styled-components';
 
 export const ControllerLayoutStyle = styled.section`
   display: grid;
-  gap: 50px;
-  align-content: start;
-  padding: 50px clamp(20px, 5.555%, 100px);
+  padding: 20px;
   height: 100%;
   overflow: auto;
+  gap: 20px;
   grid-template:
+    'sandbox' auto
     'controller' 1fr
     'examples' 222px
     / 1fr;
 
   @media screen and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {
     grid-template:
-      'examples controller' auto
-      / auto 1fr;
+      'sandbox controller' 1fr
+      'examples examples' auto
+      / 1fr auto;
   }
 `;
 
 export const ControllerStyle = styled.section`
   grid-area: controller;
   display: grid;
-  grid-template-areas: 'controller-sandbox' 'controller-controls';
   gap: 20px;
-  align-content: start;
+  grid-template:
+    'tabs' auto
+    'controls' 1fr
+    'actions' auto / 1fr;
+  grid-template-rows: auto 1fr;
+  align-items: start;
+  height: 100%;
+  overflow: auto;
+
+  .controller-tabs {
+    grid-area: tabs;
+  }
 
   .controller-controls {
-    grid-area: controller-controls;
-    display: grid;
-    gap: 20px;
-    grid-template-rows: auto 1fr;
-    align-items: start;
-
-    @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
-      max-width: 450px;
-    }
-
-    &--actions {
-      display: grid;
-      grid-auto-flow: row;
-      gap: 20px;
-      padding: 0 10px 10px;
-      grid-auto-columns: 1fr;
-
-      @media all and (min-width: ${props => props.theme.constants.breakpoints.mobileL}) {
-        grid-auto-flow: column;
-      }
-    }
-  }
-
-  .controller-sandbox {
-    grid-area: controller-sandbox;
-    display: grid;
-    gap: 20px;
-    grid-auto-flow: row;
+    grid-area: controls;
+    height: 100%;
+    overflow: auto;
     align-content: start;
+    background: ${props => props.theme.colors.text}11;
+    backdrop-filter: blur(2px);
+    border: 1px solid ${props => props.theme.colors.text};
+  }
 
-    &--container {
-      background: white;
-      width: 100%;
-      height: 300px;
-      border-radius: 5px;
-      display: grid;
-      place-content: center;
-      padding: 1em;
-      box-shadow: 0 0 15px 0 ${props => props.theme.colors.black}88 inset;
-      border: 1px solid ${props => props.theme.colors.text};
+  .controller-actions {
+    grid-area: actions;
+    display: grid;
+    grid-auto-flow: row;
+    gap: 20px;
+    grid-auto-columns: 1fr;
+    padding: 0 4px 4px;
+
+    @media all and (min-width: ${props => props.theme.constants.breakpoints.mobileL}) {
+      grid-auto-flow: column;
     }
   }
+`;
+
+export const SandboxStyle = styled.section`
+  grid-area: sandbox;
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  display: grid;
+  place-content: center;
+  padding: 1em;
+  background: ${props => props.theme.colors.text}11;
+  backdrop-filter: blur(2px) opacity(0.5);
+  border: 1px solid ${props => props.theme.colors.text};
 `;
 
 export const ExamplesStyle = styled.section`
   grid-area: examples;
   display: grid;
-  grid-template: auto / none;
+  grid-template: 1fr / 1fr;
   grid-auto-flow: column;
   gap: 80px;
   height: 100%;
-  overflow: auto;
+  overflow-x: auto;
   place-content: start;
-  padding: 50px;
-  max-height: 100%;
-  border: 1px solid;
-  border-radius: 25px;
+  min-height: 100%;
+  padding: 60px;
   justify-items: center;
-
-  @media screen and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {
-    grid-template: 150px / 150px;
-    grid-auto-flow: unset;
-  }
+  background: ${props => props.theme.colors.text}11;
+  backdrop-filter: blur(2px);
+  border: 1px solid ${props => props.theme.colors.text};
 `;

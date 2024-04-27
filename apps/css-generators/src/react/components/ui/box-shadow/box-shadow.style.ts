@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const BoxShadowStyle = styled.section`
   width: 120px;
   height: 120px;
-  border-radius: 5px;
+  border-radius: 50%;
   background: ${props => props.theme.colors.tertiary};
   color: ${props => props.theme.colors.tertiaryContrast};
   display: grid;

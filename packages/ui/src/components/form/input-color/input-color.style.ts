@@ -18,7 +18,7 @@ export const InputColorStyle = styled.section`
   .content {
     background: white;
     border-radius: 5px;
-    border: 1px solid ${props => props.theme.colors.text};
+    border: 1px solid ${props => props.theme.colors.white};
     width: 25px;
     height: 25px;
     position: relative;
