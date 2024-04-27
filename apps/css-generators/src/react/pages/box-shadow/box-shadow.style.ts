@@ -7,18 +7,12 @@ export const BoxShadowStyle = styled.main`
   overflow: auto;
 
   .box-shadow-box {
-    width: 100px;
-    height: 100px;
-    border-radius: 5px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
     display: grid;
     place-content: center;
     text-align: center;
-    padding: 20px;
-
-    @media all and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {
-      width: 150px;
-      height: 150px;
-    }
   }
 
   .box-shadow-container-controls {
@@ -30,6 +24,9 @@ export const BoxShadowStyle = styled.main`
 
   .shadows-item-header {
     padding: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 
     &.is-open {
       background: ${props => props.theme.colors.primary};

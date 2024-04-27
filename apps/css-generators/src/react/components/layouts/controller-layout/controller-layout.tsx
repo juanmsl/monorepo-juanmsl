@@ -2,7 +2,7 @@ import { Accordion, Button, useToggleValues } from '@juanmsl/ui';
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { ControllerLayoutStyle, ControllerStyle, ExamplesStyle } from './controller-layout.style';
+import { ControllerLayoutStyle, ControllerStyle, ExamplesStyle, SandboxStyle } from './controller-layout.style';
 
 export type UpdateItem<T> = <tValue extends keyof T>(prop: tValue, index: number) => (value: T[tValue]) => void;
 
@@ -43,24 +43,21 @@ export const ControllerLayout = <T,>({
   return (
     <ControllerLayoutStyle>
       <ControllerStyle>
-        <section className='controller-controls'>
-          <Accordion>{selected.map((data, key) => renderAccordionItem(data, key))}</Accordion>
-          <section className='controller-controls--actions'>
-            <Button width='full' onClick={addItem}>
-              {t('controls:add-shadow')}
-            </Button>
-            <Button width='full' onClick={copyToClipBoard} variant='ghost'>
-              {copyButtonText}
-            </Button>
-          </section>
-        </section>
-        <section className='controller-sandbox'>
-          <section className='controller-sandbox--container' style={{ background: sandboxBackground }}>
-            {children}
-          </section>
-          {renderActions()}
+        <section className='controller-tabs'>{renderActions()}</section>
+        <Accordion className='controller-controls'>
+          {selected.map((data, key) => renderAccordionItem(data, key))}
+        </Accordion>
+        <section className='controller-actions'>
+          <Button width='full' onClick={addItem}>
+            {t('controls:add-shadow')}
+          </Button>
+          <Button width='full' onClick={copyToClipBoard} variant='ghost'>
+            {copyButtonText}
+          </Button>
         </section>
       </ControllerStyle>
+
+      <SandboxStyle style={{ background: sandboxBackground }}>{children}</SandboxStyle>
 
       <ExamplesStyle>{list.map(renderExample)}</ExamplesStyle>
     </ControllerLayoutStyle>

@@ -30,6 +30,9 @@ export const TextShadowStyle = styled.main`
 
   .shadows-item-header {
     padding: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 
     &.is-open {
       background: ${props => props.theme.colors.primary};

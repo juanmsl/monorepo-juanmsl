@@ -11,6 +11,7 @@ export const TextShadowStyle = styled.section`
   text-align: center;
   cursor: pointer;
   transition: all 300ms ease;
+  background: ${props => props.theme.colors.background};
 
   @media all and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {
     width: 150px;

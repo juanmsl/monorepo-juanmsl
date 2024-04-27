@@ -11,6 +11,18 @@ import { BoxShadow, Navbar } from '@components/ui';
 import { BoxShadowLine, useBoxShadow } from '@hooks';
 
 const boxShadowList: Array<Array<BoxShadowLine>> = [
+  [
+    { x: 0, y: 0, blur: 60, spread: 0, color: '#4601D0CC', isInset: false },
+    { x: -100, y: 10, blur: 80, spread: 20, color: '#08070799', isInset: true },
+    { x: 0, y: 0, blur: 40, spread: 10, color: '#3D14F589', isInset: false },
+    { x: 0, y: 0, blur: 10, spread: 0, color: '#c3b3ff', isInset: true },
+  ],
+  [
+    { x: 15, y: 15, blur: 35, spread: 10, color: '#000000', isInset: false },
+    { x: 0, y: 0, blur: 0, spread: 6, color: '#5600d6', isInset: false },
+    { x: 0, y: 0, blur: 0, spread: 12, color: '#7752ff', isInset: false },
+    { x: 0, y: 0, blur: 0, spread: 18, color: '#8e81ff', isInset: false },
+  ],
   [{ x: 0, y: 8, blur: 24, spread: 0, color: '#000000', isInset: false }],
   [{ x: 0, y: 1, blur: 4, spread: 0, color: '#000000', isInset: false }],
   [{ x: 0, y: 10, blur: 25, spread: 5, color: '#000000', isInset: false }],
@@ -18,12 +30,6 @@ const boxShadowList: Array<Array<BoxShadowLine>> = [
     { x: 0, y: 50, blur: 100, spread: -20, color: '#000000', isInset: false },
     { x: 0, y: 30, blur: 60, spread: -30, color: '#000000', isInset: false },
     { x: 0, y: -2, blur: 6, spread: 0, color: '#000000', isInset: true },
-  ],
-  [
-    { x: 15, y: 15, blur: 35, spread: 10, color: '#000000', isInset: false },
-    { x: 0, y: 0, blur: 0, spread: 6, color: '#5600d6', isInset: false },
-    { x: 0, y: 0, blur: 0, spread: 12, color: '#7752ff', isInset: false },
-    { x: 0, y: 0, blur: 0, spread: 18, color: '#8e81ff', isInset: false },
   ],
   [
     { x: 0, y: 30, blur: 60, spread: -12, color: '#000000', isInset: true },
