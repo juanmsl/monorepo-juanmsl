@@ -1,10 +1,8 @@
-import { useRef } from 'react';
+import { RefObject } from 'react';
 
 import { useEventListener } from './use-event-listener';
 
-export const useOnClickOutsideRef = (callback: () => void) => {
-  const containerRef = useRef<Element>(null);
-
+export const useOnClickOutsideRef = <T extends HTMLElement>(containerRef: RefObject<T>, callback: () => void) => {
   useEventListener('keydown', e => {
     if (e.key === 'Escape') {
       callback();
@@ -16,6 +14,4 @@ export const useOnClickOutsideRef = (callback: () => void) => {
       callback();
     }
   });
-
-  return containerRef;
 };

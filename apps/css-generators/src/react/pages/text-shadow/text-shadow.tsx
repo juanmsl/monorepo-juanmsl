@@ -1,5 +1,4 @@
 import { Accordion, Icon, InputColor, InputRange, Typography } from '@juanmsl/ui';
-import { motion } from 'framer-motion';
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'styled-components';
@@ -59,7 +58,7 @@ export const TextShadowPage = () => {
   const theme = useTheme();
   const [selectedList, setSelectedList] = useState(textShadowList[0]);
   const [textColor, setTextColor] = useState(theme.colors.primary);
-  const [sandboxBackground, setSandboxBackground] = useState(theme.colors.white);
+  const [sandboxBackground, setSandboxBackground] = useState('#33333300');
 
   const textShadow = useTextShadow(selectedList);
 
@@ -98,19 +97,17 @@ export const TextShadowPage = () => {
     [],
   );
 
-  const selectItem = useCallback((index: number) => {
-    setSelectedList(textShadowList[index]);
-  }, []);
-
   return (
     <TextShadowStyle>
       <Navbar />
       <ControllerLayout
         list={textShadowList}
         addItem={addItem}
-        renderedProperty={textShadow}
         selected={selectedList}
         sandboxBackground={sandboxBackground}
+        copyCSSToClipboard={() => {
+          navigator.clipboard.writeText(`text-shadow: ${textShadow.filter(line => line).join(',\n')};`);
+        }}
         renderActions={() => (
           <section className='text-shadow-container-controls'>
             <InputColor name='textColor' value={textColor} setValue={setTextColor} />
@@ -172,27 +169,20 @@ export const TextShadowPage = () => {
           </Accordion.Item>
         )}
         renderExample={(boxShadow, key) => (
-          <TextShadow key={key} textShadowList={boxShadow} onClick={() => selectItem(key)}>
+          <TextShadow key={key} textShadowList={boxShadow} onClick={() => setSelectedList(textShadowList[key])}>
             {t('box-shadow:shadow-#', { index: key + 1 })}
           </TextShadow>
         )}
       >
-        <motion.section
+        <section
           className='text-shadow-box'
-          animate={{
+          style={{
             textShadow: textShadow.filter(line => line).join(', '),
             color: textColor,
           }}
-          drag
-          dragConstraints={{
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-          }}
         >
-          <Typography variant='header4'>Text Shadow</Typography>
-        </motion.section>
+          <Typography variant='header1'>Text Shadow</Typography>
+        </section>
       </ControllerLayout>
     </TextShadowStyle>
   );

@@ -1,4 +1,4 @@
-import { useEffect, useId, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { Icon, IconNameT } from '../../../contexts';
 import { formatBytes } from '../../../helpers';
@@ -30,7 +30,7 @@ export const InputFile = ({
 }: InputProps<InputFileProps, Array<File>>) => {
   const [error, setError] = useState<string | null>(null);
   const fileList = useFileReader(value);
-  const id = useId();
+  const id = useMemo(() => crypto.randomUUID(), []);
 
   useEffect(() => {
     let intervalId: ReturnType<typeof setTimeout> | null = null;

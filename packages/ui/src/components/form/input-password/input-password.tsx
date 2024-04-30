@@ -1,4 +1,4 @@
-import { useId, useMemo } from 'react';
+import { useMemo } from 'react';
 
 import { IconNameT } from '../../../contexts';
 import { useInputHandlers, useToggleValues } from '../../../hooks';
@@ -23,7 +23,7 @@ export const InputPassword = ({
   error,
   disabled,
 }: InputProps<InputPasswordProps, string>) => {
-  const id = useId();
+  const id = useMemo(() => crypto.randomUUID(), []);
   const [type, toggle] = useToggleValues<'password' | 'text'>(['password', 'text']);
   const { isFocus, handlers } = useInputHandlers({
     onBlur: onBlur,

@@ -1,4 +1,4 @@
-import React, { useId } from 'react';
+import React, { useMemo } from 'react';
 
 import { useInputHandlers } from '../../../hooks';
 import { Label } from '../label';
@@ -26,7 +26,7 @@ export const Textarea = ({
   placeholder,
   label,
 }: InputProps<TextareaProps, string>) => {
-  const id = useId();
+  const id = useMemo(() => crypto.randomUUID(), []);
   const { handlers } = useInputHandlers({
     onBlur: onBlur,
     onChange: value => setValue(value),

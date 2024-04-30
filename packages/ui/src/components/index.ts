@@ -6,7 +6,7 @@ export * from './hover-card';
 export * from './image';
 export * from './infinity-scroll';
 export * from './line';
-export * from './modal';
+export * from './modals';
 export * from './pdf-viewer';
 export * from './table';
 export * from './tag';

@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 import { useInputHandlers } from '../../../hooks';
 import { Typography } from '../../typography';
 import { Field } from '../field';
@@ -27,7 +29,7 @@ export const InputRange = ({
   max,
   step,
 }: InputProps<RangeProps, number>) => {
-  const id = crypto.randomUUID();
+  const id = useMemo(() => crypto.randomUUID(), []);
   const { isFocus, handlers } = useInputHandlers({
     onBlur: onBlur,
     onChange: value => setValue(+value),

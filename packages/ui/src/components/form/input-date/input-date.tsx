@@ -1,4 +1,4 @@
-import { useId } from 'react';
+import { useMemo } from 'react';
 
 import { useInputHandlers } from '../../../hooks';
 import { Field } from '../field';
@@ -25,7 +25,7 @@ export const InputDate = ({
   label,
   error,
 }: InputProps<InputDateProps, string>) => {
-  const id = useId();
+  const id = useMemo(() => crypto.randomUUID(), []);
   const { isFocus, handlers } = useInputHandlers({
     onBlur: onBlur,
     onChange: setValue,

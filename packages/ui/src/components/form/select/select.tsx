@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useId, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { Field } from '../field';
 import { InputProps } from '../types';
@@ -50,7 +50,7 @@ export const Select = <T extends string | number | Record<string, unknown> | unk
   showSelectedOptionsOnTop,
   multiselect,
 }: InputProps<SelectProps<T>, '' | T | Array<T>>) => {
-  const id = useId();
+  const id = useMemo(() => crypto.randomUUID(), []);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const divRef = useRef<HTMLDivElement>(null);
   const [optionsPosition, setOptionsPosition] = useState<DOMRect | undefined>();

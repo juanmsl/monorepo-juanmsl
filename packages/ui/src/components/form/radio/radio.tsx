@@ -1,4 +1,4 @@
-import { useCallback, useId } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { InputProps } from '../types';
 import { withController } from '../with-controller';
@@ -19,7 +19,7 @@ export const Radio = ({
   style = {},
   label,
 }: InputProps<RadioProps, string>) => {
-  const id = useId();
+  const id = useMemo(() => crypto.randomUUID(), []);
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
