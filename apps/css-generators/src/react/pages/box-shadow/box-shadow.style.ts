@@ -24,11 +24,11 @@ export const BoxShadowStyle = styled.main`
 
   .shadows-item-header {
     padding: 20px;
-    position: sticky;
-    top: 0;
-    z-index: 1;
 
     &.is-open {
+      position: sticky;
+      top: 0;
+      z-index: 1;
       background: ${props => props.theme.colors.primary};
       color: ${props => props.theme.colors.primaryContrast};
     }

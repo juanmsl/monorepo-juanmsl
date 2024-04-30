@@ -1,44 +1,49 @@
-import { useId } from 'react';
+import { useMemo } from 'react';
+import { HexAlphaColorPicker, HexColorInput } from 'react-colorful';
 
-import { useInputHandlers } from '../../../hooks';
+import { useModalInContainer } from '../../../hooks';
+import { BaseModal } from '../../modals';
 import { InputProps } from '../types';
 import { withController } from '../with-controller';
 
-import { InputColorStyle } from './input-color.style';
+import { InputColorSelectorStyle, InputColorStyle } from './input-color.style';
 
 type ColorProps = {};
 
-export const InputColor = ({ name, style = {}, setValue, onBlur, value }: InputProps<ColorProps, string>) => {
-  const id = useId();
-
-  const {
-    handlers: { ...handlers },
-  } = useInputHandlers({
-    onBlur: onBlur,
-    onChange: setValue,
+export const InputColor = ({ name, style = {}, setValue, value }: InputProps<ColorProps, string>) => {
+  const id = useMemo(() => crypto.randomUUID(), []);
+  const { modalRef, isVisible, setIsVisible, modalStyle, containerRef } = useModalInContainer({
+    position: { x: 0, y: 120 },
   });
 
   return (
-    <InputColorStyle>
-      <section
-        className='content'
-        style={{
-          background: value,
-          color: value,
-        }}
-      >
-        <input
-          id={id}
-          {...handlers}
-          onClick={e => {
-            e.stopPropagation();
-          }}
-          type='color'
-          name={name}
-          style={style}
-          value={value}
-        />
-      </section>
+    <InputColorStyle
+      style={{
+        background: value,
+        color: value,
+        ...style,
+      }}
+      onClick={e => {
+        e.stopPropagation();
+        setIsVisible(true);
+      }}
+      ref={containerRef}
+    >
+      <BaseModal id='input-color' isOpen={isVisible}>
+        <InputColorSelectorStyle ref={modalRef} style={modalStyle}>
+          <HexAlphaColorPicker id={id} color={value} onChange={setValue} />
+          <HexColorInput
+            className='color-input'
+            id={id}
+            name={name}
+            color={value}
+            onChange={setValue}
+            placeholder='Type a color'
+            prefixed
+            alpha
+          />
+        </InputColorSelectorStyle>
+      </BaseModal>
     </InputColorStyle>
   );
 };

@@ -31,51 +31,42 @@ const variants = {
 
 type AccordionContextState = {
   toggleItem: (id: string) => void;
-  items: Record<string, boolean>;
+  openedItem: string;
 };
 
 const AccordionContext = createContext<AccordionContextState | null>(null);
 
-const useAccordionItem = (): [boolean, () => void] => {
+const useAccordionItem = (id: string): [boolean, () => void] => {
   const context = useContext(AccordionContext);
 
   if (!context) {
     throw new Error('You cant use this component out off an Accordion component');
   }
 
-  const { toggleItem, items } = context;
-
-  const id = useMemo(() => crypto.randomUUID(), []);
+  const { toggleItem, openedItem } = context;
 
   const toggle = () => toggleItem(id);
 
-  return [items[id], toggle];
+  return [openedItem === id, toggle];
 };
 
 type AccordionProps = {
   children: React.ReactNode;
   className?: string;
-  multiple?: boolean;
 };
 
-export const Accordion = ({ children, className = '', multiple = false }: AccordionProps) => {
-  const [items, setItems] = useState<Record<string, boolean>>({});
+export const Accordion = ({ children, className = '' }: AccordionProps) => {
+  const [openedItem, setOpenedItem] = useState<string>('');
 
-  const toggleItem = useCallback(
-    (id: string) => {
-      setItems(prev => ({
-        ...(multiple ? prev : {}),
-        [id]: !prev[id],
-      }));
-    },
-    [multiple],
-  );
+  const toggleItem = useCallback((id: string) => {
+    setOpenedItem(prev => (prev === id ? '' : id));
+  }, []);
 
   return (
     <AccordionContext.Provider
       value={{
         toggleItem,
-        items,
+        openedItem,
       }}
     >
       <AccordionStyle className={className}>
@@ -123,7 +114,8 @@ const AccordionItem = ({
   className = '',
   style = {},
 }: AccordionItemProps) => {
-  const [isOpen, toggle] = useAccordionItem();
+  const id = useMemo(() => crypto.randomUUID(), []);
+  const [isOpen, toggle] = useAccordionItem(id);
   const headerClassName = useClassNames({
     'accordion-header': true,
     'has-start-content': !!startContent,

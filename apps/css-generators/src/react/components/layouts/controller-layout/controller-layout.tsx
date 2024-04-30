@@ -13,9 +13,9 @@ type ControllerLayoutProps<T> = {
   renderAccordionItem: (data: T, key: number) => React.ReactNode;
   renderExample: (data: Array<T>, key: number) => React.ReactNode;
   addItem: () => void;
-  renderedProperty: Array<string>;
   sandboxBackground?: string;
   renderActions: () => React.ReactNode;
+  copyCSSToClipboard: () => void;
 };
 
 export const ControllerLayout = <T,>({
@@ -24,21 +24,21 @@ export const ControllerLayout = <T,>({
   renderAccordionItem,
   renderExample,
   addItem,
-  renderedProperty,
   selected,
   sandboxBackground,
   renderActions,
+  copyCSSToClipboard,
 }: ControllerLayoutProps<T>) => {
   const { t } = useTranslation();
   const [copyButtonText, toggle] = useToggleValues([t('controls:copy-css'), t('controls:copied')]);
 
   const copyToClipBoard = useCallback(() => {
-    navigator.clipboard.writeText(`box-shadow: ${renderedProperty.filter(line => line).join(',\n')};`);
+    copyCSSToClipboard();
     toggle(1);
     setTimeout(() => {
       toggle(0);
     }, 1000);
-  }, [renderedProperty, toggle]);
+  }, [copyCSSToClipboard, toggle]);
 
   return (
     <ControllerLayoutStyle>

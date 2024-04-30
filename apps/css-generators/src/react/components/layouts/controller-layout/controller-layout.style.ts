@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 export const ControllerLayoutStyle = styled.section`
   display: grid;
-  padding: 20px;
   height: 100%;
   overflow: auto;
-  gap: 20px;
+  padding: 10px;
+  gap: 10px;
   grid-template:
     'sandbox' auto
     'controller' 1fr
@@ -32,6 +32,8 @@ export const ControllerStyle = styled.section`
   align-items: start;
   height: 100%;
   overflow: auto;
+  background: ${props => props.theme.colors.text}11;
+  backdrop-filter: blur(2px);
 
   .controller-tabs {
     grid-area: tabs;
@@ -42,18 +44,15 @@ export const ControllerStyle = styled.section`
     height: 100%;
     overflow: auto;
     align-content: start;
-    background: ${props => props.theme.colors.text}11;
-    backdrop-filter: blur(2px);
-    border: 1px solid ${props => props.theme.colors.text};
   }
 
   .controller-actions {
     grid-area: actions;
     display: grid;
     grid-auto-flow: row;
-    gap: 20px;
+    gap: 10px;
     grid-auto-columns: 1fr;
-    padding: 0 4px 4px;
+    padding: 10px;
 
     @media all and (min-width: ${props => props.theme.constants.breakpoints.mobileL}) {
       grid-auto-flow: column;
@@ -69,9 +68,6 @@ export const SandboxStyle = styled.section`
   display: grid;
   place-content: center;
   padding: 1em;
-  background: ${props => props.theme.colors.text}11;
-  backdrop-filter: blur(2px) opacity(0.5);
-  border: 1px solid ${props => props.theme.colors.text};
 `;
 
 export const ExamplesStyle = styled.section`
@@ -88,5 +84,4 @@ export const ExamplesStyle = styled.section`
   justify-items: center;
   background: ${props => props.theme.colors.text}11;
   backdrop-filter: blur(2px);
-  border: 1px solid ${props => props.theme.colors.text};
 `;
