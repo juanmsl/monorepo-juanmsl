@@ -1,5 +1,5 @@
 import { Accordion, Icon, InputColor, InputRange, Typography } from '@juanmsl/ui';
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'styled-components';
 
@@ -97,6 +97,8 @@ export const TextShadowPage = () => {
     [],
   );
 
+  const css = useMemo(() => `text-shadow:\n  ${textShadow.filter(line => line).join(',\n  ')};`, [textShadow]);
+
   return (
     <TextShadowStyle>
       <Navbar />
@@ -105,9 +107,7 @@ export const TextShadowPage = () => {
         addItem={addItem}
         selected={selectedList}
         sandboxBackground={sandboxBackground}
-        copyCSSToClipboard={() => {
-          navigator.clipboard.writeText(`text-shadow: ${textShadow.filter(line => line).join(',\n')};`);
-        }}
+        css={css}
         renderActions={() => (
           <section className='text-shadow-container-controls'>
             <InputColor name='textColor' value={textColor} setValue={setTextColor} />

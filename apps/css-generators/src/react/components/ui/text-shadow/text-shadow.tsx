@@ -16,7 +16,7 @@ export const TextShadow = ({ textShadowList, onClick, children }: TextShadowProp
 
   return (
     <TextShadowStyle onClick={onClick}>
-      <Typography variant='label' weight='bold' style={{ textShadow: textShadow.filter(line => line).join(', ') }}>
+      <Typography variant='body' weight='bold' style={{ textShadow: textShadow.filter(line => line).join(', ') }}>
         {children}
       </Typography>
       <Typography className='example-text' variant='small'>

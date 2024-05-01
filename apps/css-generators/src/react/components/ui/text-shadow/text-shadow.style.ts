@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const TextShadowStyle = styled.section`
   width: 120px;
   height: 120px;
-  border-radius: 5px;
+  border-radius: 50%;
   border: 1px solid;
   display: grid;
   padding: 2em;
@@ -12,6 +12,7 @@ export const TextShadowStyle = styled.section`
   cursor: pointer;
   transition: all 300ms ease;
   background: ${props => props.theme.colors.background};
+  user-select: none;
 
   @media all and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {
     width: 150px;

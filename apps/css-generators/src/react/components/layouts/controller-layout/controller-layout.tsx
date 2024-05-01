@@ -1,8 +1,19 @@
-import { Accordion, Button, useToggleValues } from '@juanmsl/ui';
-import React, { useCallback } from 'react';
+import { Accordion, Button, Tabs, Typography, useToggleValues } from '@juanmsl/ui';
+import { fromHighlighter } from '@shikijs/markdown-it/core';
+import MarkdownIt from 'markdown-it';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { getHighlighterCore } from 'shiki/core';
 
-import { ControllerLayoutStyle, ControllerStyle, ExamplesStyle, SandboxStyle } from './controller-layout.style';
+import {
+  ControllerLayoutStyle,
+  ControllerStyle,
+  CSSStyle,
+  ExamplesStyle,
+  SandboxStyle,
+} from './controller-layout.style';
+
+const md = MarkdownIt();
 
 export type UpdateItem<T> = <tValue extends keyof T>(prop: tValue, index: number) => (value: T[tValue]) => void;
 
@@ -15,7 +26,7 @@ type ControllerLayoutProps<T> = {
   addItem: () => void;
   sandboxBackground?: string;
   renderActions: () => React.ReactNode;
-  copyCSSToClipboard: () => void;
+  css: string;
 };
 
 export const ControllerLayout = <T,>({
@@ -27,39 +38,88 @@ export const ControllerLayout = <T,>({
   selected,
   sandboxBackground,
   renderActions,
-  copyCSSToClipboard,
+  css,
 }: ControllerLayoutProps<T>) => {
   const { t } = useTranslation();
   const [copyButtonText, toggle] = useToggleValues([t('controls:copy-css'), t('controls:copied')]);
+  const [html, setHtml] = useState(null);
+
+  useEffect(() => {
+    const transform = async () => {
+      const highlighter = await getHighlighterCore({
+        themes: [import('shiki/themes/github-dark-default.mjs')],
+        langs: [import('shiki/langs/css.mjs')],
+        loadWasm: import('shiki/wasm'),
+      });
+
+      md.use(
+        fromHighlighter(highlighter, {
+          theme: 'github-dark-default',
+        }),
+      );
+
+      const render = md.render(`\`\`\`css\n${css}\n\`\`\``);
+      setHtml(render);
+    };
+
+    void transform();
+  }, [css]);
 
   const copyToClipBoard = useCallback(() => {
-    copyCSSToClipboard();
+    navigator.clipboard.writeText(css);
     toggle(1);
     setTimeout(() => {
       toggle(0);
     }, 1000);
-  }, [copyCSSToClipboard, toggle]);
+  }, [css, toggle]);
 
   return (
-    <ControllerLayoutStyle>
-      <ControllerStyle>
-        <section className='controller-tabs'>{renderActions()}</section>
-        <Accordion className='controller-controls'>
-          {selected.map((data, key) => renderAccordionItem(data, key))}
-        </Accordion>
-        <section className='controller-actions'>
-          <Button width='full' onClick={addItem}>
-            {t('controls:add-shadow')}
-          </Button>
-          <Button width='full' onClick={copyToClipBoard} variant='ghost'>
-            {copyButtonText}
-          </Button>
-        </section>
-      </ControllerStyle>
+    <Tabs defaultOpenTab='controls'>
+      <ControllerLayoutStyle>
+        <ControllerStyle>
+          <section className='controller-tabs'>
+            <Tabs.Tab className='controller-tabs--tab' id='controls'>
+              <Typography variant='label' weight='bold'>
+                Controls
+              </Typography>
+            </Tabs.Tab>
+            <Tabs.Tab className='controller-tabs--tab' id='foreground'>
+              <Typography variant='label' weight='bold'>
+                Foreground
+              </Typography>
+            </Tabs.Tab>
+          </section>
 
-      <SandboxStyle style={{ background: sandboxBackground }}>{children}</SandboxStyle>
+          <Tabs.TabPanel id='controls'>
+            <Accordion className='controller-controls'>
+              {selected.map((data, key) => renderAccordionItem(data, key))}
+            </Accordion>
+          </Tabs.TabPanel>
 
-      <ExamplesStyle>{list.map(renderExample)}</ExamplesStyle>
-    </ControllerLayoutStyle>
+          <Tabs.TabPanel id='foreground'>
+            <section className='controller-controls'>{renderActions()}</section>
+          </Tabs.TabPanel>
+
+          <section className='controller-actions'>
+            <Tabs.TabPanel id='controls'>
+              <Button width='full' onClick={addItem}>
+                {t('controls:add-shadow')}
+              </Button>
+            </Tabs.TabPanel>
+          </section>
+        </ControllerStyle>
+
+        <CSSStyle onClick={copyToClipBoard}>
+          <section className='code' dangerouslySetInnerHTML={{ __html: html }} />
+          <section className='overlay'>
+            <Typography>{copyButtonText}</Typography>
+          </section>
+        </CSSStyle>
+
+        <SandboxStyle style={{ background: sandboxBackground }}>{children}</SandboxStyle>
+
+        <ExamplesStyle>{list.map(renderExample)}</ExamplesStyle>
+      </ControllerLayoutStyle>
+    </Tabs>
   );
 };

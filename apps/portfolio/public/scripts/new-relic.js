@@ -145,8 +145,8 @@ NREUM.info = {
                   u(t)
                     ? (e.mask_selector = ''.concat(t, ',').concat(f))
                     : '' === t || null === t
-                      ? (e.mask_selector = f)
-                      : (0, l.Z)("An invalid session_replay.mask_selector was provided. '*' will be used.", t);
+                    ? (e.mask_selector = f)
+                    : (0, l.Z)("An invalid session_replay.mask_selector was provided. '*' will be used.", t);
                 },
                 get block_class() {
                   return 'nr-block';
@@ -283,8 +283,8 @@ NREUM.info = {
                   Array.isArray(e[a]) && Array.isArray(t[a])
                     ? (r[a] = Array.from(new Set([...e[a], ...t[a]])))
                     : 'object' == typeof e[a] && 'object' == typeof t[a]
-                      ? (r[a] = i(e[a], t[a]))
-                      : (r[a] = e[a]);
+                    ? (r[a] = i(e[a], t[a]))
+                    : (r[a] = e[a]);
                 } catch (e) {
                   (0, n.Z)('An error occurred while setting a property of a Configurable', e);
                 }
@@ -1757,7 +1757,7 @@ NREUM.info = {
     }),
     (i.f = {}),
     (i.e = e => Promise.all(Object.keys(i.f).reduce((t, r) => (i.f[r](e, t), t), []))),
-    (i.u = e => ({ 111: 'nr-spa', 164: 'nr-spa-compressor', 433: 'nr-spa-recorder' })[e] + '-1.252.0.min.js'),
+    (i.u = e => ({ 111: 'nr-spa', 164: 'nr-spa-compressor', 433: 'nr-spa-recorder' }[e] + '-1.252.0.min.js')),
     (i.o = (e, t) => Object.prototype.hasOwnProperty.call(e, t)),
     (e = {}),
     (t = 'NRBA-1.252.0.PROD:'),
@@ -2065,14 +2065,14 @@ NREUM.info = {
               return e;
             })(t)
           : t
-            ? (t.c || (t = y(t.t)),
-              (t.c += 1),
-              (t.t += e),
-              (t.sos += e * e),
-              e > t.max && (t.max = e),
-              e < t.min && (t.min = e),
-              t)
-            : { t: e };
+          ? (t.c || (t = y(t.t)),
+            (t.c += 1),
+            (t.t += e),
+            (t.sos += e * e),
+            e > t.max && (t.max = e),
+            e < t.min && (t.min = e),
+            t)
+          : { t: e };
       }
       function y(e) {
         return { t: e, min: e, max: e, sos: e * e, c: 1 };
@@ -2167,8 +2167,8 @@ NREUM.info = {
           return e instanceof Error
             ? e
             : void 0 !== e?.message
-              ? new P(e.message, e.filename || e.sourceURL, e.lineno || e.line, e.colno || e.col)
-              : new P('string' == typeof e ? e : (0, _.P)(e));
+            ? new P(e.message, e.filename || e.sourceURL, e.lineno || e.line, e.colno || e.col)
+            : new P('string' == typeof e ? e : (0, _.P)(e));
         }
         #n(e) {
           let t = 'Unhandled Promise Rejection: ';
@@ -2198,10 +2198,10 @@ NREUM.info = {
         return !e || ('object' !== t && 'function' !== t)
           ? -1
           : e === l._A
-            ? 0
-            : (0, M.X)(e, L, function () {
-                return H++;
-              });
+          ? 0
+          : (0, M.X)(e, L, function () {
+              return H++;
+            });
       }
       function F(e) {
         if ('string' == typeof e && e.length) return e.length;
@@ -2430,10 +2430,10 @@ NREUM.info = {
                     ('string' == typeof e[0]
                       ? 0 === (t = e[0]).length && l.il && (t = '' + l._A.location.href)
                       : e[0] && e[0].url
-                        ? (t = e[0].url)
-                        : l._A?.URL && e[0] && e[0] instanceof URL
-                          ? (t = e[0].href)
-                          : 'function' == typeof e[0].toString && (t = e[0].toString()),
+                      ? (t = e[0].url)
+                      : l._A?.URL && e[0] && e[0] instanceof URL
+                      ? (t = e[0].href)
+                      : 'function' == typeof e[0].toString && (t = e[0].toString()),
                     'string' == typeof t && 0 !== t.length)
                   ) {
                     t && ((this.parsedOrigin = (0, U.e)(t)), (this.sameOrigin = this.parsedOrigin.sameOrigin));
@@ -2473,8 +2473,8 @@ NREUM.info = {
                   'string' == typeof i
                     ? (r = i)
                     : 'object' == typeof i && i instanceof W
-                      ? (r = i.url)
-                      : l._A?.URL && 'object' == typeof i && i instanceof URL && (r = i.href),
+                    ? (r = i.url)
+                    : l._A?.URL && 'object' == typeof i && i instanceof URL && (r = i.href),
                     Y(this, r);
                   var o = ('' + ((i && i instanceof W && i.method) || n.method || 'GET')).toUpperCase();
                   (this.params.method = o), (this.body = n.body), (this.txSize = F(n.body) || 0);
@@ -2508,10 +2508,10 @@ NREUM.info = {
                     return 'json' === r && null !== t
                       ? t
                       : 'arraybuffer' === r || 'blob' === r || 'json' === r
-                        ? F(e.response)
-                        : 'text' === r || '' === r || void 0 === r
-                          ? F(e.responseText)
-                          : void 0;
+                      ? F(e.response)
+                      : 'text' === r || '' === r || void 0 === r
+                      ? F(e.responseText)
+                      : void 0;
                   })(n, e.lastSize);
                   if ((i && (e.metrics.rxSize = i), e.sameOrigin)) {
                     var o = n.getResponseHeader('X-NewRelic-App-Data');
@@ -2695,13 +2695,8 @@ NREUM.info = {
                   (this.time = (0, D.z)()), (this.startPath = location.pathname + location.hash);
                 }),
                 n.on(ae + re, function (e) {
-                  (0, T.p)(
-                    'bstHist',
-                    [location.pathname + location.hash, this.startPath, this.time],
-                    void 0,
-                    r.D.sessionTrace,
-                    n,
-                  );
+                  (0,
+                  T.p)('bstHist', [location.pathname + location.hash, this.startPath, this.time], void 0, r.D.sessionTrace, n);
                 });
               try {
                 (i = new PerformanceObserver(e => {
