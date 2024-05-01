@@ -9,21 +9,20 @@ export const ControllerLayoutStyle = styled.section`
   grid-template:
     'sandbox' auto
     'controller' 1fr
-    'examples' 222px
+    'examples' auto
     / 1fr;
 
-  @media screen and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {
+  @media screen and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
     grid-template:
       'sandbox controller' 1fr
-      'examples examples' auto
-      / 1fr auto;
+      'examples css' 270px
+      / 1fr 450px;
   }
 `;
 
 export const ControllerStyle = styled.section`
   grid-area: controller;
   display: grid;
-  gap: 20px;
   grid-template:
     'tabs' auto
     'controls' 1fr
@@ -32,11 +31,30 @@ export const ControllerStyle = styled.section`
   align-items: start;
   height: 100%;
   overflow: auto;
-  background: ${props => props.theme.colors.text}11;
-  backdrop-filter: blur(2px);
 
   .controller-tabs {
     grid-area: tabs;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    &--tab {
+      cursor: pointer;
+      text-align: center;
+      padding: 0.5em 1em;
+      background: transparent;
+      border-radius: 5px 5px 0 0;
+      transition: all 300ms ease;
+
+      &:hover {
+        letter-spacing: 1px;
+      }
+
+      &.is-open {
+        background: ${props => props.theme.colors.text}11;
+        color: ${props => props.theme.colors.primary};
+        backdrop-filter: blur(2px);
+      }
+    }
   }
 
   .controller-controls {
@@ -44,6 +62,9 @@ export const ControllerStyle = styled.section`
     height: 100%;
     overflow: auto;
     align-content: start;
+    background: ${props => props.theme.colors.text}11;
+    backdrop-filter: blur(2px);
+    padding: 1em 0;
   }
 
   .controller-actions {
@@ -53,10 +74,63 @@ export const ControllerStyle = styled.section`
     gap: 10px;
     grid-auto-columns: 1fr;
     padding: 10px;
+    background: ${props => props.theme.colors.text}11;
+    backdrop-filter: blur(2px);
 
     @media all and (min-width: ${props => props.theme.constants.breakpoints.mobileL}) {
       grid-auto-flow: column;
     }
+  }
+`;
+
+export const CSSStyle = styled.section`
+  grid-area: css;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  border: 2px solid;
+  background: ${props => props.theme.colors.gray2};
+  color: ${props => props.theme.colors.white};
+  display: none;
+  position: relative;
+  cursor: pointer;
+
+  .code {
+    height: 100%;
+    overflow: auto;
+  }
+
+  pre.shiki {
+    height: 100%;
+    padding: 1em;
+    margin: 0;
+    user-select: none;
+  }
+
+  .overlay {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: ${props => props.theme.colors.gray2};
+    color: ${props => props.theme.colors.white};
+    border-top: 2px solid;
+    border-left: 2px solid;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    padding: 0.5em 1em;
+    opacity: 0;
+    transition: opacity 300ms ease;
+  }
+
+  &:hover {
+    .overlay {
+      opacity: 1;
+    }
+  }
+
+  @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
+    display: grid;
   }
 `;
 

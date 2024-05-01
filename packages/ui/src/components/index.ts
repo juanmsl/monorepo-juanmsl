@@ -9,6 +9,7 @@ export * from './line';
 export * from './modals';
 export * from './pdf-viewer';
 export * from './table';
+export * from './tabs';
 export * from './tag';
 export * from './tooltip';
 export * from './typography';

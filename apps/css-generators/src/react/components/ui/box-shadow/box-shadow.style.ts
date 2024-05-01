@@ -12,6 +12,7 @@ export const BoxShadowStyle = styled.section`
   text-align: center;
   cursor: pointer;
   transition: all 300ms ease;
+  user-select: none;
 
   @media all and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {
     width: 150px;

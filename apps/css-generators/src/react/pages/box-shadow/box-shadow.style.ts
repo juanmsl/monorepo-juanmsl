@@ -23,7 +23,7 @@ export const BoxShadowStyle = styled.main`
   }
 
   .shadows-item-header {
-    padding: 20px;
+    padding: 10px 20px;
 
     &.is-open {
       position: sticky;
@@ -39,7 +39,7 @@ export const BoxShadowStyle = styled.main`
 
     .input-ranges {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 10px 20px;
     }
   }

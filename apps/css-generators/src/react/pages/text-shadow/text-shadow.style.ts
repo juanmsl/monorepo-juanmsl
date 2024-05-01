@@ -29,7 +29,7 @@ export const TextShadowStyle = styled.main`
   }
 
   .shadows-item-header {
-    padding: 20px;
+    padding: 10px 20px;
 
     &.is-open {
       position: sticky;
