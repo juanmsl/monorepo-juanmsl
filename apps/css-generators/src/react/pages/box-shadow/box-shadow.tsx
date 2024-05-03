@@ -3,10 +3,11 @@ import { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'styled-components';
 
-import { BoxShadowStyle, AccordionHeader } from './box-shadow.style';
+import { BoxShadowStyle } from './box-shadow.style';
 
 import { ControllerLayout, UpdateItem } from '@components/layouts';
-import { BoxShadow, Navbar } from '@components/ui';
+import { SandboxAccordionHeader } from '@components/layouts/sandbox-layout/sandbox-layout.style';
+import { BoxShadow } from '@components/ui';
 import { BoxShadowLine, useBoxShadow } from '@hooks';
 
 const boxShadowList: Array<Array<BoxShadowLine>> = [
@@ -86,6 +87,7 @@ export const BoxShadowPage = () => {
   const { t } = useTranslation();
   const theme = useTheme();
   const [selectedList, setSelectedList] = useState(boxShadowList[0]);
+  const [boxBorderRadius, setBoxBorderRadius] = useState(50);
   const [boxColor, setBoxColor] = useState(theme.colors.primary);
   const [sandboxBackground, setSandboxBackground] = useState('#33333300');
 
@@ -125,104 +127,108 @@ export const BoxShadowPage = () => {
   const css = useMemo(() => `box-shadow:\n  ${boxShadow.filter(line => line).join(',\n  ')};`, [boxShadow]);
 
   return (
-    <BoxShadowStyle>
-      <Navbar />
-      <ControllerLayout
-        list={boxShadowList}
-        addItem={addItem}
-        selected={selectedList}
-        sandboxBackground={sandboxBackground}
-        css={css}
-        renderActions={() => (
-          <section className='box-shadow-container-controls'>
-            <InputColor name='boxColor' value={boxColor} setValue={setBoxColor} />
-            <InputColor name='backgroundColor' value={sandboxBackground} setValue={setSandboxBackground} />
-          </section>
-        )}
-        renderAccordionItem={({ x, y, blur, spread, color, isInset }, key) => (
-          <Accordion.Item
-            key={key}
-            title={t('box-shadow:shadow-#', { index: key + 1 })}
-            subtitle={boxShadow[key] || t('box-shadow:no-shadow')}
-            classNames={{
-              header: 'shadows-item-header',
-              body: 'shadows-item-body',
-            }}
-            startContent={() => <InputColor name='color' value={color} setValue={updateItem('color', key)} />}
-            middleContent={({ title, subtitle }) => (
-              <AccordionHeader>
-                <section className='accordion-text'>
-                  <Typography variant='body' withoutPadding weight='bold'>
-                    {title}
-                  </Typography>
-                  <Typography variant='small' className='box-shadow-css' withoutPadding weight='light'>
-                    {subtitle}
-                  </Typography>
-                </section>
-                <section className='accordion-actions'>
-                  {selectedList.length > 1 && (
-                    <Icon name='cross' className='delete-shadow-icon' onClick={deleteItem(key)} />
-                  )}
-                </section>
-              </AccordionHeader>
-            )}
-          >
-            <section className='input-ranges'>
-              <InputRange
-                name='x'
-                label={t('controls:x-position')}
-                min={-100}
-                max={100}
-                value={x}
-                setValue={updateItem('x', key)}
-              />
-              <InputRange
-                name='y'
-                label={t('controls:y-position')}
-                min={-100}
-                max={100}
-                value={y}
-                setValue={updateItem('y', key)}
-              />
-              <InputRange
-                name='blur'
-                label={t('controls:blur')}
-                min={0}
-                max={100}
-                value={blur}
-                setValue={updateItem('blur', key)}
-              />
-              <InputRange
-                name='spread'
-                label={t('controls:spread')}
-                min={-100}
-                max={100}
-                value={spread}
-                setValue={updateItem('spread', key)}
-              />
-            </section>
-            <Checkbox
-              name='inset'
-              label={t('controls:is-inset')}
-              value={isInset}
-              setValue={updateItem('isInset', key)}
-            />
-          </Accordion.Item>
-        )}
-        renderExample={(boxShadow, key) => (
-          <BoxShadow key={key} boxShadowList={boxShadow} onClick={() => setSelectedList(boxShadowList[key])}>
-            {t('box-shadow:shadow-#', { index: key + 1 })}
-          </BoxShadow>
-        )}
-      >
-        <section
-          className='box-shadow-box'
-          style={{
-            boxShadow: boxShadow.filter(line => line).join(', '),
-            background: boxColor,
+    <ControllerLayout
+      list={boxShadowList}
+      addItem={addItem}
+      selected={selectedList}
+      sandboxBackground={sandboxBackground}
+      css={css}
+      renderActions={() => (
+        <section className='container-controls'>
+          <InputColor showValueText label='Sample color' name='boxColor' value={boxColor} setValue={setBoxColor} />
+          <InputColor
+            showValueText
+            label='Background'
+            name='backgroundColor'
+            value={sandboxBackground}
+            setValue={setSandboxBackground}
+          />
+          <InputRange
+            name='boxBorderRadius'
+            label='Border Radius'
+            min={0}
+            max={50}
+            value={boxBorderRadius}
+            setValue={setBoxBorderRadius}
+          />
+        </section>
+      )}
+      renderAccordionItem={({ x, y, blur, spread, color, isInset }, key) => (
+        <Accordion.Item
+          key={key}
+          title={t('box-shadow:shadow-#', { index: key + 1 })}
+          subtitle={boxShadow[key] || t('box-shadow:no-shadow')}
+          className='shadows-item'
+          classNames={{
+            header: 'shadows-item-header',
+            body: 'shadows-item-body',
           }}
-        />
-      </ControllerLayout>
-    </BoxShadowStyle>
+          startContent={() => <InputColor name='color' value={color} setValue={updateItem('color', key)} />}
+          middleContent={({ title, subtitle }) => (
+            <SandboxAccordionHeader>
+              <Typography variant='body' withoutPadding weight='bold'>
+                {title}
+              </Typography>
+              <Typography variant='small' className='hader-subtitle' withoutPadding weight='light'>
+                {subtitle}
+              </Typography>
+            </SandboxAccordionHeader>
+          )}
+          endContent={() =>
+            selectedList.length > 1 ? (
+              <Icon name='cross' className='delete-shadow-icon' onClick={deleteItem(key)} />
+            ) : null
+          }
+        >
+          <Checkbox name='inset' label={t('controls:is-inset')} value={isInset} setValue={updateItem('isInset', key)} />
+          <InputRange
+            name='x'
+            label={t('controls:x-position')}
+            min={-100}
+            max={100}
+            value={x}
+            setValue={updateItem('x', key)}
+          />
+          <InputRange
+            name='y'
+            label={t('controls:y-position')}
+            min={-100}
+            max={100}
+            value={y}
+            setValue={updateItem('y', key)}
+          />
+          <InputRange
+            name='blur'
+            label={t('controls:blur')}
+            min={0}
+            max={100}
+            value={blur}
+            setValue={updateItem('blur', key)}
+          />
+          <InputRange
+            name='spread'
+            label={t('controls:spread')}
+            min={-100}
+            max={100}
+            value={spread}
+            setValue={updateItem('spread', key)}
+          />
+        </Accordion.Item>
+      )}
+      renderExample={(boxShadow, key) => (
+        <BoxShadow key={key} boxShadowList={boxShadow} onClick={() => setSelectedList(boxShadowList[key])}>
+          {t('box-shadow:shadow-#', { index: key + 1 })}
+        </BoxShadow>
+      )}
+    >
+      <BoxShadowStyle
+        className='box-shadow-box'
+        style={{
+          boxShadow: boxShadow.filter(line => line).join(', '),
+          background: boxColor,
+          borderRadius: `${boxBorderRadius}%`,
+        }}
+      />
+    </ControllerLayout>
   );
 };

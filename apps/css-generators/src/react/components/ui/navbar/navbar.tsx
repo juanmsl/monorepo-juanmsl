@@ -13,7 +13,7 @@ export const Navbar = () => {
     <NavbarStyle>
       <Link to={PATHS.HOME_URL} className='navbar-left'>
         <Image className='navbar-logo' src='/assets/images/logo.png' alt='logo' />
-        <Typography variant='body' weight='bold'>
+        <Typography variant='body' weight='bold' className='navbar-title'>
           {t('navbar:title')}
         </Typography>
       </Link>

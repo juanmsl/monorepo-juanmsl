@@ -53,9 +53,10 @@ const useAccordionItem = (id: string): [boolean, () => void] => {
 type AccordionProps = {
   children: React.ReactNode;
   className?: string;
+  noSeparators?: boolean;
 };
 
-export const Accordion = ({ children, className = '' }: AccordionProps) => {
+export const Accordion = ({ children, className = '', noSeparators }: AccordionProps) => {
   const [openedItem, setOpenedItem] = useState<string>('');
 
   const toggleItem = useCallback((id: string) => {
@@ -71,7 +72,7 @@ export const Accordion = ({ children, className = '' }: AccordionProps) => {
     >
       <AccordionStyle className={className}>
         {(Array.isArray(children) ? children : [children]).flatMap((child, key) => {
-          return key === 0 ? child : [<Line orientation='horizontal' key={`${key}.5`} />, child];
+          return key === 0 ? child : [noSeparators ? null : <Line orientation='horizontal' key={`${key}.5`} />, child];
         })}
       </AccordionStyle>
     </AccordionContext.Provider>

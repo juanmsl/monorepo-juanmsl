@@ -1,5 +1,6 @@
 import { Accordion, Button, Tabs, Typography, useToggleValues } from '@juanmsl/ui';
 import { fromHighlighter } from '@shikijs/markdown-it/core';
+import { motion } from 'framer-motion';
 import MarkdownIt from 'markdown-it';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -91,9 +92,11 @@ export const ControllerLayout = <T,>({
           </section>
 
           <Tabs.TabPanel id='controls'>
-            <Accordion className='controller-controls'>
-              {selected.map((data, key) => renderAccordionItem(data, key))}
-            </Accordion>
+            <section className='controller-controls'>
+              <Accordion className='controller-controls--accordeon' noSeparators>
+                {selected.map((data, key) => renderAccordionItem(data, key))}
+              </Accordion>
+            </section>
           </Tabs.TabPanel>
 
           <Tabs.TabPanel id='foreground'>
@@ -116,7 +119,20 @@ export const ControllerLayout = <T,>({
           </section>
         </CSSStyle>
 
-        <SandboxStyle style={{ background: sandboxBackground }}>{children}</SandboxStyle>
+        <SandboxStyle style={{ background: sandboxBackground }}>
+          <motion.section
+            drag
+            style={{ cursor: 'move' }}
+            dragConstraints={{
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+            }}
+          >
+            {children}
+          </motion.section>
+        </SandboxStyle>
 
         <ExamplesStyle>{list.map(renderExample)}</ExamplesStyle>
       </ControllerLayoutStyle>

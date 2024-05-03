@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 
 import { useInputHandlers } from '../../../hooks';
-import { Typography } from '../../typography';
 import { Field } from '../field';
 import { InputProps } from '../types';
 import { withController } from '../with-controller';
@@ -30,8 +29,23 @@ export const InputRange = ({
   step,
 }: InputProps<RangeProps, number>) => {
   const id = useMemo(() => crypto.randomUUID(), []);
+  const onBlurInput = () => {
+    onBlur && onBlur();
+    const parsedValue = parseInt(`${value}`);
+
+    if (min !== undefined && parsedValue < min) {
+      setValue(min);
+    }
+
+    if (max !== undefined && parsedValue > max) {
+      setValue(max);
+    }
+
+    setValue(parsedValue);
+  };
+
   const { isFocus, handlers } = useInputHandlers({
-    onBlur: onBlur,
+    onBlur: onBlurInput,
     onChange: value => setValue(+value),
   });
 
@@ -46,11 +60,6 @@ export const InputRange = ({
       isFocus={isFocus}
     >
       <InputRangeStyle $isFocus={isFocus}>
-        {min !== undefined ? (
-          <Typography className='min-range-limit' variant='small'>
-            {min}
-          </Typography>
-        ) : null}
         <input
           id={id}
           type='range'
@@ -63,11 +72,18 @@ export const InputRange = ({
           step={step}
           {...handlers}
         />
-        {max !== undefined ? (
-          <Typography className='max-range-limit' variant='small'>
-            {max}
-          </Typography>
-        ) : null}
+        <input
+          id={id}
+          type='number'
+          name={name}
+          className={`input-range-number ${className}`}
+          style={style}
+          value={value}
+          min={min}
+          max={max}
+          step={step}
+          {...handlers}
+        />
       </InputRangeStyle>
     </Field>
   );
