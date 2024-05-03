@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const ControllerLayoutStyle = styled.section`
   display: grid;
   height: 100%;
-  overflow: auto;
   padding: 10px;
   gap: 10px;
   grid-template:
@@ -12,11 +11,68 @@ export const ControllerLayoutStyle = styled.section`
     'examples' auto
     / 1fr;
 
+  @media screen and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {
+    overflow: auto;
+    grid-template:
+      'sandbox controller' 1fr
+      'examples css' 270px
+      / 1fr 350px;
+  }
+
   @media screen and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
     grid-template:
       'sandbox controller' 1fr
       'examples css' 270px
       / 1fr 450px;
+  }
+
+  .shadows-item {
+    border-radius: 15px;
+    border: 1px solid ${props => props.theme.colors.primary};
+
+    &-header {
+      padding: 10px 20px;
+      border-radius: 14px 14px 0 0;
+
+      &:hover {
+        background: ${props => props.theme.colors.primary}22;
+      }
+
+      &.is-open {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background: ${props => props.theme.colors.primary};
+        color: ${props => props.theme.colors.primaryContrast};
+      }
+    }
+
+    &-body {
+      padding: 10px 20px 20px;
+    }
+  }
+
+  .delete-shadow-icon {
+    transition: all 100ms ease;
+    width: 1.4em;
+    height: 1.4em;
+    border-radius: 50%;
+    border: 1px solid;
+    padding: 4px;
+    font-size: 1em;
+    color: ${props => props.theme.colors.primary};
+    background: ${props => props.theme.colors.primaryContrast};
+
+    &:hover {
+      background: ${props => props.theme.colors.primary};
+      color: ${props => props.theme.colors.primaryContrast};
+    }
+  }
+
+  .container-controls {
+    display: grid;
+    gap: 20px;
+    padding: 10px 20px 20px;
   }
 `;
 
@@ -31,6 +87,8 @@ export const ControllerStyle = styled.section`
   align-items: start;
   height: 100%;
   overflow: auto;
+  border: 2px solid ${props => props.theme.colors.primary};
+  border-radius: 15px;
 
   .controller-tabs {
     grid-area: tabs;
@@ -40,17 +98,18 @@ export const ControllerStyle = styled.section`
     &--tab {
       cursor: pointer;
       text-align: center;
-      padding: 0.5em 1em;
+      padding: 1em;
       background: transparent;
-      border-radius: 5px 5px 0 0;
+      border-radius: 13px 13px 0 0;
       transition: all 300ms ease;
 
       &:hover {
         letter-spacing: 1px;
+        background: ${props => props.theme.colors.text}11;
       }
 
       &.is-open {
-        background: ${props => props.theme.colors.text}11;
+        background: ${props => props.theme.colors.text}22;
         color: ${props => props.theme.colors.primary};
         backdrop-filter: blur(2px);
       }
@@ -61,10 +120,16 @@ export const ControllerStyle = styled.section`
     grid-area: controls;
     height: 100%;
     overflow: auto;
-    align-content: start;
-    background: ${props => props.theme.colors.text}11;
+    background: ${props => props.theme.colors.text}22;
     backdrop-filter: blur(2px);
-    padding: 1em 0;
+    padding: 10px;
+
+    &--accordeon {
+      height: 100%;
+      overflow: auto;
+      gap: 10px;
+      align-content: start;
+    }
   }
 
   .controller-actions {
@@ -74,10 +139,11 @@ export const ControllerStyle = styled.section`
     gap: 10px;
     grid-auto-columns: 1fr;
     padding: 10px;
-    background: ${props => props.theme.colors.text}11;
+    background: ${props => props.theme.colors.text}22;
     backdrop-filter: blur(2px);
+    border-radius: 0 0 15px 15px;
 
-    @media all and (min-width: ${props => props.theme.constants.breakpoints.mobileL}) {
+    @media all and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {
       grid-auto-flow: column;
     }
   }
@@ -88,12 +154,13 @@ export const CSSStyle = styled.section`
   width: 100%;
   height: 100%;
   overflow: auto;
-  border: 2px solid;
+  border: 2px solid ${props => props.theme.colors.primary};
   background: ${props => props.theme.colors.gray2};
   color: ${props => props.theme.colors.white};
   display: none;
   position: relative;
   cursor: pointer;
+  border-radius: 15px;
 
   .code {
     height: 100%;
@@ -113,14 +180,15 @@ export const CSSStyle = styled.section`
     right: 0;
     background: ${props => props.theme.colors.gray2};
     color: ${props => props.theme.colors.white};
-    border-top: 2px solid;
-    border-left: 2px solid;
+    border-top: 2px solid ${props => props.theme.colors.gray5};
+    border-left: 2px solid ${props => props.theme.colors.gray5};
     display: grid;
     place-content: center;
     text-align: center;
     padding: 0.5em 1em;
     opacity: 0;
     transition: opacity 300ms ease;
+    border-radius: 15px 0;
   }
 
   &:hover {
@@ -129,7 +197,7 @@ export const CSSStyle = styled.section`
     }
   }
 
-  @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
+  @media all and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {
     display: grid;
   }
 `;
@@ -142,6 +210,7 @@ export const SandboxStyle = styled.section`
   display: grid;
   place-content: center;
   padding: 1em;
+  border-radius: 15px;
 `;
 
 export const ExamplesStyle = styled.section`
@@ -156,6 +225,8 @@ export const ExamplesStyle = styled.section`
   min-height: 100%;
   padding: 60px;
   justify-items: center;
-  background: ${props => props.theme.colors.text}11;
+  background: ${props => props.theme.colors.text}22;
   backdrop-filter: blur(2px);
+  border-radius: 15px;
+  border: 2px solid ${props => props.theme.colors.primary};
 `;

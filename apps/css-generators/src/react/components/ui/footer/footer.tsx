@@ -8,11 +8,9 @@ export const Footer = () => {
 
   return (
     <FooterStyle>
-      <section className='layout-content'>
-        <Typography variant='small' className='copyright' as='p'>
-          {t('footer:copyright', { version: '1.0.0' })}
-        </Typography>
-      </section>
+      <Typography variant='small' className='copyright' as='p'>
+        {t('footer:copyright', { version: '1.0.0' })}
+      </Typography>
     </FooterStyle>
   );
 };

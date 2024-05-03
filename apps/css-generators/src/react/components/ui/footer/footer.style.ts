@@ -7,13 +7,7 @@ export const FooterStyle = styled.footer`
   transition: all 300ms ease;
   display: grid;
   grid-template-rows: auto 1fr;
-  padding: 20px;
-
-  .layout-content {
-    display: grid;
-    gap: 20px;
-    height: 100%;
-  }
+  padding: 10px;
 
   .copyright {
     text-align: center;

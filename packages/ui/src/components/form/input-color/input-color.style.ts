@@ -1,22 +1,34 @@
 import styled from 'styled-components';
 
 export const InputColorStyle = styled.section`
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: start;
+
+  .input-color-value {
+    margin-left: 10px;
+  }
+`;
+
+export const InputColorBoxStyle = styled.section`
   background: white;
   border-radius: 5px;
-  border: 1px solid ${props => props.theme.colors.white};
+  border: 2px solid;
   width: 25px;
   height: 25px;
   position: relative;
+  cursor: pointer;
 
   &::before {
     content: '';
     position: absolute;
-    border-radius: 5px;
+    border-radius: inherit;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: white;
+    background: repeating-conic-gradient(#cccccc 0% 25%, white 0% 50%) 50% / 8px 8px;
     z-index: -1;
   }
 `;
@@ -47,10 +59,21 @@ export const InputColorSelectorStyle = styled.section`
     border-width: 2px;
   }
 
-  .color-input {
-    padding: 0.5em 1.5em;
-    border-radius: 8px;
+  .color-input-container {
+    display: grid;
+    grid-template-columns: 16px 1fr 16px;
+    align-items: center;
+    gap: 10px;
     border: 1px solid;
+    border-radius: 8px;
+    padding: 0.5em;
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .color-input {
+    padding: 0;
+    border-radius: inherit;
     background: ${props => props.theme.colors.background};
     color: ${props => props.theme.colors.text};
     width: 100%;
