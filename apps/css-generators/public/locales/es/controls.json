@@ -6,5 +6,11 @@
   "is-inset": "Es interna",
   "add-shadow": "Agregar sombra",
   "copy-css": "Copiar CSS",
-  "copied": "Copiado!"
+  "copied": "Copiado!",
+  "controls": "Controles",
+  "foreground": "Entorno",
+  "background": "Fondo del canvas",
+  "sample-color": "Color",
+  "sample-text": "Texto",
+  "border-radius": "Radio del borde"
 }

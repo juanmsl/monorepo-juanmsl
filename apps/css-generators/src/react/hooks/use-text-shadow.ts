@@ -1,11 +1,6 @@
 import { useMemo } from 'react';
 
-export type TextShadowLine = {
-  x: number;
-  y: number;
-  blur: number;
-  color: string;
-};
+import { TextShadowLine } from '@core/constants';
 
 const getUnit = (value: number, unit = 'px') => (value ? `${value}${unit}` : value);
 

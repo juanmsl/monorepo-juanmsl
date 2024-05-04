@@ -32,7 +32,7 @@ import { initReactI18next } from 'react-i18next';
 const i18nConfig: InitOptions = {
   load: 'languageOnly',
   supportedLngs: ['en', 'es'],
-  ns: ['box-shadow', 'common', 'controls', 'footer', 'metatags', 'navbar', 'home'],
+  ns: ['shadow', 'common', 'controls', 'footer', 'metatags', 'navbar', 'home'],
   interpolation: {
     escapeValue: false,
   },

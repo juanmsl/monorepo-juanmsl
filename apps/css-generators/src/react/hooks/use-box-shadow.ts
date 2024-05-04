@@ -1,13 +1,6 @@
 import { useMemo } from 'react';
 
-export type BoxShadowLine = {
-  x: number;
-  y: number;
-  blur: number;
-  spread: number;
-  color: string;
-  isInset: boolean;
-};
+import { BoxShadowLine } from '@core/constants';
 
 const getUnit = (value: number, unit = 'px') => (value ? `${value}${unit}` : value);
 
