@@ -1,8 +1,8 @@
-import { Accordion, Button, Tabs, Typography, useToggleValues } from '@juanmsl/ui';
+import { Accordion, Button, InputColor, Tabs, Typography, useToggleValues } from '@juanmsl/ui';
 import { fromHighlighter } from '@shikijs/markdown-it/core';
 import { motion } from 'framer-motion';
 import MarkdownIt from 'markdown-it';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getHighlighterCore } from 'shiki/core';
 
@@ -17,33 +17,51 @@ import {
 const md = MarkdownIt();
 
 export type UpdateItem<T> = <tValue extends keyof T>(prop: tValue, index: number) => (value: T[tValue]) => void;
+export type DeleteItem = (index: number) => (e: React.MouseEvent) => void;
+
+export type ExampleComponentProps<T> = {
+  index: number;
+  onClick: () => void;
+  example: Array<T>;
+};
 
 type ControllerLayoutProps<T> = {
   children: React.ReactNode;
   list: Array<Array<T>>;
   selected: Array<T>;
-  renderAccordionItem: (data: T, key: number) => React.ReactNode;
-  renderExample: (data: Array<T>, key: number) => React.ReactNode;
-  addItem: () => void;
-  sandboxBackground?: string;
+  setSelected: React.Dispatch<React.SetStateAction<Array<T>>>;
+  renderAccordionItem: (
+    data: T & {
+      updateItem: UpdateItem<T>;
+      deleteItem: DeleteItem;
+    },
+    key: number,
+  ) => React.ReactNode;
+  ExampleComponent: React.FC<ExampleComponentProps<T>>;
   renderActions: () => React.ReactNode;
+  selectExample: (index: number) => void;
   css: string;
+  newItem: T;
 };
 
 export const ControllerLayout = <T,>({
   children,
   list,
   renderAccordionItem,
-  renderExample,
-  addItem,
+  ExampleComponent,
+  newItem,
   selected,
-  sandboxBackground,
+  setSelected,
   renderActions,
   css,
+  selectExample,
 }: ControllerLayoutProps<T>) => {
   const { t } = useTranslation();
   const [copyButtonText, toggle] = useToggleValues([t('controls:copy-css'), t('controls:copied')]);
   const [html, setHtml] = useState(null);
+  const sandboxRef = useRef<HTMLElement>(null);
+  const objectRef = useRef<HTMLElement>(null);
+  const [sandboxBackground, setSandboxBackground] = useState('#33333300');
 
   useEffect(() => {
     const transform = async () => {
@@ -74,6 +92,39 @@ export const ControllerLayout = <T,>({
     }, 1000);
   }, [css, toggle]);
 
+  const deleteItem: DeleteItem = (index: number) => e => {
+    e.stopPropagation();
+    setSelected(prev => prev.filter((_, key) => key !== index));
+  };
+
+  const updateItem: UpdateItem<T> = (prop, index) => value => {
+    setSelected(prev => {
+      const data = [...prev];
+      data[index] = {
+        ...prev[index],
+        [prop]: value,
+      };
+
+      return data;
+    });
+  };
+
+  const addItem = () => {
+    setSelected(prev => [...prev, newItem]);
+  };
+
+  const dragConstraints = () => {
+    const sandbox = sandboxRef.current?.getBoundingClientRect() ?? { width: 0, height: 0 };
+    const object = objectRef.current?.getBoundingClientRect() ?? { width: 0, height: 0 };
+
+    return {
+      top: -(sandbox.height - object.height - 100) / 2,
+      left: -(sandbox.width - object.width - 100) / 2,
+      right: (sandbox.width - object.width - 100) / 2,
+      bottom: (sandbox.height - object.height - 100) / 2,
+    };
+  };
+
   return (
     <Tabs defaultOpenTab='controls'>
       <ControllerLayoutStyle>
@@ -81,12 +132,12 @@ export const ControllerLayout = <T,>({
           <section className='controller-tabs'>
             <Tabs.Tab className='controller-tabs--tab' id='controls'>
               <Typography variant='label' weight='bold'>
-                Controls
+                {t('controls:controls')}
               </Typography>
             </Tabs.Tab>
             <Tabs.Tab className='controller-tabs--tab' id='foreground'>
               <Typography variant='label' weight='bold'>
-                Foreground
+                {t('controls:foreground')}
               </Typography>
             </Tabs.Tab>
           </section>
@@ -94,13 +145,24 @@ export const ControllerLayout = <T,>({
           <Tabs.TabPanel id='controls'>
             <section className='controller-controls'>
               <Accordion className='controller-controls--accordeon' noSeparators>
-                {selected.map((data, key) => renderAccordionItem(data, key))}
+                {selected.map((data, key) => renderAccordionItem({ ...data, deleteItem, updateItem }, key))}
               </Accordion>
             </section>
           </Tabs.TabPanel>
 
           <Tabs.TabPanel id='foreground'>
-            <section className='controller-controls'>{renderActions()}</section>
+            <section className='controller-controls'>
+              <section className='controller-controls--content'>
+                <InputColor
+                  showValueText
+                  label={t('controls:background')}
+                  name='backgroundColor'
+                  value={sandboxBackground}
+                  setValue={setSandboxBackground}
+                />
+                {renderActions()}
+              </section>
+            </section>
           </Tabs.TabPanel>
 
           <section className='controller-actions'>
@@ -119,22 +181,17 @@ export const ControllerLayout = <T,>({
           </section>
         </CSSStyle>
 
-        <SandboxStyle style={{ background: sandboxBackground }}>
-          <motion.section
-            drag
-            style={{ cursor: 'move' }}
-            dragConstraints={{
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-            }}
-          >
+        <SandboxStyle ref={sandboxRef} style={{ background: sandboxBackground }}>
+          <motion.section ref={objectRef} drag style={{ cursor: 'move' }} dragConstraints={dragConstraints()}>
             {children}
           </motion.section>
         </SandboxStyle>
 
-        <ExamplesStyle>{list.map(renderExample)}</ExamplesStyle>
+        <ExamplesStyle>
+          {list.map((example, key) => (
+            <ExampleComponent key={key} index={key} onClick={() => selectExample(key)} example={example} />
+          ))}
+        </ExamplesStyle>
       </ControllerLayoutStyle>
     </Tabs>
   );

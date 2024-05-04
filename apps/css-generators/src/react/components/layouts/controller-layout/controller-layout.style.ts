@@ -45,6 +45,15 @@ export const ControllerLayoutStyle = styled.section`
         background: ${props => props.theme.colors.primary};
         color: ${props => props.theme.colors.primaryContrast};
       }
+
+      &--subtitle {
+        font-family: monospace;
+        display: none;
+
+        @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
+          display: inline-block;
+        }
+      }
     }
 
     &-body {
@@ -67,12 +76,6 @@ export const ControllerLayoutStyle = styled.section`
       background: ${props => props.theme.colors.primary};
       color: ${props => props.theme.colors.primaryContrast};
     }
-  }
-
-  .container-controls {
-    display: grid;
-    gap: 20px;
-    padding: 10px 20px 20px;
   }
 `;
 
@@ -110,7 +113,6 @@ export const ControllerStyle = styled.section`
 
       &.is-open {
         background: ${props => props.theme.colors.text}22;
-        color: ${props => props.theme.colors.primary};
         backdrop-filter: blur(2px);
       }
     }
@@ -129,6 +131,12 @@ export const ControllerStyle = styled.section`
       overflow: auto;
       gap: 10px;
       align-content: start;
+    }
+
+    &--content {
+      display: grid;
+      gap: 20px;
+      padding: 10px 20px 20px;
     }
   }
 

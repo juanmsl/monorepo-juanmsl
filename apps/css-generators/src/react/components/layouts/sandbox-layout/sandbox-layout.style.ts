@@ -6,16 +6,3 @@ export const SandboxLayoutStyle = styled.section`
   height: 100%;
   overflow: auto;
 `;
-
-export const SandboxAccordionHeader = styled.section`
-  display: grid;
-
-  .header-subtitle {
-    font-family: monospace;
-    display: none;
-
-    @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
-      display: inline-block;
-    }
-  }
-`;

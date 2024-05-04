@@ -6,5 +6,11 @@
   "is-inset": "Is Inset",
   "add-shadow": "Add Shadow",
   "copy-css": "Copy for CSS",
-  "copied": "Copied!"
+  "copied": "Copied!",
+  "controls": "Controls",
+  "foreground": "Foreground",
+  "background": "Canvas Background",
+  "sample-color": "Sample Color",
+  "sample-text": "Sample Text",
+  "border-radius": "Border Radius"
 }
