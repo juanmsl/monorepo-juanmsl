@@ -3,7 +3,8 @@ import React from 'react';
 
 import { TextShadowStyle } from './text-shadow.style';
 
-import { TextShadowLine, useTextShadow } from '@hooks';
+import { TextShadowLine } from '@core/constants';
+import { useTextShadow } from '@hooks';
 
 type TextShadowProps = {
   textShadowList: Array<TextShadowLine>;

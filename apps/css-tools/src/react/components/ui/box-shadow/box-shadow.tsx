@@ -3,7 +3,8 @@ import React from 'react';
 
 import { BoxShadowStyle } from './box-shadow.style';
 
-import { BoxShadowLine, useBoxShadow } from '@hooks';
+import { BoxShadowLine } from '@core/constants';
+import { useBoxShadow } from '@hooks';
 
 type BoxShadowProps = {
   boxShadowList: Array<BoxShadowLine>;
