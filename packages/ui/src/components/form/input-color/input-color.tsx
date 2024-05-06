@@ -72,7 +72,7 @@ export const InputColor = ({
               <section className='color-input-container'>
                 {isSupported() ? (
                   <Icon
-                    name='codepen'
+                    name='dropper'
                     onClick={() => {
                       void openEyeDropper();
                     }}
