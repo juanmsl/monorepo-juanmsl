@@ -1,6 +1,6 @@
 [build]
-  publish = "apps/css-generators/dist/"
-  command = "turbo run build --filter @juanmsl/css-generators"
+  publish = "apps/css-tools/dist/"
+  command = "turbo run build --filter @juanmsl/css-tools"
   base = "/"
 
 [build.environment]
@@ -9,8 +9,8 @@
   NODE_VERSION = "20.11.0"
 
 [[redirects]]
-  from = "https://css-generators.netlify.app/*"
-  to = "https://css-generators.juanmsl.com/:splat"
+  from = "https://juanmsl-css-tools.netlify.app/*"
+  to = "https://css-tools.juanmsl.com/:splat"
   status = 301
   force = true
 
