@@ -6,7 +6,7 @@ export const NavbarStyle = styled.nav`
   padding: 10px clamp(20px, 5.555%, 100px);
   display: grid;
   justify-items: center;
-  gap: 10px;
+  gap: 50px;
   align-content: start;
 
   .navbar-logo {
@@ -18,7 +18,7 @@ export const NavbarStyle = styled.nav`
     cursor: pointer;
   }
 
-  .navbar-left {
+  .navbar-top {
     text-decoration: none;
     color: inherit;
     display: grid;
@@ -29,6 +29,29 @@ export const NavbarStyle = styled.nav`
       writing-mode: vertical-rl;
       text-orientation: mixed;
       transform: rotate(180deg);
+    }
+  }
+
+  .navbar-options {
+    display: grid;
+    gap: 20px;
+    justify-items: center;
+
+    &--link {
+      width: 2em;
+      height: 2em;
+      display: grid;
+      place-content: center;
+      border-radius: 50%;
+
+      &:hover:not(.active) {
+        background: ${props => props.theme.colors.primaryContrast}33;
+      }
+
+      &.active {
+        background: ${props => props.theme.colors.primaryContrast};
+        color: ${props => props.theme.colors.primary};
+      }
     }
   }
 `;

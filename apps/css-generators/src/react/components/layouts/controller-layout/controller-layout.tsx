@@ -113,18 +113,6 @@ export const ControllerLayout = <T,>({
     setSelected(prev => [...prev, newItem]);
   };
 
-  const dragConstraints = () => {
-    const sandbox = sandboxRef.current?.getBoundingClientRect() ?? { width: 0, height: 0 };
-    const object = objectRef.current?.getBoundingClientRect() ?? { width: 0, height: 0 };
-
-    return {
-      top: -(sandbox.height - object.height - 100) / 2,
-      left: -(sandbox.width - object.width - 100) / 2,
-      right: (sandbox.width - object.width - 100) / 2,
-      bottom: (sandbox.height - object.height - 100) / 2,
-    };
-  };
-
   return (
     <Tabs defaultOpenTab='controls'>
       <ControllerLayoutStyle>
@@ -182,7 +170,17 @@ export const ControllerLayout = <T,>({
         </CSSStyle>
 
         <SandboxStyle ref={sandboxRef} style={{ background: sandboxBackground }}>
-          <motion.section ref={objectRef} drag style={{ cursor: 'move' }} dragConstraints={dragConstraints()}>
+          <motion.section
+            ref={objectRef}
+            drag
+            style={{ cursor: 'move' }}
+            dragConstraints={{
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+            }}
+          >
             {children}
           </motion.section>
         </SandboxStyle>
