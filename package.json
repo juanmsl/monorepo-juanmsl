@@ -7,7 +7,7 @@
     "portfolio:dev": "turbo dev --filter=portfolio",
     "css-tools:dev": "turbo dev --filter=css-tools",
     "lint": "turbo lint",
-    "lint:fix": "yarn format && turbo lint:fix",
+    "lint:fix": "turbo lint:fix",
     "format": "prettier --write \"**/*.{ts,tsx,md,js}\"",
     "prepare": "husky"
   },
