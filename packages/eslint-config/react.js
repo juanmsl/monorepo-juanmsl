@@ -16,6 +16,7 @@ module.exports = {
   plugins: [
     '@typescript-eslint',
     'eslint-plugin-react',
+    'eslint-plugin-prettier',
     'eslint-plugin-react-hooks',
     'import',
     'prefer-arrow',
@@ -131,7 +132,7 @@ module.exports = {
     'prefer-arrow-callback': ['error'],
     'prefer-arrow/prefer-arrow-functions': 'off',
     'prettier/prettier': [
-      'warn',
+      'error',
       {
         printWidth: 120,
         singleQuote: true,
