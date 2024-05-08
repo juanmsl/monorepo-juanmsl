@@ -17,6 +17,8 @@ export type ButtonProps = {
   rightIcon?: IconNameT;
   onClick?: ButtonHTMLAttributes<HTMLButtonElement>['onClick'];
   width?: 'fit' | 'full';
+  className?: string;
+  style?: React.CSSProperties;
 };
 
 export const Button = ({
@@ -30,8 +32,10 @@ export const Button = ({
   rightIcon,
   onClick,
   width = 'fit',
+  className = '',
+  style = {},
 }: ButtonProps) => {
-  const className = useClassNames({
+  const buttonClassName = useClassNames({
     rounded: rounded,
     small: size === ButtonSize.SMALL,
     large: size === ButtonSize.LARGE,
@@ -39,10 +43,11 @@ export const Button = ({
     flat: variant === ButtonVariant.FLAT,
     [width]: !!width,
     'is-loading': isLoading,
+    [className]: !!className,
   });
 
   return (
-    <ButtonStyle className={className} disabled={disabled} onClick={onClick}>
+    <ButtonStyle className={buttonClassName} style={style} disabled={disabled} onClick={onClick}>
       {leftIcon && !isLoading && <Icon className='button-left-icon' name={leftIcon} />}
       <span className='button-text'>{isLoading ? <Icon name='spinner' /> : children}</span>
       {rightIcon && !isLoading && <Icon className='button-right-icon' name={rightIcon} />}
