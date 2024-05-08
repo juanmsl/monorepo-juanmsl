@@ -2,15 +2,12 @@
   "name": "@juanmsl/svg-to-react",
   "version": "0.0.1",
   "license": "MIT",
-  "type": "module",
-  "main": "./dist/src/index.js",
-  "module": "./dist/src/index.mjs",
-  "types": "./dist/src/index.d.ts",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
   "scripts": {
     "develop": "ts-node ./src/index.ts",
-    "fix": "yarn run prettier:fix && yarn run lint:fix",
-    "build": "tsc && tsup",
-    "dev": "yarn run build --watch"
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json"
   },
   "dependencies": {
     "xml2js": "^0.6.2"
@@ -20,7 +17,6 @@
     "@types/xml2js": "^0.4.14",
     "ts-node": "^10.9.2",
     "@juanmsl/tsconfig": "*",
-    "tsup": "^8.0.1",
     "typescript": "^5.3.3"
   }
 }
