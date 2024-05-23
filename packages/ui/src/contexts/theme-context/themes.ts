@@ -50,6 +50,10 @@ export type CommonThemeEntity = {
   gray7: string;
   gray8: string;
   gray9: string;
+  info: string;
+  active: string;
+  warning: string;
+  alert: string;
 };
 
 export type PaletteThemeEntity = {

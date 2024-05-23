@@ -7,27 +7,44 @@ import { Icon } from '../../../contexts';
 import { useModalInContainer } from '../../../hooks';
 import { BaseModal } from '../../modals';
 import { Typography } from '../../typography';
-import { Field } from '../field';
-import { InputProps } from '../types';
-import { withController } from '../with-controller';
+import { Controller } from '../controller';
+import { Field, InputFieldProps } from '../field';
+import { ControllerGeneratorProps, UnControlledComponentProps } from '../form.types';
 
 import { InputColorBoxStyle, InputColorSelectorStyle, InputColorStyle } from './input-color.style';
 
-type ColorProps = {
+type ColorProps = InputFieldProps<{
   showValueText?: boolean;
-};
+}>;
 
 export const InputColor = ({
   name,
-  style = {},
-  setValue,
   value,
-  showValueText,
-  label,
-  leftIcon,
-  rightIcon,
+  setValue,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  onBlur,
+  showValueText = false,
+  className = '',
+  style = {},
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  autoFocus = false,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  readOnly = false,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  disabled = false,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  placeholder = '',
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  autoComplete = 'off',
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  isDirty = false,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  isTouched = false,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  invalid = false,
   error,
-}: InputProps<ColorProps, string>) => {
+  ...fieldProps
+}: UnControlledComponentProps<ColorProps, string>) => {
   const { open, isSupported } = useEyeDropper();
   const id = useMemo(() => crypto.randomUUID(), []);
   const { modalRef, isVisible, setIsVisible, modalStyle, containerRef } = useModalInContainer({
@@ -50,7 +67,7 @@ export const InputColor = ({
   };
 
   return (
-    <Field noBorderBottom id={id} label={label} leftIcon={leftIcon} rightIcon={rightIcon} error={error?.message}>
+    <Field id={id} error={error} isFocus={false} {...fieldProps}>
       <InputColorStyle
         onClick={e => {
           e.stopPropagation();
@@ -59,6 +76,7 @@ export const InputColor = ({
         ref={containerRef}
       >
         <InputColorBoxStyle
+          className={className}
           style={{
             borderColor,
             background: value,
@@ -105,4 +123,8 @@ export const InputColor = ({
   );
 };
 
-export const ColorController = withController<ColorProps, string>(InputColor, '#147EFB');
+const InputColorController = ({ rules, ...props }: ControllerGeneratorProps<ColorProps>) => {
+  return <Controller Component={InputColor} defaultValue='#147EFB' inputProps={props} rules={rules} />;
+};
+
+InputColor.Controller = InputColorController;

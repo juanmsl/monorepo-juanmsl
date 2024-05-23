@@ -1,7 +1,7 @@
 import React, { Suspense, useCallback, useContext, useEffect, useState } from 'react';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 
-import { ThemeStyle } from './theme.style';
+import { GlobalStyles, ThemeStyle } from './theme.style';
 import { CommonThemeEntity, PaletteThemeEntity, ThemeConstantsEntity, ThemeEntity } from './themes';
 
 export enum THEME {
@@ -114,6 +114,7 @@ export const ThemeProvider = ({ children, commonTheme, lightTheme, darkTheme, co
             constants: constants,
           }}
         >
+          <GlobalStyles />
           <ThemeStyle>{children}</ThemeStyle>
         </StyledThemeProvider>
       </ThemeContext.Provider>

@@ -138,6 +138,10 @@ export const CommonTheme: CommonThemeEntity = {
   gray8: '#DEDEDE',
   gray9: '#F0F0F0',
   white: '#FFFFFF',
+  info: '#1D9AC1',
+  active: '#00B450',
+  warning: '#FFA300',
+  alert: '#F95F62',
 };
 
 export const DarkTheme: PaletteThemeEntity = {

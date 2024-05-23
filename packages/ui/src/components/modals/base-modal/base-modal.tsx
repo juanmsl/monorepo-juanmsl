@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 
 import { useConstant } from '../../../hooks';
 
+import { BaseOverlay } from './base-modal.style';
+
 export type BaseModalProps = {
   isOpen: boolean;
   children: React.ReactNode;
@@ -43,7 +45,13 @@ export const BaseModalComponent = ({ isOpen, children, id }: BaseModalProps, ref
     return null;
   }
 
-  return ReactDOM.createPortal(children, root);
+  return ReactDOM.createPortal(
+    <>
+      <BaseOverlay />
+      {children}
+    </>,
+    root,
+  );
 };
 
 export const BaseModal = forwardRef(BaseModalComponent);

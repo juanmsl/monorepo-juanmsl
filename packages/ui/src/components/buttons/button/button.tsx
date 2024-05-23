@@ -19,6 +19,7 @@ export type ButtonProps = {
   width?: 'fit' | 'full';
   className?: string;
   style?: React.CSSProperties;
+  type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
 };
 
 export const Button = ({

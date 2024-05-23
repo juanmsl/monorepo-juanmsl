@@ -1,4 +1,4 @@
-import { Accordion, Icon, Input, InputColor, InputRange, Typography } from '@juanmsl/ui';
+import { Accordion, Icon, Input, InputColor, Slider, Typography } from '@juanmsl/ui';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'styled-components';
@@ -78,7 +78,7 @@ export const TextShadowPage = () => {
             ) : null
           }
         >
-          <InputRange
+          <Slider
             name='x'
             label={t('controls:x-position')}
             min={-100}
@@ -86,7 +86,7 @@ export const TextShadowPage = () => {
             value={x}
             setValue={updateItem('x', key)}
           />
-          <InputRange
+          <Slider
             name='y'
             label={t('controls:y-position')}
             min={-100}
@@ -94,7 +94,7 @@ export const TextShadowPage = () => {
             value={y}
             setValue={updateItem('y', key)}
           />
-          <InputRange
+          <Slider
             name='blur'
             label={t('controls:blur')}
             min={0}

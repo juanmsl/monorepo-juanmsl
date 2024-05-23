@@ -1,4 +1,4 @@
-import { Accordion, Checkbox, Icon, InputColor, InputRange } from '@juanmsl/ui';
+import { Accordion, Checkbox, Icon, InputColor, Slider } from '@juanmsl/ui';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'styled-components';
@@ -40,7 +40,7 @@ export const BoxShadowPage = () => {
         value={boxColor}
         setValue={setBoxColor}
       />
-      <InputRange
+      <Slider
         name='boxBorderRadius'
         label={t('controls:border-radius')}
         min={0}
@@ -88,7 +88,7 @@ export const BoxShadowPage = () => {
           }
         >
           <Checkbox name='inset' label={t('controls:is-inset')} value={isInset} setValue={updateItem('isInset', key)} />
-          <InputRange
+          <Slider
             name='x'
             label={t('controls:x-position')}
             min={-100}
@@ -96,7 +96,7 @@ export const BoxShadowPage = () => {
             value={x}
             setValue={updateItem('x', key)}
           />
-          <InputRange
+          <Slider
             name='y'
             label={t('controls:y-position')}
             min={-100}
@@ -104,7 +104,7 @@ export const BoxShadowPage = () => {
             value={y}
             setValue={updateItem('y', key)}
           />
-          <InputRange
+          <Slider
             name='blur'
             label={t('controls:blur')}
             min={0}
@@ -112,7 +112,7 @@ export const BoxShadowPage = () => {
             value={blur}
             setValue={updateItem('blur', key)}
           />
-          <InputRange
+          <Slider
             name='spread'
             label={t('controls:spread')}
             min={-100}
