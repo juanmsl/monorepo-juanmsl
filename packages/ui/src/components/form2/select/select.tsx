@@ -10,20 +10,29 @@ import { ControllerGeneratorProps } from '../form.types';
 import { Options } from './options';
 import { SelectStyle } from './select.style';
 import {
+  ControllerGeneratorSelectProps,
   MultiSelectProps,
+  MultiValue,
   OptionComponentProps,
   SelectItem,
-  SelectProps,
   SelectValue,
   SingleSelectProps,
+  SingleValue,
   UnControlledSelectProps,
 } from './select.types';
+
+/*
+ *type SelectContextState<T extends SelectItem = unknown> = {
+ *value: T;
+ *};
+ *
+ *const SelectContext = createContext<SelectContextState | null>(null);
+ */
 
 export const Select = <T extends SelectItem>({
   // Select props
   options,
   renderOption,
-  renderOptions,
   isEqualComparator,
   searchQueryValue,
   searchQueryPlaceholder,
@@ -111,10 +120,6 @@ export const Select = <T extends SelectItem>({
 
   const renderMultipleValue = useCallback(
     (values: Array<T>): React.ReactNode => {
-      if (renderOptions) {
-        return renderOptions(values);
-      }
-
       if (maxOptions) {
         const limit = Math.min(maxOptions, options.length);
 
@@ -123,7 +128,7 @@ export const Select = <T extends SelectItem>({
 
       return `${values.length} item${values.length === 1 ? '' : 's'} selected`;
     },
-    [maxOptions, options.length, renderOptions],
+    [maxOptions, options.length],
   );
 
   const renderValue = useCallback(
@@ -144,8 +149,7 @@ export const Select = <T extends SelectItem>({
   const unSelectOption = useCallback(
     (unselectedOption: T) => {
       if (multiselect) {
-        const prevValue = Array.isArray(value) ? value : [];
-        const filteredValues = prevValue.filter(item => !compareValuesIsEqual(item, unselectedOption));
+        const filteredValues = value.filter(item => !compareValuesIsEqual(item, unselectedOption));
         setValue(filteredValues.length === 0 ? [] : filteredValues);
       } else {
         setValue(null);
@@ -153,6 +157,22 @@ export const Select = <T extends SelectItem>({
       }
     },
     [compareValuesIsEqual, multiselect, setIsVisible, setValue, value],
+  );
+
+  const selectOption = useCallback(
+    (selectedOption: T) => {
+      if (multiselect) {
+        if (maxOptions && Array.isArray(value) && value.length >= maxOptions) {
+          return;
+        }
+
+        setValue([...(value as Array<T>), selectedOption] as MultiValue<T>);
+      } else {
+        setValue(selectedOption as SingleValue<T>);
+        setIsVisible(false);
+      }
+    },
+    [maxOptions, multiselect, setIsVisible, setValue, value],
   );
 
   const clearOption = useCallback(
@@ -223,20 +243,7 @@ export const Select = <T extends SelectItem>({
           }}
           searchQueryPlaceholder={searchQueryPlaceholder}
           options={options}
-          selectOption={(selectedOption: T) => {
-            if (multiselect) {
-              const prevValue = Array.isArray(value) ? value : [];
-
-              if (maxOptions && prevValue.length >= maxOptions) {
-                return;
-              }
-
-              setValue([...prevValue, selectedOption]);
-            } else {
-              setValue(selectedOption);
-              setIsVisible(false);
-            }
-          }}
+          selectOption={selectOption}
           unselectOption={unSelectOption}
         />
       </SelectStyle>
@@ -244,26 +251,48 @@ export const Select = <T extends SelectItem>({
   );
 };
 
-const SelectController = <T extends SelectItem>({ rules, ...props }: ControllerGeneratorProps<SelectProps<T>>) => {
-  if (props.multiselect) {
-    return (
-      <Controller<MultiSelectProps<T>, Array<T>>
-        Component={Select}
-        defaultValue={[]}
-        inputProps={props}
-        rules={rules}
-      />
-    );
-  }
-
+const MultiSelectController = <T extends SelectItem>({
+  rules,
+  ...props
+}: ControllerGeneratorProps<MultiSelectProps<T>, MultiValue<T>>) => {
   return (
-    <Controller<SingleSelectProps<T>, T | null>
+    <Controller<MultiSelectProps<T>, MultiValue<T>>
       Component={Select}
-      defaultValue={null}
-      inputProps={props}
+      defaultValue={[]}
+      inputProps={{
+        ...props,
+        multiselect: true,
+      }}
       rules={rules}
     />
   );
+};
+
+const SingleSelectController = <T extends SelectItem>({
+  rules,
+  ...props
+}: ControllerGeneratorProps<SingleSelectProps<T>, SingleValue<T>>) => {
+  return (
+    <Controller<SingleSelectProps<T>, SingleValue<T>>
+      Component={Select}
+      defaultValue={null}
+      inputProps={{
+        ...props,
+        multiselect: false,
+      }}
+      rules={rules}
+    />
+  );
+};
+
+const SelectController = <T extends SelectItem>(props: ControllerGeneratorSelectProps<T>) => {
+  const { multiselect } = props;
+
+  if (multiselect) {
+    return <MultiSelectController<T> {...props} multiselect={true} />;
+  }
+
+  return <SingleSelectController<T> {...props} multiselect={false} />;
 };
 
 Select.Controller = SelectController;

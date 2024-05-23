@@ -1,4 +1,4 @@
-import React, { RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { RefObject, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 
 import { useEventListener } from './use-event-listener';
 import { useOnClickOutsideRef } from './use-on-click-outside-ref';
@@ -95,7 +95,7 @@ export const useModalInContainer = <Container extends HTMLElement, Modal extends
     }
   }, [getPosition, isVisible]);
 
-  useEffect(callback, [callback]);
+  useLayoutEffect(callback, [callback]);
 
   useEventListener('resize', callback);
   useEventListener('scroll', callback, modalRef);

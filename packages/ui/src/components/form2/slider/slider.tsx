@@ -98,7 +98,7 @@ export const Slider = ({
   );
 };
 
-const SliderController = ({ rules, ...props }: ControllerGeneratorProps<SliderProps>) => {
+const SliderController = ({ rules, ...props }: ControllerGeneratorProps<SliderProps, number>) => {
   return <Controller Component={Slider} defaultValue={0} inputProps={props} rules={rules} />;
 };
 

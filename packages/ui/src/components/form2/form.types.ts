@@ -1,5 +1,5 @@
 import React from 'react';
-import { UseControllerProps } from 'react-hook-form/dist/types/controller';
+import { UseControllerProps } from 'react-hook-form';
 
 export type Props = Record<string, unknown>;
 
@@ -24,13 +24,13 @@ export type UnControlledProps<V> = {
   error?: string;
 };
 
-export type ControlledProps = {
-  defaultValue?: unknown;
+export type ControlledProps<V> = {
+  defaultValue?: V;
 };
 
 export type UnControlledComponentProps<T extends Props, V> = T & SharedProps & UnControlledProps<V>;
 
-export type ControlledComponentProps<T extends Props> = T & SharedProps & ControlledProps;
+export type ControlledComponentProps<T extends Props, V> = T & SharedProps & ControlledProps<V>;
 
-export type ControllerGeneratorProps<T extends Props> = ControlledComponentProps<T> &
+export type ControllerGeneratorProps<T extends Props, V> = ControlledComponentProps<T, V> &
   Partial<Pick<UseControllerProps, 'rules'>>;

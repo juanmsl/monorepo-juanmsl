@@ -123,7 +123,7 @@ export const InputColor = ({
   );
 };
 
-const InputColorController = ({ rules, ...props }: ControllerGeneratorProps<ColorProps>) => {
+const InputColorController = ({ rules, ...props }: ControllerGeneratorProps<ColorProps, string>) => {
   return <Controller Component={InputColor} defaultValue='#147EFB' inputProps={props} rules={rules} />;
 };
 

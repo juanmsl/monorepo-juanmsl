@@ -57,7 +57,7 @@ export const DatePicker = ({
   );
 };
 
-const DatePickerController = ({ rules, ...props }: ControllerGeneratorProps<DatePickerProps>) => {
+const DatePickerController = ({ rules, ...props }: ControllerGeneratorProps<DatePickerProps, string>) => {
   return <Controller Component={DatePicker} defaultValue='' inputProps={props} rules={rules} />;
 };
 

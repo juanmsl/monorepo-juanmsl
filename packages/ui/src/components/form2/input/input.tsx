@@ -57,7 +57,7 @@ export const Input = ({
   );
 };
 
-const InputController = ({ rules, ...props }: ControllerGeneratorProps<IProps>) => {
+const InputController = ({ rules, ...props }: ControllerGeneratorProps<IProps, string>) => {
   return <Controller Component={Input} defaultValue='' inputProps={props} rules={rules} />;
 };
 

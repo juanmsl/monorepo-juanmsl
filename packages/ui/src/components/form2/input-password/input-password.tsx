@@ -73,7 +73,7 @@ export const InputPassword = ({
   );
 };
 
-const InputPasswordController = ({ rules, ...props }: ControllerGeneratorProps<InputPasswordProps>) => {
+const InputPasswordController = ({ rules, ...props }: ControllerGeneratorProps<InputPasswordProps, string>) => {
   return <Controller Component={InputPassword} defaultValue='' inputProps={props} rules={rules} />;
 };
 

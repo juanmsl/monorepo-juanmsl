@@ -1,22 +1,21 @@
 import React from 'react';
 
 import { InputFieldProps } from '../field';
-import { UnControlledComponentProps } from '../form.types';
+import { ControllerGeneratorProps, UnControlledComponentProps } from '../form.types';
 
-export type SelectItem = string | number | Record<string, unknown>;
+export type SelectItem = string | number | Record<string, unknown> | unknown;
 
 export type MultiValue<T extends SelectItem> = Array<T>;
 
 export type SingleValue<T extends SelectItem> = T | null;
 
-export type SelectValue<T extends SelectItem> = MultiValue<T> | SingleValue<T>;
+export type SelectValue<T extends SelectItem> = SingleValue<T> | MultiValue<T>;
 
 // SELECT
 
 export type SharedSelectProps<T extends SelectItem> = InputFieldProps<{
   options: Array<T>;
   renderOption: (item: T) => React.ReactNode;
-  renderOptions?: (item: Array<T>) => React.ReactNode;
   isEqualComparator?: (a: T, b: T) => boolean;
   searchQueryValue?: string;
   searchQueryPlaceholder?: string;
@@ -41,6 +40,10 @@ export type UnControlledSelectProps<T extends SelectItem> =
   | UnControlledComponentProps<MultiSelectProps<T>, MultiValue<T>>
   | UnControlledComponentProps<SingleSelectProps<T>, SingleValue<T>>;
 
+export type ControllerGeneratorSelectProps<T extends SelectItem> =
+  | ControllerGeneratorProps<MultiSelectProps<T>, MultiValue<T>>
+  | ControllerGeneratorProps<SingleSelectProps<T>, SingleValue<T>>;
+
 // SELECT OPTIONS
 
 export type OptionsProps<T extends SelectItem> = {
@@ -64,13 +67,13 @@ export type OptionsProps<T extends SelectItem> = {
 
 // SELECT OPTION
 
-export type OptionComponentProps<T> = {
+export type OptionComponentProps<T extends SelectItem> = {
   data: T;
   isSelected: boolean;
   multiselect: boolean;
 };
 
-export type SelectOptionProps<T> = {
+export type SelectOptionProps<T extends SelectItem> = {
   id: string;
   selected: boolean;
   selectOption: (value: T) => void;

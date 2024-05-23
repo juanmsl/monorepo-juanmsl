@@ -2,9 +2,9 @@ import React, { useCallback } from 'react';
 
 import { Checkbox } from '../../form';
 
-import { SelectOptionProps } from './select.types';
+import { SelectItem, SelectOptionProps } from './select.types';
 
-export const SelectOption = <T,>({
+export const SelectOption = <T extends SelectItem>({
   id,
   selected,
   selectOption,

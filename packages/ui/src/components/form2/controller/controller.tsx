@@ -1,13 +1,13 @@
 import React from 'react';
-import { Controller as RHFController, useFormContext } from 'react-hook-form';
-import { UseControllerProps } from 'react-hook-form/dist/types/controller';
+import { Controller as RHFController, useFormContext, UseControllerProps } from 'react-hook-form';
 
-import { ControlledComponentProps, ControlledProps, Props, UnControlledComponentProps } from '../form.types';
+import { ControlledComponentProps, Props, UnControlledComponentProps } from '../form.types';
 
-type ControllerProps<T extends Props, V> = ControlledProps & {
-  inputProps: ControlledComponentProps<T>;
+type ControllerProps<T extends Props, V> = {
+  inputProps: ControlledComponentProps<T, V>;
   Component: React.FC<UnControlledComponentProps<T, V>>;
   rules?: UseControllerProps['rules'];
+  defaultValue: V;
 };
 
 export const Controller = <T extends Props, V>({

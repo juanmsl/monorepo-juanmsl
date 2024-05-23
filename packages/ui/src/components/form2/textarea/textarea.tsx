@@ -66,7 +66,7 @@ export const Textarea = ({
   );
 };
 
-const TextareaController = ({ rules, ...props }: ControllerGeneratorProps<TextareaProps>) => {
+const TextareaController = ({ rules, ...props }: ControllerGeneratorProps<TextareaProps, string>) => {
   return <Controller Component={Textarea} defaultValue='' inputProps={props} rules={rules} />;
 };
 
