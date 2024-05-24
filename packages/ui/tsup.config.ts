@@ -7,6 +7,7 @@ export default defineConfig({
   treeshake: true,
   target: 'node18',
   format: ['esm', 'cjs'],
+  clean: true,
 
   esbuildOptions: options => {
     options.external = [
