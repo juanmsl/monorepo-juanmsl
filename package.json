@@ -8,8 +8,7 @@
     "css-tools": "turbo dev --filter=css-tools",
     "lint": "turbo lint",
     "lint:fix": "turbo lint:fix",
-    "prepare": "husky",
-    "publish-packages": "turbo run build lint && changeset version && changeset publish"
+    "prepare": "husky"
   },
   "devDependencies": {
     "@juanmsl/eslint-config": "*",
