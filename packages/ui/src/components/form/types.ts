@@ -3,7 +3,7 @@ import { FieldError } from 'react-hook-form';
 
 import { IconNameT } from '../../contexts';
 
-export type Props = Record<string, unknown>;
+export type Props = {};
 
 // These are the common props that ALL components need to share, ALL of them must have the same props
 type CommonInputProps = {

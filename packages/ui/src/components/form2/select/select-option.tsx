@@ -1,34 +1,31 @@
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 
-import { Icon } from '../../../contexts';
-import { Checkbox } from '../checkbox';
+import { Checkbox } from '../../form';
 
-type SelectOptionProps<T> = {
-  id: string;
-  selected: boolean;
-  selectOption: (value: T) => void;
-  unselectOption: (value: T) => void;
-  data: T;
-  renderOption: (option: T) => React.ReactNode;
-  multiselect: boolean;
-};
-export const SelectOption = <T,>({
+import { SelectItem, SelectOptionProps } from './select.types';
+
+export const SelectOption = <T extends SelectItem>({
   id,
   selected,
   selectOption,
   unselectOption,
   data,
-  renderOption,
+  Component,
   multiselect,
 }: SelectOptionProps<T>) => {
   const handleKeyDown = useCallback(
     (option: T) => (e: React.KeyboardEvent<HTMLLIElement>) => {
-      if (['Enter'].includes(e.key)) {
+      if (['Enter', ' '].includes(e.key)) {
         e.preventDefault();
-        selectOption(option);
+
+        if (selected && multiselect) {
+          unselectOption(option);
+        } else {
+          selectOption(option);
+        }
       }
     },
-    [selectOption],
+    [multiselect, selectOption, selected, unselectOption],
   );
 
   const handleCheckboxChange = useCallback(
@@ -40,7 +37,9 @@ export const SelectOption = <T,>({
   );
 
   const handleClick = useCallback(
-    (option: T) => () => {
+    (option: T) => (e: React.MouseEvent) => {
+      e.stopPropagation();
+
       if (multiselect) {
         if (selected) unselectOption(option);
         else selectOption(option);
@@ -49,14 +48,6 @@ export const SelectOption = <T,>({
       }
     },
     [multiselect, selected, selectOption, unselectOption],
-  );
-
-  const clearOption = useCallback(
-    (option: T) => (e: React.MouseEvent) => {
-      e.stopPropagation();
-      unselectOption(option);
-    },
-    [unselectOption],
   );
 
   return (
@@ -69,13 +60,10 @@ export const SelectOption = <T,>({
       className={`option ${selected ? 'selected' : ''} ${multiselect ? 'multiselect' : ''}`}
       onClick={handleClick(data)}
     >
-      {multiselect && <Checkbox name={id} value={selected} setValue={handleCheckboxChange(data)} />}
-      <section className='content'>{renderOption(data)}</section>
-      {selected && !multiselect && (
-        <section className='icon-close' onClick={clearOption(data)}>
-          <Icon name='cross' />
-        </section>
-      )}
+      {multiselect && <Checkbox name={id} tabIndex={-1} value={selected} setValue={handleCheckboxChange(data)} />}
+      <section className='content'>
+        <Component data={data} isSelected={selected} multiselect={multiselect} />
+      </section>
     </li>
   );
 };

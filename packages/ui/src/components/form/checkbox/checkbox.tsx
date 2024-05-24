@@ -1,11 +1,11 @@
-import { useCallback, useMemo } from 'react';
+import { HTMLAttributes, useCallback, useMemo } from 'react';
 
 import { InputProps } from '../types';
 import { withController } from '../with-controller';
 
 import { CheckBoxSC } from './checkbox.style';
 
-type CheckboxProps = {};
+type CheckboxProps = HTMLAttributes<HTMLInputElement> & {};
 
 export const Checkbox = ({
   name,
@@ -15,6 +15,7 @@ export const Checkbox = ({
   style = {},
   label,
   setValue,
+  ...props
 }: InputProps<CheckboxProps, boolean>) => {
   const id = useMemo(() => crypto.randomUUID(), []);
 
@@ -37,6 +38,7 @@ export const Checkbox = ({
         style={style}
         checked={value as boolean}
         onBlur={onBlur}
+        {...props}
       />
       {label !== undefined && (
         <label htmlFor={id} className='label'>

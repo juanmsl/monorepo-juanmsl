@@ -16,7 +16,7 @@ type FormProps<T extends FieldValues> = {
 
 export const Form = <T extends FieldValues = FieldValues>({
   mode = 'onSubmit',
-  reValidateMode = 'onChange',
+  reValidateMode = 'onBlur',
   onSubmit,
   className = '',
   style = {},

@@ -2,6 +2,7 @@ export * from './accordion';
 export * from './buttons';
 export * from './flip-card';
 export * from './form';
+export * from './form2';
 export * from './hover-card';
 export * from './image';
 export * from './infinity-scroll';

@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 
-type InputRangeStyleProps = {
+type SliderStyleProps = {
   $isFocus: boolean;
 };
 
-export const InputRangeStyle = styled.section<InputRangeStyleProps>`
+export const SliderStyle = styled.section<SliderStyleProps>`
   display: grid;
   grid-template-columns: 1fr 50px;
   align-items: center;
   gap: 10px;
 
-  .input-range {
+  .slider {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -60,7 +60,7 @@ export const InputRangeStyle = styled.section<InputRangeStyleProps>`
     }
   }
 
-  .input-range-number {
+  .slider-number {
     transition: all 300ms ease;
     border: 1px solid;
     border-radius: 5px;
