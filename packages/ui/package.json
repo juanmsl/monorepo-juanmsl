@@ -1,6 +1,6 @@
 {
   "name": "@juanmsl/ui",
-  "version": "0.0.10",
+  "version": "0.0.16",
   "sideEffects": false,
   "license": "MIT",
   "files": [
@@ -24,7 +24,7 @@
     "build": "tsc && tsup",
     "transform-svgs": "node ../../node_modules/@juanmsl/svg-to-react",
     "transform-svgs2": "node @juanmsl/svg-to-react",
-    "publish": "turbo run build lint && changeset version && changeset publish"
+    "publish-package": "yarn lint && yarn build && changeset version && changeset publish"
   },
   "devDependencies": {
     "@juanmsl/svg-to-react": "*",
