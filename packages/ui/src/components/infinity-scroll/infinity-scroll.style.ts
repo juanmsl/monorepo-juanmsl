@@ -1,6 +1,15 @@
-import { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 
-export const InfiniteScrollStyle = createGlobalStyle`
+export const InfiniteScrollStyle = styled.section`
+  display: grid;
+  gap: 1em;
+`;
+
+export const InfinityScrollFooterStyle = styled.section`
+  display: grid;
+  place-content: start center;
+  place-items: start center;
+
   .loading {
     width: 100%;
     height: 30px;

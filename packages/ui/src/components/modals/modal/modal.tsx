@@ -3,18 +3,19 @@ import ReactDOM from 'react-dom';
 
 import { useConstant } from '../../../hooks';
 
-import { BaseOverlay } from './base-modal.style';
-
-export type BaseModalProps = {
+export type ModalProps = {
   isOpen: boolean;
   children: React.ReactNode;
   id: string;
   opacity?: number;
   color?: string;
+  noOverlay?: boolean;
+  onClick?: () => void;
+  zIndex?: React.CSSProperties['zIndex'];
 };
 
-export const BaseModalComponent = (
-  { isOpen, children, id, opacity = 0, color = '#000000' }: BaseModalProps,
+export const ModalComponent = (
+  { isOpen, children, id, opacity = 0, color = '#000000', noOverlay = false, onClick, zIndex }: ModalProps,
   ref: ForwardedRef<HTMLElement>,
 ) => {
   const containerID = useConstant(`modal-${id}`);
@@ -52,10 +53,18 @@ export const BaseModalComponent = (
 
   return ReactDOM.createPortal(
     <>
-      <BaseOverlay
+      <section
+        onClick={onClick}
         style={{
+          position: 'fixed',
+          width: '100%',
+          height: '100%',
+          top: 0,
+          left: 0,
           opacity,
           backgroundColor: color,
+          display: noOverlay ? 'none' : undefined,
+          zIndex,
         }}
       />
       {children}
@@ -64,4 +73,4 @@ export const BaseModalComponent = (
   );
 };
 
-export const BaseModal = forwardRef(BaseModalComponent);
+export const Modal = forwardRef(ModalComponent);

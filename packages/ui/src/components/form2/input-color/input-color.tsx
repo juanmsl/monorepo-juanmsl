@@ -5,7 +5,7 @@ import useEyeDropper from 'use-eye-dropper';
 
 import { Icon } from '../../../contexts';
 import { useModalInContainer } from '../../../hooks';
-import { BaseModal } from '../../modals';
+import { Modal } from '../../modals';
 import { Typography } from '../../typography';
 import { Controller } from '../controller';
 import { Field, InputFieldProps } from '../field';
@@ -84,7 +84,7 @@ export const InputColor = ({
             ...style,
           }}
         >
-          <BaseModal id='input-color' isOpen={isVisible}>
+          <Modal id='input-color' isOpen={isVisible}>
             <InputColorSelectorStyle ref={modalRef} style={modalStyle}>
               <HexAlphaColorPicker id={id} color={value} onChange={setValue} />
               <section className='color-input-container'>
@@ -111,7 +111,7 @@ export const InputColor = ({
                 <span />
               </section>
             </InputColorSelectorStyle>
-          </BaseModal>
+          </Modal>
         </InputColorBoxStyle>
         {showValueText ? (
           <Typography variant='label' className='input-color-value' weight='bold'>

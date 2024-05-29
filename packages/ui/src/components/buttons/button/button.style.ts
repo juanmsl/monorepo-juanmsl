@@ -16,6 +16,16 @@ export const ButtonStyle = styled.button`
   border-radius: 5px;
   text-align: center;
 
+  .button-loader-icon {
+    animation: spin 800ms linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+
   &.rounded {
     border-radius: 500px;
   }

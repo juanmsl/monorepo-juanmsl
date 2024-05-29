@@ -91,6 +91,10 @@ export const NavbarSuggestionsModal = styled.section`
   box-shadow:
     0 0 23px 10px #08070799 inset,
     0 10px 80px -20px ${props => props.theme.colors.text}CC;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   .modal-iframe {
     margin: 0;

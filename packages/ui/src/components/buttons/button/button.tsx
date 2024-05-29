@@ -50,7 +50,9 @@ export const Button = ({
   return (
     <ButtonStyle className={buttonClassName} style={style} disabled={disabled} onClick={onClick}>
       {leftIcon && !isLoading && <Icon className='button-left-icon' name={leftIcon} />}
-      <span className='button-text'>{isLoading ? <Icon name='spinner' /> : children}</span>
+      <span className='button-text'>
+        {isLoading ? <Icon name='spinner' className='button-loader-icon' /> : children}
+      </span>
       {rightIcon && !isLoading && <Icon className='button-right-icon' name={rightIcon} />}
     </ButtonStyle>
   );
