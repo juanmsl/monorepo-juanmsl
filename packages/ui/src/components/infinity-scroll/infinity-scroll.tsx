@@ -1,9 +1,9 @@
 import { LegacyRef, RefObject, useEffect } from 'react';
 
 import { Icon } from '../../contexts';
-import { useInView } from '../../hooks';
+import { useClassNames, useInView } from '../../hooks';
 
-import { InfiniteScrollStyle } from './infinity-scroll.style';
+import { InfiniteScrollStyle, InfinityScrollFooterStyle } from './infinity-scroll.style';
 
 type InfinityScrollProps<T> = {
   isLoading: boolean;
@@ -13,6 +13,8 @@ type InfinityScrollProps<T> = {
   renderItem: (item: T, key: number) => React.ReactElement;
   customLoadMoreElement?: (ref: RefObject<Element>) => React.ReactElement;
   emptyMessage?: string;
+  className?: string;
+  style?: React.CSSProperties;
 };
 
 export const InfinityScroll = <T,>({
@@ -23,6 +25,8 @@ export const InfinityScroll = <T,>({
   renderItem,
   customLoadMoreElement,
   emptyMessage,
+  className,
+  style,
 }: InfinityScrollProps<T>): React.ReactElement => {
   const { ref, inView } = useInView();
 
@@ -32,19 +36,27 @@ export const InfinityScroll = <T,>({
     }
   }, [hasNextPage, isLoading, loadMore, inView]);
 
+  const infinityScrollListClassName = useClassNames({
+    'infinity-scroll-content': true,
+    [className ?? '']: Boolean(className),
+  });
+
   return (
     <>
-      <InfiniteScrollStyle />
-      {!!emptyMessage && data.length === 0 && !isLoading && <p className='empty-message'>{emptyMessage}</p>}
-      {data.map(renderItem)}
-      {(hasNextPage || isLoading) &&
-        (customLoadMoreElement ? (
-          customLoadMoreElement(ref)
-        ) : (
-          <section ref={ref as LegacyRef<HTMLElement>} className='loading'>
-            {isLoading && <Icon name='spinner' className='loading--icon' />}
-          </section>
-        ))}
+      <InfiniteScrollStyle className={infinityScrollListClassName} style={style}>
+        {data.map(renderItem)}
+      </InfiniteScrollStyle>
+      <InfinityScrollFooterStyle>
+        {!!emptyMessage && data.length === 0 && !isLoading && <p className='empty-message'>{emptyMessage}</p>}
+        {(hasNextPage || isLoading) &&
+          (customLoadMoreElement ? (
+            customLoadMoreElement(ref)
+          ) : (
+            <section ref={ref as LegacyRef<HTMLElement>} className='loading'>
+              {isLoading && <Icon name='spinner' className='loading--icon' />}
+            </section>
+          ))}
+      </InfinityScrollFooterStyle>
     </>
   );
 };

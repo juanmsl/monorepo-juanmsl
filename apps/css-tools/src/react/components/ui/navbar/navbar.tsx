@@ -1,4 +1,4 @@
-import { Icon, Image, OverlayModal, Tooltip, Typography } from '@juanmsl/ui';
+import { Icon, Image, Modal, Tooltip, Typography } from '@juanmsl/ui';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, NavLink } from 'react-router-dom';
@@ -46,14 +46,14 @@ export const Navbar = () => {
         </Tooltip>
       </section>
 
-      <OverlayModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} id='navbar-suggestions'>
+      <Modal isOpen={isModalOpen} opacity={0.5} onClick={() => setModalOpen(false)} id='navbar-suggestions'>
         <NavbarSuggestionsModal>
           <iframe
             className='modal-iframe'
             src='https://docs.google.com/forms/d/e/1FAIpQLSfl0_MGEclyW63dI7PqkwKYR9DqdgxnSdv2hjkY0wUktiSbbw/viewform?embedded=true'
           />
         </NavbarSuggestionsModal>
-      </OverlayModal>
+      </Modal>
     </NavbarStyle>
   );
 };

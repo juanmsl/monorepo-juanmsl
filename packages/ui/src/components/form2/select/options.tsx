@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import { InfinityScroll } from '../../infinity-scroll';
-import { BaseModal } from '../../modals';
+import { Modal } from '../../modals';
 import { Typography } from '../../typography';
 
 import { SelectOption } from './select-option';
@@ -65,7 +65,7 @@ export const Options = <T extends SelectItem>({
   );
 
   return (
-    <BaseModal isOpen={isOpen} id='form-select'>
+    <Modal isOpen={isOpen} id='form-select'>
       <OptionsStyle ref={modalRef} style={style} tabIndex={0}>
         {onSearchQuery && (
           <OptionsHeaderStyle>
@@ -101,6 +101,6 @@ export const Options = <T extends SelectItem>({
           </ul>
         </section>
       </OptionsStyle>
-    </BaseModal>
+    </Modal>
   );
 };
