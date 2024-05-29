@@ -9,9 +9,14 @@ export type BaseModalProps = {
   isOpen: boolean;
   children: React.ReactNode;
   id: string;
+  opacity?: number;
+  color?: string;
 };
 
-export const BaseModalComponent = ({ isOpen, children, id }: BaseModalProps, ref: ForwardedRef<HTMLElement>) => {
+export const BaseModalComponent = (
+  { isOpen, children, id, opacity = 0, color = '#000000' }: BaseModalProps,
+  ref: ForwardedRef<HTMLElement>,
+) => {
   const containerID = useConstant(`modal-${id}`);
 
   useEffect(() => {
@@ -47,7 +52,12 @@ export const BaseModalComponent = ({ isOpen, children, id }: BaseModalProps, ref
 
   return ReactDOM.createPortal(
     <>
-      <BaseOverlay />
+      <BaseOverlay
+        style={{
+          opacity,
+          backgroundColor: color,
+        }}
+      />
       {children}
     </>,
     root,
