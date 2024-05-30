@@ -1,7 +1,7 @@
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
-  entry: ['src/lib/index.ts'],
+  entry: ['./src/lib/index.ts'],
   outDir: './lib',
   dts: true,
   bundle: true,
