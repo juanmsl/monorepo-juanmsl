@@ -35,7 +35,8 @@ lerna-debug.log*
 node_modules
 .pnp
 .pnp.js
-dist
+./dist
+./lib
 dist-ssr
 *.local
 

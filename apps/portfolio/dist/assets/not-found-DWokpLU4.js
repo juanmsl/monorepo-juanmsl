@@ -1,0 +1,1 @@
+import{s as e,t as o,j as r}from"./index-D0ZE4UeQ.js";const n=()=>{const s=e();return o(s)?r.jsxs("p",{children:[s.status," ",s.statusText]}):r.jsxs("section",{id:"error-page",children:[r.jsx("h1",{children:"Oops!"}),r.jsx("p",{children:"Sorry, an unexpected error has occurred."}),r.jsx("p",{children:r.jsx("i",{children:s.message})})]})};export{n as NotFound};
