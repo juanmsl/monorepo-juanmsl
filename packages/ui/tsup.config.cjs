@@ -1,18 +1,17 @@
 import { defineConfig } from 'tsup';
+
 export default defineConfig({
-  entry: ['src/index.ts'],
+  entry: ['src/lib/index.ts'],
+  outDir: './lib',
   dts: true,
+  bundle: true,
+  minify: true,
+  sourcemap: true,
+  treeshake: true,
+  target: 'node20',
   format: ['esm', 'cjs'],
+
   esbuildOptions: options => {
-    options.external = [
-      'react',
-      'react-dom',
-      'styled-components',
-      '@hookform/resolvers',
-      'axios',
-      'color',
-      'react-hook-form',
-      'yup',
-    ];
+    options.packages = 'external'
   },
 });

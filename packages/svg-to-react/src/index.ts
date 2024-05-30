@@ -22,8 +22,10 @@ type IconCategories = {
 };
 
 const categoryFiles = icons.reduce<IconCategories>((categories, icon) => {
-  categories[icon.category] = categories[icon.category] ?? new Category(icon.category);
-  categories[icon.category].addIcon(icon);
+  if(icon.category) {
+    categories[icon.category] = categories[icon.category] ?? new Category(icon.category);
+    categories[icon.category].addIcon(icon);
+  }
 
   return categories;
 }, {});

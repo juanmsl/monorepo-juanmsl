@@ -17,12 +17,17 @@ export class Category implements CategoryEntity {
   }
 
   public addIcon(icon: Icon) {
-    this.icons.push(icon);
+    if (icon.isValid) {
+      this.icons.push(icon);
+    }
   }
 
   public async createFile(outputFolder: string) {
     const fileName = `${this.name}.tsx`;
-    console.log(`Creating file: ${outputFolder}/${fileName}`);
+    console.log('');
+    console.log(`Category: ${this.name}`);
+    console.log(`Icons: ${this.icons.length}`);
+    console.log(`File: ${outputFolder}/${fileName}`);
 
     await Promise.all(this.icons.map(icon => icon.init()));
 

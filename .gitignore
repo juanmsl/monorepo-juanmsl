@@ -36,6 +36,7 @@ node_modules
 .pnp
 .pnp.js
 dist
+lib
 dist-ssr
 *.local
 
