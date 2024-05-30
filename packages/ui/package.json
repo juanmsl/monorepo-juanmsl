@@ -21,7 +21,7 @@
   "scripts": {
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "yarn lint --fix",
-    "build-lib": "ls src/lib/ && tsup",
+    "build-lib": "tsup",
     "build": "yarn clean && yarn build-lib",
     "clean": "rm -rf ./dist ./lib",
     "transform-svgs": "node ../../node_modules/@juanmsl/svg-to-react && yarn lint:fix"

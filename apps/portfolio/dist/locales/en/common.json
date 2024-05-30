@@ -1,0 +1,21 @@
+{
+  "language": "English",
+  "message": "Hello I'm using i18n in React!",
+  "fullName": "Juan Manuel Sánchez Lozano",
+  "shortName": "Juan Sánchez",
+  "location": "Bogotá, Colombia",
+  "userLabels": [
+    "#Designer",
+    "#Fullstack Web Developer",
+    "#Infrastructure Engineer",
+    "#Photographer"
+  ],
+  "languages": {
+    "es": "Español",
+    "en": "English"
+  },
+  "themes": {
+    "light": "Light",
+    "dark": "Dark"
+  }
+}

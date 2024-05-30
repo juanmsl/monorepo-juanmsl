@@ -1,0 +1,1 @@
+import{u as s,j as t,S as o}from"./index-D0ZE4UeQ.js";import{H as e}from"./header-DmYyncMd.js";import"./header-bottom-26nILUEX.js";const c=()=>{const{t:r}=s();return t.jsxs(t.Fragment,{children:[t.jsx(e,{title:r("projects:title")}),t.jsx(o,{children:"hola"})]})};export{c as Projects};
