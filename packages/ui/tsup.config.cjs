@@ -1,8 +1,8 @@
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
-  entry: ['./src/lib/index.ts'],
-  outDir: './lib',
+  entry: ['./src/index.ts'],
+  outDir: './dist',
   dts: true,
   bundle: true,
   minify: true,
