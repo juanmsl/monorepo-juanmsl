@@ -4,17 +4,17 @@
   "sideEffects": false,
   "license": "MIT",
   "files": [
-    "lib/**"
+    "dist/**"
   ],
   "type": "module",
-  "main": "./lib/index.cjs",
-  "module": "./lib/index.js",
-  "types": "./lib/index.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "require": "./lib/index.cjs",
-      "import": "./lib/index.js",
-      "types": "./lib/index.d.ts"
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
     },
     "./package.json": "./package.json"
   },
@@ -23,7 +23,7 @@
     "lint:fix": "yarn lint --fix",
     "build-lib": "tsup",
     "build": "yarn clean && yarn build-lib",
-    "clean": "rm -rf ./dist ./lib",
+    "clean": "rm -rf ./dist ./dist",
     "transform-svgs": "node ../../node_modules/@juanmsl/svg-to-react && yarn lint:fix"
   },
   "devDependencies": {
