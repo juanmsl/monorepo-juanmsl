@@ -1,4 +1,5 @@
-import { HoverCard, Image, Tag, Typography, formatDate, timeBetween } from '@juanmsl/ui';
+import { formatDate, timeBetween } from '@juanmsl/helpers';
+import { HoverCard, Image, Tag, Typography } from '@juanmsl/ui';
 
 import { CompanyDetailsStyle } from './my-experience.style';
 

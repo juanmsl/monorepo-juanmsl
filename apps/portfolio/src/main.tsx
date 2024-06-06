@@ -5,8 +5,6 @@ import ReactDOM from 'react-dom/client';
 import { ErrorBoundary } from 'react-error-boundary';
 import { BrowserRouter } from 'react-router-dom';
 
-import './styles.scss';
-
 import { LoaderLogo } from '@components/ui';
 import { ENV } from '@core/env';
 import { GA } from '@core/ga';

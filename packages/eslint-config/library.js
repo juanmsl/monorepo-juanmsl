@@ -22,10 +22,6 @@ module.exports = {
       },
     },
   },
-  globals: {
-    React: true,
-    JSX: true,
-  },
   ignorePatterns: [
     // Ignore dotfiles
     '.*.js',

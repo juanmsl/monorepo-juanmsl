@@ -1,6 +1,6 @@
+import { useClassNames } from '@juanmsl/hooks';
 import { HTMLAttributes } from 'react';
 
-import { useClassNames } from '../../hooks';
 import { Typography } from '../typography';
 
 import { TagStyle } from './tag.style';

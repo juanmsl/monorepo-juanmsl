@@ -1,1 +1,0 @@
-import{u as r,j as t,S as s}from"./index-D0ZE4UeQ.js";import{H as e}from"./header-DmYyncMd.js";import"./header-bottom-26nILUEX.js";const l=()=>{const{t:o}=r();return t.jsxs(t.Fragment,{children:[t.jsx(e,{title:o("blog:title")}),t.jsx(s,{children:"hola"})]})};export{l as Blog};

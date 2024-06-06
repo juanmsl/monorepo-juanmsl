@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@juanmsl/ui": "*",
+    "@juanmsl/hooks": "*",
+    "@juanmsl/helpers": "*",
     "@shikijs/markdown-it": "^1.4.0",
     "framer-motion": "^11.0.3",
     "i18next": "^23.11.2",

@@ -1,4 +1,5 @@
-import { Icon, IconNameT, Image, Line, Typography, useMediaQuery, useViewport } from '@juanmsl/ui';
+import { useMediaQuery, useViewport } from '@juanmsl/hooks';
+import { Icon, IconNameT, Image, Line, Typography } from '@juanmsl/ui';
 import { motion, useCycle } from 'framer-motion';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';

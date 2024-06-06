@@ -1,7 +1,6 @@
+import { useConstant } from '@juanmsl/hooks';
 import React, { ForwardedRef, forwardRef, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-
-import { useConstant } from '../../../hooks';
 
 export type ModalProps = {
   isOpen: boolean;

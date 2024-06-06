@@ -1,1 +1,0 @@
-import{j as e,y as r,z as s,R as t,Z as n}from"./index-D0ZE4UeQ.js";import{H as i}from"./header-bottom-26nILUEX.js";const l=({title:a})=>e.jsxs(r,{children:[e.jsx(s,{children:e.jsx("section",{className:"container",children:e.jsx(t,{delay:300,width:"100%",children:e.jsx(n,{variant:"hero",className:"names",withoutPadding:!0,children:a})})})}),e.jsx(i,{})]});export{l as H};

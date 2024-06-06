@@ -1,4 +1,5 @@
-import { Accordion, Image, Typography, formatDate, timeBetween } from '@juanmsl/ui';
+import { formatDate, timeBetween } from '@juanmsl/helpers';
+import { Accordion, Image, Typography } from '@juanmsl/ui';
 import { motion } from 'framer-motion';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';

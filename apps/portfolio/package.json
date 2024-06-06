@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@juanmsl/ui": "*",
+    "@juanmsl/hooks": "*",
+    "@juanmsl/helpers": "*",
     "@tanstack/react-query": "^5.17.19",
     "axios": "^1.6.5",
     "framer-motion": "^11.0.3",

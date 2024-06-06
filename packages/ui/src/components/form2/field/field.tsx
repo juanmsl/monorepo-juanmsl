@@ -1,7 +1,7 @@
+import { useClassNames } from '@juanmsl/hooks';
 import React, { ForwardedRef } from 'react';
 
 import { Icon, IconNameT } from '../../../contexts';
-import { useClassNames } from '../../../hooks';
 import { Typography } from '../../typography';
 
 import { FieldStyle } from './field.style';

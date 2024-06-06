@@ -1,6 +1,5 @@
+import { useClassNames } from '@juanmsl/hooks';
 import React from 'react';
-
-import { useClassNames } from '../../hooks';
 
 import { TooltipPosition } from './tooltip.constants';
 import { TooltipStyle } from './tooltip.style';

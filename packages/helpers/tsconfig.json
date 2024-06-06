@@ -1,0 +1,10 @@
+{
+  "extends": "@juanmsl/tsconfig/nodejs.json",
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["dist", "node_modules", "tsup.config.cjs"],
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "baseUrl": "src"
+  },
+}

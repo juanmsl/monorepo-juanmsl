@@ -3,8 +3,6 @@ import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
-import './styles.scss';
-
 import '@core/i18n';
 import { CommonTheme, DarkTheme, LightTheme, ThemeConstants } from '@core/theme';
 import { Router } from '@router';
