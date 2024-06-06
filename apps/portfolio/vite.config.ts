@@ -24,47 +24,47 @@ export default defineConfig({
         lang: 'en',
         icons: [
           {
-            src: '/manifest/icons/icon-48.png',
+            src: '/assets/manifest/icon-48.png',
             sizes: '48x48',
             type: 'image/png',
           },
           {
-            src: '/manifest/icons/icon-72.png',
+            src: '/assets/manifest/icon-72.png',
             sizes: '72x72',
             type: 'image/png',
           },
           {
-            src: '/manifest/icons/icon-96.png',
+            src: '/assets/manifest/icon-96.png',
             sizes: '96x96',
             type: 'image/png',
           },
           {
-            src: '/manifest/icons/icon-128.png',
+            src: '/assets/manifest/icon-128.png',
             sizes: '128x128',
             type: 'image/png',
           },
           {
-            src: '/manifest/icons/icon-144.png',
+            src: '/assets/manifest/icon-144.png',
             sizes: '144x144',
             type: 'image/png',
           },
           {
-            src: '/manifest/icons/icon-152.png',
+            src: '/assets/manifest/icon-152.png',
             sizes: '152x152',
             type: 'image/png',
           },
           {
-            src: '/manifest/icons/icon-192.png',
+            src: '/assets/manifest/icon-192.png',
             sizes: '192x192',
             type: 'image/png',
           },
           {
-            src: '/manifest/icons/icon-284.png',
+            src: '/assets/manifest/icon-284.png',
             sizes: '284x284',
             type: 'image/png',
           },
           {
-            src: '/manifest/icons/icon-512.png',
+            src: '/assets/manifest/icon-512.png',
             sizes: '512x512',
             type: 'image/png',
           },

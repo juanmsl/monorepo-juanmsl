@@ -1,4 +1,5 @@
-import { Typography, useClassNames } from '@juanmsl/ui';
+import { useClassNames } from '@juanmsl/hooks';
+import { Typography } from '@juanmsl/ui';
 
 import { CompaniesListItemStyle } from './my-experience.style';
 

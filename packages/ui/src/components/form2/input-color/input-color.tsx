@@ -1,10 +1,10 @@
+import { useModalInContainer } from '@juanmsl/hooks';
 import Color from 'color';
 import { useMemo } from 'react';
 import { HexAlphaColorPicker, HexColorInput } from 'react-colorful';
 import useEyeDropper from 'use-eye-dropper';
 
 import { Icon } from '../../../contexts';
-import { useModalInContainer } from '../../../hooks';
 import { Modal } from '../../modals';
 import { Typography } from '../../typography';
 import { Controller } from '../controller';

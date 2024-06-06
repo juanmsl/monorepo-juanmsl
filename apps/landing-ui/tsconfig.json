@@ -1,0 +1,23 @@
+{
+  "extends": "@juanmsl/tsconfig/vite.json",
+  "include": ["vite.config.ts", "**/vite-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "@core/*": ["./src/core/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@helpers": ["./src/helpers"],
+      "@application": ["./src/context/application"],
+      "@domain": ["./src/context/domain"],
+      "@infrastructure": ["./src/context/infrastructure"],
+      "@components/*": ["./src/react/components/*"],
+      "@contexts": ["./src/react/contexts"],
+      "@pages": ["./src/react/pages"],
+      "@hooks": ["./src/react/hooks"],
+      "@router": ["./src/react/router"]
+    }
+  }
+}

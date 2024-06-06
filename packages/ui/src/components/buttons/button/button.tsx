@@ -1,7 +1,7 @@
+import { useClassNames } from '@juanmsl/hooks';
 import React, { ButtonHTMLAttributes } from 'react';
 
 import { Icon, IconNameT } from '../../../contexts';
-import { useClassNames } from '../../../hooks';
 
 import { ButtonSize, ButtonVariant } from './button.constants';
 import { ButtonStyle } from './button.style';

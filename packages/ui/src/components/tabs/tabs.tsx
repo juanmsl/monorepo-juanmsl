@@ -1,6 +1,5 @@
+import { useClassNames } from '@juanmsl/hooks';
 import React, { createContext, useContext, useState } from 'react';
-
-import { useClassNames } from '../../hooks';
 
 type TabsContextState = {
   openTab: string;

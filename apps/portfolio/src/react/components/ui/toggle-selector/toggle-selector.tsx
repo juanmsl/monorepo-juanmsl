@@ -1,4 +1,5 @@
-import { Tooltip, TooltipPosition, useClassNames } from '@juanmsl/ui';
+import { useClassNames } from '@juanmsl/hooks';
+import { Tooltip, TooltipPosition } from '@juanmsl/ui';
 
 import { ToggleSelectorStyle } from './toggle-selector.style';
 

@@ -1,7 +1,7 @@
+import { useClassNames, useInView } from '@juanmsl/hooks';
 import { LegacyRef, RefObject, useEffect } from 'react';
 
 import { Icon } from '../../contexts';
-import { useClassNames, useInView } from '../../hooks';
 
 import { InfiniteScrollStyle, InfinityScrollFooterStyle } from './infinity-scroll.style';
 

@@ -1,6 +1,6 @@
+import { useInputHandlers } from '@juanmsl/hooks';
 import { useMemo } from 'react';
 
-import { useInputHandlers } from '../../../hooks';
 import { Controller } from '../controller';
 import { Field, InputFieldProps } from '../field';
 import { ControllerGeneratorProps, UnControlledComponentProps } from '../form.types';

@@ -18,7 +18,7 @@ export const HomeHeader = () => {
     <HomeHeaderStyle $background={data?.url}>
       <section className='container'>
         <Reveal delay={200} width='100%'>
-          <Line orientation='horizontal' size='3px' className='header-line' />
+          <Line orientation='horizontal' lineWidth={3} className='header-line' />
         </Reveal>
         <Reveal delay={300} width='100%'>
           <Typography variant='hero' className='names' withoutPadding>
@@ -26,7 +26,7 @@ export const HomeHeader = () => {
           </Typography>
         </Reveal>
         <Reveal delay={400} width='100%'>
-          <Line orientation='horizontal' size='3px' className='header-line' />
+          <Line orientation='horizontal' lineWidth={3} className='header-line' />
         </Reveal>
         <section className='user-labels'>
           {userLabels.map((label, key) => (

@@ -3,25 +3,15 @@
   "version": "0.0.21",
   "sideEffects": false,
   "license": "MIT",
-  "files": [
-    "dist/**"
-  ],
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    },
-    "./package.json": "./package.json"
-  },
   "scripts": {
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "yarn lint --fix",
     "build-lib": "tsup",
+    "build-lib:watch": "tsup --watch",
     "build": "yarn clean && yarn build-lib",
     "clean": "rm -rf ./dist ./dist",
     "transform-svgs": "node ../../node_modules/@juanmsl/svg-to-react && yarn lint:fix"
@@ -54,6 +44,8 @@
     "styled-components": "^5.3.11"
   },
   "dependencies": {
+    "@juanmsl/helpers": "*",
+    "@juanmsl/hooks": "*",
     "@hookform/resolvers": "^3.1.0",
     "axios": "^1.4.0",
     "color": "^4.2.3",

@@ -1,4 +1,5 @@
-import { HoverCard, PdfViewer, useDimensions } from '@juanmsl/ui';
+import { useDimensions } from '@juanmsl/hooks';
+import { HoverCard, PdfViewer } from '@juanmsl/ui';
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 

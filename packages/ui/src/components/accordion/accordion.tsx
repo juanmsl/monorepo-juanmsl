@@ -1,8 +1,8 @@
+import { useClassNames } from '@juanmsl/hooks';
 import { motion } from 'framer-motion';
 import React, { createContext, useCallback, useContext, useMemo, useState } from 'react';
 
 import { Icon, IconNameT, TypographyVariants } from '../../contexts';
-import { useClassNames } from '../../hooks';
 import { Line } from '../line';
 import { Typography } from '../typography';
 

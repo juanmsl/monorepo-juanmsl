@@ -1,8 +1,8 @@
+import { useInputHandlers, useToggleValues } from '@juanmsl/hooks';
 import { useMemo } from 'react';
 
 import { Controller, InputFieldProps } from '..';
 import { IconNameT } from '../../../contexts';
-import { useInputHandlers, useToggleValues } from '../../../hooks';
 import { Field } from '../field';
 import { ControllerGeneratorProps, UnControlledComponentProps } from '../form.types';
 

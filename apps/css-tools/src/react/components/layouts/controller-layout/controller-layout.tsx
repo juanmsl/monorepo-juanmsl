@@ -1,4 +1,5 @@
-import { Accordion, Button, InputColor, Tabs, Typography, useToggleValues } from '@juanmsl/ui';
+import { useToggleValues } from '@juanmsl/hooks';
+import { Accordion, Button, InputColor, Tabs, Typography } from '@juanmsl/ui';
 import { fromHighlighter } from '@shikijs/markdown-it/core';
 import { motion } from 'framer-motion';
 import MarkdownIt from 'markdown-it';
