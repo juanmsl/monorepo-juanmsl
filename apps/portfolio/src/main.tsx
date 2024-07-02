@@ -1,4 +1,4 @@
-import { FetchProvider, IconProvider, ThemeProvider } from '@juanmsl/ui';
+import { FetchProvider, ThemeProvider } from '@juanmsl/ui';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
@@ -24,22 +24,20 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <FetchProvider baseURL={ENV.API_URL}>
       <ThemeProvider lightTheme={LightTheme} darkTheme={DarkTheme} commonTheme={CommonTheme} constants={ThemeConstants}>
-        <IconProvider>
-          <QueryClientProvider client={queryClient}>
-            <Suspense fallback={<LoaderLogo />}>
-              <ErrorBoundary
-                fallback={<p>Error</p>}
-                onError={error => {
-                  GA.error(error.message);
-                }}
-              >
-                <BrowserRouter>
-                  <Router />
-                </BrowserRouter>
-              </ErrorBoundary>
-            </Suspense>
-          </QueryClientProvider>
-        </IconProvider>
+        <QueryClientProvider client={queryClient}>
+          <Suspense fallback={<LoaderLogo />}>
+            <ErrorBoundary
+              fallback={<p>Error</p>}
+              onError={error => {
+                GA.error(error.message);
+              }}
+            >
+              <BrowserRouter>
+                <Router />
+              </BrowserRouter>
+            </ErrorBoundary>
+          </Suspense>
+        </QueryClientProvider>
       </ThemeProvider>
     </FetchProvider>
   </React.StrictMode>,

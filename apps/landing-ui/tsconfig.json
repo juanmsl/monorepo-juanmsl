@@ -1,6 +1,6 @@
 {
-  "extends": "@juanmsl/tsconfig/vite.json",
-  "include": ["vite.config.ts", "**/vite-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "extends": "@juanmsl/tsconfig/nextjs.json",
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     "rootDir": ".",
@@ -8,16 +8,12 @@
     "baseUrl": ".",
     "paths": {
       "@core/*": ["./src/core/*"],
-      "@assets/*": ["./src/assets/*"],
       "@helpers": ["./src/helpers"],
-      "@application": ["./src/context/application"],
-      "@domain": ["./src/context/domain"],
-      "@infrastructure": ["./src/context/infrastructure"],
-      "@components/*": ["./src/react/components/*"],
-      "@contexts": ["./src/react/contexts"],
-      "@pages": ["./src/react/pages"],
-      "@hooks": ["./src/react/hooks"],
-      "@router": ["./src/react/router"]
+      "@components/*": ["./src/components/*"],
+      "@contexts": ["./src/contexts"],
+      "@hooks": ["./src/hooks"],
+      "@locales/*": ["./src/locales/*"],
+      "@styles/*": ["./src/styles/*"],
     }
   }
 }

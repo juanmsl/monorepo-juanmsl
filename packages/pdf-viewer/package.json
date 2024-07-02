@@ -1,0 +1,43 @@
+{
+  "name": "@juanmsl/pdf-viewer",
+  "version": "0.0.1",
+  "sideEffects": false,
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "yarn lint --fix",
+    "build:watch": "tsup --watch",
+    "clean": "rm -rf ./dist",
+    "build": "yarn clean && tsup",
+    "publish-package": "yarn lint && yarn build && yarn publish",
+    "transform-svgs": "node ../../node_modules/@juanmsl/svg-to-react && yarn lint:fix"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.18",
+    "@types/react-pdf": "^7.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.4.0",
+    "@typescript-eslint/parser": "^7.4.0",
+    "eslint": "^8.57.0",
+    "eslint-config-custom": "*",
+    "eslint-plugin-prettier": "^5.0.0",
+    "react": "^18.2.0",
+    "tsconfig": "*",
+    "tsup": "^8.0.1",
+    "typescript": "^4.5.2"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "dependencies": {
+    "react-pdf": "^7.7.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

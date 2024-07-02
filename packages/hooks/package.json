@@ -10,7 +10,7 @@
   "scripts": {
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "yarn lint --fix",
-    "dev": "tsup --watch",
+    "build:watch": "tsup --watch",
     "clean": "rm -rf ./dist",
     "build": "yarn clean && tsup",
     "publish-package": "yarn lint && yarn build && yarn publish"

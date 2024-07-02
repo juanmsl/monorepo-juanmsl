@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { Icon } from '../../contexts';
+import { Icon } from '../icon';
 import { InfinityScroll } from '../infinity-scroll';
 
 import { TableHeader } from './table.header';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IconNameT } from '../../../contexts';
+import { IconNameT } from '../../icon';
 
 export enum FieldVariant {
   FULL_BORDER = 'full-border',

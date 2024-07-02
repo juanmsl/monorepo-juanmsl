@@ -7,10 +7,9 @@ export default defineConfig({
   bundle: true,
   minify: true,
   sourcemap: true,
-  treeshake: true,
   target: 'node20',
-  format: ['esm', 'cjs'],
-
+  format: ['cjs', 'esm'],
+  banner: {js: '"use client";'},
   esbuildOptions: options => {
     options.packages = 'external'
   },

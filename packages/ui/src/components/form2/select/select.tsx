@@ -1,7 +1,7 @@
 import { useModalInContainer } from '@juanmsl/hooks';
 import React, { useCallback, useMemo } from 'react';
 
-import { Icon } from '../../../contexts';
+import { Icon } from '../../icon';
 import { Typography } from '../../typography';
 import { Controller } from '../controller';
 import { Field } from '../field';

@@ -1,4 +1,4 @@
-import { IconProvider, ThemeProvider } from '@juanmsl/ui';
+import { ThemeProvider } from '@juanmsl/ui';
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
@@ -10,13 +10,11 @@ import { Router } from '@router';
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ThemeProvider lightTheme={LightTheme} darkTheme={DarkTheme} commonTheme={CommonTheme} constants={ThemeConstants}>
-      <IconProvider>
-        <Suspense>
-          <BrowserRouter>
-            <Router />
-          </BrowserRouter>
-        </Suspense>
-      </IconProvider>
+      <Suspense>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      </Suspense>
     </ThemeProvider>
   </React.StrictMode>,
 );

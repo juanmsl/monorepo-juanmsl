@@ -50,3 +50,9 @@ dist-ssr
 *.sw?
 *.pem
 *.tsbuildinfo
+
+# local env files
+.env*.local
+
+# Next
+next-env.d.ts

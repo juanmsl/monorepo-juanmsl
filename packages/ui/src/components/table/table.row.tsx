@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from 'react';
 
-import { Icon } from '../../contexts';
+import { Icon } from '../icon';
 
 import { RowComponentProps, TableColumn, TableDataGeneric } from './types';
 

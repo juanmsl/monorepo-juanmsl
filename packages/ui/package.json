@@ -1,6 +1,6 @@
 {
   "name": "@juanmsl/ui",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -10,7 +10,7 @@
   "scripts": {
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "yarn lint --fix",
-    "dev": "tsup --watch",
+    "build:watch": "tsup --watch",
     "clean": "rm -rf ./dist",
     "build": "yarn clean && tsup",
     "publish-package": "yarn lint && yarn build && yarn publish",
@@ -31,7 +31,7 @@
     "framer-motion": "^11.0.24",
     "react": "^18.2.0",
     "react-hook-form": "^7.44.2",
-    "styled-components": "^5.3.11",
+    "styled-components": "^6.1.11",
     "tsconfig": "*",
     "tsup": "^8.0.1",
     "typescript": "^4.5.2"
@@ -41,7 +41,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.44.2",
-    "styled-components": "^5.3.11"
+    "styled-components": "^6.1.11"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.1.0",
