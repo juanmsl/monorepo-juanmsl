@@ -1,6 +1,6 @@
 {
   "name": "@juanmsl/hooks",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -10,10 +10,10 @@
   "scripts": {
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "yarn lint --fix",
-    "build-lib": "tsup",
-    "build-lib:watch": "tsup --watch",
-    "build": "yarn clean && yarn build-lib",
-    "clean": "rm -rf ./dist ./dist"
+    "build:watch": "tsup --watch",
+    "clean": "rm -rf ./dist",
+    "build": "yarn clean && tsup",
+    "publish-package": "yarn lint && yarn build && yarn publish"
   },
   "devDependencies": {
     "@types/react": "^18.2.0",

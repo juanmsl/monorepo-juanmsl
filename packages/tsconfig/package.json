@@ -1,7 +1,6 @@
 {
   "name": "@juanmsl/tsconfig",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.0.1",
   "license": "MIT",
   "files": [
     "base.json",
@@ -10,6 +9,9 @@
     "react-library.json",
     "vite.json"
   ],
+  "scripts": {
+    "publish-package": "yarn publish"
+  },
   "publishConfig": {
     "access": "public"
   }

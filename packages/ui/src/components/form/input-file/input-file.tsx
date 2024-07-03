@@ -2,7 +2,7 @@ import { formatBytes } from '@juanmsl/helpers';
 import { FileResolvedT, FileTypeEnum, useFileReader } from '@juanmsl/hooks';
 import { useEffect, useMemo, useState } from 'react';
 
-import { Icon, IconNameT } from '../../../contexts';
+import { Icon, IconNameT } from '../../icon';
 import { InputProps } from '../types';
 import { withController } from '../with-controller';
 

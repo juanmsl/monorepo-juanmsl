@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { HexAlphaColorPicker, HexColorInput } from 'react-colorful';
 import useEyeDropper from 'use-eye-dropper';
 
-import { Icon } from '../../../contexts';
+import { Icon } from '../../icon';
 import { Modal } from '../../modals';
 import { Typography } from '../../typography';
 import { Controller } from '../controller';

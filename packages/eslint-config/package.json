@@ -1,7 +1,6 @@
 {
   "name": "@juanmsl/eslint-config",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.0.6",
   "files": [
     "react.js",
     "library.js",
@@ -9,7 +8,10 @@
     "react-internal.js"
   ],
   "license": "MIT",
-  "devDependencies": {
+  "scripts": {
+    "publish-package": "yarn publish"
+  },
+  "dependencies": {
     "@typescript-eslint/eslint-plugin": "^7.4.0",
     "@typescript-eslint/parser": "^7.4.0",
     "@vercel/style-guide": "^5.1.0",

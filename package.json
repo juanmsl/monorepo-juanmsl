@@ -4,9 +4,7 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
-    "portfolio": "turbo dev --filter=portfolio",
-    "css-tools": "turbo dev --filter=css-tools",
-    "landing-ui": "turbo dev --filter=landing-ui",
+    "publish-package": "turbo publish-package",
     "lint": "turbo lint",
     "lint:fix": "turbo lint:fix",
     "prepare": "husky"
