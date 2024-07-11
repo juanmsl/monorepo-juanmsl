@@ -1,6 +1,6 @@
 {
   "name": "@juanmsl/ui",
-  "version": "0.0.27",
+  "version": "0.0.28",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
