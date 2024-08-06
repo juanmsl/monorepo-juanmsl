@@ -12,12 +12,13 @@ export type SharedProps = {
   placeholder?: string;
   disabled?: boolean;
   readOnly?: boolean;
+  onBlur?: () => void;
+  onFocus?: () => void;
 };
 
 export type UnControlledProps<V> = {
   value: V;
   setValue: (value: V) => void;
-  onBlur?: () => void;
   invalid?: boolean;
   isTouched?: boolean;
   isDirty?: boolean;

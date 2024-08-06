@@ -18,6 +18,7 @@ export const Slider = ({
   value,
   setValue,
   onBlur,
+  onFocus,
   min,
   max,
   step,
@@ -56,6 +57,7 @@ export const Slider = ({
   const { isFocus, handlers } = useInputHandlers({
     onBlur: onBlurInput,
     onChange: value => setValue(+value),
+    onFocus: onFocus,
   });
 
   return (

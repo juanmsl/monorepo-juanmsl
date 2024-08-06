@@ -67,14 +67,14 @@ const FieldComponent = (
           onClick: handleClick(onClickRightIcon),
         })}
       </section>
-      <section className='field-message'>
-        {error && errorIcon ? <Icon name={errorIcon} size={10} /> : <span />}
-        {error ? (
+      {Boolean(error) && (
+        <section className='field-message'>
+          {errorIcon ? <Icon name={errorIcon} size={10} /> : <span />}
           <Typography withoutPadding variant='small'>
             {error}
           </Typography>
-        ) : null}
-      </section>
+        </section>
+      )}
     </FieldStyle>
   );
 };

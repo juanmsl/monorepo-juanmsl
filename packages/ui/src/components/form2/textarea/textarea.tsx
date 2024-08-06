@@ -19,6 +19,7 @@ export const Textarea = ({
   value,
   setValue,
   onBlur,
+  onFocus,
   rows = 4,
   resize = 'vertical',
   className = '',
@@ -43,6 +44,7 @@ export const Textarea = ({
   const { handlers, isFocus } = useInputHandlers({
     onBlur: onBlur,
     onChange: value => setValue(value),
+    onFocus: onFocus,
   });
 
   return (

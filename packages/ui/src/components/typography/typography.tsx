@@ -7,7 +7,6 @@ import {
   TypographyVariantsElements,
   TypographyWeight,
 } from './typography.constants';
-import { TypographyStyle } from './typography.style';
 
 type TypographyProps = HTMLAttributes<HTMLElement | HTMLLabelElement> & {
   variant?: `${TypographyVariant}`;
@@ -49,7 +48,6 @@ export const TypographyComponent = (
 
   return (
     <>
-      <TypographyStyle />
       {createElement(
         as ?? component,
         {

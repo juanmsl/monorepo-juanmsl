@@ -14,6 +14,7 @@ export const Input = ({
   value,
   setValue,
   onBlur,
+  onFocus,
   type = 'text',
   className = '',
   style = {},
@@ -35,6 +36,7 @@ export const Input = ({
   const { handlers, isFocus } = useInputHandlers({
     onChange: setValue,
     onBlur: onBlur,
+    onFocus: onFocus,
   });
 
   return (
