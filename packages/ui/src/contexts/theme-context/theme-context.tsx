@@ -1,6 +1,9 @@
 import React, { Suspense, useCallback, useContext, useEffect, useState } from 'react';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 
+import { TypographyStyle } from '../../components/typography/typography.style';
+
+import { CommonTheme, DarkTheme, LightTheme, ThemeConstants } from './theme.defaults';
 import { GlobalStyles, ThemeStyle } from './theme.style';
 import { CommonThemeEntity, PaletteThemeEntity, ThemeConstantsEntity, ThemeEntity } from './themes';
 
@@ -20,13 +23,19 @@ const ThemeContext = React.createContext<ThemeContext | null>(null);
 
 type ThemeProviderProps = {
   children: React.ReactNode;
-  commonTheme: CommonThemeEntity;
-  lightTheme: PaletteThemeEntity;
-  darkTheme: PaletteThemeEntity;
-  constants: ThemeConstantsEntity;
+  commonTheme?: CommonThemeEntity;
+  lightTheme?: PaletteThemeEntity;
+  darkTheme?: PaletteThemeEntity;
+  constants?: ThemeConstantsEntity;
 };
 
-export const ThemeProvider = ({ children, commonTheme, lightTheme, darkTheme, constants }: ThemeProviderProps) => {
+export const ThemeProvider = ({
+  children,
+  commonTheme = CommonTheme,
+  lightTheme = LightTheme,
+  darkTheme = DarkTheme,
+  constants = ThemeConstants,
+}: ThemeProviderProps) => {
   const [themeName, setThemeName] = useState<`${THEME}`>(THEME.DARK);
   const [systemThemeName, setSystemThemeName] = useState<`${THEME}`>(THEME.DARK);
   const [useSystemTheme, setUseSystemTheme] = useState(false);
@@ -115,6 +124,7 @@ export const ThemeProvider = ({ children, commonTheme, lightTheme, darkTheme, co
           }}
         >
           <GlobalStyles />
+          <TypographyStyle />
           <ThemeStyle>{children}</ThemeStyle>
         </StyledThemeProvider>
       </ThemeContext.Provider>

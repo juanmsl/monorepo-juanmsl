@@ -14,6 +14,7 @@ export const DatePicker = ({
   value,
   setValue,
   onBlur,
+  onFocus,
   type = 'date',
   className = '',
   style = {},
@@ -35,6 +36,7 @@ export const DatePicker = ({
   const { isFocus, handlers } = useInputHandlers({
     onBlur: onBlur,
     onChange: setValue,
+    onFocus: onFocus,
   });
 
   return (

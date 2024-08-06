@@ -15,6 +15,7 @@ export const InputPassword = ({
   value,
   setValue,
   onBlur,
+  onFocus,
   className = '',
   style = {},
   autoFocus = false,
@@ -36,6 +37,7 @@ export const InputPassword = ({
   const { isFocus, handlers } = useInputHandlers({
     onBlur: onBlur,
     onChange: setValue,
+    onFocus: onFocus,
   });
 
   const iconName = useMemo<IconNameT>(() => {

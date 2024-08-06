@@ -8,6 +8,7 @@ export * from './icon';
 export * from './image';
 export * from './infinity-scroll';
 export * from './line';
+export * from './loaders';
 export * from './modals';
 export * from './table';
 export * from './tabs';

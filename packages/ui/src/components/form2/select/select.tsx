@@ -47,6 +47,7 @@ export const Select = <T extends SelectItem>({
   value,
   setValue,
   onBlur,
+  onFocus,
   className = '',
   style = {},
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -213,7 +214,10 @@ export const Select = <T extends SelectItem>({
             className={`input-button ${value ? '' : 'placeholder'}`}
             aria-haspopup='listbox'
             aria-expanded={isVisible}
-            onFocus={() => openSelect(true)}
+            onFocus={() => {
+              openSelect(true);
+              onFocus && onFocus();
+            }}
           >
             {(valueNonEmpty && renderValue(value)) || placeholder}
           </button>

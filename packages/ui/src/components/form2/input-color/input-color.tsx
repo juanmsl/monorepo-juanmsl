@@ -23,6 +23,8 @@ export const InputColor = ({
   setValue,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onBlur,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  onFocus,
   showValueText = false,
   className = '',
   style = {},
