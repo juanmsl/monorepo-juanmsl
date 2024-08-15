@@ -1,40 +1,44 @@
-import { useClassNames } from '@juanmsl/hooks';
-import React from 'react';
+import { POSITION } from '@juanmsl/helpers';
+import { useClassNames, useEventListener, useModalInContainer } from '@juanmsl/hooks';
+import React, { cloneElement, ReactElement } from 'react';
 
-import { TooltipPosition } from './tooltip.constants';
+import { Modal } from '../modals';
+
 import { TooltipStyle } from './tooltip.style';
 
 export type TooltipProps = {
-  position?: `${TooltipPosition}`;
-  offset?: number;
+  position?: `${POSITION}`;
+  offset?: number | `${number}`;
   disabled?: boolean;
   children: React.ReactNode;
   content: React.ReactNode;
 };
 
-export const Tooltip = ({
-  position = TooltipPosition.TOP,
-  children,
-  content,
-  offset = 10,
-  disabled = false,
-}: TooltipProps) => {
-  const classNames = useClassNames({
-    'tooltip-container': true,
-    left: position === TooltipPosition.LEFT,
-    right: position === TooltipPosition.RIGHT,
-    top: position === TooltipPosition.TOP,
-    bottom: position === TooltipPosition.BOTTOM,
+export const Tooltip = ({ position = POSITION.top, children, content, offset = 5, disabled = false }: TooltipProps) => {
+  const { modalRef, containerRef, isVisible, setIsVisible, modalStyle } = useModalInContainer({
+    closeOnClickOutside: false,
+    position,
+    offset: 6 + +offset,
+    windowOffset: 10,
   });
+
+  const classNames = useClassNames({
+    [position]: true,
+  });
+
+  useEventListener('mouseenter', () => setIsVisible(true), containerRef);
+  useEventListener('mouseleave', () => setIsVisible(false), containerRef);
 
   if (disabled) return children;
 
   return (
-    <TooltipStyle offset={offset}>
-      <div className={classNames}>
-        <span className='tooltip-content'>{content}</span>
-      </div>
-      {children}
-    </TooltipStyle>
+    <>
+      {cloneElement(children as ReactElement, { ref: containerRef })}
+      <Modal isOpen={isVisible} id='tooltip' noOverlay>
+        <TooltipStyle ref={modalRef} style={modalStyle} className={classNames}>
+          <span className='tooltip-content'>{content}</span>
+        </TooltipStyle>
+      </Modal>
+    </>
   );
 };

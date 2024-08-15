@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const NavbarStyle = styled.nav`
   background: linear-gradient(${props => props.theme.colors.primary}, ${props => props.theme.colors.secondary});
   color: ${props => props.theme.colors.primaryContrast};
-  padding: 10px clamp(20px, 5.555%, 100px);
+  padding: 20px;
   display: grid;
   justify-items: center;
   gap: 50px;

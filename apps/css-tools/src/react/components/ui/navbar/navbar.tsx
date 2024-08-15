@@ -21,17 +21,17 @@ export const Navbar = () => {
           </Typography>
         </Link>
         <section className='navbar-options'>
-          <Tooltip position='right' content='Home'>
+          <Tooltip position='right' content='Home' offset='10'>
             <NavLink className='navbar-options--link' to={PATHS.HOME_URL}>
               <Icon name='house' />
             </NavLink>
           </Tooltip>
-          <Tooltip position='right' content='box-shadow'>
+          <Tooltip position='right' content='box-shadow' offset='10'>
             <NavLink className='navbar-options--link' to={PATHS.BOX_SHADOW_URL}>
               <Icon name='box-shadow' />
             </NavLink>
           </Tooltip>
-          <Tooltip position='right' content='text-shadow'>
+          <Tooltip position='right' content='text-shadow' offset='10'>
             <NavLink className='navbar-options--link' to={PATHS.TEXT_SHADOW_URL}>
               <Icon name='text-shadow' />
             </NavLink>
@@ -39,7 +39,7 @@ export const Navbar = () => {
         </section>
       </section>
       <section className='section-bottom'>
-        <Tooltip position='right' content='Share your opinion here!'>
+        <Tooltip position='right' content='Share your opinion here!' offset='10'>
           <span className='modal-suggestions-trigger' onClick={() => setModalOpen(true)}>
             <Icon name='cv' />
           </span>

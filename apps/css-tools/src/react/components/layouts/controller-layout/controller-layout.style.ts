@@ -112,7 +112,7 @@ export const ControllerStyle = styled.section`
       }
 
       &.is-open {
-        background: ${props => props.theme.colors.text}22;
+        background: ${props => props.theme.colors.secondary};
         backdrop-filter: blur(2px);
       }
     }
@@ -122,7 +122,7 @@ export const ControllerStyle = styled.section`
     grid-area: controls;
     height: 100%;
     overflow: auto;
-    background: ${props => props.theme.colors.text}22;
+    background: ${props => props.theme.colors.secondary};
     backdrop-filter: blur(2px);
     padding: 10px;
 
@@ -163,7 +163,7 @@ export const CSSStyle = styled.section`
   height: 100%;
   overflow: auto;
   border: 2px solid ${props => props.theme.colors.primary};
-  background: ${props => props.theme.colors.gray2};
+  background: ${props => props.theme.colors.secondary};
   color: ${props => props.theme.colors.white};
   display: none;
   position: relative;
@@ -186,7 +186,7 @@ export const CSSStyle = styled.section`
     position: absolute;
     bottom: 0;
     right: 0;
-    background: ${props => props.theme.colors.gray2};
+    background: ${props => props.theme.colors.primary};
     color: ${props => props.theme.colors.white};
     border-top: 2px solid ${props => props.theme.colors.gray5};
     border-left: 2px solid ${props => props.theme.colors.gray5};
@@ -196,7 +196,7 @@ export const CSSStyle = styled.section`
     padding: 0.5em 1em;
     opacity: 0;
     transition: opacity 300ms ease;
-    border-radius: 15px 0;
+    border-radius: 13px 0;
   }
 
   &:hover {
@@ -233,7 +233,7 @@ export const ExamplesStyle = styled.section`
   min-height: 100%;
   padding: 60px;
   justify-items: center;
-  background: ${props => props.theme.colors.text}22;
+  background: ${props => props.theme.colors.secondary};
   backdrop-filter: blur(2px);
   border-radius: 15px;
   border: 2px solid ${props => props.theme.colors.primary};

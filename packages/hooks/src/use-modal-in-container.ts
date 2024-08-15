@@ -1,41 +1,30 @@
-import React, { RefObject, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { getModalPosition, GetModalPositionParams, PositionObject } from '@juanmsl/helpers';
+import React, { RefObject, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 import { useEventListener } from './use-event-listener';
 import { useOnClickOutsideRef } from './use-on-click-outside-ref';
 
-type PositionObject = {
-  percentage: number;
-  pixels: number;
-};
+const convertDOMRectToPosition = (rect: DOMRectReadOnly): PositionObject => ({
+  x: rect.x,
+  y: rect.y,
+  w: rect.width,
+  h: rect.height,
+  top: rect.top,
+  left: rect.left,
+});
 
-type useModalInContainerParams = {
-  offset?: number;
-  position?: {
-    x: number | PositionObject;
-    y: number | PositionObject;
-  };
+type useModalInContainerParams = Partial<
+  Pick<GetModalPositionParams, 'position' | 'distancePercentage' | 'offset' | 'windowOffset'>
+> & {
+  closeOnClickOutside?: boolean;
 };
-
-const getPositionObject = (param: number | PositionObject): PositionObject =>
-  typeof param === 'number'
-    ? {
-        percentage: param,
-        pixels: 0,
-      }
-    : param;
 
 export const useModalInContainer = <Container extends HTMLElement, Modal extends HTMLElement = Container>({
+  closeOnClickOutside = true,
   offset = 5,
-  position = {
-    x: {
-      percentage: 0,
-      pixels: 0,
-    },
-    y: {
-      percentage: 0,
-      pixels: 0,
-    },
-  },
+  windowOffset = 10,
+  position,
+  distancePercentage = 50,
 }: useModalInContainerParams = {}) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [modalStyle, setModalStyle] = useState<React.CSSProperties>({});
@@ -44,18 +33,16 @@ export const useModalInContainer = <Container extends HTMLElement, Modal extends
   const containerRef = useRef<Container>(null);
 
   useEffect(() => {
-    document.documentElement.style.overflow = isVisible ? 'hidden' : 'auto';
-  }, [isVisible]);
+    if (closeOnClickOutside) {
+      document.documentElement.style.overflow = isVisible ? 'hidden' : 'auto';
+    }
+  }, [isVisible, closeOnClickOutside]);
 
   useOnClickOutsideRef<Modal>(modalRef, () => {
-    if (isVisible) {
+    if (isVisible && closeOnClickOutside) {
       setIsVisible(false);
     }
   });
-
-  const positionX = useMemo(() => getPositionObject(position.x), [position.x]);
-
-  const positionY = useMemo(() => getPositionObject(position.y), [position.y]);
 
   const getPosition = useCallback(
     (modalRef: RefObject<HTMLElement>) => {
@@ -68,25 +55,18 @@ export const useModalInContainer = <Container extends HTMLElement, Modal extends
         return;
       }
 
-      const { x, y, width, height } = container;
-
-      const leftPosition = Math.round(x + width * (positionX.percentage / 100) + positionX.pixels);
-      const topPosition = Math.round(y + height * (positionY.percentage / 100) + positionY.pixels);
-
-      const nextStyles = {
-        left:
-          leftPosition + modal.width + offset > window.innerWidth
-            ? container.left - (leftPosition + modal.width - window.innerWidth) - offset
-            : leftPosition,
-        top:
-          topPosition + modal.height + offset > window.innerHeight
-            ? container.top - (topPosition + modal.height - window.innerHeight) - offset
-            : topPosition,
-      };
+      const nextStyles = getModalPosition({
+        c: convertDOMRectToPosition(container),
+        m: convertDOMRectToPosition(modal),
+        distancePercentage,
+        windowOffset,
+        position,
+        offset,
+      });
 
       setModalStyle(nextStyles);
     },
-    [offset, positionX.percentage, positionX.pixels, positionY.percentage, positionY.pixels],
+    [distancePercentage, windowOffset, position, offset],
   );
 
   const callback = useCallback(() => {

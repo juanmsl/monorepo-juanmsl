@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const SelectStyle = styled.section`
+  cursor: pointer;
+
   .icon-close {
     display: grid;
     place-content: center;
@@ -61,14 +63,13 @@ export const OptionsStyle = styled.section`
   border-radius: 4px;
   border: 1px solid #b4b4b4;
   box-shadow: 0 3px 7px 0 rgba(145, 145, 145, 0.13);
-  padding: 4px;
-  max-height: 400px;
+  max-height: 250px;
   overflow: auto;
   background: ${props => props.theme.colors.background};
   color: ${props => props.theme.colors.text};
   display: grid;
-  grid-template-rows: auto 1fr;
   gap: 5px;
+  align-content: start;
 
   .options-list-container {
     height: 100%;
@@ -79,8 +80,8 @@ export const OptionsStyle = styled.section`
     list-style: none;
     display: grid;
     margin: 0;
-    padding: 4px;
-    gap: 8px;
+    padding: 0;
+    gap: 2px;
   }
 
   .options-selected {
