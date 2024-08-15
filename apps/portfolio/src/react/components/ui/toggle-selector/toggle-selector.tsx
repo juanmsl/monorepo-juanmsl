@@ -1,5 +1,6 @@
+import { POSITION } from '@juanmsl/helpers';
 import { useClassNames } from '@juanmsl/hooks';
-import { Tooltip, TooltipPosition } from '@juanmsl/ui';
+import { Tooltip } from '@juanmsl/ui';
 
 import { ToggleSelectorStyle } from './toggle-selector.style';
 
@@ -14,7 +15,7 @@ type ToggleSelectorProps = {
   rightLabel?: string;
   position: 'left' | 'right';
   toggle: () => void;
-  tooltipPosition?: `${TooltipPosition}`;
+  tooltipPosition?: `${POSITION}`;
   orientation?: `${ToggleSelectorOrientation}`;
 };
 
