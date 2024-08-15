@@ -7,7 +7,6 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { LoaderLogo } from '@components/ui';
 import { ENV } from '@core/env';
-import { GA } from '@core/ga';
 import '@core/i18n';
 import { CommonTheme, DarkTheme, LightTheme, ThemeConstants } from '@core/theme';
 import { Router } from '@router';
@@ -26,12 +25,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <ThemeProvider lightTheme={LightTheme} darkTheme={DarkTheme} commonTheme={CommonTheme} constants={ThemeConstants}>
         <QueryClientProvider client={queryClient}>
           <Suspense fallback={<LoaderLogo />}>
-            <ErrorBoundary
-              fallback={<p>Error</p>}
-              onError={error => {
-                GA.error(error.message);
-              }}
-            >
+            <ErrorBoundary fallback={<p>Error</p>}>
               <BrowserRouter>
                 <Router />
               </BrowserRouter>
