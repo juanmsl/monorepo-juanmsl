@@ -24,6 +24,7 @@ export type SharedSelectProps<T extends SelectItem> = InputFieldProps<{
   isLoading?: boolean;
   hasNextPage?: boolean;
   maxOptions?: number;
+  showClearOption?: boolean;
 }>;
 
 export type MultiSelectProps<T extends SelectItem> = SharedSelectProps<T> & {
@@ -33,8 +34,6 @@ export type MultiSelectProps<T extends SelectItem> = SharedSelectProps<T> & {
 export type SingleSelectProps<T extends SelectItem> = SharedSelectProps<T> & {
   multiselect?: false;
 };
-
-export type SelectProps<T extends SelectItem> = MultiSelectProps<T> | SingleSelectProps<T>;
 
 export type UnControlledSelectProps<T extends SelectItem> =
   | UnControlledComponentProps<MultiSelectProps<T>, MultiValue<T>>

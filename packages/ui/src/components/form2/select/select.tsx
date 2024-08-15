@@ -50,12 +50,13 @@ export const Select = <T extends SelectItem>({
   onFocus,
   className = '',
   style = {},
+  showClearOption = false,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   autoFocus = false,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   readOnly = false,
   disabled = false,
-  placeholder = 'Select an option',
+  placeholder = '',
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   autoComplete = 'off',
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -70,7 +71,9 @@ export const Select = <T extends SelectItem>({
 }: UnControlledSelectProps<T>) => {
   const id = useMemo(() => crypto.randomUUID(), []);
   const { modalRef, isVisible, setIsVisible, modalStyle, containerRef } = useModalInContainer({
-    position: { x: 0, y: { percentage: 100, pixels: 5 } },
+    position: 'bottom',
+    distancePercentage: 0,
+    offset: 5,
   });
 
   const openSelect = useCallback(
@@ -219,9 +222,9 @@ export const Select = <T extends SelectItem>({
               onFocus && onFocus();
             }}
           >
-            {(valueNonEmpty && renderValue(value)) || placeholder}
+            {(valueNonEmpty && renderValue(value)) || <Typography variant='label'>{placeholder}</Typography>}
           </button>
-          {valueNonEmpty && (
+          {valueNonEmpty && showClearOption && (
             <section className='icon-close' onClick={clearOption}>
               <Icon name='cross' />
             </section>

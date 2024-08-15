@@ -13,6 +13,8 @@ module.exports = {
   ],
   plugins: ['@typescript-eslint', 'import', 'prefer-arrow', 'prettier'],
   env: {
+    browser: true,
+    es6: true,
     node: true,
   },
   settings: {

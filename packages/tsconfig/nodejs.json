@@ -3,7 +3,7 @@
   "display": "Nodejs",
   "extends": "./base.json",
   "compilerOptions": {
-    "lib": ["esnext"],
+    "lib": ["esnext", "dom"],
     "emitDecoratorMetadata": true,
     "resolveJsonModule": true,
     "allowJs": false,

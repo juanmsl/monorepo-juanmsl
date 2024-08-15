@@ -7,6 +7,8 @@ import { ControllerGeneratorProps, UnControlledComponentProps } from '../form.ty
 
 type IProps = InputFieldProps<{
   type?: 'email' | 'number' | 'search' | 'tel' | 'text' | 'url';
+  min?: number;
+  max?: number;
 }>;
 
 export const Input = ({
@@ -30,6 +32,8 @@ export const Input = ({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   invalid = false,
   error,
+  min,
+  max,
   ...fieldProps
 }: UnControlledComponentProps<IProps, string>) => {
   const id = useMemo(() => crypto.randomUUID(), []);
@@ -53,6 +57,8 @@ export const Input = ({
         placeholder={placeholder}
         disabled={disabled}
         readOnly={readOnly}
+        min={min}
+        max={max}
         {...handlers}
       />
     </Field>

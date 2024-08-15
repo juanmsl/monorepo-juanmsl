@@ -1,9 +1,9 @@
-import { useClassNames, useInView } from '@juanmsl/hooks';
+import { useInView } from '@juanmsl/hooks';
 import { LegacyRef, RefObject, useEffect } from 'react';
 
 import { Icon } from '../icon';
 
-import { InfiniteScrollStyle, InfinityScrollFooterStyle } from './infinity-scroll.style';
+import { InfinityScrollFooterStyle } from './infinity-scroll.style';
 
 type InfinityScrollProps<T> = {
   isLoading: boolean;
@@ -13,8 +13,7 @@ type InfinityScrollProps<T> = {
   renderItem: (item: T, key: number) => React.ReactElement;
   customLoadMoreElement?: (ref: RefObject<Element>) => React.ReactElement;
   emptyMessage?: string;
-  className?: string;
-  style?: React.CSSProperties;
+  children?: React.ReactNode;
 };
 
 export const InfinityScroll = <T,>({
@@ -25,8 +24,7 @@ export const InfinityScroll = <T,>({
   renderItem,
   customLoadMoreElement,
   emptyMessage,
-  className,
-  style,
+  children,
 }: InfinityScrollProps<T>): React.ReactElement => {
   const { ref, inView } = useInView();
 
@@ -36,16 +34,10 @@ export const InfinityScroll = <T,>({
     }
   }, [hasNextPage, isLoading, loadMore, inView]);
 
-  const infinityScrollListClassName = useClassNames({
-    'infinity-scroll-content': true,
-    [className ?? '']: Boolean(className),
-  });
-
   return (
     <>
-      <InfiniteScrollStyle className={infinityScrollListClassName} style={style}>
-        {data.map(renderItem)}
-      </InfiniteScrollStyle>
+      {children}
+      {data.map(renderItem)}
       <InfinityScrollFooterStyle>
         {!!emptyMessage && data.length === 0 && !isLoading && <p className='empty-message'>{emptyMessage}</p>}
         {(hasNextPage || isLoading) &&

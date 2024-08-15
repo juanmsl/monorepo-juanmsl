@@ -50,7 +50,8 @@ export const InputColor = ({
   const { open, isSupported } = useEyeDropper();
   const id = useMemo(() => crypto.randomUUID(), []);
   const { modalRef, isVisible, setIsVisible, modalStyle, containerRef } = useModalInContainer({
-    position: { x: 0, y: 120 },
+    position: 'bottom',
+    distancePercentage: 0,
   });
 
   const borderColor = useMemo(() => {
