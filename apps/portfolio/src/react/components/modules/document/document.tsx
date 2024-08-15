@@ -8,7 +8,6 @@ import { DocumentStyle } from './document.style';
 
 import { DownloadCvButton, LoaderLogo } from '@components/ui';
 import { ENV } from '@core/env';
-import { GA } from '@core/ga';
 import { useAsset } from '@hooks';
 
 export const Document = () => {
@@ -19,10 +18,6 @@ export const Document = () => {
   const { width } = useDimensions(containerRef);
 
   const handleClick = async () => {
-    GA.event({
-      action: 'User Download CV from CV image',
-      category: GA.categories.CV_DOWNLOAD,
-    });
     window.open(resume.url, '_blank');
   };
 

@@ -1,9 +1,7 @@
 import { Button, HoverCard } from '@juanmsl/ui';
-import { useLocation } from 'react-router-dom';
 
 import { Reveal } from '@components/animations';
 import { ENV } from '@core/env';
-import { GA } from '@core/ga';
 import { useAsset } from '@hooks';
 
 type DownloadCvButtonProps = {
@@ -13,14 +11,8 @@ type DownloadCvButtonProps = {
 
 export const DownloadCvButton = ({ children, width }: DownloadCvButtonProps) => {
   const { data: resume } = useAsset(ENV.ASSET_ID_CV);
-  const location = useLocation();
 
   const handleClick = async () => {
-    GA.event({
-      action: 'User Download CV from button',
-      category: GA.categories.CV_DOWNLOAD,
-      label: location.pathname + location.search,
-    });
     window.open(resume.url, '_blank');
   };
 
