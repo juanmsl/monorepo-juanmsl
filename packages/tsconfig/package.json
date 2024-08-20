@@ -10,7 +10,7 @@
     "vite.json"
   ],
   "scripts": {
-    "publish-package": "yarn publish"
+    "publish-package": "yarn publish --no-git-tag-version"
   },
   "publishConfig": {
     "access": "public"

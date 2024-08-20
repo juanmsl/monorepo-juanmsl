@@ -9,7 +9,7 @@
   "scripts": {
     "develop": "ts-node ./src/index.ts",
     "build": "yarn clean && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
-    "publish-package": "yarn build && yarn publish",
+    "publish-package": "yarn build && yarn publish --no-git-tag-version",
     "clean": "rm -rf ./dist"
   },
   "dependencies": {

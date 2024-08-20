@@ -1,6 +1,6 @@
 {
   "name": "@juanmsl/ui",
-  "version": "0.0.31",
+  "version": "0.0.33",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -13,7 +13,7 @@
     "build:watch": "tsup --watch",
     "clean": "rm -rf ./dist",
     "build": "yarn clean && tsup",
-    "publish-package": "yarn lint && yarn build && yarn publish",
+    "publish-package": "yarn lint && yarn build && yarn publish --no-git-tag-version",
     "transform-svgs": "node ../../node_modules/@juanmsl/svg-to-react && yarn lint:fix"
   },
   "devDependencies": {
@@ -45,8 +45,8 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.1.0",
-    "@juanmsl/helpers": "*",
-    "@juanmsl/hooks": "*",
+    "@juanmsl/helpers": "latest",
+    "@juanmsl/hooks": "latest",
     "axios": "^1.4.0",
     "color": "^4.2.3",
     "moment": "^2.30.1",
