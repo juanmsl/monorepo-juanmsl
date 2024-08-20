@@ -9,7 +9,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "publish-package": "yarn publish"
+    "publish-package": "yarn publish --no-git-tag-version"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^7.4.0",
