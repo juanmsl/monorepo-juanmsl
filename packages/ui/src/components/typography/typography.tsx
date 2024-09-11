@@ -14,7 +14,7 @@ type TypographyProps = HTMLAttributes<HTMLElement | HTMLLabelElement> & {
   as?: keyof React.ReactHTML;
   weight?: `${TypographyWeight}`;
   children: React.ReactNode;
-  withoutPadding?: boolean;
+  noPadding?: boolean;
   htmlFor?: string;
 };
 
@@ -27,7 +27,7 @@ export const TypographyComponent = (
     children,
     as,
     weight,
-    withoutPadding = false,
+    noPadding = false,
     htmlFor,
     ...props
   }: TypographyProps,
@@ -37,7 +37,7 @@ export const TypographyComponent = (
     [TypographyVariantsClassNames[variant]]: TypographyVariantsClassNames[variant] !== undefined,
     [customClassname]: !!customClassname,
     [weight ?? '']: !!weight,
-    'no-padding': withoutPadding,
+    'no-padding': noPadding,
     nowrap: nowrap,
   });
 
@@ -46,23 +46,19 @@ export const TypographyComponent = (
     [variant],
   );
 
-  return (
-    <>
-      {createElement(
-        as ?? component,
-        {
-          ...props,
-          className,
-          ref,
-          htmlFor,
-          style: {
-            fontWeight: weight,
-            ...style,
-          },
-        },
-        children,
-      )}
-    </>
+  return createElement(
+    as ?? component,
+    {
+      ...props,
+      className,
+      ref,
+      htmlFor,
+      style: {
+        fontWeight: weight,
+        ...style,
+      },
+    },
+    children,
   );
 };
 

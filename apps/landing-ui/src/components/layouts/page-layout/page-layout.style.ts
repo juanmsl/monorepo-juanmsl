@@ -9,7 +9,7 @@ export const PageLayoutStyle = styled.section`
   height: 100dvh;
 
   .page-line {
-    color: ${props => props.theme.colors.text}88;
+    color: ${props => props.theme.colors.text.main}88;
     margin: 2em 0;
     width: 50%;
   }

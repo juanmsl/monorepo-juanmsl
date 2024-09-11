@@ -21,14 +21,14 @@ export const ToggleSelectorStyle = styled.section`
     aspect-ratio: 1/1;
     height: 100%;
     border-radius: 100px;
-    border: 3px solid ${props => props.theme.colors.primary};
-    background: ${props => props.theme.colors.background};
+    border: 3px solid ${props => props.theme.colors.primary.main};
+    background: ${props => props.theme.colors.background.main};
     transition: all 0.3s ease;
   }
 
   .left-option,
   .right-option {
-    color: ${props => props.theme.colors.text};
+    color: ${props => props.theme.colors.text.main};
     width: 1em;
     height: 1em;
     display: block;

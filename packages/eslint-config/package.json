@@ -1,6 +1,6 @@
 {
   "name": "@juanmsl/eslint-config",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "files": [
     "react.js",
     "library.js",
@@ -26,7 +26,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "prettier": "^3.0.3",
-    "typescript": "^5.3.3"
+    "typescript": "^5.5.4"
   },
   "publishConfig": {
     "access": "public"

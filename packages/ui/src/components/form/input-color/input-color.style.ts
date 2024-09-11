@@ -46,8 +46,8 @@ export const InputColorSelectorStyle = styled.section`
   z-index: 1;
   display: grid;
   gap: 10px;
-  background: ${props => props.theme.colors.background};
-  color: ${props => props.theme.colors.text};
+  background: ${props => props.theme.colors.background.main};
+  color: ${props => props.theme.colors.text.main};
   padding: 10px;
   border-radius: 0 18px 18px 18px;
   border: 1px solid;
@@ -82,8 +82,8 @@ export const InputColorSelectorStyle = styled.section`
   .color-input {
     padding: 0;
     border-radius: inherit;
-    background: ${props => props.theme.colors.background};
-    color: ${props => props.theme.colors.text};
+    background: ${props => props.theme.colors.background.main};
+    color: ${props => props.theme.colors.text.main};
     width: 100%;
     font-size: ${props => props.theme.constants.typography.label.fontSize};
     font-family: ${props => props.theme.constants.fontFamily};

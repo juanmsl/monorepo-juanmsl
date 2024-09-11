@@ -13,7 +13,7 @@ export const PageLayout = ({ title, description, children }: PageLayoutProps) =>
   return (
     <PageLayoutStyle>
       <Typography variant='header1'>{title}</Typography>
-      <Typography withoutPadding>{description}</Typography>
+      <Typography noPadding>{description}</Typography>
       <Line orientation='horizontal' className='page-line' lineStyle='dotted' dotSize={2} spacing={5} />
       {children}
     </PageLayoutStyle>

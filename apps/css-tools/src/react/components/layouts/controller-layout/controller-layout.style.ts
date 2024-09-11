@@ -28,22 +28,22 @@ export const ControllerLayoutStyle = styled.section`
 
   .shadows-item {
     border-radius: 15px;
-    border: 1px solid ${props => props.theme.colors.primary};
+    border: 1px solid ${props => props.theme.colors.primary.main};
 
     &-header {
       padding: 10px 20px;
       border-radius: 14px 14px 0 0;
 
       &:hover {
-        background: ${props => props.theme.colors.primary}22;
+        background: ${props => props.theme.colors.primary.main}22;
       }
 
       &.is-open {
         position: sticky;
         top: 0;
         z-index: 1;
-        background: ${props => props.theme.colors.primary};
-        color: ${props => props.theme.colors.primaryContrast};
+        background: ${props => props.theme.colors.primary.main};
+        color: ${props => props.theme.colors.primary.contrast};
       }
 
       &--subtitle {
@@ -58,6 +58,12 @@ export const ControllerLayoutStyle = styled.section`
 
     &-body {
       padding: 10px 20px 20px;
+      display: grid;
+      gap: 1em;
+    }
+
+    .checkbox-inset {
+      justify-self: center;
     }
   }
 
@@ -69,12 +75,12 @@ export const ControllerLayoutStyle = styled.section`
     border: 1px solid;
     padding: 4px;
     font-size: 1em;
-    color: ${props => props.theme.colors.primary};
-    background: ${props => props.theme.colors.primaryContrast};
+    color: ${props => props.theme.colors.primary.main};
+    background: ${props => props.theme.colors.primary.contrast};
 
     &:hover {
-      background: ${props => props.theme.colors.primary};
-      color: ${props => props.theme.colors.primaryContrast};
+      background: ${props => props.theme.colors.primary.main};
+      color: ${props => props.theme.colors.primary.contrast};
     }
   }
 `;
@@ -90,7 +96,7 @@ export const ControllerStyle = styled.section`
   align-items: start;
   height: 100%;
   overflow: auto;
-  border: 2px solid ${props => props.theme.colors.primary};
+  border: 2px solid ${props => props.theme.colors.primary.main};
   border-radius: 15px;
 
   .controller-tabs {
@@ -108,11 +114,11 @@ export const ControllerStyle = styled.section`
 
       &:hover {
         letter-spacing: 1px;
-        background: ${props => props.theme.colors.text}11;
+        background: ${props => props.theme.colors.text.main}11;
       }
 
       &.is-open {
-        background: ${props => props.theme.colors.secondary};
+        background: ${props => props.theme.colors.background.paper};
         backdrop-filter: blur(2px);
       }
     }
@@ -122,7 +128,7 @@ export const ControllerStyle = styled.section`
     grid-area: controls;
     height: 100%;
     overflow: auto;
-    background: ${props => props.theme.colors.secondary};
+    background: ${props => props.theme.colors.background.paper};
     backdrop-filter: blur(2px);
     padding: 10px;
 
@@ -147,8 +153,7 @@ export const ControllerStyle = styled.section`
     gap: 10px;
     grid-auto-columns: 1fr;
     padding: 10px;
-    background: ${props => props.theme.colors.text}22;
-    backdrop-filter: blur(2px);
+    background: ${props => props.theme.colors.background.paper};
     border-radius: 0 0 15px 15px;
 
     @media all and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {
@@ -162,8 +167,8 @@ export const CSSStyle = styled.section`
   width: 100%;
   height: 100%;
   overflow: auto;
-  border: 2px solid ${props => props.theme.colors.primary};
-  background: ${props => props.theme.colors.secondary};
+  border: 2px solid ${props => props.theme.colors.primary.main};
+  background: ${props => props.theme.colors.background.paper};
   color: ${props => props.theme.colors.white};
   display: none;
   position: relative;
@@ -186,7 +191,7 @@ export const CSSStyle = styled.section`
     position: absolute;
     bottom: 0;
     right: 0;
-    background: ${props => props.theme.colors.primary};
+    background: ${props => props.theme.colors.primary.main};
     color: ${props => props.theme.colors.white};
     border-top: 2px solid ${props => props.theme.colors.gray5};
     border-left: 2px solid ${props => props.theme.colors.gray5};
@@ -233,8 +238,8 @@ export const ExamplesStyle = styled.section`
   min-height: 100%;
   padding: 60px;
   justify-items: center;
-  background: ${props => props.theme.colors.secondary};
+  background: ${props => props.theme.colors.background.paper};
   backdrop-filter: blur(2px);
   border-radius: 15px;
-  border: 2px solid ${props => props.theme.colors.primary};
+  border: 2px solid ${props => props.theme.colors.primary.main};
 `;

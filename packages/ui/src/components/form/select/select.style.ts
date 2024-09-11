@@ -13,7 +13,7 @@ export const SelectStyle = styled.section`
     padding: 0.5em;
 
     &:hover {
-      background: ${props => props.theme.colors.text}55;
+      background: ${props => props.theme.colors.text.main}55;
     }
   }
 
@@ -60,11 +60,11 @@ export const SelectStyle = styled.section`
 export const OptionsStyle = styled.section`
   position: fixed;
   border-radius: 4px;
-  border: 1px solid ${props => props.theme.colors.primary};
+  border: 1px solid ${props => props.theme.colors.primary.main};
   box-shadow: 0 3px 7px 0 rgba(145, 145, 145, 0.13);
   overflow: auto;
-  background: ${props => props.theme.colors.background};
-  color: ${props => props.theme.colors.text};
+  background: ${props => props.theme.colors.background.main};
+  color: ${props => props.theme.colors.text.main};
   display: grid;
   gap: 5px;
   align-content: start;
@@ -128,23 +128,23 @@ export const OptionStyle = styled.li`
   }
 
   &:hover {
-    background: ${props => props.theme.colors.text}11;
+    background: ${props => props.theme.colors.text.main}11;
   }
 
   &:focus {
-    background: ${props => props.theme.colors.text}22;
+    background: ${props => props.theme.colors.text.main}22;
   }
 
   &.selected-option,
   &[aria-selected='true'] {
-    background: ${props => props.theme.colors.primary}33;
+    background: ${props => props.theme.colors.primary.main}33;
 
     &:hover {
-      background: ${props => props.theme.colors.primary}22;
+      background: ${props => props.theme.colors.primary.main}22;
     }
 
     &:focus {
-      background: ${props => props.theme.colors.primary}11;
+      background: ${props => props.theme.colors.primary.main}11;
     }
   }
 `;

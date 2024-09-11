@@ -11,10 +11,4 @@ export const SimpleLoaderStyle = styled.section`
     animation: spin 300ms linear infinite;
     font-size: 3em;
   }
-
-  @keyframes spin {
-    to {
-      transform: rotate(1turn);
-    }
-  }
 `;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const DocumentStyle = styled.section`
-  border: 1px solid ${props => props.theme.colors.background};
+  border: 1px solid ${props => props.theme.colors.background.main};
   transition: all 300ms ease;
   display: grid;
   justify-items: center;
@@ -12,7 +12,7 @@ export const DocumentStyle = styled.section`
   }
 
   .document-container {
-    outline: 4px solid ${props => props.theme.colors.primary};
+    outline: 4px solid ${props => props.theme.colors.primary.main};
     width: 100%;
     max-width: 750px;
     cursor: pointer;

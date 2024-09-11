@@ -1,10 +1,34 @@
 import { useClassNames } from '@juanmsl/hooks';
 import React, { ButtonHTMLAttributes } from 'react';
+import { useTheme } from 'styled-components';
 
+import { ThemeColor } from '../../../contexts';
 import { Icon, IconNameT } from '../../icon';
 
 import { ButtonSize, ButtonVariant } from './button.constants';
-import { ButtonStyle } from './button.style';
+import { ButtonStyle, ButtonStyleProps } from './button.style';
+
+export enum ButtonColor {
+  PRIMARY = 'primary',
+  SECONDARY = 'secondary',
+  TERTIARY = 'tertiary',
+  INFO = 'info',
+  WARNING = 'warning',
+  ALERT = 'alert',
+  ACTIVE = 'active',
+}
+
+const getColor = (color?: ThemeColor): ButtonStyleProps | null => {
+  if (color) {
+    return {
+      $color: color.main,
+      $colorDark: color.dark,
+      $colorContrast: color.contrast,
+    };
+  }
+
+  return null;
+};
 
 export type ButtonProps = {
   children?: React.ReactNode;
@@ -20,40 +44,64 @@ export type ButtonProps = {
   className?: string;
   style?: React.CSSProperties;
   type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
+  noShadow?: boolean;
+  color?: `${ButtonColor}`;
 };
 
-export const Button = ({
-  children,
-  disabled = false,
-  rounded = false,
-  isLoading = false,
-  size = ButtonSize.REGULAR,
-  variant = ButtonVariant.DEFAULT,
-  leftIcon,
-  rightIcon,
-  onClick,
-  width = 'fit',
-  className = '',
-  style = {},
-}: ButtonProps) => {
+const ButtonComponent = (
+  {
+    children,
+    disabled = false,
+    rounded = false,
+    isLoading = false,
+    size = ButtonSize.REGULAR,
+    variant = ButtonVariant.DEFAULT,
+    leftIcon,
+    rightIcon,
+    onClick,
+    width = 'fit',
+    className = '',
+    style = {},
+    noShadow = false,
+    color,
+  }: ButtonProps,
+  ref: React.ForwardedRef<HTMLButtonElement>,
+) => {
+  const theme = useTheme();
   const buttonClassName = useClassNames({
     rounded: rounded,
-    small: size === ButtonSize.SMALL,
-    large: size === ButtonSize.LARGE,
-    ghost: variant === ButtonVariant.GHOST,
-    flat: variant === ButtonVariant.FLAT,
+    'small-size': size === ButtonSize.SMALL,
+    'large-size': size === ButtonSize.LARGE,
+    'ghost-variant': variant === ButtonVariant.GHOST,
+    'flat-variant': variant === ButtonVariant.FLAT,
+    'is-loading': !disabled && isLoading,
+    'no-shadow': noShadow,
     [width]: !!width,
-    'is-loading': isLoading,
     [className]: !!className,
   });
 
+  const buttonColors: ButtonStyleProps = (color && getColor(theme.colors[color])) || {
+    $color: theme.colors.text.main,
+    $colorDark: theme.colors.text.dark,
+    $colorContrast: theme.colors.background.main,
+  };
+
   return (
-    <ButtonStyle className={buttonClassName} style={style} disabled={disabled} onClick={onClick}>
-      {leftIcon && !isLoading && <Icon className='button-left-icon' name={leftIcon} />}
+    <ButtonStyle
+      ref={ref}
+      {...buttonColors}
+      className={buttonClassName}
+      style={style}
+      disabled={disabled}
+      onClick={onClick}
+    >
+      {leftIcon && (!isLoading || disabled) && <Icon className='button-left-icon' name={leftIcon} />}
       <span className='button-text'>
-        {isLoading ? <Icon name='spinner' className='button-loader-icon' /> : children}
+        {!disabled && isLoading ? <Icon name='spinner' className='button-loader-icon' /> : children}
       </span>
-      {rightIcon && !isLoading && <Icon className='button-right-icon' name={rightIcon} />}
+      {rightIcon && (!isLoading || disabled) && <Icon className='button-right-icon' name={rightIcon} />}
     </ButtonStyle>
   );
 };
+
+export const Button = React.forwardRef(ButtonComponent);

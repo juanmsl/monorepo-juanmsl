@@ -36,7 +36,7 @@ export const InputPassword = ({
   const [type, toggle] = useToggleValues<'password' | 'text'>(['password', 'text']);
   const { isFocus, handlers } = useInputHandlers({
     onBlur: onBlur,
-    onChange: v => setValue(v as string),
+    onChange: e => setValue(e.target.value),
     onFocus: onFocus,
   });
 

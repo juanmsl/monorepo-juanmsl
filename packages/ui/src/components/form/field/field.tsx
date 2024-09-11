@@ -50,7 +50,7 @@ const FieldComponent = (
   return (
     <FieldStyle className={fieldClassName} ref={ref}>
       {label ? (
-        <Typography className='field-label' withoutPadding variant='label-form' htmlFor={id}>
+        <Typography className='field-label' noPadding variant='label-form' htmlFor={id}>
           {label}
         </Typography>
       ) : null}
@@ -70,7 +70,7 @@ const FieldComponent = (
       {Boolean(error) && (
         <section className='field-message'>
           {errorIcon ? <Icon name={errorIcon} size={10} /> : <span />}
-          <Typography withoutPadding variant='small'>
+          <Typography noPadding variant='small'>
             {error}
           </Typography>
         </section>

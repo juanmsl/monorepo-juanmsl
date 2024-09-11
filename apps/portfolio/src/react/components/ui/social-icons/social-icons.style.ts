@@ -23,8 +23,8 @@ export const SocialIconsStyle = styled.section<SocialIconsStyleProps>`
     transition: all 0.3s ease;
 
     &:hover {
-      background: ${props => props.theme.colors.primary};
-      color: ${props => props.theme.colors.primaryContrast};
+      background: ${props => props.theme.colors.primary.main};
+      color: ${props => props.theme.colors.primary.contrast};
     }
   }
 `;

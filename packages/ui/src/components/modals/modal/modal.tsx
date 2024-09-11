@@ -2,19 +2,49 @@ import { useConstant } from '@juanmsl/hooks';
 import React, { ForwardedRef, forwardRef, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
-export type ModalProps = {
+import { ModalOverlayStyle } from './modal.style';
+
+export type ModalCommonProps = {
   isOpen: boolean;
   children: React.ReactNode;
   id: string;
-  opacity?: number;
-  color?: string;
-  noOverlay?: boolean;
-  onClick?: () => void;
-  zIndex?: React.CSSProperties['zIndex'];
 };
 
+export type ModalNoOverlayProps = ModalCommonProps & {
+  noOverlay: true;
+  opacity?: never;
+  color?: never;
+  onClick?: never;
+  zIndex?: never;
+  className?: never;
+  style?: never;
+};
+
+export type ModalOverlayProps = ModalCommonProps & {
+  noOverlay?: false;
+  opacity?: number;
+  color?: string;
+  onClick?: () => void;
+  zIndex?: React.CSSProperties['zIndex'];
+  className?: string;
+  style?: React.CSSProperties;
+};
+
+export type ModalProps = ModalOverlayProps | ModalNoOverlayProps;
+
 export const ModalComponent = (
-  { isOpen, children, id, opacity = 0, color = '#000000', noOverlay = false, onClick, zIndex }: ModalProps,
+  {
+    isOpen,
+    children,
+    id,
+    opacity = 0,
+    color = '#000000',
+    noOverlay = false,
+    onClick,
+    zIndex,
+    className = '',
+    style = {},
+  }: ModalProps,
   ref: ForwardedRef<HTMLElement>,
 ) => {
   const containerID = useConstant(`modal-${id}`);
@@ -52,20 +82,21 @@ export const ModalComponent = (
 
   return ReactDOM.createPortal(
     <>
-      <section
-        onClick={onClick}
-        style={{
-          position: 'fixed',
-          width: '100%',
-          height: '100%',
-          top: 0,
-          left: 0,
-          opacity,
-          backgroundColor: color,
-          display: noOverlay ? 'none' : undefined,
-          zIndex,
-        }}
-      />
+      {noOverlay ? null : (
+        <>
+          <ModalOverlayStyle
+            tabIndex={-1}
+            onClick={onClick}
+            className={className}
+            $opacity={opacity}
+            style={{
+              backgroundColor: color,
+              zIndex,
+              ...style,
+            }}
+          />
+        </>
+      )}
       {children}
     </>,
     root,

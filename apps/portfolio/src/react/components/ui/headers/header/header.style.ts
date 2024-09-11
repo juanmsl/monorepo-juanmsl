@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { SectionLayout } from '@components/layouts';
 
 export const HeaderContainerStyle = styled.section`
-  background: ${props => props.theme.colors.secondary};
-  color: ${props => props.theme.colors.primary};
+  background: ${props => props.theme.colors.secondary.main};
+  color: ${props => props.theme.colors.primary.main};
 `;
 
 export const HeaderStyle = styled(SectionLayout)`

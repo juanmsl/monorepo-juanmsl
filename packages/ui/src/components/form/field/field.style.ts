@@ -32,11 +32,11 @@ export const FieldStyle = styled.section`
   }
 
   &.error {
-    color: ${props => props.theme.colors.alert};
+    color: ${props => props.theme.colors.alert.main};
   }
 
   &.focus {
-    color: ${props => props.theme.colors.info};
+    color: ${props => props.theme.colors.info.main};
   }
 
   &.error,
@@ -44,7 +44,7 @@ export const FieldStyle = styled.section`
     .field-left-icon,
     .field-right-icon,
     .field-children {
-      color: ${props => props.theme.colors.text};
+      color: ${props => props.theme.colors.text.main};
     }
   }
 
@@ -53,7 +53,7 @@ export const FieldStyle = styled.section`
       border: 1px solid;
       border-radius: 4px;
       padding: 1em;
-      background: ${props => props.theme.colors.background};
+      background: ${props => props.theme.colors.background.main};
     }
   }
 
@@ -68,7 +68,7 @@ export const FieldStyle = styled.section`
     border: 1px solid;
     border-radius: 4px;
     padding: 0.5em 0;
-    background: ${props => props.theme.colors.background};
+    background: ${props => props.theme.colors.background.main};
 
     .field-label,
     .field-content,

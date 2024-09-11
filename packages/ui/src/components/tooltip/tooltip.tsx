@@ -10,7 +10,7 @@ export type TooltipProps = {
   position?: `${POSITION}`;
   offset?: number | `${number}`;
   disabled?: boolean;
-  children: React.ReactNode;
+  children: React.ReactElement;
   content: React.ReactNode;
 };
 

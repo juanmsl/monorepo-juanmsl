@@ -38,7 +38,7 @@ export const Input = ({
 }: UnControlledComponentProps<IProps, string>) => {
   const id = useMemo(() => crypto.randomUUID(), []);
   const { handlers, isFocus } = useInputHandlers({
-    onChange: v => setValue(v as string),
+    onChange: e => setValue(e.target.value),
     onBlur: onBlur,
     onFocus: onFocus,
   });

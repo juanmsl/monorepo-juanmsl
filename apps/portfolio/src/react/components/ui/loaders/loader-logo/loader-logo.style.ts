@@ -10,18 +10,14 @@ export const LoaderLogoStyle = styled.section`
   text-align: center;
   gap: 40px;
   padding: 100px 50px;
-  background: linear-gradient(-45deg, ${props => props.theme.colors.primary}, ${props => props.theme.colors.secondary});
+  background: linear-gradient(
+    -45deg,
+    ${props => props.theme.colors.primary.main},
+    ${props => props.theme.colors.secondary.main}
+  );
 
   .loader-icon {
-    animation:
-      rotate 750ms linear infinite,
-      colors 1s linear infinite;
+    animation: rotate 750ms linear infinite;
     font-size: 2em;
-  }
-
-  @keyframes rotate {
-    to {
-      transform: rotate(1turn);
-    }
   }
 `;

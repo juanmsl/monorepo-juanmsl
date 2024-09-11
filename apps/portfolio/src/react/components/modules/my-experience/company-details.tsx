@@ -22,13 +22,13 @@ export const CompanyDetails = ({ company }: CompanyItemProps) => {
           </HoverCard>
         </section>
         <section className='company-details-header--content'>
-          <Typography className='company-details-name' variant='label' withoutPadding>
+          <Typography className='company-details-name' variant='label' noPadding>
             {name}
           </Typography>
-          <Typography className='company-details-position' variant='header4' withoutPadding>
+          <Typography className='company-details-position' variant='header4' noPadding>
             {position}
           </Typography>
-          <Typography className='company-details-time' variant='small' withoutPadding>
+          <Typography className='company-details-time' variant='small' noPadding>
             {formatDate(dateStart)} {dateEnd ? '- ' + formatDate(dateEnd) : ''} ({timeBetween(dateStart, dateEnd)})
           </Typography>
         </section>
@@ -36,7 +36,7 @@ export const CompanyDetails = ({ company }: CompanyItemProps) => {
       <ul className='company-details-description'>
         {description.map((text, key) => (
           <li key={key}>
-            <Typography variant='body' withoutPadding>
+            <Typography variant='body' noPadding>
               {text}
             </Typography>
           </li>

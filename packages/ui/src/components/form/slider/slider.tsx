@@ -39,8 +39,8 @@ export const Slider = ({
   ...fieldProps
 }: UnControlledComponentProps<SliderProps, number>) => {
   const id = useMemo(() => crypto.randomUUID(), []);
-  const onBlurInput = () => {
-    onBlur && onBlur();
+  const onBlurInput = (e: React.FocusEvent<HTMLInputElement>) => {
+    onBlur && onBlur(e);
     const parsedValue = parseInt(`${value}`);
 
     if (min !== undefined && parsedValue < min) {
@@ -56,7 +56,7 @@ export const Slider = ({
 
   const { isFocus, handlers } = useInputHandlers({
     onBlur: onBlurInput,
-    onChange: value => setValue(+(value as string)),
+    onChange: e => setValue(+e.target.value),
     onFocus: onFocus,
   });
 

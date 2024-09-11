@@ -24,7 +24,7 @@ export const TextShadowPage = () => {
   const { t } = useTranslation();
   const theme = useTheme();
   const [selectedList, setSelectedList] = useState(TextShadowList[0]);
-  const [textColor, setTextColor] = useState(theme.colors.primary);
+  const [textColor, setTextColor] = useState(theme.colors.primary.main);
   const [text, setText] = useState('Text Shadow 😆');
 
   const textShadow = useTextShadow(selectedList);

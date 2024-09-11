@@ -4,8 +4,8 @@ export const BoxShadowStyle = styled.section`
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background: ${props => props.theme.colors.primary};
-  color: ${props => props.theme.colors.primaryContrast};
+  background: ${props => props.theme.colors.primary.main};
+  color: ${props => props.theme.colors.primary.contrast};
   display: grid;
   padding: 2em;
   place-content: center;

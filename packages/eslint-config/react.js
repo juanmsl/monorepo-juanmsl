@@ -147,6 +147,9 @@ module.exports = {
     quotes: ['error', 'single'],
     'react/destructuring-assignment': ['error', 'always'],
     'react/jsx-fragments': ['error', 'syntax'],
+    "react/jsx-no-target-blank": ['error', {
+      "allowReferrer": true,
+    }],
     'react/jsx-no-useless-fragment': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/function-component-definition': [

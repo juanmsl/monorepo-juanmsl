@@ -4,11 +4,11 @@ import styled from 'styled-components';
 export const NavbarStyle = styled.nav`
   background: linear-gradient(
     to right,
-    ${props => props.theme.colors.primary},
-    ${props => props.theme.colors.secondary},
-    ${props => props.theme.colors.tertiary}
+    ${props => props.theme.colors.primary.main},
+    ${props => props.theme.colors.secondary.main},
+    ${props => props.theme.colors.tertiary.main}
   );
-  color: ${props => props.theme.colors.primaryContrast};
+  color: ${props => props.theme.colors.primary.contrast};
   padding: 0.5em 2em;
   display: grid;
   align-items: center;
@@ -19,7 +19,7 @@ export const NavbarStyle = styled.nav`
   .navbar-logo {
     width: 1.5em;
     height: 1.5em;
-    background: ${props => props.theme.colors.primaryContrast};
+    background: ${props => props.theme.colors.primary.contrast};
     border-radius: 50%;
     padding: 0.2em;
     cursor: pointer;

@@ -43,7 +43,7 @@ export const Textarea = ({
   const id = useMemo(() => crypto.randomUUID(), []);
   const { handlers, isFocus } = useInputHandlers({
     onBlur: onBlur,
-    onChange: v => setValue(v as string),
+    onChange: e => setValue(e.target.value),
     onFocus: onFocus,
   });
 

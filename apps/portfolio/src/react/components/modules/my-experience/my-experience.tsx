@@ -55,7 +55,7 @@ export const MyExperience = () => {
               )}
               middleContent={({ isOpen, title, subtitle }) => (
                 <section className='accordion-header-content'>
-                  <Typography variant='body' withoutPadding weight='bold'>
+                  <Typography variant='body' noPadding weight='bold'>
                     {title}
                   </Typography>
                   <motion.section
@@ -73,11 +73,11 @@ export const MyExperience = () => {
                     initial='closed'
                     animate={isOpen ? 'open' : 'closed'}
                   >
-                    <Typography className='position' variant='header4' withoutPadding weight='bold'>
+                    <Typography className='position' variant='header4' noPadding weight='bold'>
                       {position}
                     </Typography>
                   </motion.section>
-                  <Typography variant='label' withoutPadding weight='light'>
+                  <Typography variant='label' noPadding weight='light'>
                     {subtitle}
                   </Typography>
                 </section>

@@ -1,15 +1,22 @@
 import React, { useCallback, useState } from 'react';
 
-type UseInputHandlersProps = {
-  onBlur?: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-  onFocus?: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-  onChange?: (value: string) => void;
+type InputTypes = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
+
+type UseInputHandlersProps<T extends InputTypes> = {
+  onBlur?: (e: React.FocusEvent<T>) => void;
+  onFocus?: (e: React.FocusEvent<T>) => void;
+  onChange?: (e: React.ChangeEvent<T>) => void;
 };
-export const useInputHandlers = ({ onBlur, onFocus, onChange }: UseInputHandlersProps = {}) => {
+
+export const useInputHandlers = <T extends InputTypes>({
+  onBlur,
+  onFocus,
+  onChange,
+}: UseInputHandlersProps<T> = {}) => {
   const [isFocus, setIsFocus] = useState(false);
 
   const handleFocus = useCallback(
-    (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    (e: React.FocusEvent<T>) => {
       setIsFocus(true);
       onFocus && onFocus(e);
     },
@@ -17,7 +24,7 @@ export const useInputHandlers = ({ onBlur, onFocus, onChange }: UseInputHandlers
   );
 
   const handleBlur = useCallback(
-    (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    (e: React.FocusEvent<T>) => {
       setIsFocus(false);
       onBlur && onBlur(e);
     },
@@ -25,9 +32,8 @@ export const useInputHandlers = ({ onBlur, onFocus, onChange }: UseInputHandlers
   );
 
   const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const { value } = e.target;
-      onChange && onChange(value);
+    (e: React.ChangeEvent<T>) => {
+      onChange && onChange(e);
     },
     [onChange],
   );

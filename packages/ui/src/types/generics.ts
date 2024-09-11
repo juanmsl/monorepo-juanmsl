@@ -8,7 +8,8 @@
  *  generic object.
  *
  *  Example:
- *    // select.tsx
+ *    - select.tsx
+ *
  *      type SelectProps<T> = {
  *        options: Array<T>;
  *        renderAttribute: KeyValuesOf<T, string>; // <---- Only allow string attributes from T
@@ -16,7 +17,8 @@
  *
  *      const Select = <T,>(props: SelectProps<T>) => { ... }
  *
- *    // user.entities.ts
+ *    - user.entities.ts
+ *
  *      type UserProfileEntity = {
  *        picture: string;
  *        website: string;
@@ -29,7 +31,8 @@
  *        profile: UserProfileEntity;
  *      }
  *
- *    // page.tsx
+ *    - page.tsx
+ *
  *      import { Select } from './components';
  *      import { UserEntity } from './user.entities';
  *

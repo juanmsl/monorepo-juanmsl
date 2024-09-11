@@ -44,20 +44,22 @@ export const Options = <T extends SelectItem>({
   );
 
   useEventListener('keydown', e => {
-    e.preventDefault();
-    const focusedItem = document.activeElement;
-    const isListItem = focusedItem?.tagName === 'LI';
+    if (['ArrowDown', 'ArrowUp'].includes(e.code)) {
+      e.preventDefault();
+      const focusedItem = document.activeElement;
+      const isListItem = focusedItem?.tagName === 'LI';
 
-    if (isOpen && isListItem) {
-      switch (e.code) {
-        case 'ArrowDown':
-          (focusedItem?.nextSibling as HTMLElement)?.focus();
+      if (isOpen && isListItem) {
+        switch (e.code) {
+          case 'ArrowDown':
+            (focusedItem?.nextSibling as HTMLElement)?.focus();
 
-          break;
-        case 'ArrowUp':
-          (focusedItem?.previousElementSibling as HTMLElement)?.focus();
+            break;
+          case 'ArrowUp':
+            (focusedItem?.previousElementSibling as HTMLElement)?.focus();
 
-          break;
+            break;
+        }
       }
     }
   });
@@ -110,7 +112,7 @@ export const Options = <T extends SelectItem>({
           <ul className='options-list' role='listbox'>
             {options.length === 0 ? (
               <li className='option option-empty' tabIndex={-1}>
-                <Typography withoutPadding variant='label'>
+                <Typography noPadding variant='label'>
                   No options to select
                 </Typography>
               </li>

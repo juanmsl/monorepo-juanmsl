@@ -138,31 +138,94 @@ export const CommonTheme: CommonThemeEntity = {
   gray8: '#DEDEDE',
   gray9: '#F0F0F0',
   white: '#FFFFFF',
-  info: '#1D9AC1',
-  active: '#00B450',
-  warning: '#FFA300',
-  alert: '#F95F62',
+  info: {
+    main: '#0581ff',
+    contrast: '#FFFFFF',
+    light: '#7bc1ff',
+    dark: '#0057b5',
+  },
+  active: {
+    main: '#00B450',
+    contrast: '#FFFFFF',
+    light: '#3dd581',
+    dark: '#029341',
+  },
+  warning: {
+    main: '#FFA300',
+    contrast: '#FFFFFF',
+    light: '#ffc97a',
+    dark: '#a16903',
+  },
+  alert: {
+    main: '#F95F62',
+    contrast: '#FFFFFF',
+    light: '#ff9c9d',
+    dark: '#b1282b',
+  },
 };
 
 export const DarkTheme: PaletteThemeEntity = {
-  background: '#24263A',
-  text: '#FFFFFF',
-  primary: '#B91345',
-  primaryContrast: '#FFFFFF',
-  secondary: '#161723',
-  secondaryContrast: '#FFFFFF',
-  tertiary: '#012e64',
-  tertiaryContrast: '#FFFFFF',
+  background: {
+    main: '#24263A',
+    paper: '#212335',
+  },
+  text: {
+    main: '#FFFFFF',
+    light: '#FFFFFF',
+    dark: '#efefef',
+  },
+  border: {
+    main: '#2b3135',
+  },
+  primary: {
+    main: '#B91345',
+    contrast: '#FFFFFF',
+    light: '#fa2f6d',
+    dark: '#880a2f',
+  },
+  secondary: {
+    main: '#161723',
+    contrast: '#FFFFFF',
+    light: '#27283e',
+    dark: '#0b0b15',
+  },
+  tertiary: {
+    main: '#012e64',
+    contrast: '#FFFFFF',
+    light: '#033f83',
+    dark: '#011c42',
+  },
 };
 
 export const LightTheme: PaletteThemeEntity = {
-  ...CommonTheme,
-  background: '#FFFFFF',
-  text: '#333333',
-  primary: '#450b7c',
-  primaryContrast: '#FFFFFF',
-  secondary: '#563cc9',
-  secondaryContrast: '#FFFFFF',
-  tertiary: '#49e9fb',
-  tertiaryContrast: '#333333',
+  background: {
+    main: '#FFFFFF',
+    paper: '#efefef',
+  },
+  text: {
+    main: '#333333',
+    light: '#434242',
+    dark: '#1c1b1b',
+  },
+  border: {
+    main: '#ececec',
+  },
+  primary: {
+    main: '#450b7c',
+    contrast: '#FFFFFF',
+    light: '#5c11a3',
+    dark: '#33075c',
+  },
+  secondary: {
+    main: '#563cc9',
+    contrast: '#FFFFFF',
+    light: '#6d50e4',
+    dark: '#3e2795',
+  },
+  tertiary: {
+    main: '#49e9fb',
+    contrast: '#333333',
+    light: '#a2edff',
+    dark: '#1fa5b5',
+  },
 };

@@ -43,14 +43,14 @@ export const InputColor = ({
   const [inputValue, setInputValue] = useState<string>(value);
   const id = useMemo(() => crypto.randomUUID(), []);
   const { handlers, isFocus } = useInputHandlers({
-    onChange: value => setInputValue(value as string),
-    onBlur: () => {
+    onChange: e => setInputValue(e.target.value),
+    onBlur: e => {
       setInputColor();
-      onBlur && onBlur();
+      onBlur && onBlur(e);
     },
-    onFocus: () => {
+    onFocus: e => {
       setInputColor();
-      onFocus && onFocus();
+      onFocus && onFocus(e);
     },
   });
   const { modalRef, isVisible, setIsVisible, modalStyle, containerRef } = useModalInContainer({

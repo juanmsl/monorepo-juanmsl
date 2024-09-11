@@ -34,7 +34,7 @@ export const MySkillsStyle = styled(SectionLayout)`
 
     &.is-selected,
     &:hover {
-      filter: grayscale(0) drop-shadow(0 0 4px ${props => props.theme.colors.text}33);
+      filter: grayscale(0) drop-shadow(0 0 4px ${props => props.theme.colors.text.main}33);
       transform: perspective(100px) translateZ(20px);
     }
   }
@@ -64,10 +64,10 @@ export const MySkillsStyle = styled(SectionLayout)`
       }
 
       &:hover {
-        color: ${props => props.theme.colors.primary};
+        color: ${props => props.theme.colors.primary.main};
 
         &::before {
-          background: ${props => props.theme.colors.primary};
+          background: ${props => props.theme.colors.primary.main};
           width: 5px;
           height: 5px;
         }

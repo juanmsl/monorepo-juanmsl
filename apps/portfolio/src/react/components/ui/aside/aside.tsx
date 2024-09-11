@@ -117,7 +117,7 @@ export const Aside = ({ children }: AsideProps) => {
         <MenuItem key={page} variants={variants.menuItem} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }}>
           <NavLink to={page} className='aside-item'>
             <Icon name={icon as IconNameT} />
-            <Typography className='aside-item-text' withoutPadding variant='label'>
+            <Typography className='aside-item-text' noPadding variant='label'>
               {label}
             </Typography>
           </NavLink>

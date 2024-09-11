@@ -59,13 +59,10 @@ export const useFileReader = (inputFiles: Array<File>) => {
     return () => {
       isCancel = true;
       fileReaders.forEach(fileReader => {
-        if (fileReader.readyState === 1) {
-          fileReader.abort();
-        }
+        fileReader.abort();
       });
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [formatBytes, inputFiles.length]);
+  }, [inputFiles]);
 
   return files;
 };

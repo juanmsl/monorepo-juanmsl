@@ -7,8 +7,11 @@ export const PageTransitionStyle = styled(motion.section)`
   width: 100vw;
   height: 100dvh;
   z-index: 100;
-  background: ${props => props.theme.colors.primary};
-  background: linear-gradient(${props => props.theme.colors.primary}, ${props => props.theme.colors.secondary});
+  background: ${props => props.theme.colors.primary.main};
+  background: linear-gradient(
+    ${props => props.theme.colors.primary.main},
+    ${props => props.theme.colors.secondary.main}
+  );
   display: grid;
   place-content: center;
 `;

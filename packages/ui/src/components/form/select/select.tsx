@@ -120,7 +120,7 @@ export const Select = <T extends SelectItem>({
 
   const OptionComponent = useCallback(
     ({ data }: OptionComponentProps<T>) => (
-      <Typography withoutPadding variant='label' nowrap>
+      <Typography noPadding variant='label' nowrap>
         {renderOption(data)}
       </Typography>
     ),
@@ -148,7 +148,7 @@ export const Select = <T extends SelectItem>({
 
       if (Array.isArray(value)) {
         return (
-          <Typography withoutPadding nowrap variant='label'>
+          <Typography noPadding nowrap variant='label'>
             {renderMultipleValue(value)}
           </Typography>
         );
@@ -213,7 +213,7 @@ export const Select = <T extends SelectItem>({
     <Field
       id={id}
       error={error}
-      isFocus={false}
+      isFocus={isVisible}
       onClickLeftIcon={() => openSelect(true)}
       onClickRightIcon={() => openSelect(true)}
       ref={containerRef}
@@ -229,13 +229,13 @@ export const Select = <T extends SelectItem>({
             className={`input-button ${(Array.isArray(value) ? value.length > 0 : value) ? '' : 'placeholder'}`}
             aria-haspopup='listbox'
             aria-expanded={isVisible}
-            onFocus={() => {
+            onFocus={e => {
               openSelect(true);
-              onFocus && onFocus();
+              onFocus && onFocus(e);
             }}
           >
             {(valueNonEmpty && renderValue(value)) || (
-              <Typography variant='label' withoutPadding nowrap>
+              <Typography variant='label' noPadding nowrap>
                 {placeholder}
               </Typography>
             )}

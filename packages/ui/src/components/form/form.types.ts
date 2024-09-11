@@ -12,8 +12,8 @@ export type SharedProps = {
   placeholder?: string;
   disabled?: boolean;
   readOnly?: boolean;
-  onBlur?: () => void;
-  onFocus?: () => void;
+  onBlur?: (e: React.FocusEvent<unknown>) => void;
+  onFocus?: (e: React.FocusEvent<unknown>) => void;
 };
 
 export type UnControlledProps<V> = {

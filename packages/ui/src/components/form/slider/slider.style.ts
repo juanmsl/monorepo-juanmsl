@@ -42,20 +42,20 @@ export const SliderStyle = styled.section<SliderStyleProps>`
     &:focus,
     &:hover {
       &::-webkit-slider-thumb {
-        background: ${props => props.theme.colors.primary};
-        box-shadow: 0 0 0 6px ${props => props.theme.colors.primary}88;
+        background: ${props => props.theme.colors.primary.main};
+        box-shadow: 0 0 0 6px ${props => props.theme.colors.primary.main}88;
       }
     }
 
     &:active {
       &::-webkit-slider-thumb {
-        box-shadow: 0 0 0 12px ${props => props.theme.colors.primary}88;
+        box-shadow: 0 0 0 12px ${props => props.theme.colors.primary.main}88;
       }
     }
 
     &:focus {
       &::-webkit-slider-runnable-track {
-        background: ${props => props.theme.colors.primary}66;
+        background: ${props => props.theme.colors.primary.main}66;
       }
     }
   }
