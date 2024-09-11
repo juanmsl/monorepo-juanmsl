@@ -27,10 +27,4 @@ export const InfinityScrollFooterStyle = styled.section`
     text-align: center;
     color: #a6a6a6;
   }
-
-  @keyframes spin {
-    to {
-      transform: rotate(1turn);
-    }
-  }
 `;

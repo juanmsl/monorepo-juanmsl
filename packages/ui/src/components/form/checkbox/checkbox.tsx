@@ -1,52 +1,75 @@
-import { HTMLAttributes, useCallback, useMemo } from 'react';
+import { useInputHandlers } from '@juanmsl/hooks';
+import { useMemo } from 'react';
 
-import { InputProps } from '../types';
-import { withController } from '../with-controller';
+import { Icon } from '../../icon';
+import { Typography } from '../../typography';
+import { Controller } from '../controller';
+import { ControllerGeneratorProps, UnControlledComponentProps } from '../form.types';
 
-import { CheckBoxSC } from './checkbox.style';
+import { CheckboxContainerStyle, CheckboxStyle } from './checkbox.style';
 
-type CheckboxProps = HTMLAttributes<HTMLInputElement> & {};
+type CheckboxProps = {
+  label?: string;
+};
 
 export const Checkbox = ({
   name,
   value,
+  setValue,
   onBlur,
+  onFocus,
   className = '',
   style = {},
+  autoFocus = false,
+  readOnly = false,
+  disabled = false,
+  placeholder = '',
+  autoComplete = 'off',
   label,
-  setValue,
-  ...props
-}: InputProps<CheckboxProps, boolean>) => {
+  /*
+   * isDirty = false,
+   * isTouched = false,
+   * invalid = false,
+   * error,
+   */
+}: UnControlledComponentProps<CheckboxProps, boolean>) => {
   const id = useMemo(() => crypto.randomUUID(), []);
-
-  const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const { checked } = e.target;
-      setValue(checked);
-    },
-    [setValue],
-  );
+  const { handlers } = useInputHandlers<HTMLInputElement>({
+    onChange: e => setValue(e.target.checked),
+    onBlur: onBlur,
+    onFocus: onFocus,
+  });
 
   return (
-    <CheckBoxSC>
-      <input
-        id={id}
-        onChange={handleChange}
-        type='checkbox'
-        name={name}
-        className={className}
-        style={style}
-        checked={value as boolean}
-        onBlur={onBlur}
-        {...props}
-      />
-      {label !== undefined && (
-        <label htmlFor={id} className='label'>
+    <CheckboxContainerStyle className={className} style={style}>
+      <CheckboxStyle className={value ? 'is-checked' : ''}>
+        <Icon name='checkmark' className='checkbox-icon' />
+        <input
+          id={id}
+          type='checkbox'
+          name={name}
+          className={`checkbox-input ${className}`}
+          style={style}
+          checked={value}
+          autoFocus={autoFocus}
+          autoComplete={autoComplete}
+          placeholder={placeholder}
+          disabled={disabled}
+          readOnly={readOnly}
+          {...handlers}
+        />
+      </CheckboxStyle>
+      {label ? (
+        <Typography variant='label-form' htmlFor={id} className='checkbox-label'>
           {label}
-        </label>
-      )}
-    </CheckBoxSC>
+        </Typography>
+      ) : null}
+    </CheckboxContainerStyle>
   );
 };
 
-export const CheckboxController = withController<CheckboxProps, boolean>(Checkbox, false);
+const CheckboxController = ({ rules, ...props }: ControllerGeneratorProps<CheckboxProps, boolean>) => {
+  return <Controller Component={Checkbox} defaultValue={false} inputProps={props} rules={rules} />;
+};
+
+Checkbox.Controller = CheckboxController;

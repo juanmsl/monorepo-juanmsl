@@ -19,7 +19,7 @@ export const MyExperienceStyle = styled(SectionLayout)`
     }
 
     .position {
-      color: ${props => props.theme.colors.primary};
+      color: ${props => props.theme.colors.primary.main};
     }
   }
 
@@ -87,7 +87,7 @@ export const CompaniesListItemStyle = styled.section`
 
   &:hover,
   &.selected {
-    color: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.primary.main};
     border-left: 3px solid;
     padding-left: 10px;
   }
@@ -97,7 +97,7 @@ export const CompanyDetailsStyle = styled.section`
   display: grid;
   gap: 40px;
   align-content: start;
-  color: ${props => props.theme.colors.text};
+  color: ${props => props.theme.colors.text.main};
 
   .company-details-header {
     display: none;
@@ -116,7 +116,7 @@ export const CompanyDetailsStyle = styled.section`
     }
 
     .header4 {
-      color: ${props => props.theme.colors.primary};
+      color: ${props => props.theme.colors.primary.main};
     }
   }
 

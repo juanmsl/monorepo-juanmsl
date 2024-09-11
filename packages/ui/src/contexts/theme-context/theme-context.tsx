@@ -3,6 +3,7 @@ import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 
 import { TypographyStyle } from '../../components/typography/typography.style';
 
+import { GlobalAnimations } from './theme.animations';
 import { CommonTheme, DarkTheme, LightTheme, ThemeConstants } from './theme.defaults';
 import { GlobalStyles, ThemeStyle } from './theme.style';
 import { CommonThemeEntity, PaletteThemeEntity, ThemeConstantsEntity, ThemeEntity } from './themes';
@@ -124,6 +125,7 @@ export const ThemeProvider = ({
           }}
         >
           <GlobalStyles />
+          <GlobalAnimations />
           <TypographyStyle />
           <ThemeStyle>{children}</ThemeStyle>
         </StyledThemeProvider>

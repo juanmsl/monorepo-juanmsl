@@ -149,10 +149,10 @@ const AccordionItem = ({
         middleContent({ isOpen, title, subtitle })
       ) : (
         <section className={headerContentClassName}>
-          <Typography className={classNames?.title} variant={titleVariant} withoutPadding weight='bold'>
+          <Typography className={classNames?.title} variant={titleVariant} noPadding weight='bold'>
             {title}
           </Typography>
-          <Typography className={classNames?.subtitle} variant={subtitleVariant} withoutPadding weight='light'>
+          <Typography className={classNames?.subtitle} variant={subtitleVariant} noPadding weight='light'>
             {subtitle}
           </Typography>
         </section>

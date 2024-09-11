@@ -15,7 +15,7 @@ export const AsideContainer = styled.main`
     display: block;
 
     @media all and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {
-      box-shadow: 10px 10px 40px 10px ${props => props.theme.colors.text}88;
+      box-shadow: 10px 10px 40px 10px ${props => props.theme.colors.text.main}88;
     }
   }
 
@@ -32,8 +32,12 @@ export const Background = styled(motion.section)`
   min-width: 300px;
   width: 100%;
   height: calc(100% - 60px);
-  background: linear-gradient(150deg, ${props => props.theme.colors.primary}, ${props => props.theme.colors.tertiary});
-  color: ${props => props.theme.colors.primaryContrast};
+  background: linear-gradient(
+    150deg,
+    ${props => props.theme.colors.primary.main},
+    ${props => props.theme.colors.tertiary.main}
+  );
+  color: ${props => props.theme.colors.primary.contrast};
   z-index: 9;
 
   @media all and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {
@@ -52,11 +56,11 @@ export const AsideStyle = styled(motion.nav)`
   z-index: 10;
   top: 0;
   left: 0;
-  color: ${props => props.theme.colors.primaryContrast};
+  color: ${props => props.theme.colors.primary.contrast};
   display: grid;
   gap: 40px;
   padding: 40px 20px;
-  color: ${props => props.theme.colors.primaryContrast};
+  color: ${props => props.theme.colors.primary.contrast};
   grid-template-rows: auto 1fr auto;
 
   .aside-logo {
@@ -65,7 +69,7 @@ export const AsideStyle = styled(motion.nav)`
     height: 80px;
     padding: 10px;
     border-radius: 50%;
-    background: ${props => props.theme.colors.primaryContrast};
+    background: ${props => props.theme.colors.primary.contrast};
   }
 
   .aside-items {
@@ -86,8 +90,12 @@ export const AsideStyle = styled(motion.nav)`
 `;
 
 export const MobileAside = styled(motion.nav)`
-  background: linear-gradient(150deg, ${props => props.theme.colors.primary}, ${props => props.theme.colors.tertiary});
-  color: ${props => props.theme.colors.primaryContrast};
+  background: linear-gradient(
+    150deg,
+    ${props => props.theme.colors.primary.main},
+    ${props => props.theme.colors.tertiary.main}
+  );
+  color: ${props => props.theme.colors.primary.contrast};
   padding: 10px 20px;
   display: grid;
   align-items: center;
@@ -100,7 +108,7 @@ export const MobileAside = styled(motion.nav)`
     height: 40px;
     padding: 5px;
     border-radius: 50%;
-    background: ${props => props.theme.colors.primaryContrast};
+    background: ${props => props.theme.colors.primary.contrast};
   }
 
   .aside-items {
@@ -144,7 +152,7 @@ export const MenuItem = styled(motion.span)`
 
     &:hover,
     &.active {
-      background: ${props => props.theme.colors.primaryContrast}55;
+      background: ${props => props.theme.colors.primary.contrast}55;
     }
   }
 `;
@@ -173,7 +181,7 @@ export const MobileMenuItem = styled(motion.span)`
 
     &:hover,
     &.active {
-      background: ${props => props.theme.colors.primaryContrast}55;
+      background: ${props => props.theme.colors.primary.contrast}55;
     }
   }
 `;
@@ -190,8 +198,8 @@ export const Trigger = styled(motion.button)`
   height: 40px;
   margin: 20px;
   border-radius: 50%;
-  background: ${props => props.theme.colors.primary};
-  color: ${props => props.theme.colors.primaryContrast};
+  background: ${props => props.theme.colors.primary.main};
+  color: ${props => props.theme.colors.primary.contrast};
   z-index: 10;
   display: none;
   place-content: center;
@@ -209,9 +217,9 @@ export const MobileTrigger = styled(motion.button)`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1px solid ${props => props.theme.colors.primaryContrast};
+  border: 1px solid ${props => props.theme.colors.primary.contrast};
   background: transparent;
-  color: ${props => props.theme.colors.primaryContrast};
+  color: ${props => props.theme.colors.primary.contrast};
   display: grid;
   place-content: center;
 `;

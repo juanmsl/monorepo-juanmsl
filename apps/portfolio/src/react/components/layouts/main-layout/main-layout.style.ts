@@ -16,7 +16,7 @@ export const MainLayoutStyle = styled.main`
       width: 5px;
       height: 100%;
       z-index: 5;
-      background: ${props => props.theme.colors.primary};
+      background: ${props => props.theme.colors.primary.main};
       transition: background 300ms ease;
       display: none;
 
@@ -70,7 +70,7 @@ export const MainLayoutStyle = styled.main`
     height: 40px;
     z-index: 6;
     border-radius: 50%;
-    background: ${props => props.theme.colors.text};
+    background: ${props => props.theme.colors.text.main};
     transition: all 300ms ease;
     transform: translateX(-50%);
     padding: 5px;

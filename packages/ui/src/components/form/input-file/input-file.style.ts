@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-export const InputFileSC = styled.section`
+export const InputFileContainerStyle = styled.section`
   display: grid;
   gap: 10px;
 
   .input-file--box {
-    border: 1px dashed;
+    border: 1px solid;
     border-radius: 5px;
     position: relative;
     transition: all 0.3s ease;
@@ -13,28 +13,18 @@ export const InputFileSC = styled.section`
     grid-template-columns: 32px 1fr;
     padding: 10px;
     gap: 10px;
-
-    &--text {
-      font-size: 0.8em;
-      display: grid;
-      color: ${props => props.theme.colors.gray5};
-    }
+    background: ${props => props.theme.colors.secondary.main};
+    color: ${props => props.theme.colors.secondary.contrast};
+    align-items: center;
 
     &--icon {
       width: 32px;
       height: 32px;
       border-radius: 5px;
-      background: ${props => props.theme.colors.gray7};
+      background: ${props => props.theme.colors.primary.contrast};
+      color: ${props => props.theme.colors.primary.main};
       display: grid;
       place-content: center;
-    }
-
-    &--label {
-      transition: all 0.3s ease;
-    }
-
-    &--restrictions {
-      font-size: 0.8em;
     }
 
     input {
@@ -48,11 +38,12 @@ export const InputFileSC = styled.section`
     }
 
     &:hover {
-      background: #f1f1f1;
+      background: ${props => props.theme.colors.primary.contrast};
+      color: ${props => props.theme.colors.primary.main};
 
-      &,
-      & label {
-        color: ${props => props.theme.colors.primary};
+      .input-file--box--icon {
+        background: ${props => props.theme.colors.primary.main};
+        color: ${props => props.theme.colors.primary.contrast};
       }
     }
   }
@@ -60,7 +51,7 @@ export const InputFileSC = styled.section`
   .input-file--files {
     max-height: 280px;
     overflow-y: auto;
-    border: 1px dashed;
+    border: 1px solid;
     border-radius: 5px;
 
     &--content {
@@ -69,21 +60,20 @@ export const InputFileSC = styled.section`
   }
 
   .error {
-    font-size: 0.8em;
     color: tomato;
   }
 
   .total-info {
-    font-size: 0.6em;
+    font-size: 1em;
     display: grid;
     grid-auto-flow: column;
     justify-content: end;
     align-items: center;
-    gap: 1em;
+    gap: 0.5em;
 
     &--delete {
       display: grid;
-      place-items: center;
+      place-content: center;
       height: 100%;
       background: transparent;
       cursor: pointer;
@@ -91,59 +81,53 @@ export const InputFileSC = styled.section`
       aspect-ratio: 1 / 1;
       border-radius: 50%;
       width: 2em;
+      font-size: 0.8em;
 
       &:hover {
-        background: ${props => props.theme.colors.primary};
-        color: white;
+        background: ${props => props.theme.colors.primary.main};
+        color: ${props => props.theme.colors.primary.contrast};
       }
     }
   }
 `;
 
-export const FileCardSC = styled.section`
+export const FileCardStyle = styled.section`
   display: grid;
   grid-template-columns: 35px 1fr 35px;
   gap: 1em;
   align-items: center;
   padding: 10px;
+  background: ${props => props.theme.colors.background.main};
 
   &:not(:last-child) {
-    border-bottom: 1px dashed black;
+    border-bottom: 1px dashed;
   }
 
   &:hover {
-    color: ${props => props.theme.colors.primary};
+    .file-card--delete {
+      color: ${props => props.theme.colors.primary.main};
+    }
   }
 
   .file-card--image {
+    background: ${props => props.theme.colors.primary.main};
+    color: ${props => props.theme.colors.primary.contrast};
     width: 32px;
     height: 32px;
     border-radius: 5px;
-    background: ${props => props.theme.colors.gray7};
     display: grid;
     place-content: center;
+    border: 1px solid;
   }
 
   .file-card--data {
     display: grid;
     font-size: 0.7em;
-  }
-
-  .file-card--name {
-    margin: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .file-card--size {
-    margin: 0;
-    color: ${props => props.theme.colors.gray5};
+    justify-content: start;
   }
 
   .file-card--delete {
     border-radius: 5px;
-    background: ${props => props.theme.colors.gray7};
     display: grid;
     place-content: center;
     width: 32px;
@@ -152,8 +136,8 @@ export const FileCardSC = styled.section`
     transition: all 0.3s ease;
 
     &:hover {
-      background: ${props => props.theme.colors.primary};
-      color: white;
+      background: ${props => props.theme.colors.primary.main};
+      color: ${props => props.theme.colors.primary.contrast};
     }
   }
 `;

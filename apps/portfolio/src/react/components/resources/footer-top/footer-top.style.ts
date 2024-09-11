@@ -6,13 +6,13 @@ export const FooterTopStyle = styled.svg`
   transition: all 300ms ease;
 
   #backgroundColor {
-    fill: ${props => props.theme.colors.background};
+    fill: ${props => props.theme.colors.background.main};
     transform: translate(0, -10px);
     transition: all 300ms ease;
   }
 
   #line {
-    fill: ${props => props.theme.colors.tertiary};
+    fill: ${props => props.theme.colors.tertiary.main};
     transform: translate(0, -10px);
     transition: all 300ms ease;
   }

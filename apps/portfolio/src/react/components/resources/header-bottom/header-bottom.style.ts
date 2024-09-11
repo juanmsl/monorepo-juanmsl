@@ -9,12 +9,12 @@ export const HeaderBottomStyle = styled.svg`
   max-height: 206px;
 
   #backgroundColor {
-    fill: ${props => props.theme.colors.background};
+    fill: ${props => props.theme.colors.background.main};
     transition: all 300ms ease;
   }
 
   #line {
-    fill: ${props => props.theme.colors.tertiary};
+    fill: ${props => props.theme.colors.tertiary.main};
     transition: all 300ms ease;
   }
 `;

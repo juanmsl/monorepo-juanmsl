@@ -1,29 +1,29 @@
 import styled from 'styled-components';
 
-export const ButtonStyle = styled.button`
-  border: 0;
+export type ButtonStyleProps = {
+  $color: string;
+  $colorDark: string;
+  $colorContrast: string;
+};
+
+export const ButtonStyle = styled.button<ButtonStyleProps>`
   cursor: pointer;
   font-weight: bold;
   display: grid;
-  grid-template-areas: 'leftIcon buttonText rightIcon';
-  grid-template-columns: auto 1fr auto;
+  grid-auto-flow: column;
+  gap: 1em;
   align-items: center;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  transition: all 100ms ease;
   justify-items: center;
-  border-radius: 5px;
+  border-radius: 1em;
   text-align: center;
+  justify-content: center;
 
   .button-loader-icon {
     animation: spin 800ms linear infinite;
-  }
-
-  @keyframes spin {
-    to {
-      transform: rotate(1turn);
-    }
+    font-size: 1.2em;
   }
 
   &.rounded {
@@ -42,30 +42,32 @@ export const ButtonStyle = styled.button`
   .button-right-icon {
     font-size: 1.2em;
     opacity: 1;
-    transition: all 300ms ease;
-  }
-
-  .button-left-icon {
-    margin-right: 10px;
-    grid-area: leftIcon;
-  }
-
-  .button-right-icon {
-    margin-left: 10px;
-    grid-area: rightIcon;
   }
 
   .button-text {
-    grid-area: buttonText;
+    display: grid;
+    align-items: center;
   }
 
-  padding: 10px 20px;
+  padding: 1em;
   font-size: ${props => props.theme.constants.typography.label.fontSize};
-  background: ${props => props.theme.colors.primary};
-  color: ${props => props.theme.colors.white};
+  background: ${props => props.$color};
+  color: ${props => props.$colorContrast};
+  box-shadow: 0 0 0 0 transparent;
+  transition: all 250ms ease;
+  border: 1px solid ${props => props.$color};
 
-  &:not(:disabled):hover {
-    box-shadow: 0 0 5px;
+  &:not(:disabled, .no-shadow):hover {
+    box-shadow:
+      0 1.4em 0.5em -1em ${props => props.theme.colors.black}88,
+      0 0.7em 1em -0.5em ${props => props.theme.colors.black}88;
+  }
+
+  &:not(:disabled, .no-shadow):active {
+    background: ${props => props.$colorDark};
+    box-shadow:
+      0 0.3em 0.4em -0.2em ${props => props.theme.colors.black}88,
+      0 0.2em 0.8em -0.1em ${props => props.theme.colors.black}88;
   }
 
   &:not(:disabled):active {
@@ -73,46 +75,58 @@ export const ButtonStyle = styled.button`
   }
 
   &:disabled {
-    background: ${props => props.theme.colors.gray7};
-    color: ${props => props.theme.colors.white};
+    background: ${props => props.theme.colors.gray6};
+    color: ${props => props.theme.colors.gray9};
+    border: 1px solid ${props => props.theme.colors.gray6};
+    cursor: not-allowed;
+    pointer-events: none;
   }
 
   &.is-loading {
     pointer-events: none;
-
-    .button-left-icon,
-    .button-right-icon {
-      opacity: 0;
-    }
   }
 
-  &.small {
-    padding: 5px 10px;
+  &.small-size {
     font-size: ${props => props.theme.constants.typography.small.fontSize};
   }
 
-  &.large {
-    padding: 15px 30px;
+  &.large-size {
     font-size: ${props => props.theme.constants.typography.body.fontSize};
   }
 
-  &.ghost {
+  &.ghost-variant {
     background: transparent;
-    color: ${props => props.theme.colors.primary};
-    border: 2px solid;
+    color: ${props => props.$color};
+    border: 1px solid;
 
     &:not(:disabled):hover {
-      background: ${props => props.theme.colors.primary}22;
+      background: ${props => props.theme.colors.background.main};
+    }
+
+    &:not(:disabled):active {
+      background: ${props => props.theme.colors.background.paper};
+    }
+
+    &:disabled {
+      color: ${props => props.theme.colors.gray6};
     }
   }
 
-  &.flat {
+  &.flat-variant {
     background: transparent;
-    color: ${props => props.theme.colors.primary};
+    color: ${props => props.$color};
     border: 1px solid transparent;
 
     &:not(:disabled):hover {
-      border: 1px solid ${props => props.theme.colors.primary};
+      background: ${props => props.theme.colors.background.main};
+    }
+
+    &:not(:disabled):active {
+      background: ${props => props.theme.colors.background.paper};
+    }
+
+    &:disabled {
+      color: ${props => props.theme.colors.gray6};
     }
   }
 `;

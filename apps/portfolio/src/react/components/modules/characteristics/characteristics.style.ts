@@ -3,15 +3,15 @@ import styled from 'styled-components';
 import { SectionLayout } from '@components/layouts';
 
 export const CharacteristicsStyle = styled(SectionLayout)`
-  background: ${props => props.theme.colors.secondary};
-  color: ${props => props.theme.colors.secondaryContrast};
+  background: ${props => props.theme.colors.secondary.main};
+  color: ${props => props.theme.colors.secondary.contrast};
   transition: all 0.5s ease;
   user-select: none;
   box-shadow:
     inset 0 25px 20px -20px ${props => props.theme.colors.black},
     inset 0 -25px 20px -20px ${props => props.theme.colors.black};
-  border-top: 10px solid ${props => props.theme.colors.tertiary};
-  border-bottom: 10px solid ${props => props.theme.colors.tertiary};
+  border-top: 10px solid ${props => props.theme.colors.tertiary.main};
+  border-bottom: 10px solid ${props => props.theme.colors.tertiary.main};
 
   .layout-content {
     place-content: center;
@@ -43,7 +43,7 @@ export const CharacteristicStyle = styled.section`
     border: 1px solid;
     transition: all 0.5s ease;
     align-content: center;
-    background: ${props => props.theme.colors.tertiaryContrast}08;
+    background: ${props => props.theme.colors.tertiary.contrast}08;
     border-radius: 50%;
     width: 150px;
     height: 150px;
@@ -54,7 +54,7 @@ export const CharacteristicStyle = styled.section`
     }
 
     &:hover {
-      box-shadow: 0 5px 25px ${props => props.theme.colors.text}55;
+      box-shadow: 0 5px 25px ${props => props.theme.colors.text.main}55;
     }
   }
 

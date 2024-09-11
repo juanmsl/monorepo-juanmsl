@@ -24,12 +24,12 @@ export const HomeStyle = styled.main`
     transition: all 300ms ease;
     animation: pulse 1s ease infinite alternate;
     border-radius: 5px;
-    color: ${props => props.theme.colors.primaryContrast};
-    filter: drop-shadow(0 0 2px ${props => props.theme.colors.primary});
+    color: ${props => props.theme.colors.primary.contrast};
+    filter: drop-shadow(0 0 2px ${props => props.theme.colors.primary.main});
     text-shadow:
-      1px 1px 1px ${props => props.theme.colors.primary},
-      2px 2px 1px ${props => props.theme.colors.primary},
-      3px 3px 1px ${props => props.theme.colors.primary};
+      1px 1px 1px ${props => props.theme.colors.primary.main},
+      2px 2px 1px ${props => props.theme.colors.primary.main},
+      3px 3px 1px ${props => props.theme.colors.primary.main};
   }
 
   .card-container {
@@ -37,8 +37,8 @@ export const HomeStyle = styled.main`
       background-size: 20px 20px;
       background-image: repeating-linear-gradient(
         45deg,
-        ${props => props.theme.colors.text}33 0,
-        ${props => props.theme.colors.text}33 1px,
+        ${props => props.theme.colors.text.main}33 0,
+        ${props => props.theme.colors.text.main}33 1px,
         transparent 0,
         transparent 50%
       );
@@ -47,8 +47,8 @@ export const HomeStyle = styled.main`
     &:nth-child(even) .card {
       background-image: repeating-linear-gradient(
         -45deg,
-        ${props => props.theme.colors.text}33 0,
-        ${props => props.theme.colors.text}33 1px,
+        ${props => props.theme.colors.text.main}33 0,
+        ${props => props.theme.colors.text.main}33 1px,
         transparent 0,
         transparent 50%
       );
@@ -58,7 +58,7 @@ export const HomeStyle = styled.main`
   .card {
     aspect-ratio: 4/3;
     border: 2px solid;
-    background: ${props => props.theme.colors.background};
+    background: ${props => props.theme.colors.background.main};
     display: grid;
     place-content: center;
     justify-items: center;
@@ -71,7 +71,7 @@ export const HomeStyle = styled.main`
       animation:
         cardPulse 1s ease infinite alternate,
         CardBG 2s ease infinite alternate;
-      border-color: ${props => props.theme.colors.primary};
+      border-color: ${props => props.theme.colors.primary.main};
       box-shadow:
         0 0 0 0 ${props => props.theme.colors.black}55 inset,
         0 50px 100px 10px ${props => props.theme.colors.black}55,
@@ -82,28 +82,28 @@ export const HomeStyle = styled.main`
   .box-shadow {
     width: 200px;
     border: 1px solid;
-    background: ${props => props.theme.colors.primary};
-    color: ${props => props.theme.colors.primaryContrast};
+    background: ${props => props.theme.colors.primary.main};
+    color: ${props => props.theme.colors.primary.contrast};
     padding: 10px 10px 20px;
     box-shadow:
-      8px 8px 0 0 ${props => props.theme.colors.primary}96,
-      16px 16px 0 0 ${props => props.theme.colors.primary}70,
-      24px 24px 0 0 ${props => props.theme.colors.primary}48;
+      8px 8px 0 0 ${props => props.theme.colors.primary.main}96,
+      16px 16px 0 0 ${props => props.theme.colors.primary.main}70,
+      24px 24px 0 0 ${props => props.theme.colors.primary.main}48;
   }
 
   .text-shadow {
-    color: ${props => props.theme.colors.primaryContrast};
-    filter: drop-shadow(0 0 5px ${props => props.theme.colors.primary});
+    color: ${props => props.theme.colors.primary.contrast};
+    filter: drop-shadow(0 0 5px ${props => props.theme.colors.primary.main});
     text-shadow:
-      1px 1px 1px ${props => props.theme.colors.primary},
-      2px 2px 1px ${props => props.theme.colors.primary},
-      3px 3px 1px ${props => props.theme.colors.primary},
-      4px 4px 1px ${props => props.theme.colors.primary},
-      5px 5px 1px ${props => props.theme.colors.primary},
-      6px 6px 1px ${props => props.theme.colors.primary},
-      7px 7px 1px ${props => props.theme.colors.primary},
-      8px 8px 1px ${props => props.theme.colors.primary},
-      9px 9px 1px ${props => props.theme.colors.primary};
+      1px 1px 1px ${props => props.theme.colors.primary.main},
+      2px 2px 1px ${props => props.theme.colors.primary.main},
+      3px 3px 1px ${props => props.theme.colors.primary.main},
+      4px 4px 1px ${props => props.theme.colors.primary.main},
+      5px 5px 1px ${props => props.theme.colors.primary.main},
+      6px 6px 1px ${props => props.theme.colors.primary.main},
+      7px 7px 1px ${props => props.theme.colors.primary.main},
+      8px 8px 1px ${props => props.theme.colors.primary.main},
+      9px 9px 1px ${props => props.theme.colors.primary.main};
   }
 
   @keyframes cardPulse {

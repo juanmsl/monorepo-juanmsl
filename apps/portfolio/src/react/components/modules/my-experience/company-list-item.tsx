@@ -17,10 +17,10 @@ export const CompanyListItem = ({ isSelected = false, onClick, title, subtitle }
 
   return (
     <CompaniesListItemStyle className={className} onClick={onClick}>
-      <Typography variant='body' weight='bold' className='company-item-name' withoutPadding>
+      <Typography variant='body' weight='bold' className='company-item-name' noPadding>
         {title}
       </Typography>
-      <Typography variant='label' withoutPadding>
+      <Typography variant='label' noPadding>
         {subtitle}
       </Typography>
     </CompaniesListItemStyle>

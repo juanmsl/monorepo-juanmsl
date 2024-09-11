@@ -6,7 +6,6 @@ import './globals.css';
 import { StyledComponentsProvider } from '@components/providers';
 import { PageWithParams } from '@core/entities';
 import { i18nConfig } from '@core/i18n';
-import { CommonTheme, DarkTheme, LightTheme, ThemeConstants } from '@core/theme';
 
 import type { Metadata } from 'next';
 
@@ -30,14 +29,7 @@ const RootLayout = ({ children, params: { lang } }: RootLayoutProps) => {
     <html lang={lang} suppressHydrationWarning={true}>
       <body className={fontFamily.className}>
         <StyledComponentsProvider>
-          <ThemeProvider
-            commonTheme={CommonTheme}
-            lightTheme={LightTheme}
-            darkTheme={DarkTheme}
-            constants={ThemeConstants}
-          >
-            {children}
-          </ThemeProvider>
+          <ThemeProvider>{children}</ThemeProvider>
         </StyledComponentsProvider>
       </body>
     </html>

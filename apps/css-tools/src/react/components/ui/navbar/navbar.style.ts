@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 
 export const NavbarStyle = styled.nav`
-  background: linear-gradient(${props => props.theme.colors.primary}, ${props => props.theme.colors.secondary});
-  color: ${props => props.theme.colors.primaryContrast};
+  background: linear-gradient(
+    ${props => props.theme.colors.primary.main},
+    ${props => props.theme.colors.secondary.main}
+  );
+  color: ${props => props.theme.colors.primary.contrast};
   padding: 20px;
   display: grid;
   justify-items: center;
@@ -12,7 +15,7 @@ export const NavbarStyle = styled.nav`
   .navbar-logo {
     width: 2em;
     height: 2em;
-    background: ${props => props.theme.colors.primaryContrast};
+    background: ${props => props.theme.colors.primary.contrast};
     border-radius: 50%;
     padding: 0.2em;
     cursor: pointer;
@@ -52,12 +55,12 @@ export const NavbarStyle = styled.nav`
       border-radius: 50%;
 
       &:hover:not(.active) {
-        background: ${props => props.theme.colors.primaryContrast}33;
+        background: ${props => props.theme.colors.primary.contrast}33;
       }
 
       &.active {
-        background: ${props => props.theme.colors.primaryContrast};
-        color: ${props => props.theme.colors.primary};
+        background: ${props => props.theme.colors.primary.contrast};
+        color: ${props => props.theme.colors.primary.main};
       }
     }
   }
@@ -72,16 +75,16 @@ export const NavbarStyle = styled.nav`
     cursor: pointer;
 
     &:hover {
-      background: ${props => props.theme.colors.primaryContrast};
-      color: ${props => props.theme.colors.primary};
+      background: ${props => props.theme.colors.primary.contrast};
+      color: ${props => props.theme.colors.primary.main};
     }
   }
 `;
 
 export const NavbarSuggestionsModal = styled.section`
-  background: ${props => props.theme.colors.background};
-  color: ${props => props.theme.colors.text};
-  border: 1px solid ${props => props.theme.colors.text};
+  background: ${props => props.theme.colors.background.main};
+  color: ${props => props.theme.colors.text.main};
+  border: 1px solid ${props => props.theme.colors.text.main};
   width: 90vw;
   max-width: 550px;
   height: 90dvh;
@@ -90,7 +93,7 @@ export const NavbarSuggestionsModal = styled.section`
   padding: 2em 0;
   box-shadow:
     0 0 23px 10px #08070799 inset,
-    0 10px 80px -20px ${props => props.theme.colors.text}CC;
+    0 10px 80px -20px ${props => props.theme.colors.text.main}CC;
   position: fixed;
   top: 50%;
   left: 50%;

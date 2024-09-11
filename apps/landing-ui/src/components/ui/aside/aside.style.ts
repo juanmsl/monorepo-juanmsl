@@ -10,8 +10,8 @@ export const AsideStyle = styled.aside`
   overflow: auto;
   mask-image: linear-gradient(
     transparent 3%,
-    ${props => props.theme.colors.text} 10%,
-    ${props => props.theme.colors.text} 90%,
+    ${props => props.theme.colors.text.main} 10%,
+    ${props => props.theme.colors.text.main} 90%,
     transparent 97%,
     transparent
   );
@@ -29,7 +29,7 @@ export const AsideItemStyle = styled.section`
     gap: 1em;
 
     &--line {
-      color: ${props => props.theme.colors.text}88;
+      color: ${props => props.theme.colors.text.main}88;
     }
   }
 
@@ -54,7 +54,7 @@ export const AsideItemStyle = styled.section`
       border-radius: 4px;
       padding: 0.5em 2em;
       position: relative;
-      color: ${props => props.theme.colors.text}88;
+      color: ${props => props.theme.colors.text.main}88;
 
       &::before {
         content: '';
@@ -66,15 +66,15 @@ export const AsideItemStyle = styled.section`
         width: 4px;
         height: 4px;
         border-radius: 1em;
-        background: ${props => props.theme.colors.text}88;
+        background: ${props => props.theme.colors.text.main}88;
         opacity: 1;
       }
 
       &.active,
       &:hover {
         padding: 0.5em 2em 0.5em 1em;
-        background: ${props => props.theme.colors.text}0A;
-        color: ${props => props.theme.colors.text};
+        background: ${props => props.theme.colors.text.main}0A;
+        color: ${props => props.theme.colors.text.main};
 
         .aside-accordion-item--icon {
           opacity: 1;
@@ -87,7 +87,7 @@ export const AsideItemStyle = styled.section`
       }
 
       &.active {
-        background: ${props => props.theme.colors.text}22;
+        background: ${props => props.theme.colors.text.main}22;
       }
     }
   }

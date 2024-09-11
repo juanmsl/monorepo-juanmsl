@@ -21,7 +21,7 @@ export const HomeHeader = () => {
           <Line orientation='horizontal' lineWidth={3} className='header-line' />
         </Reveal>
         <Reveal delay={300} width='100%'>
-          <Typography variant='hero' className='names' withoutPadding>
+          <Typography variant='hero' className='names' noPadding>
             {t('common:shortName')}
           </Typography>
         </Reveal>

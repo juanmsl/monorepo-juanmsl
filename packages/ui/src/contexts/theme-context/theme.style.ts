@@ -72,7 +72,7 @@ export const GlobalStyles = createGlobalStyle`
   body {
     min-width: ${props => props.theme.constants.breakpoints.mobile};
     font-family: ${props => props.theme.constants.fontFamily};
-    background: ${props => props.theme.colors.background};
-    color: ${props => props.theme.colors.text};
+    background: ${props => props.theme.colors.background.main};
+    color: ${props => props.theme.colors.text.main};
   }
 `;

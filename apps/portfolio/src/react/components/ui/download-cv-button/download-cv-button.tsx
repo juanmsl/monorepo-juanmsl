@@ -19,7 +19,12 @@ export const DownloadCvButton = ({ children, width }: DownloadCvButtonProps) => 
   return (
     <HoverCard translationZ={15} width={width}>
       <Reveal delay={700} width={width}>
-        <Button width={width === 'fit-content' ? 'fit' : 'full'} leftIcon='download' onClick={handleClick}>
+        <Button
+          color='primary'
+          width={width === 'fit-content' ? 'fit' : 'full'}
+          leftIcon='download'
+          onClick={handleClick}
+        >
           {children}
         </Button>
       </Reveal>

@@ -1,36 +1,60 @@
 import { formatBytes } from '@juanmsl/helpers';
-import { FileResolvedT, FileTypeEnum, useFileReader } from '@juanmsl/hooks';
+import { FileTypeEnum, useInputHandlers } from '@juanmsl/hooks';
 import { useEffect, useMemo, useState } from 'react';
 
+import { Grid } from '../../../layouts';
 import { Icon, IconNameT } from '../../icon';
-import { InputProps } from '../types';
-import { withController } from '../with-controller';
+import { Typography } from '../../typography';
+import { Controller } from '../controller';
+import { ControllerGeneratorProps, UnControlledComponentProps } from '../form.types';
 
-import { FileCardSC, InputFileSC } from './input-file.style';
+import { FileCardStyle, InputFileContainerStyle } from './input-file.style';
 
 type InputFileProps = {
+  label?: string;
   accept?: string;
   multiple?: boolean;
   limitSize?: number;
   errorTimeout?: number;
 };
 
+type InputFileValue = Record<string, File>;
+
 export const InputFile = ({
   name,
-  className = '',
-  style = {},
+  value = {},
   setValue,
   onBlur,
-  value = [],
+  onFocus,
+  className = '',
+  style = {},
+  autoFocus = false,
+  readOnly = false,
+  disabled = false,
+  placeholder = 'Click to upload or drag and drop',
+  autoComplete = 'off',
   accept,
-  label = 'Click to upload or drag and drop',
   multiple = false,
   limitSize = 5000000,
   errorTimeout = 3000,
-}: InputProps<InputFileProps, Array<File>>) => {
+  label,
+  /*
+   * isDirty = false,
+   * isTouched = false,
+   * invalid = false,
+   * error,
+   */
+}: UnControlledComponentProps<InputFileProps, InputFileValue>) => {
   const [error, setError] = useState<string | null>(null);
-  const fileList = useFileReader(value);
   const id = useMemo(() => crypto.randomUUID(), []);
+  const { handlers } = useInputHandlers<HTMLInputElement>({
+    onBlur,
+    onFocus,
+    onChange: e => {
+      const { files } = e.target;
+      files && saveFiles(files);
+    },
+  });
 
   useEffect(() => {
     let intervalId: ReturnType<typeof setTimeout> | null = null;
@@ -49,9 +73,11 @@ export const InputFile = ({
   }, [error, errorTimeout]);
 
   const saveFiles = (files: FileList) => {
-    const finalFiles = Array.isArray(value) ? value : [];
+    const finalFiles = multiple ? { ...value } : {};
 
-    for (let i = 0; i < files.length; i++) {
+    const filesToCheck = multiple ? files.length : 1;
+
+    for (let i = 0; i < filesToCheck; i++) {
       const file = files.item(i);
 
       if (!file) {
@@ -59,18 +85,13 @@ export const InputFile = ({
       }
 
       if (file.size < limitSize) {
-        finalFiles.push(file);
+        finalFiles[file.name] = file;
       } else {
         setError(`File '${file.name}' size is larger than ${formatBytes(limitSize)}`);
       }
     }
 
     setValue(finalFiles);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { files } = e.target;
-    files && saveFiles(files);
   };
 
   const handleDrop = (e: React.DragEvent<HTMLInputElement>) => {
@@ -84,85 +105,109 @@ export const InputFile = ({
 
   const getIconType = (type: FileTypeEnum): IconNameT => {
     const iconTypes: Record<FileTypeEnum, IconNameT> = {
-      [FileTypeEnum.PNG]: 'warning',
-      [FileTypeEnum.PDF]: 'warning',
+      [FileTypeEnum.PNG]: 'download',
+      [FileTypeEnum.PDF]: 'download',
     };
 
     return iconTypes[type] ?? 'warning';
   };
 
-  const deleteFile = (index: number) => {
-    const prevValue = [...value];
-    prevValue.splice(index, 1);
+  const deleteFile = (file: File) => {
+    const prevValue = { ...value };
+    delete prevValue[file.name];
     setValue(prevValue);
   };
 
   const deleteAll = () => {
-    setValue([]);
+    setValue({});
   };
 
-  const totalSize = useMemo(() => fileList.reduce((prev, { size }) => prev + size, 0), [fileList]);
+  const totalSize = useMemo(() => Object.values(value).reduce((prev, { size }) => prev + size, 0), [value]);
 
-  const renderFileToCard = (file: FileResolvedT, key: number) => (
-    <FileCardSC key={key}>
+  const renderFileToCard = (file: File, key: number) => (
+    <FileCardStyle key={key}>
       <section className='file-card--image'>
-        <Icon name={getIconType(file.type)} />
+        <Icon name={getIconType(file.type as FileTypeEnum)} />
       </section>
-      <section className='file-card--data'>
-        <p className='file-card--name'>{file.name}</p>
-        <p className='file-card--size' title={`${file.size} bytes`}>
-          {file.formatSize}
-        </p>
-      </section>
-      <section className='file-card--delete' onClick={() => deleteFile(key)}>
+      <Grid>
+        <Typography variant='label' noPadding nowrap>
+          {file.name}
+        </Typography>
+        <Typography noPadding variant='small'>
+          {formatBytes(file.size)}
+        </Typography>
+      </Grid>
+      <section className='file-card--delete' onClick={() => deleteFile(file)}>
         <Icon name='trash-can' />
       </section>
-    </FileCardSC>
+    </FileCardStyle>
   );
 
   return (
-    <InputFileSC>
-      {fileList.length > 0 && (
-        <>
-          <span className='total-info'>
-            <span>
-              {fileList.length} files - {formatBytes(totalSize)}
-            </span>
-            <span className='total-info--delete' onClick={deleteAll}>
-              <Icon name='trash-can' />
-            </span>
-          </span>
-          <section className='input-file--files'>
-            <section className='input-file--files--content'>{fileList.map(renderFileToCard)}</section>
-          </section>
-        </>
+    <InputFileContainerStyle>
+      {Boolean(label) && (
+        <Typography variant='label-form' htmlFor={id} noPadding>
+          {label}
+        </Typography>
       )}
       <section className='input-file--box' onDrop={handleDrop}>
         <section className='input-file--box--icon'>
           <Icon name='magnifying-glass' />
         </section>
-        <section className='input-file--box--text'>
-          <label className='input-file--box--label' htmlFor={id}>
-            {label}
-          </label>
-          <span className='input-file--box--restrictions'>Max size ({formatBytes(limitSize)})</span>
-        </section>
+        <Grid>
+          <Typography variant='label-form' htmlFor={id} noPadding weight='bold'>
+            {placeholder}
+          </Typography>
+          <Typography variant='small' noPadding>
+            Max size ({formatBytes(limitSize)})
+          </Typography>
+        </Grid>
         <input
           id={id}
           type='file'
+          name={name}
+          value=''
+          placeholder={placeholder}
+          readOnly={readOnly}
+          autoFocus={autoFocus}
+          disabled={disabled}
+          autoComplete={autoComplete}
+          className={className}
+          style={style}
           accept={accept}
           multiple={multiple}
-          name={name}
-          onBlur={onBlur}
-          className={className}
-          onChange={handleChange}
-          style={style}
-          value=''
+          title=''
+          {...handlers}
         />
       </section>
-      {error !== null && <span className='error'>{error}</span>}
-    </InputFileSC>
+      {error !== null && (
+        <Typography variant='small' noPadding className='error'>
+          {error}
+        </Typography>
+      )}
+      {Object.keys(value).length > 0 && (
+        <>
+          {multiple && (
+            <span className='total-info'>
+              <Typography variant='small' noPadding>
+                {Object.keys(value).length} files - {formatBytes(totalSize)}
+              </Typography>
+              <span className='total-info--delete' onClick={deleteAll}>
+                <Icon name='trash-can' />
+              </span>
+            </span>
+          )}
+          <section className='input-file--files'>
+            <section className='input-file--files--content'>{Object.values(value).map(renderFileToCard)}</section>
+          </section>
+        </>
+      )}
+    </InputFileContainerStyle>
   );
 };
 
-export const InputFileController = withController<InputFileProps, Array<File>>(InputFile, []);
+const InputFileController = ({ rules, ...props }: ControllerGeneratorProps<InputFileProps, InputFileValue>) => {
+  return <Controller Component={InputFile} defaultValue={{}} inputProps={props} rules={rules} />;
+};
+
+InputFile.Controller = InputFileController;

@@ -38,6 +38,13 @@ export type ThemeConstantsEntity = {
   typography: Record<`${TypographyVariants}`, TypographyEntity>;
 };
 
+export type ThemeColor = {
+  main: string;
+  contrast: string;
+  light: string;
+  dark: string;
+};
+
 export type CommonThemeEntity = {
   black: string;
   white: string;
@@ -50,21 +57,28 @@ export type CommonThemeEntity = {
   gray7: string;
   gray8: string;
   gray9: string;
-  info: string;
-  active: string;
-  warning: string;
-  alert: string;
+  info: ThemeColor;
+  active: ThemeColor;
+  warning: ThemeColor;
+  alert: ThemeColor;
 };
 
 export type PaletteThemeEntity = {
-  background: string;
-  text: string;
-  primary: string;
-  secondary: string;
-  tertiary: string;
-  primaryContrast: string;
-  secondaryContrast: string;
-  tertiaryContrast: string;
+  background: {
+    main: string;
+    paper: string;
+  };
+  text: {
+    main: string;
+    light: string;
+    dark: string;
+  };
+  border: {
+    main: string;
+  };
+  primary: ThemeColor;
+  secondary: ThemeColor;
+  tertiary: ThemeColor;
 };
 
 export type ThemeEntity = PaletteThemeEntity & CommonThemeEntity;

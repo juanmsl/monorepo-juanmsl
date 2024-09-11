@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const TooltipStyle = styled.span`
-  background: ${props => props.theme.colors.background};
-  color: ${props => props.theme.colors.text};
+  background: ${props => props.theme.colors.background.main};
+  color: ${props => props.theme.colors.text.main};
   font-size: ${props => props.theme.constants.typography.small.fontSize};
   line-height: 1em;
   border-radius: 5px;
@@ -13,12 +13,11 @@ export const TooltipStyle = styled.span`
   display: block;
   animation: fadeIn 250ms ease-out;
   border: 1px solid;
-  box-shadow: 0 0 10px ${props => props.theme.colors.text};
 
   &::before {
     content: '';
     display: block;
-    background: ${props => props.theme.colors.background};
+    background: ${props => props.theme.colors.background.main};
     position: absolute;
     z-index: 1;
     transition: all 300ms ease;
@@ -26,8 +25,8 @@ export const TooltipStyle = styled.span`
     height: 10px;
     border-left: 1px solid transparent;
     border-top: 1px solid transparent;
-    border-right: 1px solid ${props => props.theme.colors.text};
-    border-bottom: 1px solid ${props => props.theme.colors.text};
+    border-right: 1px solid ${props => props.theme.colors.text.main};
+    border-bottom: 1px solid ${props => props.theme.colors.text.main};
     border-radius: 0 0 3px 0;
   }
 
@@ -60,15 +59,6 @@ export const TooltipStyle = styled.span`
       left: 50%;
       bottom: 100%;
       transform: translate(-50%, 50%) rotate(-135deg);
-    }
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
     }
   }
 `;

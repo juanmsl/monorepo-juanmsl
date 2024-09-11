@@ -10,7 +10,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { LoaderLogo } from '@components/ui';
 import { ENV } from '@core/env';
 import '@core/i18n';
-import { CommonTheme, DarkTheme, LightTheme, ThemeConstants } from '@core/theme';
 import { Router } from '@router';
 
 const queryClient = new QueryClient({
@@ -24,7 +23,7 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <FetchProvider baseURL={ENV.API_URL}>
-      <ThemeProvider lightTheme={LightTheme} darkTheme={DarkTheme} commonTheme={CommonTheme} constants={ThemeConstants}>
+      <ThemeProvider>
         <QueryClientProvider client={queryClient}>
           <Suspense fallback={<LoaderLogo />}>
             <ErrorBoundary fallback={<p>Error</p>}>

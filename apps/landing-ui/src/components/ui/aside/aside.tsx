@@ -28,7 +28,7 @@ export const Aside = () => {
           </section>
           <section className='aside-item-body'>
             {items.map(({ label, path }, key) => (
-              <Typography withoutPadding variant='label' weight='bold' key={key}>
+              <Typography noPadding variant='label' weight='bold' key={key}>
                 <Link href={path} className={`aside-accordion-item--link ${pathname.endsWith(path) ? 'active' : ''}`}>
                   <Icon name='arrow-right' className='aside-accordion-item--icon' />
                   <span>{t(label)}</span>

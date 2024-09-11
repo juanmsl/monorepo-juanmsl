@@ -1,54 +1,77 @@
-import { useCallback, useMemo } from 'react';
+import { useInputHandlers } from '@juanmsl/hooks';
+import { useMemo } from 'react';
 
-import { InputProps } from '../types';
-import { withController } from '../with-controller';
+import { Typography } from '../../typography';
+import { Controller } from '../controller';
+import { ControllerGeneratorProps, UnControlledComponentProps } from '../form.types';
 
-import { RadioSC } from './radio.style';
+import { RadioContainerStyle, RadioStyle } from './radio.style';
 
 type RadioProps = {
+  label?: string;
   radioValue: string;
 };
 
 export const Radio = ({
   name,
   value,
-  radioValue,
   setValue,
   onBlur,
+  onFocus,
   className = '',
   style = {},
+  autoFocus = false,
+  readOnly = false,
+  disabled = false,
+  placeholder = '',
+  autoComplete = 'off',
+  radioValue,
   label,
-}: InputProps<RadioProps, string>) => {
+  /*
+   * isDirty = false,
+   * isTouched = false,
+   * invalid = false,
+   * error,
+   */
+}: UnControlledComponentProps<RadioProps, string>) => {
   const id = useMemo(() => crypto.randomUUID(), []);
-
-  const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const { value } = e.target;
-      setValue(value);
-    },
-    [setValue],
-  );
+  const { handlers } = useInputHandlers({
+    onChange: e => setValue(e.target.value),
+    onBlur: onBlur,
+    onFocus: onFocus,
+  });
 
   return (
-    <RadioSC>
-      <input
-        id={id}
-        onChange={handleChange}
-        type='radio'
-        name={name}
-        className={className}
-        style={style}
-        value={radioValue}
-        checked={value === radioValue}
-        onBlur={onBlur}
-      />
-      {label !== undefined && (
-        <label htmlFor={id} className='label'>
+    <RadioContainerStyle className={className} style={style}>
+      <RadioStyle className={radioValue === value ? 'is-checked' : ''}>
+        <span className='radio-dot' />
+        <input
+          id={id}
+          type='radio'
+          name={name}
+          className={`radio-input ${className}`}
+          style={style}
+          value={radioValue}
+          checked={radioValue === value}
+          autoFocus={autoFocus}
+          autoComplete={autoComplete}
+          placeholder={placeholder}
+          disabled={disabled}
+          readOnly={readOnly}
+          {...handlers}
+        />
+      </RadioStyle>
+      {label ? (
+        <Typography variant='label-form' htmlFor={id} className='radio-label'>
           {label}
-        </label>
-      )}
-    </RadioSC>
+        </Typography>
+      ) : null}
+    </RadioContainerStyle>
   );
 };
 
-export const RadioController = withController<RadioProps, string>(Radio, '');
+const RadioController = ({ rules, ...props }: ControllerGeneratorProps<RadioProps, string>) => {
+  return <Controller Component={Radio} defaultValue='' inputProps={props} rules={rules} />;
+};
+
+Radio.Controller = RadioController;

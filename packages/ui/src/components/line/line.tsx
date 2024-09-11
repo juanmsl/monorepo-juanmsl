@@ -14,7 +14,7 @@ export enum LineStyle {
 }
 
 type LineCommonProps = {
-  orientation: `${LineOrientation}`;
+  orientation?: `${LineOrientation}`;
   className?: string;
   style?: React.CSSProperties;
   color?: string;
@@ -47,7 +47,7 @@ type LineDashedProps = LineCommonProps & {
 type LineProps = LineSolidProps | LineDottedProps | LineDashedProps;
 
 export const Line = ({
-  orientation,
+  orientation = LineOrientation.HORIZONTAL,
   className = '',
   style = {},
   color = 'currentColor',

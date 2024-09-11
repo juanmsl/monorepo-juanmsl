@@ -15,7 +15,7 @@ export const Header = ({ title }: HeaderProps) => {
       <HeaderStyle>
         <section className='container'>
           <Reveal delay={300} width='100%'>
-            <Typography variant='hero' className='names' withoutPadding>
+            <Typography variant='hero' className='names' noPadding>
               {title}
             </Typography>
           </Reveal>
