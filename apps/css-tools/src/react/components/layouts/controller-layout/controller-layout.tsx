@@ -156,7 +156,7 @@ export const ControllerLayout = <T,>({
 
           <section className='controller-actions'>
             <Tabs.TabPanel id='controls'>
-              <Button width='full' onClick={addItem}>
+              <Button width='full' onClick={addItem} color='primary'>
                 {t('controls:add-shadow')}
               </Button>
             </Tabs.TabPanel>

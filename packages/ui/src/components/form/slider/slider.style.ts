@@ -26,17 +26,18 @@ export const SliderStyle = styled.section<SliderStyleProps>`
       width: 20px;
       height: 20px;
       border-radius: 1em;
-      background: ${props => (props.$isFocus ? props.theme.colors.primary : props.theme.colors.text)};
+      background: ${props => props.theme.colors.primary.main};
       box-shadow: 0 0 0 0 ${props => props.theme.colors.gray5};
-      margin-top: -6px;
+      margin-top: -8px;
       transition: all 300ms ease;
       cursor: pointer;
     }
 
     &::-webkit-slider-runnable-track {
-      height: 8px;
+      height: 4px;
       border-radius: 1em;
-      background: ${props => props.theme.colors.gray6};
+      background: ${props => props.theme.colors.primary.light}88;
+      transition: all 300ms ease;
     }
 
     &:focus,
@@ -49,15 +50,21 @@ export const SliderStyle = styled.section<SliderStyleProps>`
 
     &:active {
       &::-webkit-slider-thumb {
-        box-shadow: 0 0 0 12px ${props => props.theme.colors.primary.main}88;
+        box-shadow: 0 0 0 12px ${props => props.theme.colors.primary.main}55;
       }
     }
 
     &:focus {
       &::-webkit-slider-runnable-track {
-        background: ${props => props.theme.colors.primary.main}66;
+        background: ${props => props.theme.colors.primary.light};
       }
     }
+  }
+
+  &:has(.slider-number:focus) .slider::-webkit-slider-thumb,
+  &:has(.slider-number:hover) .slider::-webkit-slider-thumb {
+    background: ${props => props.theme.colors.primary.main};
+    box-shadow: 0 0 0 6px ${props => props.theme.colors.primary.main}55;
   }
 
   .slider-number {

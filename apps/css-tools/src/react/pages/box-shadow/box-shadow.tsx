@@ -1,4 +1,4 @@
-import { Accordion, Icon, InputColor, Slider, ToggleButton } from '@juanmsl/ui';
+import { Accordion, Icon, InputColor, Slider, Switch } from '@juanmsl/ui';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'styled-components';
@@ -88,12 +88,7 @@ export const BoxShadowPage = () => {
           }
         >
           <section className='checkbox-inset'>
-            <ToggleButton
-              name='inset'
-              label={t('controls:is-inset')}
-              value={isInset}
-              setValue={updateItem('isInset', key)}
-            />
+            <Switch name='inset' label={t('controls:is-inset')} value={isInset} setValue={updateItem('isInset', key)} />
           </section>
           <Slider
             name='x'

@@ -5,13 +5,13 @@ import { Typography } from '../../typography';
 import { Controller } from '../controller';
 import { ControllerGeneratorProps, UnControlledComponentProps } from '../form.types';
 
-import { ToggleButtonContainerStyle, ToggleButtonStyle } from './toggle-button.style';
+import { SwitchContainerStyle, SwitchStyle } from './switch.style';
 
-type ToggleButtonProps = {
+type SwitchProps = {
   label?: string;
 };
 
-export const ToggleButton = ({
+export const Switch = ({
   name,
   value,
   setValue,
@@ -31,7 +31,7 @@ export const ToggleButton = ({
    * invalid = false,
    * error,
    */
-}: UnControlledComponentProps<ToggleButtonProps, boolean>) => {
+}: UnControlledComponentProps<SwitchProps, boolean>) => {
   const id = useMemo(() => crypto.randomUUID(), []);
   const { handlers } = useInputHandlers<HTMLInputElement>({
     onChange: e => setValue(e.target.checked),
@@ -40,14 +40,14 @@ export const ToggleButton = ({
   });
 
   return (
-    <ToggleButtonContainerStyle className={className} style={style}>
-      <ToggleButtonStyle className={value ? 'is-checked' : ''}>
-        <span className='toggle-button-dot' />
+    <SwitchContainerStyle className={className} style={style}>
+      <SwitchStyle className={value ? 'is-checked' : ''}>
+        <span className='switch-dot' />
         <input
           id={id}
           type='checkbox'
           name={name}
-          className={`toggle-button-checkbox ${className}`}
+          className={`switch-checkbox ${className}`}
           style={style}
           checked={value}
           autoFocus={autoFocus}
@@ -57,18 +57,18 @@ export const ToggleButton = ({
           readOnly={readOnly}
           {...handlers}
         />
-      </ToggleButtonStyle>
+      </SwitchStyle>
       {label ? (
-        <Typography variant='label-form' htmlFor={id}>
+        <Typography variant='label-form' className='switch-label' htmlFor={id}>
           {label}
         </Typography>
       ) : null}
-    </ToggleButtonContainerStyle>
+    </SwitchContainerStyle>
   );
 };
 
-const ToggleButtonController = ({ rules, ...props }: ControllerGeneratorProps<ToggleButtonProps, boolean>) => {
-  return <Controller Component={ToggleButton} defaultValue={false} inputProps={props} rules={rules} />;
+const SwitchController = ({ rules, ...props }: ControllerGeneratorProps<SwitchProps, boolean>) => {
+  return <Controller Component={Switch} defaultValue={false} inputProps={props} rules={rules} />;
 };
 
-ToggleButton.Controller = ToggleButtonController;
+Switch.Controller = SwitchController;
