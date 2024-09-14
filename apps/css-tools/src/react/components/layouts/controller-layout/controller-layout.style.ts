@@ -32,10 +32,11 @@ export const ControllerLayoutStyle = styled.section`
 
     &-header {
       padding: 10px 20px;
-      border-radius: 14px 14px 0 0;
+      border-radius: 14px;
+      transition: all 300ms ease;
 
       &:hover {
-        background: ${props => props.theme.colors.primary.main}22;
+        background: ${props => props.theme.colors.primary.light}22;
       }
 
       &.is-open {
@@ -44,6 +45,7 @@ export const ControllerLayoutStyle = styled.section`
         z-index: 1;
         background: ${props => props.theme.colors.primary.main};
         color: ${props => props.theme.colors.primary.contrast};
+        border-radius: 14px 14px 0 0;
       }
 
       &--subtitle {

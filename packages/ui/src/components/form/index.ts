@@ -11,4 +11,4 @@ export * from './radio';
 export * from './select';
 export * from './slider';
 export * from './textarea';
-export * from './toggle-button';
+export * from './switch';
