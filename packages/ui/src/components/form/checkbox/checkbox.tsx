@@ -10,6 +10,7 @@ import { CheckboxContainerStyle, CheckboxStyle } from './checkbox.style';
 
 type CheckboxProps = {
   label?: string;
+  placeholder?: never;
 };
 
 export const Checkbox = ({
@@ -23,7 +24,6 @@ export const Checkbox = ({
   autoFocus = false,
   readOnly = false,
   disabled = false,
-  placeholder = '',
   autoComplete = 'off',
   label,
   /*
@@ -53,9 +53,7 @@ export const Checkbox = ({
           checked={value}
           autoFocus={autoFocus}
           autoComplete={autoComplete}
-          placeholder={placeholder}
-          disabled={disabled}
-          readOnly={readOnly}
+          disabled={disabled || readOnly}
           {...handlers}
         />
       </CheckboxStyle>

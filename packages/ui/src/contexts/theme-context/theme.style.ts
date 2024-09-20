@@ -3,6 +3,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 export const ThemeStyle = styled.main`
   height: 100dvh;
   overflow: auto;
+  background: ${props => props.theme.colors.background.main};
 `;
 
 export const GlobalStyles = createGlobalStyle`
@@ -69,10 +70,9 @@ export const GlobalStyles = createGlobalStyle`
     width: 100%;
   }
 
-  body {
+  body, ${ThemeStyle} {
     min-width: ${props => props.theme.constants.breakpoints.mobile};
     font-family: ${props => props.theme.constants.fontFamily};
-    background: ${props => props.theme.colors.background.main};
     color: ${props => props.theme.colors.text.main};
   }
 `;

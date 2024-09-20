@@ -25,9 +25,7 @@ export const Textarea = ({
   className = '',
   style = {},
   autoFocus = false,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   readOnly = false,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   disabled = false,
   placeholder = '',
   autoComplete = 'off',
@@ -63,6 +61,8 @@ export const Textarea = ({
         autoFocus={autoFocus}
         autoComplete={autoComplete}
         placeholder={placeholder}
+        disabled={disabled}
+        readOnly={readOnly}
       />
     </Field>
   );

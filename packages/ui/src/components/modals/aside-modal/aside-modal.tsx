@@ -1,7 +1,7 @@
 import { useCallback, useRef } from 'react';
 
 import { Icon } from '../../icon';
-import { Tooltip } from '../../tooltip';
+import { Tooltip } from '../../tooltips';
 import { Modal } from '../modal';
 
 import { AsideModalStyle } from './aside-modal.style';

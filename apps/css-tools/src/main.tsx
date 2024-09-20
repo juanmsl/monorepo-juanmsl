@@ -10,9 +10,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ThemeProvider>
       <Suspense>
-        <BrowserRouter>
-          <Router />
-        </BrowserRouter>
+        <ThemeProvider.Wrapper>
+          <BrowserRouter>
+            <Router />
+          </BrowserRouter>
+        </ThemeProvider.Wrapper>
       </Suspense>
     </ThemeProvider>
   </React.StrictMode>,

@@ -6,7 +6,7 @@ export const TooltipStyle = styled.span`
   font-size: ${props => props.theme.constants.typography.small.fontSize};
   line-height: 1em;
   border-radius: 5px;
-  position: absolute;
+  position: fixed;
   transition: opacity 300ms ease;
   padding: 0.5em 1em;
   z-index: 1000;

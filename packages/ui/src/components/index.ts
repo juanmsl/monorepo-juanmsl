@@ -13,5 +13,5 @@ export * from './smart-table';
 export * from './table';
 export * from './tabs';
 export * from './tag';
-export * from './tooltip';
+export * from './tooltips';
 export * from './typography';

@@ -1,0 +1,95 @@
+import { fn } from '@storybook/test';
+
+import { Grid } from '../../../layouts';
+import { IconNames } from '../../icon';
+
+import { Button } from './button';
+
+import type { Meta, StoryObj } from '@storybook/react';
+
+const meta: Meta<typeof Button> = {
+  title: 'Components/Buttons/Button',
+  component: Button,
+  tags: ['autodocs'],
+  argTypes: {
+    children: { control: 'text' },
+    className: { control: false },
+    color: {
+      control: 'inline-radio',
+      options: [undefined, 'primary', 'secondary', 'tertiary', 'info', 'warning', 'alert', 'active'],
+    },
+    disabled: { control: 'boolean' },
+    isLoading: { control: 'boolean' },
+    leftIcon: { options: [undefined, ...IconNames.toSorted()] },
+    noShadow: { control: 'boolean' },
+    onClick: { control: false },
+    size: { control: 'inline-radio', options: ['small', 'regular', 'large'] },
+    style: { control: false },
+    rightIcon: { options: [undefined, ...IconNames.toSorted()] },
+    rounded: { control: 'boolean' },
+    type: { control: false, options: ['button', 'submit', 'reset'] },
+    variant: { control: 'inline-radio', options: ['solid', 'ghost', 'flat'] },
+    width: { control: 'inline-radio', options: ['fit', 'full'] },
+  },
+  args: {
+    width: 'fit',
+    size: 'regular',
+    children: 'Button',
+    noShadow: false,
+    disabled: false,
+    isLoading: false,
+    rounded: false,
+    onClick: fn(),
+  },
+  decorators: [
+    Story => (
+      <Grid ji='center' gtc='300px'>
+        <Story />
+      </Grid>
+    ),
+  ],
+};
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
+export const Default: Story = {};
+
+export const Variants: Story = {
+  argTypes: {
+    variant: { control: false },
+  },
+  render: args => (
+    <Grid gtc='repeat(3, 300px)' ji='center' gap='1em' ai='center'>
+      <Button {...args} variant='solid'>
+        Solid
+      </Button>
+      <Button {...args} variant='ghost'>
+        Ghost
+      </Button>
+      <Button {...args} variant='flat'>
+        Flat
+      </Button>
+    </Grid>
+  ),
+};
+
+export const Sizes: Story = {
+  argTypes: {
+    size: { control: false },
+  },
+  render: args => (
+    <Grid gtc='repeat(3, 300px)' ji='center' gap='1em' ai='center'>
+      <Button {...args} size='small'>
+        Small
+      </Button>
+      <Button {...args} size='regular'>
+        Regular
+      </Button>
+      <Button {...args} size='large'>
+        Large
+      </Button>
+    </Grid>
+  ),
+};

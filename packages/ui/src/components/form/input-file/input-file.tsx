@@ -18,7 +18,7 @@ type InputFileProps = {
   errorTimeout?: number;
 };
 
-type InputFileValue = Record<string, File>;
+type InputFileValue = { [key: string]: File };
 
 export const InputFile = ({
   name,

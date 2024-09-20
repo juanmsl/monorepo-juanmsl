@@ -17,6 +17,7 @@ export const AccordionItemStyle = styled.section`
     position: sticky;
     top: 0;
     padding: 20px 0;
+    background: ${props => props.theme.colors.background.main};
 
     &.has-start-content {
       grid-template-columns: auto 1fr auto;

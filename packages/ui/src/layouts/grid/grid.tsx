@@ -8,6 +8,8 @@ type GridProps = {
   flow?: React.CSSProperties['gridAutoFlow'];
   columnSize?: React.CSSProperties['gridAutoColumns'];
   rowSize?: React.CSSProperties['gridAutoRows'];
+  column?: React.CSSProperties['gridColumn'];
+  row?: React.CSSProperties['gridRow'];
   pc?: React.CSSProperties['placeContent'];
   pi?: React.CSSProperties['placeItems'];
   ps?: React.CSSProperties['placeSelf'];
@@ -32,6 +34,8 @@ export const Grid = ({
   flow,
   columnSize,
   rowSize,
+  column,
+  row,
   pc,
   pi,
   ps,
@@ -56,6 +60,8 @@ export const Grid = ({
         ...(flow ? { gridAutoFlow: flow } : {}),
         ...(columnSize ? { gridAutoColumns: columnSize } : {}),
         ...(rowSize ? { gridAutoRows: rowSize } : {}),
+        ...(column ? { gridColumn: column } : {}),
+        ...(row ? { gridRow: row } : {}),
         ...(pc ? { placeContent: pc } : {}),
         ...(pi ? { placeItems: pi } : {}),
         ...(ps ? { placeSelf: ps } : {}),

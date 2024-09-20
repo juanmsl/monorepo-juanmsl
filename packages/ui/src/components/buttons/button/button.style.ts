@@ -11,7 +11,7 @@ export const ButtonStyle = styled.button<ButtonStyleProps>`
   font-weight: bold;
   display: grid;
   grid-auto-flow: column;
-  gap: 1em;
+  gap: 0.7em;
   align-items: center;
   white-space: nowrap;
   text-overflow: ellipsis;
