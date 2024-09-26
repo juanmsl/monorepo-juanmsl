@@ -12,6 +12,14 @@
         "build/**"
       ]
     },
+    "build-storybook": {
+      "dependsOn": ["^build-storybook"],
+      "outputs": [
+        "storybook-static/**",
+        "dist/**",
+        "build/**"
+      ]
+    },
     "lint": {},
     "lint:fix": {},
     "publish-package": {
