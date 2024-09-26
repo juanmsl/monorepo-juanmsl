@@ -5,18 +5,8 @@ import { useTheme } from 'styled-components';
 import { ThemeColor } from '../../../contexts';
 import { Icon, IconNameT } from '../../icon';
 
-import { ButtonSize, ButtonVariant } from './button.constants';
+import { ButtonColor, ButtonSize, ButtonVariant } from './button.constants';
 import { ButtonStyle, ButtonStyleProps } from './button.style';
-
-export enum ButtonColor {
-  PRIMARY = 'primary',
-  SECONDARY = 'secondary',
-  TERTIARY = 'tertiary',
-  INFO = 'info',
-  WARNING = 'warning',
-  ALERT = 'alert',
-  ACTIVE = 'active',
-}
 
 const getColor = (color?: ThemeColor): ButtonStyleProps | null => {
   if (color) {
@@ -54,8 +44,8 @@ const ButtonComponent = (
     disabled = false,
     rounded = false,
     isLoading = false,
-    size = ButtonSize.REGULAR,
-    variant = ButtonVariant.DEFAULT,
+    size = 'regular',
+    variant = 'solid',
     leftIcon,
     rightIcon,
     onClick,
@@ -64,6 +54,7 @@ const ButtonComponent = (
     style = {},
     noShadow = false,
     color,
+    type = 'button',
   }: ButtonProps,
   ref: React.ForwardedRef<HTMLButtonElement>,
 ) => {
@@ -94,6 +85,7 @@ const ButtonComponent = (
       style={style}
       disabled={disabled}
       onClick={onClick}
+      type={type}
     >
       {leftIcon && (!isLoading || disabled) && <Icon className='button-left-icon' name={leftIcon} />}
       <span className='button-text'>

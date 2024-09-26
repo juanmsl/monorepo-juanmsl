@@ -10,6 +10,10 @@ export const TypographyStyle = createGlobalStyle(({ theme: { constants } }) =>
         margin: 0;
         padding: 0.5em 0 0.4em;
 
+        &.code-family {
+          font-family: monospace;
+        }
+
         &.no-padding {
           padding: 0;
         }

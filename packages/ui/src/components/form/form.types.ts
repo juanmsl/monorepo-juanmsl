@@ -1,7 +1,7 @@
 import React from 'react';
 import { UseControllerProps } from 'react-hook-form';
 
-export type Props = Record<string, unknown>;
+export type Props = { [key: string]: unknown };
 
 export type SharedProps = {
   name: string;

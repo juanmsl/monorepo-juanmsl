@@ -1,9 +1,9 @@
 {
   "extends": "@juanmsl/tsconfig/react-library.json",
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts", "**/*.tsx", ".storybook/**/*.ts", ".storybook/**/*.tsx"],
   "exclude": ["dist", "lib", "node_modules", "tsup.config.cjs"],
   "compilerOptions": {
-    "rootDir": "src",
+    "rootDir": ".",
     "outDir": "dist",
     "baseUrl": "src"
   },

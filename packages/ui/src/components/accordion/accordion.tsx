@@ -54,10 +54,11 @@ const useAccordionItem = (id: string): [boolean, () => void] => {
 type AccordionProps = {
   children: React.ReactNode;
   className?: string;
+  style?: React.CSSProperties;
   noSeparators?: boolean;
 };
 
-export const Accordion = ({ children, className = '', noSeparators }: AccordionProps) => {
+export const Accordion = ({ children, className = '', noSeparators, style = {} }: AccordionProps) => {
   const [openedItem, setOpenedItem] = useState<string>('');
 
   const toggleItem = useCallback((id: string) => {
@@ -71,7 +72,7 @@ export const Accordion = ({ children, className = '', noSeparators }: AccordionP
         openedItem,
       }}
     >
-      <AccordionStyle className={className}>
+      <AccordionStyle className={className} style={style}>
         {(Array.isArray(children) ? children : [children]).flatMap((child, key) => {
           return key === 0 ? child : [noSeparators ? null : <Line orientation='horizontal' key={`${key}.5`} />, child];
         })}
@@ -102,7 +103,7 @@ type AccordionItemProps = {
   };
 };
 
-const AccordionItem = ({
+const AccordionItem: React.FC<AccordionItemProps> = ({
   title,
   titleVariant = 'body',
   subtitle,

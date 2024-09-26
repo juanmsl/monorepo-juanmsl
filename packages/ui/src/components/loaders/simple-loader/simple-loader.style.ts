@@ -5,10 +5,9 @@ export const SimpleLoaderStyle = styled.section`
   height: 100%;
   display: grid;
   place-content: center;
-  padding: 1em;
 
   .simple-loader-spinner {
-    animation: spin 300ms linear infinite;
+    animation: spin linear infinite;
     font-size: 3em;
   }
 `;

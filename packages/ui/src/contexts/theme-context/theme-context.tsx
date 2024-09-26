@@ -28,6 +28,7 @@ type ThemeProviderProps = {
   lightTheme?: PaletteThemeEntity;
   darkTheme?: PaletteThemeEntity;
   constants?: ThemeConstantsEntity;
+  defaultTheme?: `${THEME}`;
 };
 
 export const ThemeProvider = ({
@@ -36,12 +37,21 @@ export const ThemeProvider = ({
   lightTheme = LightTheme,
   darkTheme = DarkTheme,
   constants = ThemeConstants,
+  defaultTheme = THEME.DARK,
 }: ThemeProviderProps) => {
-  const [themeName, setThemeName] = useState<`${THEME}`>(THEME.DARK);
+  const [themeName, setThemeName] = useState<`${THEME}`>(defaultTheme);
   const [systemThemeName, setSystemThemeName] = useState<`${THEME}`>(THEME.DARK);
   const [useSystemTheme, setUseSystemTheme] = useState(false);
 
   useEffect(() => {
+    if ([THEME.DARK, THEME.LIGHT].includes(defaultTheme as THEME)) {
+      setThemeName(defaultTheme);
+      setUseSystemTheme(false);
+      localStorage.setItem('theme-name', defaultTheme);
+
+      return;
+    }
+
     const savedTheme = localStorage.getItem('theme-name');
 
     if (!savedTheme || ![THEME.DARK, THEME.LIGHT].includes(savedTheme as THEME)) {
@@ -51,7 +61,7 @@ export const ThemeProvider = ({
       setThemeName(savedTheme as `${THEME}`);
       localStorage.setItem('theme-name', savedTheme);
     }
-  }, []);
+  }, [defaultTheme]);
 
   useEffect(() => {
     const mqListener = (e: MediaQueryListEvent) => {
@@ -127,12 +137,14 @@ export const ThemeProvider = ({
           <GlobalStyles />
           <GlobalAnimations />
           <TypographyStyle />
-          <ThemeStyle>{children}</ThemeStyle>
+          {children}
         </StyledThemeProvider>
       </ThemeContext.Provider>
     </Suspense>
   );
 };
+
+ThemeProvider.Wrapper = ThemeStyle;
 
 export const useMyTheme = () => {
   const context = useContext(ThemeContext);

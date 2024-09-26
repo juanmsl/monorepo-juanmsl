@@ -4,8 +4,7 @@ import styled from 'styled-components';
 type FlipCardStyleProps = {
   $cardZIndex: CSSProperties['zIndex'];
   $isFlipped: boolean;
-  $flipSpeedFrontToBack: number;
-  $flipSpeedBackToFront: number;
+  $flipSpeed: number;
   $frontRotate: CSSProperties['transform'];
   $backRotate: CSSProperties['transform'];
 };
@@ -25,23 +24,22 @@ export const FlipCardStyle = styled.section<FlipCardStyleProps>`
   .back {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    transform-style: preserve-3d;
+    transition: ${({ $flipSpeed }) => $flipSpeed}ms;
     height: 100%;
     left: 0;
     top: 0;
-    transform-style: preserve-3d;
     width: 100%;
   }
 
   .front {
     position: ${({ $isFlipped }) => ($isFlipped ? 'absolute' : 'relative')};
     transform: ${({ $frontRotate }) => $frontRotate};
-    transition: ${({ $flipSpeedBackToFront }) => $flipSpeedBackToFront}ms;
     z-index: 2;
   }
 
   .back {
     position: ${({ $isFlipped }) => ($isFlipped ? 'relative' : 'absolute')};
     transform: ${({ $backRotate }) => $backRotate};
-    transition: ${({ $flipSpeedFrontToBack }) => $flipSpeedFrontToBack}ms;
   }
 `;

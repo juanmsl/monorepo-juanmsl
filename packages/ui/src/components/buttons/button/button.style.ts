@@ -11,7 +11,7 @@ export const ButtonStyle = styled.button<ButtonStyleProps>`
   font-weight: bold;
   display: grid;
   grid-auto-flow: column;
-  gap: 1em;
+  gap: 0.7em;
   align-items: center;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -68,6 +68,10 @@ export const ButtonStyle = styled.button<ButtonStyleProps>`
     box-shadow:
       0 0.3em 0.4em -0.2em ${props => props.theme.colors.black}88,
       0 0.2em 0.8em -0.1em ${props => props.theme.colors.black}88;
+  }
+
+  &:not(:disabled):hover {
+    transform: scale(1.02);
   }
 
   &:not(:disabled):active {

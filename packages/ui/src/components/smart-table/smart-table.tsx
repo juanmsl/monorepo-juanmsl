@@ -2,7 +2,7 @@ import { useClassNames } from '@juanmsl/hooks';
 import { useMemo, useState } from 'react';
 
 import { KeyValuesOf } from '../../types';
-import { Switch } from '../form';
+import { Checkbox } from '../form';
 
 import { SmartTableColumn } from './smart-table.column';
 import { sortData } from './smart-table.helpers';
@@ -49,7 +49,7 @@ export const SmartTable = <RowData extends RowDataObject>({
         {
           header: `${Object.values(selected).length}`,
           render: (data, rowKey) => (
-            <Switch
+            <Checkbox
               name={`selected-${rowKey}`}
               value={`${rowKey}` in selected}
               setValue={isSelected => {

@@ -27,11 +27,13 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <QueryClientProvider client={queryClient}>
           <Suspense fallback={<LoaderLogo />}>
             <ErrorBoundary fallback={<p>Error</p>}>
-              <BrowserRouter>
-                <Analytics />
-                <SpeedInsights />
-                <Router />
-              </BrowserRouter>
+              <ThemeProvider.Wrapper>
+                <BrowserRouter>
+                  <Analytics />
+                  <SpeedInsights />
+                  <Router />
+                </BrowserRouter>
+              </ThemeProvider.Wrapper>
             </ErrorBoundary>
           </Suspense>
         </QueryClientProvider>

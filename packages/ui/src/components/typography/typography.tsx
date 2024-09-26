@@ -16,6 +16,8 @@ type TypographyProps = HTMLAttributes<HTMLElement | HTMLLabelElement> & {
   children: React.ReactNode;
   noPadding?: boolean;
   htmlFor?: string;
+  align?: React.CSSProperties['textAlign'];
+  family?: 'primary' | 'code';
 };
 
 export const TypographyComponent = (
@@ -27,7 +29,9 @@ export const TypographyComponent = (
     children,
     as,
     weight,
+    family = 'primary',
     noPadding = false,
+    align,
     htmlFor,
     ...props
   }: TypographyProps,
@@ -38,6 +42,7 @@ export const TypographyComponent = (
     [customClassname]: !!customClassname,
     [weight ?? '']: !!weight,
     'no-padding': noPadding,
+    'code-family': family === 'code',
     nowrap: nowrap,
   });
 
@@ -55,6 +60,7 @@ export const TypographyComponent = (
       htmlFor,
       style: {
         fontWeight: weight,
+        textAlign: align,
         ...style,
       },
     },

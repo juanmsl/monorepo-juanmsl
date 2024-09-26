@@ -2,6 +2,7 @@ import { getModalPosition, GetModalPositionParams, PositionObject } from '@juanm
 import React, { RefObject, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 import { useEventListener } from './use-event-listener';
+import { useObserver } from './use-observer';
 import { useOnClickOutsideRef } from './use-on-click-outside-ref';
 
 const convertDOMRectToPosition = (rect: DOMRectReadOnly): PositionObject => ({
@@ -77,6 +78,8 @@ export const useModalInContainer = <Container extends HTMLElement, Modal extends
 
   useLayoutEffect(callback, [callback]);
 
+  useObserver<Container>(containerRef, callback);
+  useObserver<Modal>(modalRef, callback);
   useEventListener('resize', callback);
   useEventListener('scroll', callback, modalRef);
 

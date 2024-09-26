@@ -19,7 +19,7 @@ const renderRowColumn = <RowData extends RowDataObject>(
 
   if (render) return render(data, rowKey);
 
-  if (Component) return <Component data={data} />;
+  if (Component) return <Component data={data} rowKey={rowKey} />;
 };
 
 export const renderRow = <RowData extends RowDataObject>(

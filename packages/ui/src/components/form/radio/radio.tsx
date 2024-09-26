@@ -10,6 +10,7 @@ import { RadioContainerStyle, RadioStyle } from './radio.style';
 type RadioProps = {
   label?: string;
   radioValue: string;
+  placeholder?: never;
 };
 
 export const Radio = ({
@@ -23,7 +24,6 @@ export const Radio = ({
   autoFocus = false,
   readOnly = false,
   disabled = false,
-  placeholder = '',
   autoComplete = 'off',
   radioValue,
   label,
@@ -55,9 +55,7 @@ export const Radio = ({
           checked={radioValue === value}
           autoFocus={autoFocus}
           autoComplete={autoComplete}
-          placeholder={placeholder}
-          disabled={disabled}
-          readOnly={readOnly}
+          disabled={disabled || readOnly}
           {...handlers}
         />
       </RadioStyle>

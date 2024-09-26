@@ -5,7 +5,6 @@ export const AsideModalStyle = styled.section`
   background: ${props => props.theme.colors.background.main};
   color: ${props => props.theme.colors.text.main};
   overflow: auto;
-  height: 100%;
 
   .aside-modal-content {
     overflow: auto;
@@ -38,7 +37,6 @@ export const AsideModalStyle = styled.section`
     height: 100%;
     top: 0;
     left: 0;
-    width: 700px;
     border-right: 4px solid ${props => props.theme.colors.primary.main};
 
     &.open-animation {
@@ -54,7 +52,6 @@ export const AsideModalStyle = styled.section`
     height: 100%;
     top: 0;
     right: 0;
-    width: 700px;
     border-left: 4px solid ${props => props.theme.colors.primary.main};
 
     &.open-animation {
@@ -67,7 +64,6 @@ export const AsideModalStyle = styled.section`
   }
 
   &.top {
-    height: 300px;
     top: 0;
     right: 0;
     width: 100%;
@@ -83,7 +79,6 @@ export const AsideModalStyle = styled.section`
   }
 
   &.bottom {
-    height: 300px;
     bottom: 0;
     right: 0;
     width: 100%;
