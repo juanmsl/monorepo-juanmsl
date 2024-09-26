@@ -14,14 +14,11 @@ const ThemeDecorator: Decorator = (Story, context) => {
   const theme = parameterTheme || globalTheme;
 
   return (
-    <>
-      <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;700' />
-      <ThemeProvider defaultTheme={theme as THEME}>
-        <ThemeDecoratorContent>
-          <Story />
-        </ThemeDecoratorContent>
-      </ThemeProvider>
-    </>
+    <ThemeProvider defaultTheme={theme as THEME}>
+      <ThemeDecoratorContent>
+        <Story />
+      </ThemeDecoratorContent>
+    </ThemeProvider>
   );
 };
 
