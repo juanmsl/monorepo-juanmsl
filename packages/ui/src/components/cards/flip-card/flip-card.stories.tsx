@@ -1,12 +1,12 @@
-import { Grid } from '../../layouts';
-import { Typography } from '../typography';
+import { Grid } from '../../../layouts';
+import { Typography } from '../../typography';
 
 import { FlipCard } from './flip-card';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof FlipCard> = {
-  title: 'Components/FlipCard',
+  title: 'Components/Cards/FlipCard',
   component: FlipCard,
   tags: ['autodocs'],
   argTypes: {

@@ -1,11 +1,12 @@
-import { Grid } from '../../layouts';
+import { Grid } from '../../../layouts';
+import { Typography } from '../../typography';
 
 import { HoverCard } from './hover-card';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof HoverCard> = {
-  title: 'Components/HoverCard',
+  title: 'Components/Cards/HoverCard',
   component: HoverCard,
   tags: ['autodocs'],
   argTypes: {
@@ -26,7 +27,7 @@ const meta: Meta<typeof HoverCard> = {
           borderRadius: '10px',
         }}
       >
-        {children}
+        <Typography variant='header4'>{children}</Typography>
       </Grid>
     </HoverCard>
   ),

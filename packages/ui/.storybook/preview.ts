@@ -1,10 +1,14 @@
 import decorators, { DecoratorGlobalTypes } from './decorators';
+import Theme from './theme';
 
 import type { Preview } from '@storybook/react';
 
 const preview: Preview = {
   parameters: {
     layout: 'centered',
+    docs: {
+      theme: Theme,
+    },
     backgrounds: {
       values: [{ name: 'Theme', value: 'var(--background)' }],
       default: 'Theme',
@@ -22,7 +26,7 @@ const preview: Preview = {
     ...DecoratorGlobalTypes,
   },
   initialGlobals: {
-    theme: 'light',
+    theme: 'dark',
   },
   decorators,
 };
