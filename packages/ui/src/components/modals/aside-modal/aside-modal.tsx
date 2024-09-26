@@ -24,6 +24,10 @@ type AsideModalProps = {
   onClose: () => void;
   position?: `${AsidePosition}`;
   closeButton?: `${AsideCloseButtonPosition}`;
+  size?: number | `${number}px` | `${number}em`;
+  className?: string;
+  style?: React.CSSProperties;
+  zIndex?: number;
 };
 
 export const AsideModal = ({
@@ -31,7 +35,11 @@ export const AsideModal = ({
   isOpen,
   onClose,
   position = AsidePosition.LEFT,
-  closeButton,
+  closeButton = AsideCloseButtonPosition.FIXED,
+  size,
+  className = '',
+  zIndex = 100,
+  style = {},
 }: AsideModalProps) => {
   const ref = useRef<HTMLElement>(null);
 
@@ -46,7 +54,16 @@ export const AsideModal = ({
 
   return (
     <Modal id='aside' isOpen={isOpen} opacity={0.6} onClick={() => handleOnClose(onClose)} zIndex={100}>
-      <AsideModalStyle className={`open-animation ${position}`} ref={ref} style={{ zIndex: 100 }}>
+      <AsideModalStyle
+        className={`open-animation ${position} ${className}`}
+        ref={ref}
+        style={{
+          ...style,
+          zIndex,
+          width: position === 'left' || position === 'right' ? size : undefined,
+          height: position === 'top' || position === 'bottom' ? size : undefined,
+        }}
+      >
         <section className='aside-modal-content'>
           {closeButton !== undefined && (
             <Tooltip content='Cerrar' position='left'>

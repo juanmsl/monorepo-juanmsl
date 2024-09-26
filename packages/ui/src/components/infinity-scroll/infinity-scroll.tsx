@@ -1,4 +1,4 @@
-import { useInView } from '@juanmsl/hooks';
+import { useDebounce, useInView } from '@juanmsl/hooks';
 import { LegacyRef, RefObject, useEffect } from 'react';
 
 import { Icon } from '../icon';
@@ -17,16 +17,17 @@ type InfinityScrollProps<T> = {
 };
 
 export const InfinityScroll = <T,>({
-  isLoading,
-  hasNextPage,
+  isLoading: isLoadingProp = false,
+  hasNextPage = false,
   loadMore,
-  data,
+  data = [],
   renderItem,
   customLoadMoreElement,
   emptyMessage,
   children,
 }: InfinityScrollProps<T>): React.ReactElement => {
   const { ref, inView } = useInView();
+  const isLoading = useDebounce(isLoadingProp, 100);
 
   useEffect(() => {
     if (hasNextPage && inView && !isLoading) {

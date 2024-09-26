@@ -1,7 +1,7 @@
 import { useClassNames } from '@juanmsl/hooks';
 import { createContext, useCallback, useContext, useRef, useState } from 'react';
 
-import { Button, ButtonVariant } from '../../buttons';
+import { Button, ButtonProps } from '../../buttons';
 import { Icon, IconNameT } from '../../icon';
 import { Typography } from '../../typography';
 import { Modal } from '../modal';
@@ -9,7 +9,7 @@ import { Modal } from '../modal';
 import { ActionModalContainerStyle, ActionModalStyle } from './action-modal.style';
 
 export type ActionModalProps = {
-  children?: React.ReactNode;
+  children: React.ReactNode;
   isOpen: boolean;
   onClose: () => void;
   actionRequired?: boolean;
@@ -19,6 +19,7 @@ export type ActionModalProps = {
   style?: React.CSSProperties;
   lineOnTop?: boolean;
   backCard?: boolean;
+  noPadding?: boolean;
 };
 
 type ActionModalContextEntity = {
@@ -48,6 +49,7 @@ export const ActionModal = ({
   style = {},
   lineOnTop = false,
   backCard = false,
+  noPadding = false,
 }: ActionModalProps) => {
   const ref = useRef<HTMLElement>(null);
 
@@ -71,6 +73,7 @@ export const ActionModal = ({
   const actionModalClassName = useClassNames({
     'back-card': backCard,
     'line-on-top': lineOnTop,
+    'no-padding': noPadding,
   });
 
   const contentClassName = useClassNames({
@@ -113,15 +116,11 @@ export const ActionModal = ({
   );
 };
 
-type ActionButtonProps = {
+type ActionButtonProps = Omit<ButtonProps, 'onClick'> & {
   onClick: (() => Promise<void>) | (() => void);
-  children: string;
-  variant?: `${ButtonVariant}`;
-  isLoading?: boolean;
-  disabled?: boolean;
 };
 
-const ActionButton = ({ onClick, children, variant, disabled, isLoading: manualIsLoading }: ActionButtonProps) => {
+const ActionButton = ({ onClick, children, isLoading: manualIsLoading, ...buttonProps }: ActionButtonProps) => {
   const { onClose } = useActionModal();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -141,7 +140,7 @@ const ActionButton = ({ onClick, children, variant, disabled, isLoading: manualI
   }, [onClick, onClose]);
 
   return (
-    <Button variant={variant} onClick={handleAction} isLoading={manualIsLoading || isLoading} disabled={disabled}>
+    <Button {...buttonProps} onClick={handleAction} isLoading={manualIsLoading || isLoading}>
       {children}
     </Button>
   );

@@ -10,8 +10,9 @@ export type LineStyleProps = {
 export const LineStyle = styled.span<LineStyleProps>`
   &.horizontal,
   &.vertical {
-    background: ${props => props.color ?? 'currentColor'};
+    background: ${props => props.$color ?? 'currentColor'};
     display: inline-block;
+    border-radius: 100px;
   }
 
   &.horizontal {

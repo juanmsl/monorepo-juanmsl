@@ -2,10 +2,14 @@ import { Icon } from '../../icon';
 
 import { SimpleLoaderStyle } from './simple-loader.style';
 
-export const SimpleLoader = () => {
+type SimpleLoaderProps = {
+  spinDuration?: number;
+};
+
+export const SimpleLoader = ({ spinDuration = 500 }: SimpleLoaderProps) => {
   return (
     <SimpleLoaderStyle>
-      <Icon name='spinner' className='simple-loader-spinner' />
+      <Icon name='spinner' className='simple-loader-spinner' style={{ animationDuration: `${spinDuration}ms` }} />
     </SimpleLoaderStyle>
   );
 };

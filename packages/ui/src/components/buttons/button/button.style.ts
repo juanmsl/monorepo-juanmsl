@@ -70,6 +70,10 @@ export const ButtonStyle = styled.button<ButtonStyleProps>`
       0 0.2em 0.8em -0.1em ${props => props.theme.colors.black}88;
   }
 
+  &:not(:disabled):hover {
+    transform: scale(1.02);
+  }
+
   &:not(:disabled):active {
     transform: scale(0.98);
   }

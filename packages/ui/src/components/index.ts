@@ -10,7 +10,6 @@ export * from './line';
 export * from './loaders';
 export * from './modals';
 export * from './smart-table';
-export * from './table';
 export * from './tabs';
 export * from './tag';
 export * from './tooltips';

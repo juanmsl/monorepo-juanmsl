@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 
 export const ActionModalContainerStyle = styled.section`
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -32,9 +32,17 @@ export const ActionModalStyle = styled.section`
 
   .action-modal-content {
     background: ${props => props.theme.colors.background.main};
-    padding: 4em 2em 2em;
+    padding: 3em 4em 2em;
     display: grid;
     gap: 1em;
+  }
+
+  &.no-padding .action-modal-content {
+    padding: 2em 0 0;
+  }
+
+  &:has(.action-modal-icon) .action-modal-content {
+    padding-top: 4em;
   }
 
   &.back-card {
