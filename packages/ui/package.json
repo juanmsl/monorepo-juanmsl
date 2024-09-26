@@ -7,6 +7,7 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "website": "https://ui.juanmsl.com/",
   "scripts": {
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "yarn lint --fix",
