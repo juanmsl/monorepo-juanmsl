@@ -7,7 +7,6 @@ export const TooltipStyle = styled.span`
   line-height: 1em;
   border-radius: 5px;
   position: fixed;
-  transition: opacity 300ms ease;
   padding: 0.5em 1em;
   z-index: 1000;
   display: block;
@@ -20,7 +19,6 @@ export const TooltipStyle = styled.span`
     background: ${props => props.theme.colors.background.main};
     position: absolute;
     z-index: 1;
-    transition: all 300ms ease;
     width: 10px;
     height: 10px;
     border-left: 1px solid transparent;

@@ -59,7 +59,6 @@ export const TypographyComponent = (
       ref,
       htmlFor,
       style: {
-        fontWeight: weight,
         textAlign: align,
         ...style,
       },

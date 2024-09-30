@@ -27,15 +27,13 @@ export const SectionLayout = ({
   });
 
   return (
-    <SectionLayoutStyle
-      className={className}
-      style={{
-        ...style,
-        alignContent: (!fitHeightContent && alignContent) || undefined,
-      }}
-      $padding={padding}
-    >
-      <SectionLayoutContentStyle className={sectionLayoutContentClassName}>{children}</SectionLayoutContentStyle>
+    <SectionLayoutStyle className={className} style={style} $padding={padding}>
+      <SectionLayoutContentStyle
+        className={sectionLayoutContentClassName}
+        style={{ alignContent: (!fitHeightContent && alignContent) || undefined }}
+      >
+        {children}
+      </SectionLayoutContentStyle>
     </SectionLayoutStyle>
   );
 };

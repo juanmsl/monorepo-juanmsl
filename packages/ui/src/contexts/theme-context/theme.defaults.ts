@@ -17,109 +17,79 @@ export const ThemeConstants: ThemeConstantsEntity = {
     hero: {
       fontSize: '60px',
       lineHeight: '120%',
-      defaultWeight: 'bold',
+      defaultWeight: 700,
       weights: {
-        bold: 'bold',
+        bold: 700,
       },
-      breakpoints: [
-        {
-          from: 'laptopS',
-          fontSize: '80px',
-          lineHeight: '120%',
-        },
-      ],
+      breakpoints: [],
     },
     header1: {
       fontSize: '48px',
       lineHeight: '120%',
-      defaultWeight: 'bold',
+      defaultWeight: 700,
       weights: {
-        bold: 'bold',
+        bold: 700,
       },
-      breakpoints: [
-        {
-          from: 'laptopS',
-          fontSize: '60px',
-          lineHeight: '120%',
-        },
-      ],
+      breakpoints: [],
     },
     header2: {
       fontSize: '40px',
       lineHeight: '120%',
-      defaultWeight: 'bold',
+      defaultWeight: 700,
       weights: {
-        bold: 'bold',
+        bold: 700,
       },
-      breakpoints: [
-        {
-          from: 'laptopS',
-          fontSize: '50px',
-          lineHeight: '120%',
-        },
-      ],
+      breakpoints: [],
     },
     header3: {
       fontSize: '32px',
       lineHeight: '120%',
-      defaultWeight: 'bold',
+      defaultWeight: 700,
       weights: {
-        bold: 'bold',
+        bold: 700,
       },
-      breakpoints: [
-        {
-          from: 'laptopS',
-          fontSize: '40px',
-          lineHeight: '120%',
-        },
-      ],
+      breakpoints: [],
     },
     header4: {
       fontSize: '24px',
       lineHeight: '120%',
-      defaultWeight: 'bold',
+      defaultWeight: 700,
       weights: {
-        bold: 'bold',
-        regular: 'regular',
+        bold: 700,
+        regular: 400,
       },
-      breakpoints: [
-        {
-          from: 'laptopS',
-          fontSize: '30px',
-          lineHeight: '120%',
-        },
-      ],
+      breakpoints: [],
     },
     body: {
       fontSize: '16px',
       lineHeight: '140%',
-      defaultWeight: 'regular',
+      defaultWeight: 400,
       weights: {
-        bold: 'bold',
-        regular: 'regular',
-        light: 'light',
+        bold: 700,
+        regular: 400,
+        light: 300,
       },
       breakpoints: [],
     },
     label: {
       fontSize: '14px',
       lineHeight: '140%',
-      defaultWeight: 'regular',
+      defaultWeight: 400,
       weights: {
-        bold: 'bold',
-        regular: 'regular',
-        light: 'light',
+        bold: 700,
+        regular: 400,
+        light: 300,
       },
       breakpoints: [],
     },
     small: {
       fontSize: '12px',
       lineHeight: '140%',
-      defaultWeight: 'regular',
+      defaultWeight: 400,
       weights: {
-        bold: 'bold',
-        regular: 'regular',
-        light: 'light',
+        bold: 700,
+        regular: 400,
+        light: 300,
       },
       breakpoints: [],
     },

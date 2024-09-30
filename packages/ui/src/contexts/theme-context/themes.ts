@@ -1,3 +1,5 @@
+import React from 'react';
+
 export enum TypographyVariants {
   HERO = 'hero',
   HEADER1 = 'header1',
@@ -22,8 +24,8 @@ export enum Breakpoints {
 export type TypographyEntity = {
   fontSize: string;
   lineHeight: string;
-  defaultWeight: string;
-  weights: Record<string, string>;
+  defaultWeight: React.CSSProperties['fontWeight'];
+  weights: Record<string, React.CSSProperties['fontWeight']>;
   breakpoints: Array<{
     from: `${Breakpoints}`;
     fontSize: string;

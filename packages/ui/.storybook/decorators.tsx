@@ -38,7 +38,7 @@ const ThemeDecoratorContent = ({ children }: ThemeDecoratorContentProps) => {
     r?.style.setProperty('--background', background.main);
   }, [background.main]);
 
-  return <Grid style={{ height: '100%', padding: '1em' }}>{children}</Grid>;
+  return <Grid style={{ height: '100%' }}>{children}</Grid>;
 };
 
 export const DecoratorGlobalTypes: Preview['globalTypes'] = {
