@@ -5,7 +5,7 @@ export default create({
   brandTitle: 'Juanmsl',
   brandUrl: 'https://juanmsl.com',
   brandImage:
-    'https://images.ctfassets.net/oums43ieu6nl/2ylSC9qo4LKhdbuA5w0UEv/2a8e31deea355082aaa1168c72de6afa/storybook.png',
+    'https://images.ctfassets.net/oums43ieu6nl/2ylSC9qo4LKhdbuA5w0UEv/629d5bff94b007225fe27dc472963a2e/Storybook_logo.png',
   brandTarget: '_blank',
 
   // Typography

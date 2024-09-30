@@ -12,6 +12,6 @@ export const TagStyle = styled.span`
   &:hover,
   &.tag-selected {
     background: ${props => props.theme.colors.primary.main};
-    color: ${props => props.theme.colors.primary.main};
+    color: ${props => props.theme.colors.primary.contrast};
   }
 `;

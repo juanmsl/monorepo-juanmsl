@@ -1,6 +1,6 @@
 import { Grid } from '../../layouts';
 import { Icon, IconNames } from '../icon';
-import { Typography } from '../typography';
+import { Typography, TypographyVariant } from '../typography';
 
 import { Accordion } from './accordion';
 
@@ -19,12 +19,12 @@ const meta: Meta<typeof Accordion.Item> = {
     title: { control: 'text' },
     titleVariant: {
       control: 'inline-radio',
-      options: ['hero', 'header1', 'header2', 'header3', 'header4', 'body', 'label', 'small'],
+      options: Object.values(TypographyVariant),
     },
     subtitle: { control: 'text' },
     subtitleVariant: {
       control: 'inline-radio',
-      options: ['hero', 'header1', 'header2', 'header3', 'header4', 'body', 'label', 'small'],
+      options: Object.values(TypographyVariant),
     },
     startContent: { control: false },
     endContent: { control: false },

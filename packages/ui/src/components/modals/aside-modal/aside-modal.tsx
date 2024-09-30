@@ -6,14 +6,14 @@ import { Modal } from '../modal';
 
 import { AsideModalStyle } from './aside-modal.style';
 
-enum AsidePosition {
+export enum AsidePosition {
   LEFT = 'left',
   RIGHT = 'right',
   TOP = 'top',
   BOTTOM = 'bottom',
 }
 
-enum AsideCloseButtonPosition {
+export enum AsideCloseButtonPosition {
   FIXED = 'fixed',
   RELATIVE = 'relative',
 }

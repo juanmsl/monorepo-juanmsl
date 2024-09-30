@@ -30,7 +30,11 @@ export const ClickToCopy = ({
   };
 
   return (
-    <Tooltip content={justCopied ? tooltipCopiedText : tooltipText} position={position} offset={offset}>
+    <Tooltip
+      content={justCopied && tooltipCopiedText ? tooltipCopiedText : tooltipText}
+      position={position}
+      offset={offset}
+    >
       <span onClick={handleCopy}>{children}</span>
     </Tooltip>
   );

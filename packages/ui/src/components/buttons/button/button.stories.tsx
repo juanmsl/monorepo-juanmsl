@@ -4,6 +4,7 @@ import { Grid } from '../../../layouts';
 import { IconNames } from '../../icon';
 
 import { Button } from './button';
+import { ButtonColor, ButtonSize, ButtonVariant } from './button.constants';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -16,19 +17,19 @@ const meta: Meta<typeof Button> = {
     className: { control: false },
     color: {
       control: 'inline-radio',
-      options: [undefined, 'primary', 'secondary', 'tertiary', 'info', 'warning', 'alert', 'active'],
+      options: [undefined, ...Object.values(ButtonColor)],
     },
     disabled: { control: 'boolean' },
     isLoading: { control: 'boolean' },
     leftIcon: { options: [undefined, ...IconNames.toSorted()] },
     noShadow: { control: 'boolean' },
     onClick: { control: false },
-    size: { control: 'inline-radio', options: ['small', 'regular', 'large'] },
+    size: { control: 'inline-radio', options: Object.values(ButtonSize) },
     style: { control: false },
     rightIcon: { options: [undefined, ...IconNames.toSorted()] },
     rounded: { control: 'boolean' },
     type: { control: false, options: ['button', 'submit', 'reset'] },
-    variant: { control: 'inline-radio', options: ['solid', 'ghost', 'flat'] },
+    variant: { control: 'inline-radio', options: Object.values(ButtonVariant) },
     width: { control: 'inline-radio', options: ['fit', 'full'] },
   },
   args: {

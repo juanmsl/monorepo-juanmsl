@@ -1,5 +1,5 @@
 import { useClassNames } from '@juanmsl/hooks';
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 type TabsContextState = {
   openTab: string;
@@ -23,10 +23,15 @@ const useTab = (id: string): [boolean, () => void] => {
 type TabsProps = {
   children: React.ReactNode;
   defaultOpenTab: string;
+  onChange?: (id: string) => void;
 };
 
-export const Tabs = ({ children, defaultOpenTab }: TabsProps) => {
+export const Tabs = ({ children, defaultOpenTab, onChange }: TabsProps) => {
   const [openTab, setOpenTab] = useState(defaultOpenTab);
+
+  useEffect(() => {
+    onChange && onChange(openTab);
+  }, [openTab, onChange]);
 
   return (
     <TabsContext.Provider
