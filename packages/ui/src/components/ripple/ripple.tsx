@@ -7,9 +7,18 @@ type RippleProps = {
   duration?: number;
   timingFunction?: React.CSSProperties['animationTimingFunction'];
   times?: number;
+  className?: string;
+  style?: React.CSSProperties;
 };
 
-export const Ripple = ({ color, duration = 1000, timingFunction = 'ease-out', times = 1 }: RippleProps) => {
+export const Ripple = ({
+  color,
+  duration = 1000,
+  timingFunction = 'ease-out',
+  times = 1,
+  className = '',
+  style = {},
+}: RippleProps) => {
   const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
@@ -50,5 +59,5 @@ export const Ripple = ({ color, duration = 1000, timingFunction = 'ease-out', ti
     );
   };
 
-  return <RippleStyle ref={ref} onClick={handleClick} />;
+  return <RippleStyle ref={ref} onClick={handleClick} className={className} style={style} />;
 };

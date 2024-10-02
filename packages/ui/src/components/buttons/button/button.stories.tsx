@@ -57,6 +57,7 @@ export const Default: Story = {};
 export const Variants: Story = {
   argTypes: {
     variant: { control: false },
+    children: { control: false },
   },
   render: args => (
     <Grid gtc='300px' ji='center' gap='1em' ai='center'>
@@ -72,6 +73,7 @@ export const Variants: Story = {
 export const Sizes: Story = {
   argTypes: {
     size: { control: false },
+    children: { control: false },
   },
   render: args => (
     <Grid gtc='300px' ji='center' gap='1em' ai='center'>
@@ -87,6 +89,7 @@ export const Sizes: Story = {
 export const Colors: Story = {
   argTypes: {
     color: { control: false },
+    children: { control: false },
   },
   render: args => (
     <Grid gtc='300px' ji='center' gap='1em' ai='center'>

@@ -3,10 +3,10 @@ import styled from 'styled-components';
 export const RippleStyle = styled.span`
   position: absolute;
   display: block;
-  width: 100%;
-  height: 100%;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   overflow: hidden;
   border-radius: inherit;
   z-index: 1;

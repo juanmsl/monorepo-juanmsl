@@ -11,6 +11,8 @@ const meta: Meta<typeof Ripple> = {
     duration: { control: { type: 'range', min: 500, max: 5000, step: 100 } },
     timingFunction: { options: ['ease', 'ease-out', 'ease-in', 'ease-in-out', 'cubic-bezier(0.81, -0.52, 0.42, 2.5)'] },
     times: { control: { type: 'range', min: 1, max: 5 } },
+    className: { control: false },
+    style: { control: false },
   },
   args: {
     color: '#FFFFFF',
