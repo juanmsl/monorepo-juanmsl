@@ -1,14 +1,14 @@
 import { useState } from 'react';
 
 import { Grid } from '../../../layouts';
-import { UnControlledComponentArgs, UnControlledComponentArgTypes } from '../form.stories.types';
+import { UnControlledComponentArgTypes } from '../form.stories.types';
 
 import { Radio } from './radio';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Radio> = {
-  title: 'Components/Form/Radio',
+  title: 'Form/Radio',
   component: Radio,
   tags: ['autodocs'],
   argTypes: {
@@ -19,7 +19,6 @@ const meta: Meta<typeof Radio> = {
   },
   args: {
     label: 'Option A',
-    ...UnControlledComponentArgs,
     placeholder: undefined,
   },
   render: args => {

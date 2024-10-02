@@ -8,7 +8,7 @@ import { ConfirmationModal } from './confirmation-modal';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof ConfirmationModal> = {
-  title: 'Components/Modals/ConfirmationModal',
+  title: 'Modals/ConfirmationModal',
   component: ConfirmationModal,
   tags: ['autodocs'],
   argTypes: {

@@ -8,7 +8,7 @@ import { InfinityScroll } from './infinity-scroll';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof InfinityScroll> = {
-  title: 'Components/InfinityScroll',
+  title: 'InfinityScroll',
   component: InfinityScroll,
   tags: ['autodocs'],
   argTypes: {

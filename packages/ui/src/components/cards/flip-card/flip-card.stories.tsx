@@ -6,7 +6,7 @@ import { FlipCard } from './flip-card';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof FlipCard> = {
-  title: 'Components/Cards/FlipCard',
+  title: 'Cards/FlipCard',
   component: FlipCard,
   tags: ['autodocs'],
   argTypes: {

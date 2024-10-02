@@ -1,5 +1,3 @@
-import { fn } from '@storybook/test';
-
 import { IconNames } from '../../icon';
 import { ContainerDecorator } from '../form.stories.types';
 
@@ -16,16 +14,11 @@ export const FieldSharedArgTypes: Meta<typeof Field>['argTypes'] = {
 };
 
 export const FieldSharedArgs: StoryObj<typeof Field>['args'] = {
-  errorIcon: undefined,
   variant: 'full-border',
-  onClickLeftIcon: fn(),
-  onClickRightIcon: fn(),
-  leftIcon: undefined,
-  rightIcon: undefined,
 };
 
 const meta: Meta<typeof Field> = {
-  title: 'Components/Form/Field',
+  title: 'Form/Field',
   component: Field,
   tags: ['autodocs'],
   includeStories: ['Default'],

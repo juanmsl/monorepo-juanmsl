@@ -8,6 +8,7 @@ export * from './infinity-scroll';
 export * from './line';
 export * from './loaders';
 export * from './modals';
+export * from './ripple';
 export * from './smart-table';
 export * from './tabs';
 export * from './tag';

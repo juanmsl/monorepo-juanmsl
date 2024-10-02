@@ -48,6 +48,7 @@ export const RadioContainerStyle = styled.section`
 
   .radio-label {
     cursor: pointer;
+    user-select: none;
   }
 
   ${RadioStyle}:hover,

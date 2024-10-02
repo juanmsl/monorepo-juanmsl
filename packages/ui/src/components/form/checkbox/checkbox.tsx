@@ -1,7 +1,7 @@
 import { useInputHandlers } from '@juanmsl/hooks';
 import { useMemo } from 'react';
 
-import { Icon } from '../../icon';
+import { Icon, IconNameT } from '../../icon';
 import { Typography } from '../../typography';
 import { Controller } from '../controller';
 import { ControllerGeneratorProps, UnControlledComponentProps } from '../form.types';
@@ -11,6 +11,7 @@ import { CheckboxContainerStyle, CheckboxStyle } from './checkbox.style';
 type CheckboxProps = {
   label?: string;
   placeholder?: never;
+  icon?: IconNameT;
 };
 
 export const Checkbox = ({
@@ -25,6 +26,7 @@ export const Checkbox = ({
   readOnly = false,
   disabled = false,
   autoComplete = 'off',
+  icon = 'checkmark',
   label,
   /*
    * isDirty = false,
@@ -43,7 +45,7 @@ export const Checkbox = ({
   return (
     <CheckboxContainerStyle className={className} style={style}>
       <CheckboxStyle className={value ? 'is-checked' : ''}>
-        <Icon name='checkmark' className='checkbox-icon' />
+        <Icon name={icon} className='checkbox-icon' />
         <input
           id={id}
           type='checkbox'

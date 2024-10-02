@@ -69,11 +69,13 @@ export type PaletteThemeEntity = {
   background: {
     main: string;
     paper: string;
+    disabled: string;
   };
   text: {
     main: string;
     light: string;
     dark: string;
+    disabled: string;
   };
   border: {
     main: string;

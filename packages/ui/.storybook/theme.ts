@@ -15,7 +15,7 @@ export default create({
   colorPrimary: '#B91345',
   colorSecondary: '#177fff',
   barHoverColor: '#B91345',
-  barSelectedColor: '#fa2f6d',
+  barSelectedColor: '#B91345',
 
   appBg: '#181929',
   barBg: '#181929',

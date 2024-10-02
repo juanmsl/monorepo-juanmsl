@@ -248,7 +248,7 @@ const users = [
 ];
 
 const meta: Meta<typeof SmartTable> = {
-  title: 'Components/Smart Table',
+  title: 'Smart Table',
   component: SmartTable,
   tags: ['autodocs'],
   argTypes: {

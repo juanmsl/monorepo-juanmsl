@@ -3,7 +3,7 @@ import { SimpleLoader } from './simple-loader';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof SimpleLoader> = {
-  title: 'Components/SimpleLoader',
+  title: 'SimpleLoader',
   component: SimpleLoader,
   tags: ['autodocs'],
   argTypes: {

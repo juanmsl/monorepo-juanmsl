@@ -1,14 +1,14 @@
 import { useState } from 'react';
 
 import { FieldSharedArgs, FieldSharedArgTypes } from '../field/field.stories';
-import { ContainerDecorator, UnControlledComponentArgs, UnControlledComponentArgTypes } from '../form.stories.types';
+import { ContainerDecorator, UnControlledComponentArgTypes } from '../form.stories.types';
 
 import { Textarea } from './textarea';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Textarea> = {
-  title: 'Components/Form/Textarea',
+  title: 'Form/Textarea',
   component: Textarea,
   tags: ['autodocs'],
   argTypes: {
@@ -24,7 +24,6 @@ const meta: Meta<typeof Textarea> = {
     rows: 4,
     resize: 'vertical',
     placeholder: 'Textarea',
-    ...UnControlledComponentArgs,
     ...FieldSharedArgs,
     leftIcon: undefined,
     rightIcon: undefined,

@@ -11,7 +11,7 @@ import { IconNames } from '.';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Icon> = {
-  title: 'Components/Icon',
+  title: 'Icon',
   component: Icon,
   tags: ['autodocs'],
   argTypes: {
