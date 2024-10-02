@@ -9,7 +9,7 @@ import { AsideCloseButtonPosition, AsideModal, AsidePosition } from './aside-mod
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof AsideModal> = {
-  title: 'Components/Modals/AsideModal',
+  title: 'Modals/AsideModal',
   component: AsideModal,
   tags: ['autodocs'],
   argTypes: {

@@ -4,6 +4,7 @@ import { useTheme } from 'styled-components';
 
 import { ThemeColor } from '../../../contexts';
 import { Icon, IconNameT } from '../../icon';
+import { Ripple } from '../../ripple';
 
 import { ButtonColor, ButtonSize, ButtonVariant } from './button.constants';
 import { ButtonStyle, ButtonStyleProps } from './button.style';
@@ -92,6 +93,7 @@ const ButtonComponent = (
         {!disabled && isLoading ? <Icon name='spinner' className='button-loader-icon' /> : children}
       </span>
       {rightIcon && (!isLoading || disabled) && <Icon className='button-right-icon' name={rightIcon} />}
+      <Ripple />
     </ButtonStyle>
   );
 };

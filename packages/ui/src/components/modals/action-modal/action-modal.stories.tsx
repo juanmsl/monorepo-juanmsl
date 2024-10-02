@@ -11,7 +11,7 @@ import { ActionModal } from './action-modal';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof ActionModal> = {
-  title: 'Components/Modals/ActionModal',
+  title: 'Modals/ActionModal',
   component: ActionModal,
   tags: ['autodocs'],
   argTypes: {

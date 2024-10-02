@@ -8,7 +8,7 @@ import { SectionLayout } from './section-layout';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof SectionLayout> = {
-  title: 'layouts/Section',
+  title: 'Section',
   component: SectionLayout,
   tags: ['autodocs'],
   parameters: {

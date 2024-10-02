@@ -1,5 +1,4 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { fn } from '@storybook/test';
 
 import { Grid } from '../../layouts';
 
@@ -42,19 +41,6 @@ export const UnControlledComponentArgTypes: Meta<UnControlledComponentProps<{}, 
 export const ControlledComponentArgTypes: Meta<ControlledComponentProps<{}, unknown>>['argTypes'] = {
   ...SharedArgTypes,
   ...ControlledArgTypes,
-};
-
-export const UnControlledComponentArgs = {
-  autoFocus: false,
-  disabled: false,
-  readOnly: false,
-  invalid: false,
-  isTouched: false,
-  isDirty: false,
-  error: '',
-  onBlur: fn(),
-  onFocus: fn(),
-  setValue: fn(),
 };
 
 export const ContainerDecorator = (Story: StoryFn) => (

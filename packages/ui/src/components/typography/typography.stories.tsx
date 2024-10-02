@@ -6,7 +6,7 @@ import { TypographyVariant, TypographyWeight } from './typography.constants';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Typography> = {
-  title: 'Components/Typography',
+  title: 'Typography',
   component: Typography,
   tags: ['autodocs'],
   argTypes: {

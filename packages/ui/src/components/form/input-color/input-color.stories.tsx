@@ -1,14 +1,14 @@
 import { useState } from 'react';
 
 import { FieldSharedArgs, FieldSharedArgTypes } from '../field/field.stories';
-import { ContainerDecorator, UnControlledComponentArgs, UnControlledComponentArgTypes } from '../form.stories.types';
+import { ContainerDecorator, UnControlledComponentArgTypes } from '../form.stories.types';
 
 import { InputColor } from './input-color';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof InputColor> = {
-  title: 'Components/Form/InputColor',
+  title: 'Form/InputColor',
   component: InputColor,
   tags: ['autodocs'],
   argTypes: {
@@ -21,7 +21,6 @@ const meta: Meta<typeof InputColor> = {
     showValueText: true,
     rightIcon: undefined,
     leftIcon: undefined,
-    ...UnControlledComponentArgs,
     ...FieldSharedArgs,
   },
   decorators: [ContainerDecorator],

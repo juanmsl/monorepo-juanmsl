@@ -1,14 +1,14 @@
 import { useState } from 'react';
 
 import { FieldSharedArgs, FieldSharedArgTypes } from '../field/field.stories';
-import { ContainerDecorator, UnControlledComponentArgs, UnControlledComponentArgTypes } from '../form.stories.types';
+import { ContainerDecorator, UnControlledComponentArgTypes } from '../form.stories.types';
 
 import { Input } from './input';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Input> = {
-  title: 'Components/Form/Input',
+  title: 'Form/Input',
   component: Input,
   tags: ['autodocs'],
   argTypes: {
@@ -24,7 +24,6 @@ const meta: Meta<typeof Input> = {
     min: 0,
     max: 0,
     placeholder: 'Input',
-    ...UnControlledComponentArgs,
     ...FieldSharedArgs,
   },
   decorators: [ContainerDecorator],

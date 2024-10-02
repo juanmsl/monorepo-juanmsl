@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const CheckboxStyle = styled.section`
-  border-radius: 4px;
-  background: ${props => props.theme.colors.gray9};
+  border-radius: 42%;
+  background: ${props => props.theme.colors.background.paper};
   color: ${props => props.theme.colors.primary.main};
   transition: all 300ms ease;
   position: relative;
@@ -17,7 +17,7 @@ export const CheckboxStyle = styled.section`
     left: 50%;
     transform: translate(-50%, -50%);
     color: ${props => props.theme.colors.primary.contrast};
-    font-size: 1em;
+    font-size: 0.7em;
     z-index: 1;
     opacity: 0;
     transition: opacity 300ms ease;
@@ -60,10 +60,16 @@ export const CheckboxContainerStyle = styled.section`
 
   .checkbox-label {
     cursor: pointer;
+    user-select: none;
   }
 
   ${CheckboxStyle}:hover,
   &:has(.checkbox-label:hover) ${CheckboxStyle} {
     box-shadow: 0 0 0 0.4em ${props => props.theme.colors.primary.main}88;
+  }
+
+  ${CheckboxStyle}:active,
+  &:has(.checkbox-label:active) ${CheckboxStyle} {
+    transform: scale(0.95);
   }
 `;

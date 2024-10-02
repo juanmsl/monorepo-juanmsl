@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
-import { ContainerDecorator, UnControlledComponentArgs, UnControlledComponentArgTypes } from '../form.stories.types';
+import { ContainerDecorator, UnControlledComponentArgTypes } from '../form.stories.types';
 
 import { InputFile } from './input-file';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof InputFile> = {
-  title: 'Components/Form/InputFile',
+  title: 'Form/InputFile',
   component: InputFile,
   tags: ['autodocs'],
   argTypes: {
@@ -24,7 +24,6 @@ const meta: Meta<typeof InputFile> = {
     multiple: false,
     limitSize: 5000000,
     errorTimeout: 3000,
-    ...UnControlledComponentArgs,
   },
   decorators: [ContainerDecorator],
   render: args => {

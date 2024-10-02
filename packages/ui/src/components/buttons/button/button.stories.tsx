@@ -1,5 +1,3 @@
-import { fn } from '@storybook/test';
-
 import { Grid } from '../../../layouts';
 import { IconNames } from '../../icon';
 
@@ -9,7 +7,7 @@ import { ButtonColor, ButtonSize, ButtonVariant } from './button.constants';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Button> = {
-  title: 'Components/Buttons/Button',
+  title: 'Buttons/Button',
   component: Button,
   tags: ['autodocs'],
   argTypes: {
@@ -40,7 +38,6 @@ const meta: Meta<typeof Button> = {
     disabled: false,
     isLoading: false,
     rounded: false,
-    onClick: fn(),
   },
   decorators: [
     Story => (
@@ -62,16 +59,12 @@ export const Variants: Story = {
     variant: { control: false },
   },
   render: args => (
-    <Grid gtc='repeat(3, 300px)' ji='center' gap='1em' ai='center'>
-      <Button {...args} variant='solid'>
-        Solid
-      </Button>
-      <Button {...args} variant='ghost'>
-        Ghost
-      </Button>
-      <Button {...args} variant='flat'>
-        Flat
-      </Button>
+    <Grid gtc='300px' ji='center' gap='1em' ai='center'>
+      {Object.values(ButtonVariant).map(variant => (
+        <Button {...args} variant={variant} key={variant}>
+          {variant}
+        </Button>
+      ))}
     </Grid>
   ),
 };
@@ -81,16 +74,28 @@ export const Sizes: Story = {
     size: { control: false },
   },
   render: args => (
-    <Grid gtc='repeat(3, 300px)' ji='center' gap='1em' ai='center'>
-      <Button {...args} size='small'>
-        Small
-      </Button>
-      <Button {...args} size='regular'>
-        Regular
-      </Button>
-      <Button {...args} size='large'>
-        Large
-      </Button>
+    <Grid gtc='300px' ji='center' gap='1em' ai='center'>
+      {Object.values(ButtonSize).map(size => (
+        <Button {...args} size={size} key={size}>
+          {size}
+        </Button>
+      ))}
+    </Grid>
+  ),
+};
+
+export const Colors: Story = {
+  argTypes: {
+    color: { control: false },
+  },
+  render: args => (
+    <Grid gtc='300px' ji='center' gap='1em' ai='center'>
+      <Button {...args}>Default</Button>
+      {Object.values(ButtonColor).map(color => (
+        <Button {...args} color={color} key={color}>
+          {color}
+        </Button>
+      ))}
     </Grid>
   ),
 };

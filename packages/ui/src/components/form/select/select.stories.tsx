@@ -1,14 +1,14 @@
 import { useState } from 'react';
 
 import { FieldSharedArgs, FieldSharedArgTypes } from '../field/field.stories';
-import { ContainerDecorator, UnControlledComponentArgs, UnControlledComponentArgTypes } from '../form.stories.types';
+import { ContainerDecorator, UnControlledComponentArgTypes } from '../form.stories.types';
 
 import { Select } from './select';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Select> = {
-  title: 'Components/Form/Select',
+  title: 'Form/Select',
   component: Select,
   tags: ['autodocs'],
   argTypes: {
@@ -35,7 +35,6 @@ const meta: Meta<typeof Select> = {
   args: {
     label: 'Select',
     searchQueryPlaceholder: 'Search',
-    ...UnControlledComponentArgs,
     ...FieldSharedArgs,
     optionVariant: undefined,
   },

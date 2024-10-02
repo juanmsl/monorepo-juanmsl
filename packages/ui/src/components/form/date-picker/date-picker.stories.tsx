@@ -1,14 +1,14 @@
 import { useState } from 'react';
 
 import { FieldSharedArgs, FieldSharedArgTypes } from '../field/field.stories';
-import { ContainerDecorator, UnControlledComponentArgs, UnControlledComponentArgTypes } from '../form.stories.types';
+import { ContainerDecorator, UnControlledComponentArgTypes } from '../form.stories.types';
 
 import { DatePicker } from './date-picker';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof DatePicker> = {
-  title: 'Components/Form/DatePicker',
+  title: 'Form/DatePicker',
   component: DatePicker,
   tags: ['autodocs'],
   argTypes: {
@@ -22,7 +22,6 @@ const meta: Meta<typeof DatePicker> = {
     rightIcon: undefined,
     leftIcon: undefined,
     ...FieldSharedArgs,
-    ...UnControlledComponentArgs,
   },
   decorators: [ContainerDecorator],
   render: args => {

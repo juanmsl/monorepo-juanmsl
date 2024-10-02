@@ -3,7 +3,7 @@ import { Image } from './image';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Image> = {
-  title: 'Components/Image',
+  title: 'Image',
   component: Image,
   tags: ['autodocs'],
   argTypes: {

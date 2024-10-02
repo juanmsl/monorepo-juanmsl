@@ -1,23 +1,24 @@
 import { useState } from 'react';
 
-import { UnControlledComponentArgs, UnControlledComponentArgTypes } from '../form.stories.types';
+import { IconNames } from '../../icon';
+import { UnControlledComponentArgTypes } from '../form.stories.types';
 
 import { Checkbox } from './checkbox';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Checkbox> = {
-  title: 'Components/Form/Checkbox',
+  title: 'Form/Checkbox',
   component: Checkbox,
   tags: ['autodocs'],
   argTypes: {
     ...UnControlledComponentArgTypes,
     placeholder: { table: { disable: true } },
     label: { control: 'text' },
+    icon: { options: [undefined, ...IconNames.toSorted()] },
   },
   args: {
     label: 'Checkbox',
-    ...UnControlledComponentArgs,
   },
   render: args => {
     const [value, setValue] = useState(false);

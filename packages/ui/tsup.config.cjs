@@ -10,6 +10,7 @@ export default defineConfig({
   target: 'node20',
   format: ['cjs', 'esm'],
   banner: {js: '"use client";'},
+  exclude: ['**/*.stories.ts', '**/*.stories.tsx'],
   esbuildOptions: options => {
     options.packages = 'external'
   },

@@ -1,14 +1,14 @@
 import { useState } from 'react';
 
 import { FieldSharedArgs, FieldSharedArgTypes } from '../field/field.stories';
-import { ContainerDecorator, UnControlledComponentArgs, UnControlledComponentArgTypes } from '../form.stories.types';
+import { ContainerDecorator, UnControlledComponentArgTypes } from '../form.stories.types';
 
 import { InputPassword } from './input-password';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof InputPassword> = {
-  title: 'Components/Form/InputPassword',
+  title: 'Form/InputPassword',
   component: InputPassword,
   tags: ['autodocs'],
   argTypes: {
@@ -19,7 +19,6 @@ const meta: Meta<typeof InputPassword> = {
   args: {
     label: 'Password',
     placeholder: 'Password',
-    ...UnControlledComponentArgs,
     ...FieldSharedArgs,
     rightIcon: undefined,
   },

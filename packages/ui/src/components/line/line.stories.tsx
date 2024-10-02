@@ -6,7 +6,7 @@ import { Line, LineOrientation, LineStyle } from './line';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Line> = {
-  title: 'Components/Line',
+  title: 'Line',
   component: Line,
   tags: ['autodocs'],
   argTypes: {

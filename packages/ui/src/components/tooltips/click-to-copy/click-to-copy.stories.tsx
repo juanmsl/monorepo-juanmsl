@@ -5,7 +5,7 @@ import { ClickToCopy } from './click-to-copy';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof ClickToCopy> = {
-  title: 'Components/Tooltips/ClickToCopy',
+  title: 'Tooltips/ClickToCopy',
   component: ClickToCopy,
   tags: ['autodocs'],
   argTypes: {
