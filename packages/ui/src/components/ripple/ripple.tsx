@@ -59,5 +59,5 @@ export const Ripple = ({
     );
   };
 
-  return <RippleStyle ref={ref} onClick={handleClick} className={className} style={style} />;
+  return <RippleStyle ref={ref} onMouseDown={handleClick} className={className} style={style} />;
 };
