@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { SectionLayout } from '@components/layouts';
 
 export const CharacteristicsStyle = styled(SectionLayout)`
-  background: ${props => props.theme.colors.secondary.main};
-  color: ${props => props.theme.colors.secondary.contrast};
+  background: ${props => props.theme.colors.background.paper};
+  color: ${props => props.theme.colors.text.main};
   transition: all 0.5s ease;
   user-select: none;
   box-shadow:

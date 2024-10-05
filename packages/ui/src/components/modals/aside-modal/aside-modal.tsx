@@ -1,7 +1,6 @@
 import { useCallback, useRef } from 'react';
 
 import { Icon } from '../../icon';
-import { Tooltip } from '../../tooltips';
 import { Modal } from '../modal';
 
 import { AsideModalStyle } from './aside-modal.style';
@@ -13,17 +12,11 @@ export enum AsidePosition {
   BOTTOM = 'bottom',
 }
 
-export enum AsideCloseButtonPosition {
-  FIXED = 'fixed',
-  RELATIVE = 'relative',
-}
-
 type AsideModalProps = {
   children: React.ReactNode;
   isOpen: boolean;
   onClose: () => void;
   position?: `${AsidePosition}`;
-  closeButton?: `${AsideCloseButtonPosition}`;
   size?: number | `${number}px` | `${number}em`;
   className?: string;
   style?: React.CSSProperties;
@@ -35,7 +28,6 @@ export const AsideModal = ({
   isOpen,
   onClose,
   position = AsidePosition.LEFT,
-  closeButton = AsideCloseButtonPosition.FIXED,
   size,
   className = '',
   zIndex = 100,
@@ -64,16 +56,10 @@ export const AsideModal = ({
           height: position === 'top' || position === 'bottom' ? size : undefined,
         }}
       >
-        <section className='aside-modal-content'>
-          {closeButton !== undefined && (
-            <Tooltip content='Cerrar' position='left'>
-              <span className={`close-modal-button button-${closeButton}`}>
-                <Icon name='cross' onClick={() => handleOnClose(onClose)} />
-              </span>
-            </Tooltip>
-          )}
-          {children}
-        </section>
+        <span className='close-modal-button' onClick={() => handleOnClose(onClose)}>
+          <Icon name='cross' />
+        </span>
+        <section className='aside-modal-content'>{children}</section>
       </AsideModalStyle>
     </Modal>
   );

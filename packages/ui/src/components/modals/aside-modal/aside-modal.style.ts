@@ -4,7 +4,6 @@ export const AsideModalStyle = styled.section`
   position: absolute;
   background: ${props => props.theme.colors.background.main};
   color: ${props => props.theme.colors.text.main};
-  overflow: auto;
 
   .aside-modal-content {
     overflow: auto;
@@ -13,24 +12,14 @@ export const AsideModalStyle = styled.section`
   }
 
   .close-modal-button {
-    width: 2em;
-    height: 2em;
     border-radius: 50%;
-    border: 1px solid;
     cursor: pointer;
-    margin-left: auto;
     display: grid;
     place-content: center;
-    margin-bottom: 2em;
     background: ${props => props.theme.colors.background.main};
-    box-shadow: 0 0 0 4px ${props => props.theme.colors.background.main};
-
-    &.button-fixed {
-      position: absolute;
-      top: 0;
-      right: 0;
-      margin: 2em;
-    }
+    border: 4px solid ${props => props.theme.colors.primary.main};
+    position: absolute;
+    padding: 0.5em;
   }
 
   &.left {
@@ -45,6 +34,12 @@ export const AsideModalStyle = styled.section`
 
     &.close-animation {
       animation: slideOut-left 300ms ease;
+    }
+
+    .close-modal-button {
+      top: 2em;
+      left: 100%;
+      transform: translate(calc(-50% + 2px));
     }
   }
 
@@ -61,6 +56,12 @@ export const AsideModalStyle = styled.section`
     &.close-animation {
       animation: slideOut-right 300ms ease;
     }
+
+    .close-modal-button {
+      top: 2em;
+      right: 100%;
+      transform: translate(calc(50% - 2px));
+    }
   }
 
   &.top {
@@ -76,6 +77,12 @@ export const AsideModalStyle = styled.section`
     &.close-animation {
       animation: slideOut-top 300ms ease;
     }
+
+    .close-modal-button {
+      bottom: 0;
+      right: 2em;
+      transform: translate(0, calc(50% - 2px));
+    }
   }
 
   &.bottom {
@@ -90,6 +97,12 @@ export const AsideModalStyle = styled.section`
 
     &.close-animation {
       animation: slideOut-bottom 300ms ease;
+    }
+
+    .close-modal-button {
+      top: 0;
+      right: 2em;
+      transform: translate(0, calc(-50% + 2px));
     }
   }
 `;

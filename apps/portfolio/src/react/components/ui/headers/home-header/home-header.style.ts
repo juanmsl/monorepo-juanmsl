@@ -28,7 +28,7 @@ export const HomeHeaderStyle = styled(SectionLayout).attrs<HeaderStyleProps, Hea
     width: 100%;
     height: 100%;
     background: url(${props => props.$background}) center center / cover no-repeat
-      ${props => props.theme.colors.secondary.main}B3;
+      ${props => props.theme.colors.background.paper}B3;
     background-blend-mode: soft-light;
     filter: opacity(40%) grayscale(50%);
     transition: all 300ms ease;

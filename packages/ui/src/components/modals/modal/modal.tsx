@@ -1,8 +1,16 @@
 import { useConstant } from '@juanmsl/hooks';
-import React, { ForwardedRef, forwardRef, useEffect } from 'react';
+import React, { ForwardedRef, forwardRef, useEffect, useMemo } from 'react';
 import ReactDOM from 'react-dom';
+import { useTheme } from 'styled-components';
 
 import { ModalOverlayStyle } from './modal.style';
+
+export enum ModalBackdrop {
+  OPAQUE = 'opaque',
+  TRANSPARENT = 'transparent',
+  BLUR = 'blur',
+  NONE = 'none',
+}
 
 export type ModalCommonProps = {
   isOpen: boolean;
@@ -11,9 +19,8 @@ export type ModalCommonProps = {
 };
 
 export type ModalNoOverlayProps = ModalCommonProps & {
-  noOverlay: true;
   opacity?: never;
-  color?: never;
+  backdrop?: never;
   onClick?: never;
   zIndex?: never;
   className?: never;
@@ -21,9 +28,8 @@ export type ModalNoOverlayProps = ModalCommonProps & {
 };
 
 export type ModalOverlayProps = ModalCommonProps & {
-  noOverlay?: false;
   opacity?: number;
-  color?: string;
+  backdrop?: `${ModalBackdrop}`;
   onClick?: () => void;
   zIndex?: React.CSSProperties['zIndex'];
   className?: string;
@@ -37,9 +43,8 @@ export const ModalComponent = (
     isOpen,
     children,
     id,
-    opacity = 0,
-    color = '#000000',
-    noOverlay = false,
+    opacity = 0.6,
+    backdrop = ModalBackdrop.BLUR,
     onClick,
     zIndex,
     className = '',
@@ -48,6 +53,7 @@ export const ModalComponent = (
   ref: ForwardedRef<HTMLElement>,
 ) => {
   const containerID = useConstant(`modal-${id}`);
+  const theme = useTheme();
 
   useEffect(() => {
     let modalContainer = document.getElementById(containerID);
@@ -74,6 +80,30 @@ export const ModalComponent = (
      */
   }, [containerID, ref]);
 
+  const backgroundStyles = useMemo(() => {
+    switch (backdrop) {
+      case ModalBackdrop.OPAQUE:
+        return {
+          background: `${theme.colors.background.paper}${(opacity * 255)?.toString(16)}`,
+        };
+      case ModalBackdrop.TRANSPARENT:
+        return {
+          background: 'transparent',
+        };
+      case ModalBackdrop.BLUR:
+        return {
+          background: `${theme.colors.background.paper}${(opacity * 255)?.toString(16)}`,
+          backdropFilter: 'blur(5px)',
+        };
+      case ModalBackdrop.NONE:
+        return {
+          display: 'none',
+        };
+      default:
+        return {};
+    }
+  }, [backdrop, theme.colors.background.paper, opacity]);
+
   const root = document.getElementById(containerID);
 
   if (!isOpen || !root) {
@@ -82,21 +112,16 @@ export const ModalComponent = (
 
   return ReactDOM.createPortal(
     <>
-      {noOverlay ? null : (
-        <>
-          <ModalOverlayStyle
-            tabIndex={-1}
-            onClick={onClick}
-            className={className}
-            $opacity={opacity}
-            style={{
-              backgroundColor: color,
-              zIndex,
-              ...style,
-            }}
-          />
-        </>
-      )}
+      <ModalOverlayStyle
+        tabIndex={-1}
+        onClick={onClick}
+        className={className}
+        style={{
+          zIndex,
+          ...backgroundStyles,
+          ...style,
+        }}
+      />
       {children}
     </>,
     root,
