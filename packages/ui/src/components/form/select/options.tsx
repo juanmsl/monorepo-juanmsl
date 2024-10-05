@@ -92,7 +92,13 @@ export const Options = <T extends SelectItem>({
   );
 
   return (
-    <Modal isOpen={isOpen} id='form-select' opacity={isMobile ? 0 : 0.8} zIndex={150}>
+    <Modal
+      isOpen={isOpen}
+      id='form-select'
+      backdrop={isMobile ? 'transparent' : 'blur'}
+      opacity={isMobile ? 0 : 0.8}
+      zIndex={150}
+    >
       <OptionsStyle ref={modalRef} style={{ ...style, zIndex: 150 }} tabIndex={-1}>
         {onSearchQuery && (
           <OptionsHeaderStyle>

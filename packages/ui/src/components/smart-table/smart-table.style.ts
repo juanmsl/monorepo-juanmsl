@@ -46,6 +46,14 @@ export const SmartColumnStyle = styled.th`
     display: block;
   }
 
+  svg {
+    animation: fadeIn 300ms ease;
+  }
+
+  path {
+    transition: all 300ms ease;
+  }
+
   &:first-child {
     padding-left: 2em;
   }

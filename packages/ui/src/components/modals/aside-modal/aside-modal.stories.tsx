@@ -4,7 +4,7 @@ import { Button } from '../../buttons';
 import { Image } from '../../image';
 import { Typography } from '../../typography';
 
-import { AsideCloseButtonPosition, AsideModal, AsidePosition } from './aside-modal';
+import { AsideModal, AsidePosition } from './aside-modal';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -16,7 +16,6 @@ const meta: Meta<typeof AsideModal> = {
     isOpen: { control: false },
     onClose: { control: false },
     position: { control: 'inline-radio', options: Object.values(AsidePosition) },
-    closeButton: { control: 'inline-radio', options: Object.values(AsideCloseButtonPosition) },
     children: { control: 'text' },
     size: { control: { type: 'range', min: 100, max: 500, step: 10 } },
     className: { control: false },

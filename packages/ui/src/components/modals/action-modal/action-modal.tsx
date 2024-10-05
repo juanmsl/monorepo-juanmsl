@@ -94,8 +94,8 @@ export const ActionModal = ({
           <section ref={ref} className='open-animation'>
             <ActionModalStyle className={actionModalClassName}>
               {!noCloseButton && !actionRequired && (
-                <section className='close-modal-button'>
-                  <Icon name='cross' onClick={() => handleOnClose(onClose)} />
+                <section className='close-modal-button' onClick={() => handleOnClose(onClose)}>
+                  <Icon name='cross' />
                 </section>
               )}
               {icon ? (

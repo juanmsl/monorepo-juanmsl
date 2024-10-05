@@ -147,7 +147,7 @@ export const DarkTheme: PaletteThemeEntity = {
     disabled: '#9e9e9e',
   },
   border: {
-    main: '#2b3135',
+    main: '#3a4145',
   },
   primary: {
     main: '#B91345',
@@ -156,10 +156,10 @@ export const DarkTheme: PaletteThemeEntity = {
     dark: '#880a2f',
   },
   secondary: {
-    main: '#161723',
+    main: '#450b7c',
     contrast: '#FFFFFF',
-    light: '#27283e',
-    dark: '#0b0b15',
+    light: '#5c11a3',
+    dark: '#33075c',
   },
   tertiary: {
     main: '#012e64',

@@ -94,22 +94,18 @@ export const ActionModalStyle = styled.section`
     place-content: center;
     background: ${props => props.theme.colors.background.main};
     position: absolute;
-    right: 0;
-    top: 0;
+    left: 100%;
+    bottom: 100%;
     font-size: ${props => props.theme.constants.typography.small.fontSize};
     opacity: 0;
-    transition: opacity 1s ease;
-    margin: 1em;
+    transition: opacity 300ms ease;
     z-index: 1;
+    transform: translate(-50%, 50%);
   }
 
   &.line-on-top {
     .action-modal-content {
       border-top: 5px solid ${props => props.theme.colors.primary.main};
-    }
-
-    .close-modal-button {
-      top: 5px;
     }
   }
 

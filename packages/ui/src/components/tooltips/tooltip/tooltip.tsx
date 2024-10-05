@@ -34,7 +34,7 @@ export const Tooltip = ({ position = POSITION.top, children, content, offset = 5
   return (
     <>
       {cloneElement(children as ReactElement, { ref: containerRef })}
-      <Modal isOpen={isVisible} id='tooltip' noOverlay>
+      <Modal isOpen={isVisible} id='tooltip' backdrop='none'>
         <TooltipStyle ref={modalRef} style={modalStyle} className={classNames}>
           <span className='tooltip-content'>{content}</span>
         </TooltipStyle>

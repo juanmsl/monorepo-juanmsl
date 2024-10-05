@@ -31,7 +31,7 @@ const meta: Meta<typeof Button> = {
     width: { control: 'inline-radio', options: ['fit', 'full'] },
   },
   args: {
-    width: 'fit',
+    width: 'full',
     size: 'regular',
     children: 'Button',
     noShadow: false,
