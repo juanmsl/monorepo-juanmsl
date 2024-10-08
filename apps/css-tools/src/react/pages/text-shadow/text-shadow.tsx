@@ -1,4 +1,4 @@
-import { Accordion, Icon, Input, InputColor, Slider, Typography } from '@juanmsl/ui';
+import { AccordionItem, Grid, Icon, Input, InputColor, Slider, Typography } from '@juanmsl/ui';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'styled-components';
@@ -60,22 +60,28 @@ export const TextShadowPage = () => {
       }}
       renderActions={actions}
       renderAccordionItem={({ x, y, blur, color, updateItem, deleteItem }, key) => (
-        <Accordion.Item
+        <AccordionItem
           key={key}
-          title={t('shadow:shadow-#', { index: key + 1 })}
-          subtitle={textShadow[key] || t('shadow:no-shadow')}
           className='shadows-item'
           classNames={{
             header: 'shadows-item-header',
             body: 'shadows-item-body',
-            subtitle: 'shadows-item-header--subtitle',
           }}
-          subtitleVariant='small'
           startContent={() => <InputColor name='color' value={color} setValue={updateItem('color', key)} />}
-          endContent={() =>
-            selectedList.length > 1 ? (
-              <Icon name='cross' className='delete-shadow-icon' onClick={deleteItem(key)} />
-            ) : null
+          content={
+            <Grid flow='column' gap='1em' ai='center' jc='space-between'>
+              <section>
+                <Typography variant='body' weight='bold' family='code' noPadding>
+                  {t('shadow:shadow-#', { index: key + 1 })}
+                </Typography>
+                <Typography variant='small' family='code' noPadding className='shadows-item-header--subtitle'>
+                  {textShadow[key] || t('shadow:no-shadow')}
+                </Typography>
+              </section>
+              {selectedList.length > 1 ? (
+                <Icon name='cross' className='delete-shadow-icon' onClick={deleteItem(key)} />
+              ) : null}
+            </Grid>
           }
         >
           <Slider
@@ -102,7 +108,7 @@ export const TextShadowPage = () => {
             value={blur}
             setValue={updateItem('blur', key)}
           />
-        </Accordion.Item>
+        </AccordionItem>
       )}
     >
       <TextShadowStyle

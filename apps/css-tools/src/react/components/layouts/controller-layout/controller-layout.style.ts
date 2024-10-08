@@ -49,7 +49,6 @@ export const ControllerLayoutStyle = styled.section`
       }
 
       &--subtitle {
-        font-family: monospace;
         display: none;
 
         @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
@@ -61,7 +60,9 @@ export const ControllerLayoutStyle = styled.section`
     &-body {
       padding: 10px 20px 20px;
       display: grid;
+      background: ${props => props.theme.colors.background.main};
       gap: 1em;
+      border-radius: 0 0 14px 14px;
     }
 
     .checkbox-inset {
@@ -99,12 +100,15 @@ export const ControllerStyle = styled.section`
   height: 100%;
   overflow: auto;
   border: 2px solid ${props => props.theme.colors.primary.main};
+  background: ${props => props.theme.colors.background.paper};
   border-radius: 15px;
 
   .controller-tabs {
     grid-area: tabs;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    border-radius: 13px 13px 0 0;
+    padding: 0.5em;
 
     &--tab {
       cursor: pointer;
@@ -130,7 +134,6 @@ export const ControllerStyle = styled.section`
     grid-area: controls;
     height: 100%;
     overflow: auto;
-    background: ${props => props.theme.colors.background.paper};
     backdrop-filter: blur(2px);
     padding: 10px;
 
@@ -155,7 +158,6 @@ export const ControllerStyle = styled.section`
     gap: 10px;
     grid-auto-columns: 1fr;
     padding: 10px;
-    background: ${props => props.theme.colors.background.paper};
     border-radius: 0 0 15px 15px;
 
     @media all and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {

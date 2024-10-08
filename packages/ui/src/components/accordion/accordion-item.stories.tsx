@@ -1,14 +1,16 @@
 import { Grid } from '../../layouts';
 import { Icon, IconNames } from '../icon';
-import { Typography, TypographyVariant } from '../typography';
+import { Line } from '../line';
+import { Typography } from '../typography';
 
 import { Accordion } from './accordion';
+import { AccordionItem } from './accordion-item';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-const meta: Meta<typeof Accordion.Item> = {
+const meta: Meta<typeof AccordionItem> = {
   title: 'Accordion/AccordionItem',
-  component: Accordion.Item,
+  component: AccordionItem,
   tags: ['autodocs'],
   argTypes: {
     children: { control: false },
@@ -17,23 +19,15 @@ const meta: Meta<typeof Accordion.Item> = {
     style: { control: false },
     icon: { control: 'select', options: [undefined, ...IconNames.toSorted()] },
     title: { control: 'text' },
-    titleVariant: {
-      control: 'inline-radio',
-      options: Object.values(TypographyVariant),
-    },
     subtitle: { control: 'text' },
-    subtitleVariant: {
-      control: 'inline-radio',
-      options: Object.values(TypographyVariant),
-    },
     startContent: { control: false },
     endContent: { control: false },
-    middleContent: { control: false },
+    content: { control: false },
   },
   args: {},
   render: args => (
     <Accordion>
-      <Accordion.Item {...args}>
+      <AccordionItem {...args}>
         <Typography variant='header4'>Title</Typography>
         <Typography>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam assumenda atque blanditiis commodi delectus
@@ -45,7 +39,7 @@ const meta: Meta<typeof Accordion.Item> = {
           deleniti distinctio excepturi explicabo facere fuga laboriosam natus nihil pariatur perspiciatis quaerat qui
           recusandae rerum sed, unde voluptatem.
         </Typography>
-      </Accordion.Item>
+      </AccordionItem>
     </Accordion>
   ),
   decorators: [
@@ -58,39 +52,66 @@ const meta: Meta<typeof Accordion.Item> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof Accordion.Item>;
+type Story = StoryObj<typeof AccordionItem>;
 
 export const Default: Story = {
   args: {
-    title: 'Item',
-    subtitle: 'Subtitle',
+    title: 'Accordion Item',
+    subtitle: 'Default with Title and Subtitle',
   },
 };
 
 export const LeftContent: Story = {
   args: {
-    title: 'Item',
-    subtitle: 'Subtitle',
-    startContent: isOpen => <Icon name={isOpen ? 'camera' : 'airplane'} />,
+    title: 'Accordion Item',
+    subtitle: 'Custom left content',
+    startContent: isOpen => (
+      <Grid
+        pc='center'
+        style={{
+          borderRadius: '8px',
+          color: `${isOpen ? 'tomato' : 'currentColor'}`,
+          border: '1px solid',
+          filter: `grayscale(${isOpen ? 0 : 1})`,
+          width: '40px',
+          height: '40px',
+        }}
+      >
+        <Icon name='airplane' />
+      </Grid>
+    ),
   },
 };
 
-export const MiddleContent: Story = {
+export const CustomContent: Story = {
+  argTypes: {
+    title: { control: false },
+    subtitle: { control: false },
+  },
   args: {
-    title: 'Item',
-    subtitle: 'Subtitle',
-    middleContent: ({ isOpen, title, subtitle }) => (
-      <section>
-        <Typography variant='body' weight='bold' noPadding>
-          {title}{' '}
-          <Typography variant='small' weight='light'>
-            ({subtitle})
+    content: isOpen => (
+      <Grid flow='column' gap='1em' ai='center' gtc='auto 1fr auto'>
+        <section>
+          <Typography variant='body' weight='bold' noPadding style={{ color: `${isOpen ? 'tomato' : 'currentColor'}` }}>
+            Accordion item
           </Typography>
-        </Typography>
-        <Typography variant='small'>
-          <Icon name={isOpen ? 'eye' : 'eye-hidden'} /> Is {isOpen ? 'Opened' : 'Closed'}
-        </Typography>
-      </section>
+          <Typography variant='small'>Custom content</Typography>
+        </section>
+        <Line />
+        <Grid
+          pc='center'
+          style={{
+            borderRadius: '8px',
+            color: `${isOpen ? 'tomato' : 'currentColor'}`,
+            border: '1px solid',
+            filter: `grayscale(${isOpen ? 0 : 1})`,
+            width: '40px',
+            height: '40px',
+          }}
+        >
+          <Icon name={isOpen ? 'eye' : 'eye-hidden'} />
+        </Grid>
+      </Grid>
     ),
   },
 };

@@ -118,18 +118,17 @@ export const ControllerLayout = <T,>({
     <Tabs defaultOpenTab='controls'>
       <ControllerLayoutStyle>
         <ControllerStyle>
-          <section className='controller-tabs'>
-            <Tabs.Tab className='controller-tabs--tab' id='controls'>
-              <Typography variant='label' weight='bold'>
-                {t('controls:controls')}
-              </Typography>
-            </Tabs.Tab>
-            <Tabs.Tab className='controller-tabs--tab' id='foreground'>
-              <Typography variant='label' weight='bold'>
-                {t('controls:foreground')}
-              </Typography>
-            </Tabs.Tab>
-          </section>
+          <Tabs.TabList
+            className='controller-tabs'
+            color='primary'
+            variant='flat'
+            radius='medium'
+            size='large'
+            tabs={[
+              { id: 'controls', label: t('controls:controls') },
+              { id: 'foreground', label: t('controls:foreground') },
+            ]}
+          />
 
           <Tabs.TabPanel id='controls'>
             <section className='controller-controls'>

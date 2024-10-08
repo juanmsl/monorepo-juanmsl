@@ -2,7 +2,8 @@ import { Grid } from '../../layouts';
 import { Typography } from '../typography';
 
 import { Accordion } from './accordion';
-import { MiddleContent as AccordionItemStories } from './accordion-item.stories';
+import { AccordionItem } from './accordion-item';
+import { CustomContent as AccordionItemStories } from './accordion-item.stories';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -34,14 +35,41 @@ type Story = StoryObj<typeof Accordion>;
 export const Default: Story = {
   args: {
     children: Array.from(new Array(10)).map((_, key) => (
-      <Accordion.Item {...AccordionItemStories.args} title={`Item ${key + 1}`} key={key}>
+      <AccordionItem {...AccordionItemStories.args} key={key}>
         <Typography variant='header4'>Title {key + 1}</Typography>
         <Typography>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam assumenda atque blanditiis commodi delectus
           deleniti distinctio excepturi explicabo facere fuga laboriosam natus nihil pariatur perspiciatis quaerat qui
           recusandae rerum sed, unde voluptatem.
         </Typography>
-      </Accordion.Item>
+      </AccordionItem>
+    )),
+  },
+};
+
+export const FAQ: Story = {
+  args: {
+    noSeparators: true,
+    style: {
+      gap: '1em',
+    },
+    children: Array.from(new Array(10)).map((_, key) => (
+      <AccordionItem
+        key={key}
+        title={`Is there a question #${key + 1}?`}
+        style={{
+          border: '1px solid',
+          borderRadius: '1em',
+          overflow: 'hidden',
+          padding: '0 1em',
+        }}
+      >
+        <Typography noPadding>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam assumenda atque blanditiis commodi delectus
+          deleniti distinctio excepturi explicabo facere fuga laboriosam natus nihil pariatur perspiciatis quaerat qui
+          recusandae rerum sed, unde voluptatem.
+        </Typography>
+      </AccordionItem>
     )),
   },
 };
