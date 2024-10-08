@@ -37,10 +37,6 @@ export const AccordionItemStyle = styled.section`
   }
 
   .accordion-body {
-    overflow: hidden;
-  }
-
-  .accordion-body-content {
     padding: 10px 0 20px;
   }
 `;

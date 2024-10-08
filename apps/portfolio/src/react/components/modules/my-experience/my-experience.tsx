@@ -1,5 +1,5 @@
 import { formatDate, timeBetween } from '@juanmsl/helpers';
-import { Accordion, Image, Typography } from '@juanmsl/ui';
+import { Accordion, AccordionItem, Image, Typography } from '@juanmsl/ui';
 import { motion } from 'framer-motion';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -42,21 +42,16 @@ export const MyExperience = () => {
 
         return (
           <Reveal delay={100 * key} key={key} width='100%'>
-            <Accordion.Item
-              title={name}
-              subtitle={`${formatDate(dateStart)} ${dateEnd ? '- ' + formatDate(dateEnd) : ''} (${timeBetween(
-                dateStart,
-                dateEnd,
-              )})`}
+            <AccordionItem
               startContent={() => (
                 <section className='company-logo'>
                   <Image src={icon} alt={name} />
                 </section>
               )}
-              middleContent={({ isOpen, title, subtitle }) => (
+              content={isOpen => (
                 <section className='accordion-header-content'>
                   <Typography variant='body' noPadding weight='bold'>
-                    {title}
+                    {name}
                   </Typography>
                   <motion.section
                     variants={{
@@ -78,13 +73,16 @@ export const MyExperience = () => {
                     </Typography>
                   </motion.section>
                   <Typography variant='label' noPadding weight='light'>
-                    {subtitle}
+                    {`${formatDate(dateStart)} ${dateEnd ? '- ' + formatDate(dateEnd) : ''} (${timeBetween(
+                      dateStart,
+                      dateEnd,
+                    )})`}
                   </Typography>
                 </section>
               )}
             >
               <CompanyDetails company={company} />
-            </Accordion.Item>
+            </AccordionItem>
           </Reveal>
         );
       }),
