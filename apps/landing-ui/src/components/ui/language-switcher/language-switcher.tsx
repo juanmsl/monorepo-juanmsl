@@ -14,7 +14,6 @@ export const LanguageSwitcher = () => {
   const [count, setCount] = useState(0);
 
   const handleChange = e => {
-    console.log('changing');
     setCount(prev => prev + 1);
     const newLocale = e.target.value;
 
@@ -29,10 +28,6 @@ export const LanguageSwitcher = () => {
     if (currentLocale === i18nConfig.defaultLocale && !i18nConfig.prefixDefault) {
       router.push('/' + newLocale + currentPathname);
     } else {
-      console.log({
-        prev: currentPathname,
-        next: currentPathname.replace(`/${currentLocale}`, `/${newLocale}`),
-      });
       router.push(currentPathname.replace(`/${currentLocale}`, `/${newLocale}`));
     }
 
