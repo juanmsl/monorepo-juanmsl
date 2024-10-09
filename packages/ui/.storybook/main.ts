@@ -23,19 +23,23 @@ const config: StorybookConfig = {
       files: '**/*.@(mdx|stories.@(mdx|js|jsx|mjs|ts|tsx))',
     },
   ],
-  addons: [
-    {
-      name: getAbsolutePath('@storybook/addon-essentials'),
-      options: {
-        actions: false,
-      },
+
+  addons: [{
+    name: getAbsolutePath('@storybook/addon-essentials'),
+    options: {
+      actions: false,
     },
-    getAbsolutePath('@storybook/addon-links'),
-    getAbsolutePath('@storybook/addon-interactions'),
-  ],
+  }, getAbsolutePath('@storybook/addon-links'), getAbsolutePath('@storybook/addon-interactions'), getAbsolutePath("@storybook/addon-mdx-gfm"), '@chromatic-com/storybook'],
+
   framework: {
     name: getAbsolutePath('@storybook/react-vite'),
     options: {},
   },
+
+  docs: {},
+
+  typescript: {
+    reactDocgen: 'react-docgen-typescript'
+  }
 };
 export default config;
