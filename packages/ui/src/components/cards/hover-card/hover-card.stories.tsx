@@ -8,7 +8,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof HoverCard> = {
   title: 'Cards/HoverCard',
   component: HoverCard,
-  tags: ['autodocs'],
   argTypes: {
     className: { control: false },
     width: { control: 'inline-radio', options: ['fit-content', '100%'] },

@@ -9,7 +9,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof InputFile> = {
   title: 'Form/InputFile',
   component: InputFile,
-  tags: ['autodocs'],
   argTypes: {
     ...UnControlledComponentArgTypes,
     label: { control: 'text' },

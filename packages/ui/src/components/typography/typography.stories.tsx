@@ -8,7 +8,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof Typography> = {
   title: 'Typography',
   component: Typography,
-  tags: ['autodocs'],
   argTypes: {
     variant: { control: 'inline-radio', options: Object.values(TypographyVariant) },
     weight: { control: 'inline-radio', options: Object.values(TypographyWeight) },

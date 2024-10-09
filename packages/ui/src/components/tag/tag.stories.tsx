@@ -7,7 +7,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof Tag> = {
   title: 'Tag',
   component: Tag,
-  tags: ['autodocs'],
   argTypes: {
     isSelected: { control: 'boolean' },
     children: { control: 'text' },

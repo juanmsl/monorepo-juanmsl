@@ -20,7 +20,6 @@ export const FieldSharedArgs: StoryObj<typeof Field>['args'] = {
 const meta: Meta<typeof Field> = {
   title: 'Form/Field',
   component: Field,
-  tags: ['autodocs'],
   includeStories: ['Default'],
   excludeStories: /.*Shared*$/,
   argTypes: {

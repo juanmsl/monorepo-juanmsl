@@ -13,7 +13,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof Icon> = {
   title: 'Icon',
   component: Icon,
-  tags: ['autodocs'],
   argTypes: {
     name: { options: [undefined, ...IconNames.toSorted()] },
     fill: { control: 'color' },

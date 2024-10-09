@@ -5,7 +5,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof Image> = {
   title: 'Image',
   component: Image,
-  tags: ['autodocs'],
   argTypes: {
     src: { control: { type: 'text' } },
     alt: { control: { type: 'text' } },

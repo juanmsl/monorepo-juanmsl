@@ -13,7 +13,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof ActionModal> = {
   title: 'Modals/ActionModal',
   component: ActionModal,
-  tags: ['autodocs'],
   argTypes: {
     isOpen: { control: false },
     onClose: { control: false },

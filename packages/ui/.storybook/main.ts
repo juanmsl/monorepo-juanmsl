@@ -24,22 +24,24 @@ const config: StorybookConfig = {
     },
   ],
 
-  addons: [{
-    name: getAbsolutePath('@storybook/addon-essentials'),
-    options: {
-      actions: false,
+  addons: [
+    {
+      name: getAbsolutePath('@storybook/addon-essentials'),
+      options: {
+        actions: false,
+      },
     },
-  }, getAbsolutePath('@storybook/addon-links'), getAbsolutePath('@storybook/addon-interactions'), getAbsolutePath("@storybook/addon-mdx-gfm"), '@chromatic-com/storybook'],
+    getAbsolutePath('@storybook/addon-links'),
+    getAbsolutePath('@storybook/addon-interactions'),
+  ],
 
   framework: {
     name: getAbsolutePath('@storybook/react-vite'),
     options: {},
   },
 
-  docs: {},
-
   typescript: {
-    reactDocgen: 'react-docgen-typescript'
-  }
+    reactDocgen: 'react-docgen-typescript',
+  },
 };
 export default config;

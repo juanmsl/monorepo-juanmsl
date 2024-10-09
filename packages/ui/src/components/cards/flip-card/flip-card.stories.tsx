@@ -8,7 +8,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof FlipCard> = {
   title: 'Cards/FlipCard',
   component: FlipCard,
-  tags: ['autodocs'],
   argTypes: {
     cardZIndex: { control: false },
     flipDirection: {

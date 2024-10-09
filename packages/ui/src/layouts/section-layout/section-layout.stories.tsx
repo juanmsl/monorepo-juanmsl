@@ -10,7 +10,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof SectionLayout> = {
   title: 'Section',
   component: SectionLayout,
-  tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
   },

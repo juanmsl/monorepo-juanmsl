@@ -10,7 +10,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof InputColor> = {
   title: 'Form/InputColor',
   component: InputColor,
-  tags: ['autodocs'],
   argTypes: {
     ...FieldSharedArgTypes,
     ...UnControlledComponentArgTypes,

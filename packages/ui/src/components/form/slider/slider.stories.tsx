@@ -10,7 +10,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof Slider> = {
   title: 'Form/Slider',
   component: Slider,
-  tags: ['autodocs'],
   argTypes: {
     ...FieldSharedArgTypes,
     ...UnControlledComponentArgTypes,
