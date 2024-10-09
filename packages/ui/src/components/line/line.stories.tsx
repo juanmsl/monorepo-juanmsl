@@ -8,7 +8,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof Line> = {
   title: 'Line',
   component: Line,
-  tags: ['autodocs'],
   argTypes: {
     orientation: { control: false },
     className: { control: false },

@@ -10,7 +10,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof DatePicker> = {
   title: 'Form/DatePicker',
   component: DatePicker,
-  tags: ['autodocs'],
   argTypes: {
     ...FieldSharedArgTypes,
     ...UnControlledComponentArgTypes,

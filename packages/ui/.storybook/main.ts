@@ -23,6 +23,7 @@ const config: StorybookConfig = {
       files: '**/*.@(mdx|stories.@(mdx|js|jsx|mjs|ts|tsx))',
     },
   ],
+
   addons: [
     {
       name: getAbsolutePath('@storybook/addon-essentials'),
@@ -33,9 +34,14 @@ const config: StorybookConfig = {
     getAbsolutePath('@storybook/addon-links'),
     getAbsolutePath('@storybook/addon-interactions'),
   ],
+
   framework: {
     name: getAbsolutePath('@storybook/react-vite'),
     options: {},
+  },
+
+  typescript: {
+    reactDocgen: 'react-docgen-typescript',
   },
 };
 export default config;

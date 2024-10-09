@@ -10,7 +10,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof Radio> = {
   title: 'Form/Radio',
   component: Radio,
-  tags: ['autodocs'],
   argTypes: {
     ...UnControlledComponentArgTypes,
     label: { control: 'text' },

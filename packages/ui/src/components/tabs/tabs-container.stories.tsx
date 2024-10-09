@@ -9,7 +9,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof Tabs.TabList> = {
   title: 'Tabs/Tab List',
   component: Tabs.TabList,
-  tags: ['autodocs'],
   argTypes: {
     variant: { control: 'inline-radio', options: Object.values(TabListVariant) },
     size: { control: 'inline-radio', options: Object.values(TabListSize) },

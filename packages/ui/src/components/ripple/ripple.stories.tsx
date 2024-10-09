@@ -5,7 +5,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof Ripple> = {
   title: 'Ripple',
   component: Ripple,
-  tags: ['autodocs'],
   argTypes: {
     color: { control: 'color' },
     duration: { control: { type: 'range', min: 500, max: 5000, step: 100 } },

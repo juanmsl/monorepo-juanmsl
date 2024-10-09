@@ -7,7 +7,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof Tooltip> = {
   title: 'Tooltips/Tooltip',
   component: Tooltip,
-  tags: ['autodocs'],
   argTypes: {
     position: { control: 'inline-radio', options: Object.values(POSITION) },
     offset: { control: { type: 'range', min: 0, max: 200, step: 1 } },

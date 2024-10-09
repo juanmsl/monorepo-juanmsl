@@ -10,7 +10,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof InfinityScroll> = {
   title: 'InfinityScroll',
   component: InfinityScroll,
-  tags: ['autodocs'],
   argTypes: {
     isLoading: { control: 'boolean' },
     hasNextPage: { control: 'boolean' },

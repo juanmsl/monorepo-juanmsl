@@ -10,7 +10,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof InputPassword> = {
   title: 'Form/InputPassword',
   component: InputPassword,
-  tags: ['autodocs'],
   argTypes: {
     ...FieldSharedArgTypes,
     ...UnControlledComponentArgTypes,

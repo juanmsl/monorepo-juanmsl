@@ -8,7 +8,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof SlideCard> = {
   title: 'Cards/SlideCard',
   component: SlideCard,
-  tags: ['autodocs'],
   argTypes: {
     children: { control: false },
     className: { control: false },

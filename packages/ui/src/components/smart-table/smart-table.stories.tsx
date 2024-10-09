@@ -250,7 +250,6 @@ const users = [
 const meta: Meta<typeof SmartTable> = {
   title: 'Smart Table',
   component: SmartTable,
-  tags: ['autodocs'],
   argTypes: {
     columns: { control: false },
     data: { control: false },

@@ -11,7 +11,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof Tabs> = {
   title: 'Tabs/Custom Tabs',
   component: Tabs,
-  tags: ['autodocs'],
   argTypes: {},
   args: {},
   render: () => {

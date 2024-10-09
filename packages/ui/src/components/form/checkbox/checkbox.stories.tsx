@@ -10,7 +10,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof Checkbox> = {
   title: 'Form/Checkbox',
   component: Checkbox,
-  tags: ['autodocs'],
   argTypes: {
     ...UnControlledComponentArgTypes,
     placeholder: { table: { disable: true } },

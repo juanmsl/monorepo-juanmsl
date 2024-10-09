@@ -22,13 +22,17 @@ const preview: Preview = {
       },
     },
   },
+
   globalTypes: {
     ...DecoratorGlobalTypes,
   },
+
   initialGlobals: {
     theme: 'dark',
   },
+
   decorators,
+  tags: ['autodocs'],
 };
 
 export default preview;

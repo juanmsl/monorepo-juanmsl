@@ -11,7 +11,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof AsideModal> = {
   title: 'Modals/AsideModal',
   component: AsideModal,
-  tags: ['autodocs'],
   argTypes: {
     isOpen: { control: false },
     onClose: { control: false },

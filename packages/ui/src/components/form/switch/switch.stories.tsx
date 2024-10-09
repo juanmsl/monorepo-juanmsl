@@ -10,7 +10,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof Switch> = {
   title: 'Form/Switch',
   component: Switch,
-  tags: ['autodocs'],
   argTypes: {
     ...UnControlledComponentArgTypes,
     label: { control: 'text' },

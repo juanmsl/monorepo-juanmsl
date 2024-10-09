@@ -7,7 +7,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof ClickToCopy> = {
   title: 'Tooltips/ClickToCopy',
   component: ClickToCopy,
-  tags: ['autodocs'],
   argTypes: {
     position: TooltipStory.argTypes?.position,
     offset: TooltipStory.argTypes?.offset,
