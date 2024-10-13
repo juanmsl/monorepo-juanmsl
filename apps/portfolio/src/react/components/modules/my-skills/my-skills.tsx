@@ -35,13 +35,15 @@ export const MySkills = () => {
       <section className='skills-labels'>
         {technologies.map((technology, key) => (
           <Tooltip content={technology.name} key={key}>
-            <Reveal key={key} delay={(key + 1) * 50}>
-              <Image
-                className={`technology-icon ${hoveredCategory.includes(technology.name) ? 'is-selected' : ''}`}
-                src={technology.icon}
-                alt={technology.name}
-              />
-            </Reveal>
+            <span>
+              <Reveal key={key} delay={(key + 1) * 50}>
+                <Image
+                  className={`technology-icon ${hoveredCategory.includes(technology.name) ? 'is-selected' : ''}`}
+                  src={technology.icon}
+                  alt={technology.name}
+                />
+              </Reveal>
+            </span>
           </Tooltip>
         ))}
       </section>

@@ -1,5 +1,4 @@
-import { AboutMe, MyExperience, MySkills } from '@components/modules';
-import { Characteristics } from '@components/modules/characteristics';
+import { AboutMe, Characteristics, MyExperience, MyProjects, MySkills } from '@components/modules';
 import { HomeHeader } from '@components/ui';
 
 export const Home = () => {
@@ -10,6 +9,7 @@ export const Home = () => {
       <MySkills />
       <Characteristics />
       <MyExperience />
+      <MyProjects />
     </>
   );
 };

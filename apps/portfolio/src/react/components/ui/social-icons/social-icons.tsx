@@ -17,11 +17,13 @@ export const SocialIcons = ({ position, gap = '20px' }: SocialIconsProps) => {
     <SocialIconsStyle $gap={gap}>
       {icons.map(({ icon, url, name }, key) => (
         <Tooltip content={isPending ? 'Is pending' : name} position={position} key={key}>
-          <Reveal delay={key * 100}>
-            <a href={url} target='_blank' rel='noopener' className='social-icon'>
-              <Icon name={icon as IconNameT} />
-            </a>
-          </Reveal>
+          <span>
+            <Reveal delay={key * 100}>
+              <a href={url} target='_blank' rel='noopener' className='social-icon'>
+                <Icon name={icon as IconNameT} />
+              </a>
+            </Reveal>
+          </span>
         </Tooltip>
       ))}
     </SocialIconsStyle>

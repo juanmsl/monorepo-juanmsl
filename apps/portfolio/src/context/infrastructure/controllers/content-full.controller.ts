@@ -34,4 +34,8 @@ export class ContentFullAPI implements ContentFullPort {
   getNavbarOptions(locale: string) {
     return this.adapter.getNavbarOptions(locale);
   }
+
+  getProjects(locale: string) {
+    return this.adapter.getProjects(locale);
+  }
 }

@@ -12,6 +12,8 @@ import {
   NavbarOptionInstance,
   ProfessionalSkillInstance,
   ProfessionalSkillsEntity,
+  ProjectEntity,
+  ProjectInstance,
   TechnologyEntity,
   TechnologyInstance,
 } from '@domain';
@@ -57,6 +59,12 @@ export class ContentFullMockAdapter implements ContentFullPort {
   getNavbarOptions() {
     return new Promise<Array<NavbarOptionEntity>>(resolve => {
       setTimeout(() => resolve(NavbarOptionInstance), ContentFullMockAdapter.timeout);
+    });
+  }
+
+  getProjects() {
+    return new Promise<Array<ProjectEntity>>(resolve => {
+      setTimeout(() => resolve(ProjectInstance), ContentFullMockAdapter.timeout);
     });
   }
 }

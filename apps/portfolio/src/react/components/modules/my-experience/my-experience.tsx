@@ -1,7 +1,7 @@
 import { formatDate, timeBetween } from '@juanmsl/helpers';
-import { Accordion, AccordionItem, Image, Typography } from '@juanmsl/ui';
+import { Accordion, AccordionItem, Image, Tabs, Typography } from '@juanmsl/ui';
 import { motion } from 'framer-motion';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { CompanyDetails } from './company-details';
@@ -15,15 +15,13 @@ import { useGetJobExperience } from '@hooks';
 export const MyExperience = () => {
   const { t } = useTranslation();
   const { data: jobExperience = [] } = useGetJobExperience();
-  const [index, setIndex] = useState<number>(0);
 
   const renderedCompanies = useMemo(
     () =>
       jobExperience.map(({ name, dateStart, dateEnd }, key) => (
         <Reveal delay={100 * key} key={key} width='100%'>
           <CompanyListItem
-            isSelected={jobExperience?.[index]?.name === name}
-            onClick={() => setIndex(key)}
+            id={name}
             title={name}
             subtitle={`${formatDate(dateStart)} ${dateEnd ? '- ' + formatDate(dateEnd) : ''} (${timeBetween(
               dateStart,
@@ -32,7 +30,7 @@ export const MyExperience = () => {
           />
         </Reveal>
       )),
-    [index, jobExperience],
+    [jobExperience],
   );
 
   const renderedMobileCompanies = useMemo(
@@ -50,7 +48,7 @@ export const MyExperience = () => {
               )}
               content={isOpen => (
                 <section className='accordion-header-content'>
-                  <Typography variant='body' noPadding weight='bold'>
+                  <Typography variant='header4' noPadding>
                     {name}
                   </Typography>
                   <motion.section
@@ -68,11 +66,11 @@ export const MyExperience = () => {
                     initial='closed'
                     animate={isOpen ? 'open' : 'closed'}
                   >
-                    <Typography className='position' variant='header4' noPadding weight='bold'>
+                    <Typography className='position' variant='body' noPadding weight='bold'>
                       {position}
                     </Typography>
                   </motion.section>
-                  <Typography variant='label' noPadding weight='light'>
+                  <Typography variant='small' noPadding>
                     {`${formatDate(dateStart)} ${dateEnd ? '- ' + formatDate(dateEnd) : ''} (${timeBetween(
                       dateStart,
                       dateEnd,
@@ -90,17 +88,23 @@ export const MyExperience = () => {
   );
 
   return (
-    <MyExperienceStyle>
-      <SectionTitle>{t('home:myExperience.title')}</SectionTitle>
-      <Accordion className='mobile-experience'>{renderedMobileCompanies}</Accordion>
-      <section className='laptop-experience'>
-        <section className='companies-list'>{renderedCompanies}</section>
-        <section className='company-details'>
-          <LoaderComponent isPending={!jobExperience?.[index]}>
-            <CompanyDetails company={jobExperience[index]} key={index} />
-          </LoaderComponent>
-        </section>
-      </section>
+    <MyExperienceStyle contentClassName='layout-content'>
+      <LoaderComponent isPending={jobExperience.length === 0}>
+        <Tabs defaultOpenTab={jobExperience[0]?.name}>
+          <SectionTitle>{t('home:myExperience.title')}</SectionTitle>
+          <Accordion className='mobile-experience'>{renderedMobileCompanies}</Accordion>
+          <section className='laptop-experience'>
+            <section className='companies-list'>{renderedCompanies}</section>
+            <section className='company-details'>
+              {jobExperience.map((experience, key) => (
+                <Tabs.TabPanel id={experience.name} key={key}>
+                  <CompanyDetails company={experience} />
+                </Tabs.TabPanel>
+              ))}
+            </section>
+          </section>
+        </Tabs>
+      </LoaderComponent>
     </MyExperienceStyle>
   );
 };

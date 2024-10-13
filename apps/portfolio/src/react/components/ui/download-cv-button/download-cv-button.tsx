@@ -1,6 +1,5 @@
 import { Button, HoverCard } from '@juanmsl/ui';
 
-import { Reveal } from '@components/animations';
 import { ENV } from '@core/env';
 import { useAsset } from '@hooks';
 
@@ -18,16 +17,14 @@ export const DownloadCvButton = ({ children, width }: DownloadCvButtonProps) => 
 
   return (
     <HoverCard translationZ={15} width={width}>
-      <Reveal delay={700} width={width}>
-        <Button
-          color='primary'
-          width={width === 'fit-content' ? 'fit' : 'full'}
-          leftIcon='download'
-          onClick={handleClick}
-        >
-          {children}
-        </Button>
-      </Reveal>
+      <Button
+        color='primary'
+        width={width === 'fit-content' ? 'fit' : 'full'}
+        leftIcon='download'
+        onClick={handleClick}
+      >
+        {children}
+      </Button>
     </HoverCard>
   );
 };

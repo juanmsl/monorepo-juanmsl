@@ -8,6 +8,7 @@ import {
   JobExperienceCollection,
   NavbarOptionCollection,
   ProfessionalSkillsCollection,
+  ProjectCollection,
   QueryAssetResponse,
   QueryResponse,
   TechnologiesCollection,
@@ -197,5 +198,39 @@ export class ContentFullAdapter implements ContentFullPort {
     });
 
     return data.data.navbarOptionCollection.items;
+  }
+
+  async getProjects(locale: string) {
+    const { data } = await this.http<QueryResponse<{ projectCollection: ProjectCollection }>>({
+      data: {
+        query: `
+          query($locale: String) {
+            projectCollection(locale:$locale) {
+              items {
+                name
+                description
+                urls
+                pictures: picturesCollection {
+                  items {
+                    url
+                    title
+                  }
+                }
+                technologies: technologiesCollection {
+                  items {
+                    name
+                  }
+                }
+              }
+            }
+          }
+        `,
+        variables: {
+          locale: locale,
+        },
+      },
+    });
+
+    return data.data.projectCollection.items;
   }
 }
