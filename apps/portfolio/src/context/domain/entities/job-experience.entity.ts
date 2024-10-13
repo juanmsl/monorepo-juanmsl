@@ -1,4 +1,5 @@
 import { QueryCollection } from './content-full.entity';
+import { LinkCollection } from './link.entity';
 import { TechnologyEntity } from './technology.entity';
 
 export type JobExperienceEntity = {
@@ -9,10 +10,7 @@ export type JobExperienceEntity = {
   technologies: QueryCollection<Pick<TechnologyEntity, 'name'>>;
   position: string;
   icon: string;
-  links: Array<{
-    url: string;
-    icon: string;
-  }>;
+  links: LinkCollection;
   order: number;
 };
 

@@ -58,7 +58,13 @@ export class ContentFullAdapter implements ContentFullPort {
                 dateEnd
                 position
                 description
-                links
+                links: linksCollection {
+                  items {
+                    url
+                    label
+                    icon
+                  }
+                }
                 icon
                 technologies: technologiesCollection {
                   items {
@@ -209,7 +215,13 @@ export class ContentFullAdapter implements ContentFullPort {
               items {
                 name
                 description
-                urls
+                links: linksCollection {
+                  items {
+                    url
+                    label
+                    icon
+                  }
+                }
                 pictures: picturesCollection {
                   items {
                     url

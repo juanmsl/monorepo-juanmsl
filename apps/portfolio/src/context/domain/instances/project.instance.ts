@@ -1,4 +1,4 @@
-import { ProjectEntity } from '@domain';
+import { LinkInstance, ProjectEntity } from '@domain';
 
 export const ProjectInstance: Array<ProjectEntity> = [
   {
@@ -13,7 +13,9 @@ export const ProjectInstance: Array<ProjectEntity> = [
     technologies: {
       items: [{ name: 'React' }, { name: 'Next.js' }, { name: 'TypeScript' }, { name: 'Redux' }, { name: 'GraphQL' }],
     },
-    urls: ['https://github.com/juanmnl/portfolio'],
+    urls: {
+      items: LinkInstance,
+    },
     description: 'This is a description of the project 1',
   },
 ];

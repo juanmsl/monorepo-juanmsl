@@ -1,5 +1,5 @@
 import { formatDate, timeBetween } from '@juanmsl/helpers';
-import { Grid, HoverCard, Icon, IconNameT, Image, Tag, Typography } from '@juanmsl/ui';
+import { Grid, HoverCard, Icon, IconNameT, Image, Tag, Tooltip, Typography } from '@juanmsl/ui';
 
 import { CompanyDetailsStyle } from './my-experience.style';
 
@@ -27,10 +27,12 @@ export const CompanyDetails = ({ company }: CompanyItemProps) => {
               {name}
             </Typography>
             <Grid flow='column' gap='1em'>
-              {links.map(({ icon, url }, key) => (
-                <a href={url} target='_blank' rel='noopener' key={key}>
-                  <Icon name={icon as IconNameT} />
-                </a>
+              {links.items.map(({ icon, url, label }, key) => (
+                <Tooltip content={label} key={key}>
+                  <a href={url} target='_blank' rel='noopener' key={key}>
+                    <Icon name={icon as IconNameT} />
+                  </a>
+                </Tooltip>
               ))}
             </Grid>
           </Grid>
