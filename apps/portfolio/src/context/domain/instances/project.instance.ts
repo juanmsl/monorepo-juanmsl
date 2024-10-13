@@ -13,7 +13,7 @@ export const ProjectInstance: Array<ProjectEntity> = [
     technologies: {
       items: [{ name: 'React' }, { name: 'Next.js' }, { name: 'TypeScript' }, { name: 'Redux' }, { name: 'GraphQL' }],
     },
-    urls: {
+    links: {
       items: LinkInstance,
     },
     description: 'This is a description of the project 1',
