@@ -1,6 +1,5 @@
+import { SectionLayout, Tabs } from '@juanmsl/ui';
 import styled from 'styled-components';
-
-import { SectionLayout } from '@components/layouts';
 
 export const MyExperienceStyle = styled(SectionLayout)`
   .layout-content {
@@ -13,13 +12,17 @@ export const MyExperienceStyle = styled(SectionLayout)`
       display: none;
     }
 
+    h4 {
+      transition: color 300ms ease;
+    }
+
+    .is-open h4 {
+      color: ${props => props.theme.colors.primary.main};
+    }
+
     .accordion-header-content {
       display: grid;
       gap: 2px;
-    }
-
-    .position {
-      color: ${props => props.theme.colors.primary.main};
     }
   }
 
@@ -77,7 +80,7 @@ export const MyExperienceStyle = styled(SectionLayout)`
   }
 `;
 
-export const CompaniesListItemStyle = styled.section`
+export const CompaniesListItemStyle = styled(Tabs.Tab)`
   cursor: pointer;
   display: grid;
   gap: 4px;
@@ -86,7 +89,7 @@ export const CompaniesListItemStyle = styled.section`
     all 300ms ease;
 
   &:hover,
-  &.selected {
+  &.is-open {
     color: ${props => props.theme.colors.primary.main};
     border-left: 3px solid;
     padding-left: 10px;

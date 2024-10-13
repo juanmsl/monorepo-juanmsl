@@ -8,6 +8,7 @@ import {
   JobExperienceEntity,
   NavbarOptionEntity,
   ProfessionalSkillsEntity,
+  ProjectEntity,
   TechnologyEntity,
 } from '@domain';
 import { ContentFullAPI, ContentFullAdapter } from '@infrastructure';
@@ -32,6 +33,9 @@ export const ContentFullKeys = {
 
   allNavbarOptions: () => [...ContentFullKeys.all, 'navbar-options'] as const,
   navbarOptionsLocale: (locale: string) => [...ContentFullKeys.allNavbarOptions(), locale] as const,
+
+  allProjects: () => [...ContentFullKeys.all, 'projects'] as const,
+  projectsLocale: (locale: string) => [...ContentFullKeys.allProjects(), locale] as const,
 
   allAssets: () => [...ContentFullKeys.all, 'assets'] as const,
   assetId: (assetId: string) => [...ContentFullKeys.allAssets(), 'asset', assetId] as const,
@@ -110,5 +114,16 @@ export const useGetNavbarOptions = (): UseQueryResult<Array<NavbarOptionEntity>>
   return useQuery({
     queryKey: ContentFullKeys.navbarOptionsLocale(i18n.languages[0]),
     queryFn: () => controllerAPI.getNavbarOptions(i18n.languages[0]),
+  });
+};
+
+export const useGetProjects = (): UseQueryResult<Array<ProjectEntity>> => {
+  const adapter = new ContentFullAdapter();
+  const controllerAPI = new ContentFullAPI(adapter);
+  const { i18n } = useTranslation();
+
+  return useQuery({
+    queryKey: ContentFullKeys.projectsLocale(i18n.languages[0]),
+    queryFn: () => controllerAPI.getProjects(i18n.languages[0]),
   });
 };

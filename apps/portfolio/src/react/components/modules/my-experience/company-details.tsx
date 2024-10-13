@@ -1,5 +1,5 @@
 import { formatDate, timeBetween } from '@juanmsl/helpers';
-import { HoverCard, Image, Tag, Typography } from '@juanmsl/ui';
+import { Grid, HoverCard, Icon, IconNameT, Image, Tag, Typography } from '@juanmsl/ui';
 
 import { CompanyDetailsStyle } from './my-experience.style';
 
@@ -11,7 +11,7 @@ type CompanyItemProps = {
 };
 
 export const CompanyDetails = ({ company }: CompanyItemProps) => {
-  const { description, name, position, dateStart, dateEnd, icon, technologies } = company;
+  const { description, name, position, dateStart, dateEnd, icon, links, technologies } = company;
 
   return (
     <CompanyDetailsStyle>
@@ -22,10 +22,19 @@ export const CompanyDetails = ({ company }: CompanyItemProps) => {
           </HoverCard>
         </section>
         <section className='company-details-header--content'>
-          <Typography className='company-details-name' variant='label' noPadding>
-            {name}
-          </Typography>
-          <Typography className='company-details-position' variant='header4' noPadding>
+          <Grid flow='column' gap='1em' jc='start' ai='center'>
+            <Typography className='company-details-name' variant='header4' noPadding>
+              {name}
+            </Typography>
+            <Grid flow='column' gap='1em'>
+              {links.map(({ icon, url }, key) => (
+                <a href={url} target='_blank' rel='noopener' key={key}>
+                  <Icon name={icon as IconNameT} />
+                </a>
+              ))}
+            </Grid>
+          </Grid>
+          <Typography className='company-details-position' variant='body' weight='bold' noPadding>
             {position}
           </Typography>
           <Typography className='company-details-time' variant='small' noPadding>

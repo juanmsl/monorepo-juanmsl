@@ -8,19 +8,24 @@ export const ThemeSelector = () => {
   const { themeName, toggleTheme } = useMyTheme();
 
   return (
-    <Tooltip
-      content={t('utility:themeSelector.changeTheme', { theme: t(`common:themes.${themeName}`) })}
-      position='left'
+    <ToggleSelector
+      position={themeName === 'dark' ? 'left' : 'right'}
+      tooltipPosition='bottom'
+      toggle={toggleTheme}
+      orientation='vertical'
     >
-      <ToggleSelector
-        position={themeName === 'dark' ? 'left' : 'right'}
-        tooltipPosition='bottom'
-        toggle={toggleTheme}
-        orientation='vertical'
+      <Tooltip
+        content={t('utility:themeSelector.changeTheme', { theme: t(`common:themes.${themeName}`) })}
+        position='left'
       >
         <Icon name='moon' />
+      </Tooltip>
+      <Tooltip
+        content={t('utility:themeSelector.changeTheme', { theme: t(`common:themes.${themeName}`) })}
+        position='left'
+      >
         <Icon name='sun' />
-      </ToggleSelector>
-    </Tooltip>
+      </Tooltip>
+    </ToggleSelector>
   );
 };

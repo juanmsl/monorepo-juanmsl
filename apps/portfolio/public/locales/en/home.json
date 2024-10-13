@@ -16,5 +16,9 @@
   },
   "myExperience": {
     "title": "My Experience"
+  },
+  "myProjects": {
+    "title": "My Projects",
+    "viewAll": "View all projects"
   }
 }
