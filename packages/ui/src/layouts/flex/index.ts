@@ -1,1 +1,1 @@
-export * from '../../../../../../packages/ui/src/layouts/flex/flex';
+export * from './flex';

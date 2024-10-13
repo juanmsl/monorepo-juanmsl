@@ -10,7 +10,7 @@ import {
 
 type TypographyProps = HTMLAttributes<HTMLElement | HTMLLabelElement> & {
   variant?: `${TypographyVariant}`;
-  nowrap?: boolean;
+  nowrap?: boolean | number;
   as?: keyof React.ReactHTML;
   weight?: `${TypographyWeight}`;
   children: React.ReactNode;
@@ -18,6 +18,7 @@ type TypographyProps = HTMLAttributes<HTMLElement | HTMLLabelElement> & {
   htmlFor?: string;
   align?: React.CSSProperties['textAlign'];
   family?: 'primary' | 'code';
+  recommendedWith?: boolean;
 };
 
 export const TypographyComponent = (
@@ -33,6 +34,7 @@ export const TypographyComponent = (
     noPadding = false,
     align,
     htmlFor,
+    recommendedWith = false,
     ...props
   }: TypographyProps,
   ref: React.ForwardedRef<unknown>,
@@ -43,7 +45,13 @@ export const TypographyComponent = (
     [weight ?? '']: !!weight,
     'no-padding': noPadding,
     'code-family': family === 'code',
-    nowrap: nowrap,
+    'recommended-with': recommendedWith,
+    'nowrap-max-lines': typeof nowrap === 'number',
+    'nowrap-max-lines-2': nowrap === 2,
+    'nowrap-max-lines-3': nowrap === 3,
+    'nowrap-max-lines-4': nowrap === 4,
+    'nowrap-max-lines-5': nowrap === 5,
+    nowrap: nowrap === true,
   });
 
   const component = useMemo(

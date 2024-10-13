@@ -21,21 +21,8 @@ export const CustomCursorStyle = styled.span`
     box-sizing: border-box;
     z-index: 100;
     opacity: 0.5;
-    transition: all 0.08s ease-out;
-
-    &.cursor-hover {
-      opacity: 0;
-    }
-  }
-
-  &.inner-circle {
-    margin-left: -3px;
-    margin-top: -3px;
-    width: 6px;
-    height: 6px;
-    z-index: 100;
-    background-color: ${props => props.theme.colors.primary.main};
     transition:
+      all 0.08s ease-out,
       width 0.3s ease-in-out,
       height 0.3s ease-in-out,
       margin 0.3s ease-in-out,
@@ -48,6 +35,21 @@ export const CustomCursorStyle = styled.span`
       height: 80px;
       background-color: ${props => props.theme.colors.primary.main};
       opacity: 0.3;
+    }
+  }
+
+  &.inner-circle {
+    margin-left: -3px;
+    margin-top: -3px;
+    width: 6px;
+    height: 6px;
+    z-index: 100;
+    background-color: ${props => props.theme.colors.primary.main};
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+
+    &.cursor-hover {
+      opacity: 0;
     }
   }
 `;
