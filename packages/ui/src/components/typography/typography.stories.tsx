@@ -12,6 +12,7 @@ const meta: Meta<typeof Typography> = {
     variant: { control: 'inline-radio', options: Object.values(TypographyVariant) },
     weight: { control: 'inline-radio', options: Object.values(TypographyWeight) },
     nowrap: { control: 'boolean' },
+    recommendedWith: { control: 'boolean' },
     as: { control: false },
     children: { control: 'text' },
     noPadding: { control: 'boolean' },

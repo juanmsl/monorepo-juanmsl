@@ -1,6 +1,6 @@
-import { Flex } from '../../layouts/flex/flex';
+import { Flex } from '../../layouts';
 
-import { Tag } from './tag';
+import { Tag, TagSize } from './tag';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -10,6 +10,8 @@ const meta: Meta<typeof Tag> = {
   argTypes: {
     isSelected: { control: 'boolean' },
     children: { control: 'text' },
+    size: { control: 'inline-radio', options: Object.values(TagSize) },
+    rounded: { control: 'boolean' },
   },
   args: {
     children: 'Tag',
