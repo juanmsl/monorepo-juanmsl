@@ -11,17 +11,23 @@ export const AboutMe = () => {
 
   return (
     <>
-      <AboutMeStyle>
+      <AboutMeStyle contentClassName='layout-content'>
         <section className='left'>
           <ProfilePicture />
         </section>
         <section className='right'>
           <SectionTitle>{t('home:aboutMe.title')}</SectionTitle>
           <Typography variant='header4'>{t('home:aboutMe.subtitle1')}</Typography>
-          <Typography variant='body'>{t('home:aboutMe.text1')}</Typography>
-          <Typography variant='body'>{t('home:aboutMe.text2')}</Typography>
+          <Typography variant='body' recommendedWith>
+            {t('home:aboutMe.text1')}
+          </Typography>
+          <Typography variant='body' recommendedWith>
+            {t('home:aboutMe.text2')}
+          </Typography>
           <Typography variant='header4'>{t('home:aboutMe.subtitle2')}</Typography>
-          <Typography variant='body'>{t('home:aboutMe.text3')}</Typography>
+          <Typography variant='body' recommendedWith>
+            {t('home:aboutMe.text3')}
+          </Typography>
 
           <section className='button-ctas'>
             <DownloadCvButton>{t('home:aboutMe.button1')}</DownloadCvButton>

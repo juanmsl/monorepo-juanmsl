@@ -1,6 +1,6 @@
+import { SectionLayout } from '@juanmsl/ui';
 import { useTranslation } from 'react-i18next';
 
-import { SectionLayout } from '@components/layouts';
 import { Header } from '@components/ui';
 
 export const Blog = () => {

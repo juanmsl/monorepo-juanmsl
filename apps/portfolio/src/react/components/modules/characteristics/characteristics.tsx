@@ -30,7 +30,7 @@ export const Characteristics = () => {
   );
 
   return (
-    <CharacteristicsStyle>
+    <CharacteristicsStyle fitHeightContent contentClassName='layout-content'>
       <section className='characteristics-gallery'>{characteristics}</section>
     </CharacteristicsStyle>
   );

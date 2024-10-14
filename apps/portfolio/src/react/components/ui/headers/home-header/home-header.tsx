@@ -15,7 +15,7 @@ export const HomeHeader = () => {
   const { data } = useAsset(ENV.ASSET_ID_BACKGROUND);
 
   return (
-    <HomeHeaderStyle $background={data?.url}>
+    <HomeHeaderStyle $background={data?.url} contentClassName='layout-content'>
       <section className='container'>
         <Reveal delay={200} width='100%'>
           <Line orientation='horizontal' lineWidth={3} className='header-line' />

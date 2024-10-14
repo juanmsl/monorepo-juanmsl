@@ -4,6 +4,9 @@ import styled from 'styled-components';
 export const MyExperienceStyle = styled(SectionLayout)`
   .layout-content {
     align-content: start;
+    justify-content: center;
+    grid-template-columns: 1fr;
+    max-width: 100ch;
     gap: 40px;
   }
 
@@ -29,7 +32,7 @@ export const MyExperienceStyle = styled(SectionLayout)`
   .laptop-experience {
     display: none;
     grid-template-columns: minmax(300px, auto) 1fr;
-    gap: 40px;
+    gap: 20px;
     align-content: start;
 
     @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {

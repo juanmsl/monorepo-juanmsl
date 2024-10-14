@@ -1,7 +1,6 @@
-import { Grid } from '@juanmsl/ui';
+import { Grid, SectionLayout } from '@juanmsl/ui';
 import { useTranslation } from 'react-i18next';
 
-import { SectionLayout } from '@components/layouts';
 import { Header, ProjectCard } from '@components/ui';
 import { useGetProjects } from '@hooks';
 

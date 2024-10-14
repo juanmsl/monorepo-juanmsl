@@ -17,7 +17,7 @@ export const MySkills = () => {
   };
 
   return (
-    <MySkillsStyle>
+    <MySkillsStyle fitHeightContent contentClassName='layout-content'>
       <section className='skills-categories'>
         {professionalSkills.map((skill, key) => (
           <Reveal key={key} delay={(key + 1) * 100}>

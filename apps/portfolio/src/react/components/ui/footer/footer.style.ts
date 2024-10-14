@@ -12,11 +12,10 @@ export const FooterStyle = styled.footer`
     color: ${props => props.theme.colors.primary.main};
   }
 
-  .layout-content {
+  .footer-layout-content {
     display: grid;
     gap: 20px;
-    padding-top: 0 !important;
-    min-height: unset !important;
+    padding-bottom: 100px;
     height: 100%;
     align-content: unset;
   }

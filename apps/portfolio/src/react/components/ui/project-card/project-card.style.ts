@@ -6,9 +6,12 @@ export const ProjectCardStyle = styled.section`
   display: grid;
   gap: 1em;
   align-content: start;
+  grid-row: span 3;
+  grid-template-rows: subgrid;
 
   .project-title {
     transition: all 300ms ease;
+    align-self: end;
   }
 
   &:hover {
@@ -22,7 +25,7 @@ export const ProjectCardStyle = styled.section`
   }
 `;
 
-export const ProjectDesktopViewStyle = styled.section`
+export const ProjectDesktopViewStyle = styled.a`
   display: grid;
   border-radius: 5px;
   overflow: hidden;
@@ -110,7 +113,11 @@ export const ImageDotsStyle = styled.section`
 export const ProjectCardContentStyle = styled.section`
   position: relative;
   display: grid;
-  height: 300px;
+  aspect-ratio: 4 / 3;
+
+  @supports not (aspect-ratio: 4 / 3) {
+    min-height: 300px;
+  }
 
   .project-image {
     position: absolute;

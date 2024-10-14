@@ -1,4 +1,4 @@
-import { Icon, Image, Line, Typography } from '@juanmsl/ui';
+import { Icon, Image, Line, SectionLayout, Typography } from '@juanmsl/ui';
 import { useTranslation } from 'react-i18next';
 
 import { FooterStyle } from './footer.style';
@@ -12,7 +12,7 @@ export const Footer = () => {
   return (
     <FooterStyle>
       <FooterTop />
-      <section className='layout-content'>
+      <SectionLayout contentClassName='footer-layout-content' fitHeightContent>
         <Image className='footer-logo' src='/assets/images/logo.png' alt='logo' />
 
         <Typography variant='header3' className='name'>
@@ -35,7 +35,7 @@ export const Footer = () => {
         <Typography variant='small' className='copyright' as='p'>
           {t('footer:copyright', { version: '3.0.0' })}
         </Typography>
-      </section>
+      </SectionLayout>
     </FooterStyle>
   );
 };

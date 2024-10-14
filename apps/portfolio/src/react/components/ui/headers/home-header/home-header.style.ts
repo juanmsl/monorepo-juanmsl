@@ -1,6 +1,5 @@
+import { SectionLayout } from '@juanmsl/ui';
 import styled from 'styled-components';
-
-import { SectionLayout } from '@components/layouts';
 
 type HeaderStyleProps = {
   $background: string;
