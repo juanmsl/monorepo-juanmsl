@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const spacing = 0.5;
@@ -23,7 +22,7 @@ export const ProjectCardStyle = styled.section`
   }
 `;
 
-export const ProjectDesktopViewStyle = styled(Link)`
+export const ProjectDesktopViewStyle = styled.section`
   display: grid;
   border-radius: 5px;
   overflow: hidden;
@@ -93,7 +92,6 @@ export const ImageDotsStyle = styled.section`
   grid-auto-flow: column;
   gap: 0.5em;
   align-items: center;
-  justify-content: center;
 
   .image-dot {
     width: 12px;
