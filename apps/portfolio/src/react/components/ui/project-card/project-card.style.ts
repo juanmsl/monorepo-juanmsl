@@ -38,25 +38,29 @@ export const ProjectDesktopViewStyle = styled(Link)`
     display: grid;
     grid-auto-flow: column;
     justify-content: start;
+    align-items: center;
     padding: 4px;
     gap: 4px;
 
-    span {
-      width: 8px;
-      height: 8px;
+    .toolbar-button {
+      width: ${props => props.theme.constants.typography.small.fontSize};
+      height: ${props => props.theme.constants.typography.small.fontSize};
       border-radius: 50%;
     }
 
-    span:nth-child(1) {
+    .toolbar-button:nth-child(1) {
       background: ${props => props.theme.colors.alert.main};
     }
 
-    span:nth-child(2) {
+    .toolbar-button:nth-child(2) {
       background: ${props => props.theme.colors.warning.main};
     }
 
-    span:nth-child(3) {
+    .toolbar-button:nth-child(3) {
       background: ${props => props.theme.colors.active.main};
+    }
+    .site-address {
+      padding: 0 1em;
     }
   }
 
