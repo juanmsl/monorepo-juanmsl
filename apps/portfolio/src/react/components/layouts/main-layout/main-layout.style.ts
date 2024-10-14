@@ -49,16 +49,11 @@ export const MainLayoutStyle = styled.main`
   }
 
   .layout-content {
-    width: 100%;
-    max-width: ${props => props.theme.constants.breakpoints.laptopL};
-    margin: 0 auto;
-    padding: 50px 20px;
-    min-height: ${props => props.theme.constants.sectionMinHeight};
-    display: grid;
+    padding: 50px 0;
     align-content: center;
 
     @media all and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {
-      padding: 100px 50px;
+      padding: 100px 0;
     }
   }
 

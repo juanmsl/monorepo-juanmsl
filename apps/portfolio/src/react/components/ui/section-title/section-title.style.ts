@@ -1,19 +1,24 @@
-import { Typography } from '@juanmsl/ui';
 import styled from 'styled-components';
 
-export const SectionTitleStyle = styled(Typography)`
+export const SectionTitleStyle = styled.section`
   color: ${props => props.theme.colors.primary.main};
-  position: relative;
-  margin-bottom: 0.5em !important;
-  padding-bottom: 0.3em !important;
+  display: grid;
+  justify-items: start;
+  gap: 0.5em;
+  padding-bottom: 1em;
 
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
+  &.align-center {
+    justify-items: center;
+  }
+
+  .section-title {
+    padding-bottom: 0;
+  }
+
+  .section-title-underline {
     width: 100px;
     height: 5px;
+    display: inline-block;
     background: ${props => props.theme.colors.primary.main};
   }
 `;

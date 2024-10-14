@@ -1,6 +1,5 @@
+import { SectionLayout } from '@juanmsl/ui';
 import styled from 'styled-components';
-
-import { SectionLayout } from '@components/layouts';
 
 export const AboutMeStyle = styled(SectionLayout)`
   .layout-content {

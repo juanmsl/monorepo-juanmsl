@@ -14,8 +14,8 @@ export const MyProjects = () => {
   return (
     <MyProjectsStyle contentClassName='layout-content'>
       <LoaderComponent isPending={projects.length === 0}>
-        <SectionTitle>{t('home:myProjects.title')}</SectionTitle>
-        <Grid gtc='repeat(auto-fill, minmax(400px, 1fr))' gap='3em' jc='center'>
+        <SectionTitle center>{t('home:myProjects.title')}</SectionTitle>
+        <Grid gtr='auto 1fr auto' gtc='repeat(auto-fit, minmax(300px, 1fr))' gap='3em' jc='center'>
           {projects.slice(0, 3).map((project, key) => (
             <ProjectCard project={project} key={key} />
           ))}

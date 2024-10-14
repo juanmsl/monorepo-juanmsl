@@ -1,6 +1,5 @@
+import { SectionLayout } from '@juanmsl/ui';
 import styled from 'styled-components';
-
-import { SectionLayout } from '@components/layouts';
 
 export const HeaderContainerStyle = styled.section`
   background: ${props => props.theme.colors.background.paper};
@@ -15,7 +14,6 @@ export const HeaderStyle = styled(SectionLayout)`
   overflow: hidden;
 
   .layout-content {
-    min-height: unset;
     padding-top: 100px;
 
     @media all and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {

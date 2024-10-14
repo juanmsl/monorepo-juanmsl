@@ -91,7 +91,7 @@ export const MyExperience = () => {
     <MyExperienceStyle contentClassName='layout-content'>
       <LoaderComponent isPending={jobExperience.length === 0}>
         <Tabs defaultOpenTab={jobExperience[0]?.name}>
-          <SectionTitle>{t('home:myExperience.title')}</SectionTitle>
+          <SectionTitle center>{t('home:myExperience.title')}</SectionTitle>
           <Accordion className='mobile-experience'>{renderedMobileCompanies}</Accordion>
           <section className='laptop-experience'>
             <section className='companies-list'>{renderedCompanies}</section>

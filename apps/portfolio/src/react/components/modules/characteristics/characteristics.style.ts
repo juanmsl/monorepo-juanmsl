@@ -1,6 +1,5 @@
+import { SectionLayout } from '@juanmsl/ui';
 import styled from 'styled-components';
-
-import { SectionLayout } from '@components/layouts';
 
 export const CharacteristicsStyle = styled(SectionLayout)`
   background: ${props => props.theme.colors.background.paper};
@@ -15,7 +14,6 @@ export const CharacteristicsStyle = styled(SectionLayout)`
 
   .layout-content {
     place-content: center;
-    min-height: auto;
 
     .characteristics-gallery {
       display: flex;
