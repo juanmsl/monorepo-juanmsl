@@ -6,6 +6,7 @@ const spacing = 0.5;
 export const ProjectCardStyle = styled.section`
   display: grid;
   gap: 1em;
+  align-content: start;
 
   .project-title {
     transition: all 300ms ease;
