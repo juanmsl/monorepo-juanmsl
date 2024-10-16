@@ -1,21 +1,21 @@
 import {
   AssetEntity,
-  CharacteristicEntity,
-  ContactEntity,
-  ProjectEntity,
-  JobExperienceEntity,
-  NavbarOptionEntity,
-  ProfessionalSkillsEntity,
-  TechnologyEntity,
+  ProjectCollection,
+  ProfessionalSkillsCollection,
+  ContactsCollection,
+  JobExperienceCollection,
+  TechnologiesCollection,
+  CharacteristicCollection,
+  NavbarOptionCollection,
 } from '@domain';
 
 export interface ContentFullPort {
-  getJobExperience(locale: string): Promise<Array<JobExperienceEntity>>;
-  getSocialContact(locale: string): Promise<Array<ContactEntity>>;
-  getProfessionalSkills(locale: string): Promise<Array<ProfessionalSkillsEntity>>;
-  getProjects(locale: string): Promise<Array<ProjectEntity>>;
+  getJobExperience(locale: string): Promise<JobExperienceCollection['items']>;
+  getSocialContact(locale: string): Promise<ContactsCollection['items']>;
+  getProfessionalSkills(locale: string): Promise<ProfessionalSkillsCollection['items']>;
+  getProjects(locale: string): Promise<ProjectCollection['items']>;
   getAssetById(assetId: string): Promise<AssetEntity>;
-  getTechnologies(locale: string): Promise<Array<TechnologyEntity>>;
-  getCharacteristics(locale: string): Promise<Array<CharacteristicEntity>>;
-  getNavbarOptions(locale: string): Promise<Array<NavbarOptionEntity>>;
+  getTechnologies(locale: string): Promise<TechnologiesCollection['items']>;
+  getCharacteristics(locale: string): Promise<CharacteristicCollection['items']>;
+  getNavbarOptions(locale: string): Promise<NavbarOptionCollection['items']>;
 }

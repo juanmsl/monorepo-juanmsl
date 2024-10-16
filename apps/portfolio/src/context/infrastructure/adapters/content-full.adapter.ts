@@ -32,14 +32,16 @@ export class ContentFullAdapter implements ContentFullPort {
     const { data } = await this.http<QueryAssetResponse>({
       data: {
         query: `
-          query {
-            asset (id: "${assetId}") {
+          query($assetId: String!) {
+            asset (id: $assetId) {
               title
               url
             }
           }
         `,
-        variables: {},
+        variables: {
+          assetId: assetId,
+        },
       },
     });
 

@@ -1,7 +1,7 @@
 import { useEventListener, useMousePosition } from '@juanmsl/hooks';
 import { useState } from 'react';
 
-import { CustomCursorStyle } from './custom-cursor.style';
+import { CustomCursorStyle, GlobalCursorStyle } from './custom-cursor.style';
 
 type CustomCursorProps = {
   children?: React.ReactNode;
@@ -21,6 +21,7 @@ export const CustomCursor = ({ children }: CustomCursorProps) => {
 
   return (
     <>
+      <GlobalCursorStyle />
       <CustomCursorStyle
         className={`outer-circle ${isCursorHover ? 'cursor-hover' : ''}`}
         style={{

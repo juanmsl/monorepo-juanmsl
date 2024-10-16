@@ -4,7 +4,6 @@ import styled from 'styled-components';
 export const CharacteristicsStyle = styled(SectionLayout)`
   background: ${props => props.theme.colors.background.paper};
   color: ${props => props.theme.colors.text.main};
-  transition: all 0.5s ease;
   user-select: none;
   box-shadow:
     inset 0 25px 20px -20px ${props => props.theme.colors.black},
@@ -39,9 +38,9 @@ export const CharacteristicStyle = styled.section`
     gap: 10px;
     justify-items: center;
     border: 1px solid;
-    transition: all 0.5s ease;
     align-content: center;
-    background: ${props => props.theme.colors.tertiary.contrast}08;
+    background: ${props => props.theme.colors.background.main};
+    color: ${props => props.theme.colors.text.main};
     border-radius: 50%;
     width: 150px;
     height: 150px;

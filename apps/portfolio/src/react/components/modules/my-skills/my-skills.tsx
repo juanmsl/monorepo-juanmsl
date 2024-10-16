@@ -1,7 +1,7 @@
-import { Image, Tooltip, Typography } from '@juanmsl/ui';
+import { Image, Typography } from '@juanmsl/ui';
 import { useState } from 'react';
 
-import { MySkillsStyle } from './my-skills.style';
+import { GlassStyled, MySkillsStyle, SkillStyle } from './my-skills.style';
 
 import { Reveal } from '@components/animations';
 import { ProfessionalSkillsEntity } from '@domain';
@@ -34,17 +34,13 @@ export const MySkills = () => {
       </section>
       <section className='skills-labels'>
         {technologies.map((technology, key) => (
-          <Tooltip content={technology.name} key={key}>
-            <span>
-              <Reveal key={key} delay={(key + 1) * 50}>
-                <Image
-                  className={`technology-icon ${hoveredCategory.includes(technology.name) ? 'is-selected' : ''}`}
-                  src={technology.icon}
-                  alt={technology.name}
-                />
-              </Reveal>
-            </span>
-          </Tooltip>
+          <Reveal key={key} delay={(key + 1) * 50}>
+            <SkillStyle className={hoveredCategory.includes(technology.name) ? 'is-selected' : ''}>
+              <Image className='technology-icon' src={technology.icon} alt={technology.name} />
+              <GlassStyled />
+              <span className='skill-label'>{technology.name}</span>
+            </SkillStyle>
+          </Reveal>
         ))}
       </section>
     </MySkillsStyle>

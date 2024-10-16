@@ -12,7 +12,7 @@ type HeaderProps = {
 export const Header = ({ title }: HeaderProps) => {
   return (
     <HeaderContainerStyle>
-      <HeaderStyle contentClassName='layout-content' fitHeightContent>
+      <HeaderStyle contentClassName='header-layout-content' fitHeightContent>
         <section className='container'>
           <Reveal delay={300} width='100%'>
             <Typography variant='hero' className='names' noPadding>

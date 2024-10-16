@@ -1,40 +1,113 @@
 import { SectionLayout } from '@juanmsl/ui';
 import styled from 'styled-components';
 
+export const GlassStyled = styled.section`
+  width: 3.6em;
+  height: 3.6em;
+  position: absolute;
+  top: 0.9em;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+  font-size: 1rem;
+  transition: all 3s ease;
+
+  &::before,
+  &::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    border-radius: 1.2em;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 300ms ease;
+  }
+
+  &::before {
+    background: ${props => props.theme.colors.text.main}22;
+    transform: perspective(6.25em) rotateX(65deg);
+  }
+
+  &::after {
+    background: ${props => props.theme.colors.text.main}11;
+    transform: perspective(6.25em) translateY(0.3em) rotateX(65deg);
+  }
+`;
+
+export const SkillStyle = styled.section`
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 1.5em;
+  cursor: none;
+  max-width: 6em;
+
+  .technology-icon {
+    width: 3em;
+    height: 3em;
+    object-fit: contain;
+    display: block;
+    transition: all 300ms ease;
+    filter: drop-shadow(0 0 1px ${props => props.theme.colors.text.main}55);
+  }
+
+  .skill-label {
+    padding: 4px;
+    border-radius: 5px;
+    background: ${props => props.theme.colors.text.main}11;
+    font-size: ${props => props.theme.constants.typography.small.fontSize};
+    text-align: center;
+  }
+
+  &.is-selected,
+  &:hover {
+    ${GlassStyled}::before {
+      background: ${props => props.theme.colors.primary.main};
+      animation: rotate3dUp 2s linear infinite;
+    }
+
+    ${GlassStyled}::after {
+      background: ${props => props.theme.colors.primary.main}55;
+      transform: perspective(100px) translateY(0.3em) rotateX(65deg);
+      animation: rotate3dBottom 2s linear infinite;
+    }
+
+    .technology-icon,
+    .technology-icon.is-selected {
+      transform: perspective(10em) translateZ(1.5em);
+    }
+  }
+
+  @keyframes rotate3dUp {
+    to {
+      transform: perspective(100px) rotateX(65deg) rotateZ(1turn);
+    }
+  }
+
+  @keyframes rotate3dBottom {
+    to {
+      transform: perspective(100px) translateY(0.3em) rotateX(65deg) rotateZ(1turn);
+    }
+  }
+`;
+
 export const MySkillsStyle = styled(SectionLayout)`
   user-select: none;
 
   .layout-content {
+    display: grid;
     min-height: unset;
     justify-content: center;
     justify-items: center;
-    gap: 20px;
+    gap: 40px;
     padding-top: 0;
   }
 
   &:has(.skill-category:hover) {
-    .technology-icon:not(.is-selected) {
+    ${SkillStyle}:not(.is-selected) {
       filter: grayscale(100%) blur(5px);
-    }
-  }
-
-  &:has(.technology-icon:hover) {
-    .technology-icon:not(:hover) {
-      filter: grayscale(100%) blur(1px);
-    }
-  }
-
-  .technology-icon {
-    width: 32px;
-    height: 32px;
-    object-fit: contain;
-    display: block;
-    transition: all 300ms ease;
-
-    &.is-selected,
-    &:hover {
-      filter: grayscale(0) drop-shadow(0 0 4px ${props => props.theme.colors.text.main}33);
-      transform: perspective(100px) translateZ(20px);
     }
   }
 
@@ -76,7 +149,7 @@ export const MySkillsStyle = styled(SectionLayout)`
 
   .skills-labels {
     display: flex;
-    gap: 20px;
+    gap: 2em;
     justify-content: center;
     flex-wrap: wrap;
     padding-top: 20px;

@@ -172,7 +172,7 @@ export const DarkTheme: PaletteThemeEntity = {
 export const LightTheme: PaletteThemeEntity = {
   background: {
     main: '#FFFFFF',
-    paper: '#dfdfdf',
+    paper: '#f1f1f1',
     disabled: '#d1d1d1',
   },
   text: {
