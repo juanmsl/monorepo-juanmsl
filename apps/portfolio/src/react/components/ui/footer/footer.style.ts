@@ -56,4 +56,38 @@ export const FooterStyle = styled.footer`
       align-items: center;
     }
   }
+
+  .footer-heart {
+    animation: pulse 1s infinite;
+    display: inline-block;
+  }
+
+  .footer-label {
+    background: ${props => props.theme.colors.primary.main};
+    color: ${props => props.theme.colors.primary.contrast};
+  }
+
+  .footer-link {
+    color: ${props => props.theme.colors.primary.main};
+    transition: color 300ms ease;
+    position: relative;
+    display: inline-block;
+
+    &::before {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 1px;
+      bottom: 0;
+      left: 0;
+      background: ${props => props.theme.colors.primary.main};
+      transition: all 300ms ease;
+      z-index: 0;
+    }
+
+    &:hover {
+      color: ${props => props.theme.colors.text.main};
+    }
+  }
 `;

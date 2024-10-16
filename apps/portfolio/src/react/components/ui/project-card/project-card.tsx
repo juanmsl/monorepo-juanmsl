@@ -1,7 +1,6 @@
-import { Button, Grid, Image, Ripple, Tooltip, Typography } from '@juanmsl/ui';
+import { Button, Grid, Image, Ripple, Tag, Typography } from '@juanmsl/ui';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 
 import {
@@ -11,7 +10,6 @@ import {
   ProjectDesktopViewStyle,
 } from './project-card.style';
 
-import { PATHS } from '@core/constants';
 import { ProjectEntity } from '@domain';
 
 type ProjectCardProps = {
@@ -19,38 +17,46 @@ type ProjectCardProps = {
 };
 
 export const ProjectCard = ({ project }: ProjectCardProps) => {
-  const { name, description, pictures, links } = project;
+  const { name, description, pictures, links, technologies } = project;
   const [imageIndex, setImageIndex] = useState(0);
   const theme = useTheme();
   const { t } = useTranslation();
 
   return (
-    <ProjectCardStyle>
-      <Typography variant='header4' className='project-title' noPadding>
-        {name}
-      </Typography>
-      <ProjectDesktopViewStyle href={links.items[0].url} rel='noopener' target='_blank'>
-        <section className='project-toolbar'>
-          <span className='toolbar-button' />
-          <span className='toolbar-button' />
-          <span className='toolbar-button' />
-          <Tooltip content={t('projects:card.siteAddress')} position='bottom'>
+    <ProjectCardStyle className='project-card'>
+      <Grid className='project-card-content'>
+        <Typography variant='header4' className='project-title'>
+          {name}
+        </Typography>
+        <Typography recommendedWith>{description}</Typography>
+        <section className='project-technologies'>
+          {technologies.items.map(({ name }) => (
+            <Tag key={name} size='small' rounded>
+              {name}
+            </Tag>
+          ))}
+        </section>
+        <a className='project-open-button' href={links.items[0].url} rel='noopener' target='_blank'>
+          <Button rightIcon='arrow-right' size='small' variant='flat' noShadow>
+            {t('projects:card.seeProject')}
+          </Button>
+        </a>
+      </Grid>
+      <Grid className='project-card-screen' gap='1em'>
+        <ProjectDesktopViewStyle href={links.items[0].url} rel='noopener' target='_blank'>
+          <section className='project-toolbar'>
+            <span className='toolbar-button' />
+            <span className='toolbar-button' />
+            <span className='toolbar-button' />
             <Typography className='site-address' variant='small' family='code' noPadding>
               {links.items[0].url}
             </Typography>
-          </Tooltip>
-        </section>
-        <ProjectCardContentStyle>
-          <Image className='project-image' src={pictures.items[imageIndex].url} alt={pictures.items[0].title} />
-          <section className='project-container'>
-            <Typography nowrap={5} variant='label' noPadding>
-              {description}
-            </Typography>
           </section>
-          <Ripple color={theme.colors.text.main} />
-        </ProjectCardContentStyle>
-      </ProjectDesktopViewStyle>
-      <Grid flow='column' jc='space-between' gap='1em' ai='center'>
+          <ProjectCardContentStyle>
+            <Image className='project-image' src={pictures.items[imageIndex].url} alt={pictures.items[0].title} />
+            <Ripple color={theme.colors.text.main} />
+          </ProjectCardContentStyle>
+        </ProjectDesktopViewStyle>
         <ImageDotsStyle>
           {pictures.items.map((_, key) => (
             <span
@@ -60,11 +66,6 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             />
           ))}
         </ImageDotsStyle>
-        <Link to={PATHS.PROJECT_URL('')}>
-          <Button rightIcon='arrow-right' size='small' variant='flat' noShadow>
-            {t('projects:card.seeMore')}
-          </Button>
-        </Link>
       </Grid>
     </ProjectCardStyle>
   );

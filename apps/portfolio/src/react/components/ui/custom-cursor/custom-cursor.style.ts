@@ -1,4 +1,10 @@
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
+
+export const GlobalCursorStyle = createGlobalStyle`
+  body {
+    cursor: none;
+  }
+`;
 
 export const CustomCursorStyle = styled.span`
   position: fixed;
@@ -46,7 +52,7 @@ export const CustomCursorStyle = styled.span`
     z-index: 100;
     background-color: ${props => props.theme.colors.primary.main};
     transition: opacity 0.3s ease-in-out;
-    opacity: 0;
+    opacity: 1;
 
     &.cursor-hover {
       opacity: 0;

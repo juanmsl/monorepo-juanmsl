@@ -8,12 +8,10 @@ export const FooterTopStyle = styled.svg`
   #backgroundColor {
     fill: ${props => props.theme.colors.background.main};
     transform: translate(0, -10px);
-    transition: all 300ms ease;
   }
 
   #line {
     fill: ${props => props.theme.colors.tertiary.main};
     transform: translate(0, -10px);
-    transition: all 300ms ease;
   }
 `;

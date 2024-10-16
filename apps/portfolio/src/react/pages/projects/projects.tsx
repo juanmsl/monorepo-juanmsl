@@ -12,7 +12,7 @@ export const Projects = () => {
     <>
       <Header title={t('projects:title')} />
       <SectionLayout>
-        <Grid gtc='repeat(auto-fill, minmax(400px, 1fr))' gap='3em' jc='center'>
+        <Grid gap='2em' jc='center'>
           {projects.map((project, key) => (
             <ProjectCard project={project} key={key} />
           ))}

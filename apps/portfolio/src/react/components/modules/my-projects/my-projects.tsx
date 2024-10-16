@@ -1,4 +1,4 @@
-import { Button, Grid } from '@juanmsl/ui';
+import { Button } from '@juanmsl/ui';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
@@ -15,11 +15,11 @@ export const MyProjects = () => {
     <MyProjectsStyle contentClassName='layout-content'>
       <LoaderComponent isPending={projects.length === 0}>
         <SectionTitle center>{t('home:myProjects.title')}</SectionTitle>
-        <Grid gtr='auto 1fr auto' gtc='repeat(auto-fit, minmax(300px, 1fr))' gap='3em' jc='center'>
+        <section className='layout-projects-grid'>
           {projects.slice(0, 3).map((project, key) => (
             <ProjectCard project={project} key={key} />
           ))}
-        </Grid>
+        </section>
         <Link className='see-all-projects-button' to={PATHS.PROJECTS_URL}>
           <Button variant='flat' leftIcon='arrow-right' noShadow>
             {t('home:myProjects.viewAll')}

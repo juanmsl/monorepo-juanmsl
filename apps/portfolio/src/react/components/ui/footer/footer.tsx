@@ -1,5 +1,6 @@
 import { Icon, Image, Line, SectionLayout, Typography } from '@juanmsl/ui';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 import { FooterStyle } from './footer.style';
 
@@ -33,7 +34,15 @@ export const Footer = () => {
         <Line orientation='horizontal' />
 
         <Typography variant='small' className='copyright' as='p'>
-          {t('footer:copyright', { version: '3.0.0' })}
+          <Trans
+            t={t}
+            i18nKey='footer:copyright'
+            components={[
+              <span className='footer-label' key={0} />,
+              <Link className='footer-link' key={1} target='_blank' rel='nooppener' to='https://react.dev/' />,
+              <span className='footer-heart' key={2} />,
+            ]}
+          ></Trans>
         </Typography>
       </SectionLayout>
     </FooterStyle>

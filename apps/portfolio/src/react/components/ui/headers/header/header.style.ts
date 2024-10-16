@@ -13,8 +13,9 @@ export const HeaderStyle = styled(SectionLayout)`
   max-width: 100vw;
   overflow: hidden;
 
-  .layout-content {
+  .header-layout-content {
     padding-top: 100px;
+    padding-bottom: 100px;
 
     @media all and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {
       padding-top: 200px;

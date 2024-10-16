@@ -4,7 +4,6 @@ export const MainLayoutStyle = styled.main`
   min-width: ${props => props.theme.constants.breakpoints.mobile};
   display: grid;
   position: relative;
-  transition: all 300ms ease;
   grid-template-rows: auto 1fr;
 
   &.lines {
