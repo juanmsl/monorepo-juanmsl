@@ -24,11 +24,13 @@ export const MyProjects = () => {
             <ProjectCard project={project} verticalMode={key === 2 && largeScreenSize} key={key} />
           ))}
         </section>
-        <Link className='see-all-projects-button' to={PATHS.PROJECTS_URL}>
-          <Button variant='flat' leftIcon='arrow-right' noShadow>
-            {t('home:myProjects.viewAll')}
-          </Button>
-        </Link>
+        {projects.length > 3 && (
+          <Link className='see-all-projects-button' to={PATHS.PROJECTS_URL}>
+            <Button variant='flat' leftIcon='arrow-right' noShadow>
+              {t('home:myProjects.viewAll')}
+            </Button>
+          </Link>
+        )}
       </LoaderComponent>
     </MyProjectsStyle>
   );

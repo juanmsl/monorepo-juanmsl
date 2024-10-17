@@ -29,7 +29,7 @@ export const MyProjectsStyle = styled(SectionLayout)`
 
   &:has(.project-card:hover) {
     .project-card:not(:hover) {
-      filter: grayscale(1);
+      filter: grayscale(1) blur(4px) opacity(0.5);
     }
   }
 
