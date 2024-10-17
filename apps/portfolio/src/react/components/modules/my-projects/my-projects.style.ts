@@ -27,6 +27,12 @@ export const MyProjectsStyle = styled(SectionLayout)`
     }
   }
 
+  &:has(.project-card:hover) {
+    .project-card:not(:hover) {
+      filter: grayscale(1);
+    }
+  }
+
   .project-card:nth-child(1) {
     grid-area: child1;
   }

@@ -58,6 +58,9 @@ export const ProjectCardStyle = styled.section`
   grid-template-rows: 1fr auto;
   box-shadow: 0 4px 10px #00000088;
   border: 1px solid ${props => props.theme.colors.primary.main};
+  transition:
+    transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    filter 300ms cubic-bezier(0.4, 0, 0.2, 1);
 
   .project-card-content {
     grid-area: projectCardContent;
@@ -150,6 +153,8 @@ export const ProjectCardStyle = styled.section`
   }
 
   &:hover {
+    transform: perspective(100px) translateZ(2px);
+
     .project-image {
       filter: contrast(100%);
     }
