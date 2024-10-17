@@ -25,13 +25,11 @@ export const MyProjectsStyle = styled(SectionLayout)`
       grid-template-areas: 'child1 child3' 'child2 child3';
       grid-template-columns: 2fr 1fr;
     }
+  }
 
-    .project-card:nth-child(3) {
-      grid-template-columns: unset;
-      align-items: unset;
-      grid-template-areas: 'projectCardScreen' 'projectCardContent';
-      align-content: center;
-      align-self: start;
+  &:has(.project-card:hover) {
+    .project-card:not(:hover) {
+      filter: grayscale(1);
     }
   }
 

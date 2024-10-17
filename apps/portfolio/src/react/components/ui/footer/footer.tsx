@@ -38,9 +38,8 @@ export const Footer = () => {
             t={t}
             i18nKey='footer:copyright'
             components={[
-              <span className='footer-label' key={0} />,
-              <Link className='footer-link' key={1} target='_blank' rel='nooppener' to='https://react.dev/' />,
-              <span className='footer-heart' key={2} />,
+              <Link className='footer-link' key={0} target='_blank' rel='nooppener' to='https://react.dev/' />,
+              <span className='footer-heart' key={1} />,
             ]}
           ></Trans>
         </Typography>
