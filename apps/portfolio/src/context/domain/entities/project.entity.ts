@@ -6,7 +6,7 @@ import { TechnologyEntity } from './technology.entity';
 export type ProjectEntity = {
   name: string;
   pictures: AssetCollection;
-  technologies: QueryCollection<Pick<TechnologyEntity, 'name'>>;
+  technologies: QueryCollection<TechnologyEntity>;
   links: LinkCollection;
   description: string;
 };

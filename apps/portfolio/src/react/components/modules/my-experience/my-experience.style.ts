@@ -137,5 +137,17 @@ export const CompanyDetailsStyle = styled.section`
     gap: 10px 15px;
     justify-content: start;
     flex-wrap: wrap;
+
+    .company-details-label {
+      display: flex;
+      align-items: center;
+      gap: 0.4em;
+    }
+
+    .company-details-labels-icon {
+      width: 1em;
+      height: 1em;
+      object-fit: contain;
+    }
   }
 `;

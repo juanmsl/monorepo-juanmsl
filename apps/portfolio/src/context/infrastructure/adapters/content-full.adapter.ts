@@ -71,8 +71,7 @@ export class ContentFullAdapter implements ContentFullPort {
                 technologies: technologiesCollection {
                   items {
                     name
-                    yearsOfExperience
-                    seniority
+                    icon
                   }
                 }
               }
@@ -147,8 +146,6 @@ export class ContentFullAdapter implements ContentFullPort {
             technologyCollection(locale:$locale) {
               items {
                 name
-                yearsOfExperience
-                seniority
                 icon
               }
             }
@@ -233,6 +230,7 @@ export class ContentFullAdapter implements ContentFullPort {
                 technologies: technologiesCollection {
                   items {
                     name
+                    icon
                   }
                 }
               }

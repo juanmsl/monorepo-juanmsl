@@ -10,7 +10,7 @@ export enum TagSize {
 }
 
 type TagProps = HTMLAttributes<HTMLElement> & {
-  children: string;
+  children: React.ReactNode;
   isSelected?: boolean;
   size?: `${TagSize}`;
   rounded?: boolean;
