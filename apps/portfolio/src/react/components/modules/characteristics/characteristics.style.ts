@@ -1,6 +1,19 @@
 import { SectionLayout } from '@juanmsl/ui';
 import styled from 'styled-components';
 
+export const CharacteristicsContainerStyle = styled.section`
+  position: relative;
+
+  .particles-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+`;
+
 export const CharacteristicsStyle = styled(SectionLayout)`
   background: ${props => props.theme.colors.background.paper};
   color: ${props => props.theme.colors.text.main};
@@ -13,6 +26,8 @@ export const CharacteristicsStyle = styled(SectionLayout)`
 
   .layout-content {
     place-content: center;
+    position: relative;
+    z-index: 1;
 
     .characteristics-gallery {
       display: flex;

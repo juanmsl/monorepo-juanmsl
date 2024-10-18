@@ -11,7 +11,6 @@ export const useMousePosition = () => {
   };
 
   useEventListener('mousemove', mouseMove as unknown as EventListener);
-  useEventListener('mouseleave', mouseMove as unknown as EventListener);
 
   return [x, y];
 };

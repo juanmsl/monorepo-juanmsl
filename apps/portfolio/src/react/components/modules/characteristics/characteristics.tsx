@@ -1,9 +1,10 @@
 import { HoverCard, Icon, IconNameT, Line, Typography } from '@juanmsl/ui';
 import { useMemo } from 'react';
 
-import { CharacteristicStyle, CharacteristicsStyle } from './characteristics.style';
+import { CharacteristicStyle, CharacteristicsStyle, CharacteristicsContainerStyle } from './characteristics.style';
 
 import { Reveal } from '@components/animations';
+import { Particles } from '@components/ui';
 import { useGetCharacteristics } from '@hooks';
 
 export const Characteristics = () => {
@@ -30,8 +31,11 @@ export const Characteristics = () => {
   );
 
   return (
-    <CharacteristicsStyle fitHeightContent contentClassName='layout-content'>
-      <section className='characteristics-gallery'>{characteristics}</section>
-    </CharacteristicsStyle>
+    <CharacteristicsContainerStyle>
+      <Particles className='particles-canvas' />
+      <CharacteristicsStyle fitHeightContent contentClassName='layout-content'>
+        <section className='characteristics-gallery'>{characteristics}</section>
+      </CharacteristicsStyle>
+    </CharacteristicsContainerStyle>
   );
 };

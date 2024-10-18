@@ -4,6 +4,8 @@ export const FooterTopStyle = styled.svg`
   width: 100%;
   aspect-ratio: 7.79 / 1;
   transition: all 300ms ease;
+  position: relative;
+  z-index: 2;
 
   #backgroundColor {
     fill: ${props => props.theme.colors.background.main};

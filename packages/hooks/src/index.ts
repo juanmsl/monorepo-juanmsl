@@ -11,6 +11,7 @@ export * from './use-input-handlers';
 export * from './use-media-query';
 export * from './use-modal-in-container';
 export * from './use-mouse-position';
+export * from './use-observer';
 export * from './use-on-click-outside-ref';
 export * from './use-online-status';
 export * from './use-render-count';
