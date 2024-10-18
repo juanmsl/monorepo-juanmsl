@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { FooterStyle } from './footer.style';
 
 import { FooterTop } from '@components/resources';
-import { SocialIcons } from '@components/ui';
+import { Particles, SocialIcons } from '@components/ui';
 
 export const Footer = () => {
   const { t } = useTranslation();
@@ -13,6 +13,7 @@ export const Footer = () => {
   return (
     <FooterStyle>
       <FooterTop />
+      <Particles className='particles-canvas' />
       <SectionLayout contentClassName='footer-layout-content' fitHeightContent>
         <Image className='footer-logo' src='/assets/images/logo.png' alt='logo' />
 

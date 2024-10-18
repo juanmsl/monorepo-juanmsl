@@ -1,30 +1,34 @@
-import { Button, Grid, Icon, IconNameT, Image, Ripple, Tag, Tooltip, Typography } from '@juanmsl/ui';
+import { useClassNames } from '@juanmsl/hooks';
+import { Button, FlipCard, Grid, Icon, IconNameT, Image, Tag, Tooltip, Typography } from '@juanmsl/ui';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useTheme } from 'styled-components';
 
-import {
-  LinksContainerStyle,
-  ProjectCardContentStyle,
-  ProjectCardStyle,
-  ProjectDesktopViewStyle,
-} from './project-card.style';
+import { LinksContainerStyle, ProjectCardStyle } from './project-card.style';
 
+import { ScreenImage } from '@components/ui';
 import { ProjectEntity } from '@domain';
 
 type ProjectCardProps = {
   project: ProjectEntity;
   verticalMode?: boolean;
+  className?: string;
 };
 
-export const ProjectCard = ({ project, verticalMode = false }: ProjectCardProps) => {
+export const ProjectCard = ({ project, verticalMode = false, className = '' }: ProjectCardProps) => {
   const { name, description, pictures, links, technologies } = project;
-  const [imageIndex, setImageIndex] = useState(0);
-  const theme = useTheme();
+  const [isFlipped, setIsFlipped] = useState(false);
   const { t } = useTranslation();
+  const projectCardClassName = useClassNames({
+    [className]: Boolean(className),
+    'vertical-mode': verticalMode,
+  });
 
   return (
-    <ProjectCardStyle className={`project-card ${verticalMode ? 'vertical-mode' : ''}`}>
+    <ProjectCardStyle
+      className={projectCardClassName}
+      onMouseOver={() => setIsFlipped(true)}
+      onMouseLeave={() => setIsFlipped(false)}
+    >
       <Grid className='project-card-content'>
         <LinksContainerStyle>
           {links.items.map(({ url, icon, label }, key) => (
@@ -38,9 +42,7 @@ export const ProjectCard = ({ project, verticalMode = false }: ProjectCardProps)
         <Typography variant='header4' className='project-title'>
           {name}
         </Typography>
-        <Typography className='project-description' recommendedWith>
-          {description}
-        </Typography>
+        <Typography recommendedWith>{description}</Typography>
         <section className='project-technologies'>
           {technologies.items.map(({ name, icon }) => (
             <Tag key={name} size='small' className='project-technology' rounded>
@@ -56,26 +58,21 @@ export const ProjectCard = ({ project, verticalMode = false }: ProjectCardProps)
         </a>
       </Grid>
       <Grid className='project-card-screen' gap='1em'>
-        <ProjectDesktopViewStyle
-          href={links.items[0].url}
-          rel='noopener'
-          target='_blank'
-          onMouseOver={() => setImageIndex(1)}
-          onMouseLeave={() => setImageIndex(0)}
-        >
-          <section className='project-toolbar'>
-            <span className='toolbar-button' />
-            <span className='toolbar-button' />
-            <span className='toolbar-button' />
-            <Typography className='site-address' variant='small' family='code' noPadding nowrap>
-              {links.items[0].url}
-            </Typography>
-          </section>
-          <ProjectCardContentStyle>
-            <Image className='project-image' src={pictures.items[imageIndex].url} alt={pictures.items[0].title} />
-            <Ripple color={theme.colors.text.main} />
-          </ProjectCardContentStyle>
-        </ProjectDesktopViewStyle>
+        <FlipCard isFlipped={isFlipped} flipDirection='horizontal'>
+          <ScreenImage
+            className='screen-image-desktop'
+            src={pictures.items[0].url}
+            alt={pictures.items[0].title}
+            url={links.items[0].url}
+          />
+
+          <ScreenImage
+            className='screen-image-desktop'
+            src={pictures.items[1].url}
+            alt={pictures.items[1].title}
+            url={links.items[0].url}
+          />
+        </FlipCard>
       </Grid>
     </ProjectCardStyle>
   );

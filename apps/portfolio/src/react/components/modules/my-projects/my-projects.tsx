@@ -21,7 +21,12 @@ export const MyProjects = () => {
         <SectionTitle center>{t('home:myProjects.title')}</SectionTitle>
         <section className='layout-projects-grid'>
           {projects.slice(0, 3).map((project, key) => (
-            <ProjectCard project={project} verticalMode={key === 2 && largeScreenSize} key={key} />
+            <ProjectCard
+              className='project-card'
+              project={project}
+              verticalMode={key === 2 && largeScreenSize}
+              key={key}
+            />
           ))}
         </section>
         {projects.length > 3 && (

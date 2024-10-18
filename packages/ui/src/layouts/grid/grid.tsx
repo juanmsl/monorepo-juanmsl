@@ -1,6 +1,6 @@
 import React, { createElement } from 'react';
 
-type GridProps = {
+type GridProps = React.HTMLAttributes<HTMLDivElement> & {
   tag?: keyof React.ReactHTML;
   children?: React.ReactNode;
   className?: string;
@@ -50,11 +50,13 @@ export const Grid = ({
   gta,
   gt,
   gap,
+  ...props
 }: GridProps) => {
   return createElement(
     tag,
     {
       className,
+      ...props,
       style: {
         ...style,
         ...(flow ? { gridAutoFlow: flow } : {}),
