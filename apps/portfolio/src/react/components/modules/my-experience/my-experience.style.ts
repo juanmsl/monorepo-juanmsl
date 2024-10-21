@@ -128,6 +128,7 @@ export const CompanyDetailsStyle = styled.section`
     }
   }
 
+  ul,
   .company-details-description {
     display: grid;
     gap: 10px;

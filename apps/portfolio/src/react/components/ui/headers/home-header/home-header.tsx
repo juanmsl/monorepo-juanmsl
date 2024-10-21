@@ -1,4 +1,4 @@
-import { Line, Typography } from '@juanmsl/ui';
+import { Grid, Line, Typography } from '@juanmsl/ui';
 import { useTranslation } from 'react-i18next';
 
 import { HomeHeaderContainer, HomeHeaderStyle } from './home-header.style';
@@ -17,29 +17,27 @@ export const HomeHeader = () => {
   return (
     <HomeHeaderContainer>
       <HomeHeaderStyle $background={data?.url} contentClassName='layout-content'>
-        <section className='container'>
-          <Reveal delay={200} width='100%'>
-            <Line orientation='horizontal' lineWidth={3} className='header-line' />
-          </Reveal>
-          <Reveal delay={300} width='100%'>
-            <Typography variant='hero' className='names' noPadding>
-              {t('common:shortName')}
-            </Typography>
-          </Reveal>
-          <Reveal delay={400} width='100%'>
-            <Line orientation='horizontal' lineWidth={3} className='header-line' />
-          </Reveal>
-          <section className='user-labels'>
-            {userLabels.map((label, key) => (
-              <Reveal key={key} delay={100 * key + 500}>
-                <Typography variant='body' className='user-label'>
-                  {label}
-                </Typography>
-              </Reveal>
-            ))}
+        <Reveal delay={400} width='100%'>
+          <section className='container'>
+            <Grid style={{ overflow: 'hidden' }}>
+              <Line orientation='horizontal' lineWidth={3} />
+              <Typography variant='hero' className='names animate-title' noPadding>
+                {t('common:shortName')}
+              </Typography>
+              <Line orientation='horizontal' lineWidth={3} />
+            </Grid>
+            <section className='user-labels'>
+              {userLabels.map((label, key) => (
+                <Reveal key={key} delay={100 * key + 1000}>
+                  <Typography variant='body' className='user-label'>
+                    {label}
+                  </Typography>
+                </Reveal>
+              ))}
+            </section>
+            <SocialIcons position='bottom' />
           </section>
-          <SocialIcons position='bottom' />
-        </section>
+        </Reveal>
         <HeaderBottom className='home-header-svg' />
       </HomeHeaderStyle>
     </HomeHeaderContainer>

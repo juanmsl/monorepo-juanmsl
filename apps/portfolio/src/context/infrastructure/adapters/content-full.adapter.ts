@@ -59,7 +59,7 @@ export class ContentFullAdapter implements ContentFullPort {
                 dateStart
                 dateEnd
                 position
-                description
+                content
                 links: linksCollection {
                   items {
                     url

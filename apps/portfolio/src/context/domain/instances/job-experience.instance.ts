@@ -9,7 +9,7 @@ export const JobExperienceInstance: Array<JobExperienceEntity> = [
     dateStart: '1018/01/01',
     dateEnd: '',
     position: 'Developer',
-    description: ['Hello world'],
+    content: 'Hello world',
     links: { items: LinkInstance },
     icon: 'https://rotulosmatesanz.com/wp-content/uploads/2017/09/2000px-Google_G_Logo.svg_.png',
     order: 0,
