@@ -13,6 +13,33 @@ export const HomeHeaderContainer = styled.section`
     background: ${props => props.theme.colors.primary.main};
     transform-origin: 0;
   }
+
+  @keyframes title {
+    0% {
+      line-height: 0%;
+      letter-spacing: 0.25em;
+      opacity: 0;
+    }
+
+    25% {
+      line-height: 0%;
+      opacity: 0;
+    }
+
+    80% {
+      opacity: 100%;
+    }
+
+    to {
+      line-height: 100%;
+      opacity: 100%;
+      padding: 15px 0;
+    }
+  }
+
+  .animate-title {
+    animation: title 3s ease-out forwards;
+  }
 `;
 
 type HeaderStyleProps = {

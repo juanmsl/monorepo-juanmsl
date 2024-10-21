@@ -6,6 +6,7 @@ export * from './headers';
 export * from './language-selector';
 export * from './layout-actions';
 export * from './loaders';
+export * from './markdown';
 export * from './particles';
 export * from './project-card';
 export * from './screen-image';

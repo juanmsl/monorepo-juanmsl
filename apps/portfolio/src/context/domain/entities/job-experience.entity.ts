@@ -6,8 +6,8 @@ export type JobExperienceEntity = {
   name: string;
   dateStart: string;
   dateEnd: string | undefined | null;
-  description: Array<string>;
   technologies: QueryCollection<TechnologyEntity>;
+  content: string;
   position: string;
   icon: string;
   links: LinkCollection;

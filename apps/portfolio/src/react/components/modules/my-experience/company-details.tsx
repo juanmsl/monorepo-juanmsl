@@ -4,6 +4,7 @@ import { Grid, HoverCard, Icon, IconNameT, Image, Tag, Tooltip, Typography } fro
 import { CompanyDetailsStyle } from './my-experience.style';
 
 import { Reveal } from '@components/animations';
+import { Markdown } from '@components/ui';
 import { JobExperienceEntity } from '@domain';
 
 type CompanyItemProps = {
@@ -11,7 +12,7 @@ type CompanyItemProps = {
 };
 
 export const CompanyDetails = ({ company }: CompanyItemProps) => {
-  const { description, name, position, dateStart, dateEnd, icon, links, technologies } = company;
+  const { name, position, dateStart, dateEnd, icon, links, technologies, content } = company;
 
   return (
     <CompanyDetailsStyle>
@@ -44,15 +45,7 @@ export const CompanyDetails = ({ company }: CompanyItemProps) => {
           </Typography>
         </section>
       </section>
-      <ul className='company-details-description'>
-        {description.map((text, key) => (
-          <li key={key}>
-            <Typography variant='body' noPadding>
-              {text}
-            </Typography>
-          </li>
-        ))}
-      </ul>
+      <Markdown>{content}</Markdown>
       <section className='company-details-labels'>
         {technologies.items.map(({ name, icon }, key) => (
           <Reveal delay={50 * key} key={key}>
