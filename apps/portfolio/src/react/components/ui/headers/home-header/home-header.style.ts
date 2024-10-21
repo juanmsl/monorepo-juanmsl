@@ -1,16 +1,17 @@
 import { SectionLayout } from '@juanmsl/ui';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const HomeHeaderConatiner = styled.section`
+export const HomeHeaderContainer = styled.section`
   position: relative;
 
-  .particles-canvas {
-    position: absolute;
+  .progress-bar {
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
+    right: 0;
+    height: 10px;
+    background: ${props => props.theme.colors.primary.main};
+    transform-origin: 0;
   }
 `;
 
@@ -23,6 +24,7 @@ export const HomeHeaderStyle = styled(SectionLayout).attrs<HeaderStyleProps, Hea
   position: relative;
   color: ${props => props.theme.colors.primary.main};
   transition: all 300ms ease;
+  height: 100%;
 
   .home-header-svg {
     position: absolute;
@@ -39,10 +41,19 @@ export const HomeHeaderStyle = styled(SectionLayout).attrs<HeaderStyleProps, Hea
     left: 0;
     width: 100%;
     height: 100%;
-    background: url(${props => props.$background}) center center / cover no-repeat
-      ${props => props.theme.colors.background.paper}B3;
+    ${({ theme, $background }) => {
+      if (theme.name === 'dark') {
+        return css`
+          background: url(${$background}) center center / cover no-repeat ${theme.colors.background.paper}B3;
+        `;
+      }
+
+      return css`
+        background: url(${$background}) center center / cover no-repeat ${theme.colors.primary.main}88;
+      `;
+    }}
     background-blend-mode: soft-light;
-    filter: opacity(40%) grayscale(50%);
+    filter: opacity(40%);
     transition: all 300ms ease;
   }
 

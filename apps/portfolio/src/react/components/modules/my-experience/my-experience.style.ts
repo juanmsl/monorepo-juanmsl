@@ -2,6 +2,8 @@ import { SectionLayout, Tabs } from '@juanmsl/ui';
 import styled from 'styled-components';
 
 export const MyExperienceStyle = styled(SectionLayout)`
+  border-top: 10px solid ${props => props.theme.colors.tertiary.main};
+
   .layout-content {
     align-content: start;
     justify-content: center;

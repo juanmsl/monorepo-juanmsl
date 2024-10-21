@@ -21,8 +21,6 @@ export const CharacteristicsStyle = styled(SectionLayout)`
   box-shadow:
     inset 0 25px 20px -20px ${props => props.theme.colors.black},
     inset 0 -25px 20px -20px ${props => props.theme.colors.black};
-  border-top: 10px solid ${props => props.theme.colors.tertiary.main};
-  border-bottom: 10px solid ${props => props.theme.colors.tertiary.main};
 
   .layout-content {
     place-content: center;

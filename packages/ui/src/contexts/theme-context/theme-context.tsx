@@ -130,6 +130,7 @@ export const ThemeProvider = ({
       >
         <StyledThemeProvider
           theme={{
+            name: useSystemTheme ? systemThemeName : themeName,
             colors: themes[useSystemTheme ? systemThemeName : themeName],
             constants: constants,
           }}

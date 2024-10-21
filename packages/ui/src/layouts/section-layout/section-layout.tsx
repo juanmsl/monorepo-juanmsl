@@ -1,4 +1,5 @@
 import { useClassNames } from '@juanmsl/hooks';
+import { ForwardedRef, forwardRef } from 'react';
 
 import { SectionLayoutContentStyle, SectionLayoutStyle } from './section-layout.style';
 
@@ -12,22 +13,25 @@ type SectionLayoutProps = {
   alignContent?: React.CSSProperties['alignContent'];
 };
 
-export const SectionLayout = ({
-  children,
-  className = '',
-  contentClassName = '',
-  style = {},
-  padding = '0 2em',
-  fitHeightContent = false,
-  alignContent = 'center',
-}: SectionLayoutProps) => {
+const SectionLayoutComponent = (
+  {
+    children,
+    className = '',
+    contentClassName = '',
+    style = {},
+    padding = '0 2em',
+    fitHeightContent = false,
+    alignContent = 'center',
+  }: SectionLayoutProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) => {
   const sectionLayoutContentClassName = useClassNames({
     [contentClassName]: Boolean(contentClassName),
     'section-layout-min-height': !fitHeightContent,
   });
 
   return (
-    <SectionLayoutStyle className={className} style={style} $padding={padding}>
+    <SectionLayoutStyle ref={ref} className={className} style={style} $padding={padding}>
       <SectionLayoutContentStyle
         className={sectionLayoutContentClassName}
         style={{ alignContent: (!fitHeightContent && alignContent) || undefined }}
@@ -37,3 +41,5 @@ export const SectionLayout = ({
     </SectionLayoutStyle>
   );
 };
+
+export const SectionLayout = forwardRef(SectionLayoutComponent);

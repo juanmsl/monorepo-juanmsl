@@ -12,6 +12,10 @@ export const GlassStyled = styled.section`
   font-size: 1rem;
   transition: all 3s ease;
 
+  @media (any-pointer: coarse) {
+    display: none;
+  }
+
   &::before,
   &::after {
     content: '';
@@ -43,6 +47,10 @@ export const SkillStyle = styled.section`
   gap: 1.5em;
   cursor: none;
   max-width: 6em;
+
+  @media (any-pointer: coarse) {
+    gap: 0.5em;
+  }
 
   .technology-icon {
     width: 3em;
@@ -95,6 +103,7 @@ export const SkillStyle = styled.section`
 
 export const MySkillsStyle = styled(SectionLayout)`
   user-select: none;
+  border-bottom: 10px solid ${props => props.theme.colors.tertiary.main};
 
   .layout-content {
     display: grid;
