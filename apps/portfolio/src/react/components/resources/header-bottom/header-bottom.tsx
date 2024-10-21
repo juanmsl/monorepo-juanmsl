@@ -6,16 +6,16 @@ type ProfilePictureProps = {
 
 export const HeaderBottom = ({ className }: ProfilePictureProps) => {
   return (
-    <HeaderBottomStyle viewBox='0 0 1920 206' className={className} preserveAspectRatio='none'>
+    <HeaderBottomStyle viewBox='0 0 1920 261' className={className} preserveAspectRatio='none'>
       <g filter='url(#filter-header-shadow)'>
         <path
           id='backgroundColor'
-          d='M1356 47.247C977.624 47.247 660 328.849 0 0V206H1920V191C1830.5 133.099 1692 47.247 1356 47.247Z'
+          d='M1356 77.247C977.624 77.247 660 358.849 0 30V251H1920V221C1830.5 163.099 1692 77.247 1356 77.247Z'
           fill='none'
         />
         <path
           id='line'
-          d='M1356 47.247C977.624 47.247 660 328.849 0 0V10C660 338.849 977.624 57.247 1356 57.247C1692 57.247 1830.5 143.099 1920 201V191C1830.5 133.099 1692 47.247 1356 47.247Z'
+          d='M1356 77.247C977.624 77.247 660 358.849 0 30V40C660 368.849 977.624 87.247 1356 87.247C1692 87.247 1830.5 173.099 1920 231V221C1830.5 163.099 1692 77.247 1356 77.247Z'
           fill='none'
         />
       </g>
@@ -26,7 +26,7 @@ export const HeaderBottom = ({ className }: ProfilePictureProps) => {
           x='-20'
           y='0'
           width='1960'
-          height='206'
+          height='261'
           filterUnits='userSpaceOnUse'
           colorInterpolationFilters='sRGB'
         >

@@ -89,6 +89,7 @@ export type ThemeEntity = PaletteThemeEntity & CommonThemeEntity;
 
 declare module 'styled-components' {
   export interface DefaultTheme {
+    name: string;
     colors: ThemeEntity;
     constants: ThemeConstantsEntity;
   }

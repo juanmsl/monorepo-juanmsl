@@ -10,9 +10,11 @@ export const HeaderBottomStyle = styled.svg`
 
   #backgroundColor {
     fill: ${props => props.theme.colors.background.main};
+    transform: translate(0, 20px);
   }
 
   #line {
     fill: ${props => props.theme.colors.tertiary.main};
+    transform: translate(0, 20px);
   }
 `;

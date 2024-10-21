@@ -1,11 +1,11 @@
 import { Line, Typography } from '@juanmsl/ui';
 import { useTranslation } from 'react-i18next';
 
-import { HomeHeaderConatiner, HomeHeaderStyle } from './home-header.style';
+import { HomeHeaderContainer, HomeHeaderStyle } from './home-header.style';
 
 import { Reveal } from '@components/animations';
 import { HeaderBottom } from '@components/resources';
-import { Particles, SocialIcons } from '@components/ui';
+import { SocialIcons } from '@components/ui';
 import { ENV } from '@core/env';
 import { useAsset } from '@hooks';
 
@@ -15,8 +15,7 @@ export const HomeHeader = () => {
   const { data } = useAsset(ENV.ASSET_ID_BACKGROUND);
 
   return (
-    <HomeHeaderConatiner>
-      <Particles quantity={500} className='particles-canvas' />
+    <HomeHeaderContainer>
       <HomeHeaderStyle $background={data?.url} contentClassName='layout-content'>
         <section className='container'>
           <Reveal delay={200} width='100%'>
@@ -43,6 +42,6 @@ export const HomeHeader = () => {
         </section>
         <HeaderBottom className='home-header-svg' />
       </HomeHeaderStyle>
-    </HomeHeaderConatiner>
+    </HomeHeaderContainer>
   );
 };
