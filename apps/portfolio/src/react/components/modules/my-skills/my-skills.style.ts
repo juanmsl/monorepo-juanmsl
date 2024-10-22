@@ -1,16 +1,18 @@
 import { SectionLayout } from '@juanmsl/ui';
 import styled from 'styled-components';
 
+const glassRotation = 55;
+
 export const GlassStyled = styled.section`
   width: 3.6em;
   height: 3.6em;
+  margin-top: 0.9em;
   position: absolute;
-  top: 0.9em;
-  left: 50%;
-  transform: translateX(-50%);
+  transform-style: preserve-3d;
   z-index: -1;
   font-size: 1rem;
   transition: all 3s ease;
+  transform: rotateX(${glassRotation}deg);
 
   @media (any-pointer: coarse) {
     display: none;
@@ -31,12 +33,12 @@ export const GlassStyled = styled.section`
 
   &::before {
     background: ${props => props.theme.colors.text.main}22;
-    transform: perspective(6.25em) rotateX(65deg);
+    transform: translateZ(0.2em);
   }
 
   &::after {
     background: ${props => props.theme.colors.text.main}11;
-    transform: perspective(6.25em) translateY(0.3em) rotateX(65deg);
+    transform: translateZ(-0.2em);
   }
 `;
 
@@ -47,6 +49,7 @@ export const SkillStyle = styled.section`
   gap: 1.5em;
   cursor: none;
   max-width: 6em;
+  perspective: 100px;
 
   @media (any-pointer: coarse) {
     gap: 0.5em;
@@ -71,32 +74,27 @@ export const SkillStyle = styled.section`
 
   &.is-selected,
   &:hover {
+    ${GlassStyled} {
+      animation: rotate3d 3s linear infinite;
+    }
+
     ${GlassStyled}::before {
       background: ${props => props.theme.colors.primary.main};
-      animation: rotate3dUp 2s linear infinite;
     }
 
     ${GlassStyled}::after {
       background: ${props => props.theme.colors.primary.main}55;
-      transform: perspective(100px) translateY(0.3em) rotateX(65deg);
-      animation: rotate3dBottom 2s linear infinite;
     }
 
     .technology-icon,
     .technology-icon.is-selected {
-      transform: perspective(10em) translateZ(1.5em);
+      transform: translateZ(1.2em);
     }
   }
 
-  @keyframes rotate3dUp {
+  @keyframes rotate3d {
     to {
-      transform: perspective(100px) rotateX(65deg) rotateZ(1turn);
-    }
-  }
-
-  @keyframes rotate3dBottom {
-    to {
-      transform: perspective(100px) translateY(0.3em) rotateX(65deg) rotateZ(1turn);
+      transform: rotateX(${glassRotation}deg) rotateZ(1turn);
     }
   }
 `;

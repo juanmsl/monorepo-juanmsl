@@ -47,5 +47,6 @@ export const MyProjectsStyle = styled(SectionLayout)`
 
   .project-card:nth-child(3) {
     grid-area: child3;
+    align-self: center;
   }
 `;

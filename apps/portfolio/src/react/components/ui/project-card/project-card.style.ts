@@ -8,9 +8,8 @@ export const ProjectCardStyle = styled.section`
   max-width: ${props => props.theme.constants.breakpoints.laptopS};
   grid-template-areas: 'projectCardScreen' 'projectCardContent';
   overflow: hidden;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: auto auto;
   box-shadow: 0 4px 10px #00000088;
-  border: 1px solid ${props => props.theme.colors.primary.main};
   transition:
     box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1),
     transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
@@ -23,7 +22,12 @@ export const ProjectCardStyle = styled.section`
 
   .project-card-screen {
     grid-area: projectCardScreen;
-    background: ${props => props.theme.colors.primary.main};
+    background: radial-gradient(
+      circle at 0 30%,
+      ${props => props.theme.colors.primary.main}88,
+      ${props => props.theme.colors.secondary.main}88,
+      ${props => props.theme.colors.tertiary.main}88
+    );
     padding: 0 1em;
     display: grid;
     align-content: end;
