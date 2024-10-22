@@ -8,7 +8,7 @@ export const ProjectCardStyle = styled.section`
   max-width: ${props => props.theme.constants.breakpoints.laptopS};
   grid-template-areas: 'projectCardScreen' 'projectCardContent';
   overflow: hidden;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: auto auto;
   box-shadow: 0 4px 10px #00000088;
   transition:
     box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1),
