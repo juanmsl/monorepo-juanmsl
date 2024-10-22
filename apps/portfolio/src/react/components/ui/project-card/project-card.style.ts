@@ -4,7 +4,7 @@ export const ProjectCardStyle = styled.section`
   display: grid;
   align-content: start;
   border-radius: 1em;
-  background: ${props => props.theme.colors.background.paper}88;
+  background: ${props => props.theme.colors.background.paper};
   max-width: ${props => props.theme.constants.breakpoints.laptopS};
   grid-template-areas: 'projectCardScreen' 'projectCardContent';
   overflow: hidden;

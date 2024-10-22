@@ -1,8 +1,37 @@
 import { SectionLayout, Tabs } from '@juanmsl/ui';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const MyExperienceStyle = styled(SectionLayout)`
   border-top: 10px solid ${props => props.theme.colors.tertiary.main};
+  position: relative;
+
+  ${({ theme }) =>
+    theme.name === 'dark' &&
+    css`
+      &::before {
+        content: '';
+        position: absolute;
+        width: 1000px;
+        height: 1000px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          ${props => props.theme.colors.primary.main}88,
+          ${props => props.theme.colors.background.main}88,
+          transparent
+        );
+        z-index: -10;
+        top: 50%;
+        right: 35%;
+        transform: translate(50%, -50%);
+        background: radial-gradient(
+          circle,
+          ${props => props.theme.colors.tertiary.main}88,
+          ${props => props.theme.colors.background.main}88,
+          transparent
+        );
+      }
+    `}
 
   .layout-content {
     align-content: start;
@@ -28,6 +57,10 @@ export const MyExperienceStyle = styled(SectionLayout)`
     .accordion-header-content {
       display: grid;
       gap: 2px;
+    }
+
+    .companies-accordion-item-header {
+      background: transparent;
     }
   }
 

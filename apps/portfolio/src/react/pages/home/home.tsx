@@ -1,4 +1,5 @@
-import { AboutMe, Characteristics, MyExperience, MyProjects, MySkills } from '@components/modules';
+import { AboutMe, Characteristics, MyExperience, MyProjects, MySkills } from './components';
+
 import { HomeHeader } from '@components/ui';
 
 export const Home = () => {
