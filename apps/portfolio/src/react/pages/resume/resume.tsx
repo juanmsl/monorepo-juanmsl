@@ -1,7 +1,8 @@
 import { SectionLayout } from '@juanmsl/ui';
 import { useTranslation } from 'react-i18next';
 
-import { Document } from '@components/modules';
+import { Document } from './components';
+
 import { Header } from '@components/ui';
 
 export const Resume = () => {

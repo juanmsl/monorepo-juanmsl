@@ -4,7 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 
-import { MyProjectsStyle } from '@components/modules/my-projects/my-projects.style';
+import { MyProjectsStyle } from './my-projects.style';
+
 import { LoaderComponent, ProjectCard, SectionTitle } from '@components/ui';
 import { PATHS } from '@core/constants';
 import { useGetProjects } from '@hooks';

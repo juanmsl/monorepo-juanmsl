@@ -79,6 +79,7 @@ export const HomeHeaderStyle = styled(SectionLayout).attrs<HeaderStyleProps, Hea
         background: url(${$background}) center center / cover no-repeat ${theme.colors.primary.main}88;
       `;
     }}
+    background-attachment: fixed;
     background-blend-mode: soft-light;
     filter: opacity(40%);
     transition: all 300ms ease;

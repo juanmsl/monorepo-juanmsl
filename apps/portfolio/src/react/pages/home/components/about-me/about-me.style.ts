@@ -1,7 +1,31 @@
 import { SectionLayout } from '@juanmsl/ui';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const AboutMeStyle = styled(SectionLayout)`
+  position: relative;
+
+  ${({ theme }) =>
+    theme.name === 'dark' &&
+    css`
+      &::before {
+        content: '';
+        position: absolute;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          ${props => props.theme.colors.secondary.main}88,
+          ${props => props.theme.colors.background.main}88,
+          transparent
+        );
+        z-index: -10;
+        top: 75%;
+        left: 25%;
+        width: 1000px;
+        height: 1000px;
+        transform: translate(-50%, -50%);
+      }
+    `}
+
   .layout-content {
     gap: 50px;
     justify-content: center;

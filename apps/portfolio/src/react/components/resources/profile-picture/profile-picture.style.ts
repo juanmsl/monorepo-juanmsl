@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const ProfilePictureStyle = styled.section`
   width: 80%;
@@ -22,14 +22,18 @@ export const ProfilePictureStyle = styled.section`
     filter: drop-shadow(0 5px 15px ${props => props.theme.colors.text.main}55);
   }
 
-  #profilePicture {
-    filter: grayscale(100%);
-    transition: all 300ms ease;
-  }
+  ${({ theme }) =>
+    theme.name === 'dark' &&
+    css`
+      #profilePicture {
+        filter: grayscale(100%);
+        transition: all 300ms ease;
+      }
 
-  &:hover {
-    #profilePicture {
-      filter: grayscale(0);
-    }
-  }
+      &:hover {
+        #profilePicture {
+          filter: grayscale(0);
+        }
+      }
+    `}
 `;

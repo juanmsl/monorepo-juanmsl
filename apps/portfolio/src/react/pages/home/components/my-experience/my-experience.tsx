@@ -41,6 +41,9 @@ export const MyExperience = () => {
         return (
           <Reveal delay={100 * key} key={key} width='100%'>
             <AccordionItem
+              classNames={{
+                header: 'companies-accordion-item-header',
+              }}
               startContent={() => (
                 <section className='company-logo'>
                   <Image src={icon} alt={name} />
