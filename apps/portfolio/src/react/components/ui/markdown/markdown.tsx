@@ -5,17 +5,33 @@ import { Link } from 'react-router-dom';
 
 const components = {
   h1: ({ className, children, ...props }) => (
-    <Typography variant='header1' className={className} {...props}>
+    <Typography variant='header1' className={className} {...props} noPadding>
       {children}
     </Typography>
   ),
-  h2: ({ className, ...props }) => <h2 className={className} {...props} />,
-  h3: ({ className, ...props }) => <h3 className={className} {...props} />,
-  h4: ({ className, ...props }) => <h4 className={className} {...props} />,
+  h2: ({ className, children, ...props }) => (
+    <Typography variant='header2' className={className} {...props} noPadding>
+      {children}
+    </Typography>
+  ),
+  h3: ({ className, children, ...props }) => (
+    <Typography variant='header3' className={className} {...props} noPadding>
+      {children}
+    </Typography>
+  ),
+  h4: ({ className, children, ...props }) => (
+    <Typography variant='header4' className={className} {...props} noPadding>
+      {children}
+    </Typography>
+  ),
   h5: ({ className, ...props }) => <h5 className={className} {...props} />,
   h6: ({ className, ...props }) => <h6 className={className} {...props} />,
   a: ({ className, href, ...props }) => <Link className={className} to={href} {...props} />,
-  p: ({ className, ...props }) => <p className={className} {...props} />,
+  p: ({ className, children, ...props }) => (
+    <Typography variant='body' className={className} {...props} noPadding>
+      {children}
+    </Typography>
+  ),
   ul: ({ className, ...props }) => <ul className={className} {...props} />,
   ol: ({ className, ...props }) => <ol className={className} {...props} />,
   li: ({ className, children, ...props }) => (

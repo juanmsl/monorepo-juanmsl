@@ -55,17 +55,17 @@ export const MyExperienceStyle = styled(SectionLayout)`
 
   .company-logo {
     border-radius: 50%;
-    background: ${props => props.theme.colors.white};
     transition: all 300ms ease;
     width: 42px;
     height: 42px;
     display: block;
     align-self: start;
+    background: ${props => props.theme.colors.white};
 
     @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
       width: 72px;
       height: 72px;
-      padding: 5px;
+      padding: 4px;
     }
 
     img {
@@ -75,7 +75,6 @@ export const MyExperienceStyle = styled(SectionLayout)`
       display: block;
       object-fit: cover;
       transition: all 300ms ease;
-      padding: 5px;
       border-radius: 50%;
     }
 

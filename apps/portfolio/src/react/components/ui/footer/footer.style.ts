@@ -27,6 +27,7 @@ export const FooterStyle = styled.footer`
     padding-bottom: 100px;
     height: 100%;
     align-content: unset;
+    z-index: 1;
   }
 
   .footer-logo {

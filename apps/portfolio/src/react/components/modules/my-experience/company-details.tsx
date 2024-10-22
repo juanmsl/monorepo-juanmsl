@@ -1,5 +1,5 @@
 import { formatDate, timeBetween } from '@juanmsl/helpers';
-import { Grid, HoverCard, Icon, IconNameT, Image, Tag, Tooltip, Typography } from '@juanmsl/ui';
+import { Grid, Icon, IconNameT, Image, Tag, Tooltip, Typography } from '@juanmsl/ui';
 
 import { CompanyDetailsStyle } from './my-experience.style';
 
@@ -18,9 +18,7 @@ export const CompanyDetails = ({ company }: CompanyItemProps) => {
     <CompanyDetailsStyle>
       <section className='company-details-header'>
         <section className='company-logo'>
-          <HoverCard width='100%'>
-            <Image src={icon} alt='Company logo' />
-          </HoverCard>
+          <Image src={icon} alt='Company logo' />
         </section>
         <section className='company-details-header--content'>
           <Grid flow='column' gap='1em' jc='start' ai='center'>
@@ -45,7 +43,9 @@ export const CompanyDetails = ({ company }: CompanyItemProps) => {
           </Typography>
         </section>
       </section>
-      <Markdown>{content}</Markdown>
+      <Grid gap='1em'>
+        <Markdown>{content}</Markdown>
+      </Grid>
       <section className='company-details-labels'>
         {technologies.items.map(({ name, icon }, key) => (
           <Reveal delay={50 * key} key={key}>
