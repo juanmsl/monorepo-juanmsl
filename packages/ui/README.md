@@ -44,7 +44,7 @@ Here’s a basic example to get started:
 
 ```jsx
 import React from 'react';
-import { Button } from 'juanmsl';
+import { Button } from 'juanmsl/ui';
 
 function App() {
   return (
