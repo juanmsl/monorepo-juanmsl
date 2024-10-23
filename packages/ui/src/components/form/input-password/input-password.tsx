@@ -1,10 +1,11 @@
-import { useInputHandlers, useToggleValues } from '@juanmsl/hooks';
 import { useMemo } from 'react';
 
 import { Controller, InputFieldProps } from '..';
 import { IconNameT } from '../../icon';
 import { Field } from '../field';
 import { ControllerGeneratorProps, UnControlledComponentProps } from '../form.types';
+
+import { useInputHandlers, useToggleValues } from '@juanmsl/hooks';
 
 type InputPasswordProps = InputFieldProps<{
   rightIcon?: never;

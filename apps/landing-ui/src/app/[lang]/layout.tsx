@@ -1,4 +1,4 @@
-import { ThemeProvider } from '@juanmsl/ui';
+import { ThemeProvider } from 'juanmsl/ui';
 import { Montserrat_Alternates } from 'next/font/google';
 
 import './globals.css';

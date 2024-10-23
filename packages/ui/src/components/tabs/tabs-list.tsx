@@ -1,4 +1,3 @@
-import { useClassNames } from '@juanmsl/hooks';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTheme } from 'styled-components';
 
@@ -6,6 +5,8 @@ import { ThemeColor } from '../../contexts';
 
 import { Tabs } from './tabs';
 import { TabListStyle, TabListStyleProps } from './tabs.style';
+
+import { useClassNames } from '@juanmsl/hooks';
 
 const DefaultRect = {
   top: 0,

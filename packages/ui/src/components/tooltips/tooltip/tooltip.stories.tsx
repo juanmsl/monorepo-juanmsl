@@ -1,6 +1,6 @@
-import { POSITION } from '@juanmsl/helpers';
-
 import { Tooltip } from './tooltip';
+
+import { POSITION } from '@juanmsl/helpers';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

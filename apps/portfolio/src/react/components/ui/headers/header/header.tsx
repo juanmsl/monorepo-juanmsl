@@ -1,4 +1,4 @@
-import { Typography } from '@juanmsl/ui';
+import { Typography } from 'juanmsl/ui';
 
 import { HeaderContainerStyle, HeaderStyle } from './header.style';
 

@@ -1,4 +1,3 @@
-import { useClassNames } from '@juanmsl/hooks';
 import React, { HTMLAttributes, createElement, forwardRef, useMemo } from 'react';
 
 import {
@@ -7,6 +6,8 @@ import {
   TypographyVariantsElements,
   TypographyWeight,
 } from './typography.constants';
+
+import { useClassNames } from '@juanmsl/hooks';
 
 type TypographyProps = HTMLAttributes<HTMLElement | HTMLLabelElement> & {
   variant?: `${TypographyVariant}`;

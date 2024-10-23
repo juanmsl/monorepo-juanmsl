@@ -1,4 +1,4 @@
-import { Icon, Tooltip, useMyTheme } from '@juanmsl/ui';
+import { Icon, Tooltip, useMyTheme } from 'juanmsl/ui';
 import { useTranslation } from 'react-i18next';
 
 import { ToggleSelector } from '@components/ui';

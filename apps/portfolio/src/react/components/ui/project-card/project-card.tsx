@@ -1,5 +1,5 @@
-import { useClassNames } from '@juanmsl/hooks';
-import { Button, FlipCard, Grid, Icon, IconNameT, Image, Tag, Tooltip, Typography } from '@juanmsl/ui';
+import { useClassNames } from 'juanmsl/hooks';
+import { Button, FlipCard, Grid, Icon, IconNameT, Image, Tag, Tooltip, Typography } from 'juanmsl/ui';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 

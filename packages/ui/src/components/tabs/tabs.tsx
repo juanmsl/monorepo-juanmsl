@@ -1,8 +1,9 @@
-import { useClassNames } from '@juanmsl/hooks';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
 import { TabsList as TabListComponent, TabListProps } from './tabs-list';
 import { TabStyle } from './tabs.style';
+
+import { useClassNames } from '@juanmsl/hooks';
 
 type TabsContextState = {
   openTab: string;

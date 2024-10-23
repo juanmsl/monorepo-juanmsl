@@ -1,4 +1,4 @@
-import { HoverCard, Icon, IconNameT, Line, Typography } from '@juanmsl/ui';
+import { HoverCard, Icon, IconNameT, Line, Typography } from 'juanmsl/ui';
 import { useMemo } from 'react';
 
 import { CharacteristicStyle, CharacteristicsStyle, CharacteristicsContainerStyle } from './characteristics.style';

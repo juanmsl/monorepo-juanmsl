@@ -1,4 +1,3 @@
-import { useMediaQuery, useModalInContainer } from '@juanmsl/hooks';
 import React, { useCallback, useMemo } from 'react';
 import { useTheme } from 'styled-components';
 
@@ -22,6 +21,8 @@ import {
   SingleValue,
   UnControlledSelectProps,
 } from './select.types';
+
+import { useMediaQuery, useModalInContainer } from '@juanmsl/hooks';
 
 /*
  *type SelectContextState<T extends SelectItem = unknown> = {

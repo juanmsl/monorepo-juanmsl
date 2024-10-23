@@ -1,4 +1,4 @@
-import { Grid, Line, Typography } from '@juanmsl/ui';
+import { Grid, Line, Typography } from 'juanmsl/ui';
 import { useTranslation } from 'react-i18next';
 
 import { HomeHeaderContainer, HomeHeaderStyle } from './home-header.style';

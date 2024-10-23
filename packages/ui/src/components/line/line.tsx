@@ -1,6 +1,6 @@
-import { useClassNames } from '@juanmsl/hooks';
-
 import { LineStyle as LineComponentStyle } from './line.style';
+
+import { useClassNames } from '@juanmsl/hooks';
 
 export enum LineOrientation {
   VERTICAL = 'vertical',

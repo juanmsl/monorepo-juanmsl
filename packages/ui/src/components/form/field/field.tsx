@@ -1,4 +1,3 @@
-import { useClassNames } from '@juanmsl/hooks';
 import React, { ForwardedRef } from 'react';
 
 import { Icon, IconNameT } from '../../icon';
@@ -6,6 +5,8 @@ import { Typography } from '../../typography';
 
 import { FieldStyle } from './field.style';
 import { FieldProps, FieldVariant } from './field.types';
+
+import { useClassNames } from '@juanmsl/hooks';
 
 type GetIconParams = {
   iconName?: IconNameT;

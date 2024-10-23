@@ -1,4 +1,4 @@
-import { Typography } from '@juanmsl/ui';
+import { Typography } from 'juanmsl/ui';
 import React from 'react';
 
 import { BoxShadowStyle } from './box-shadow.style';

@@ -1,4 +1,4 @@
-import { Icon } from '@juanmsl/ui';
+import { Icon } from 'juanmsl/ui';
 
 import { SimpleLoaderStyle } from './simple-loader.style';
 

@@ -1,4 +1,4 @@
-import { Typography } from '@juanmsl/ui';
+import { Typography } from 'juanmsl/ui';
 import { useTranslation } from 'react-i18next';
 
 import { FooterStyle } from './footer.style';

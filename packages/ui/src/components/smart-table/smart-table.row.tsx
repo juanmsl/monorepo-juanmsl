@@ -1,9 +1,10 @@
-import { useClassNames } from '@juanmsl/hooks';
 import React from 'react';
 
 import { renderRow } from './smart-table.helpers';
 import { SmartRowStyle } from './smart-table.style';
 import { ColumnData, RowDataObject } from './smart-table.types';
+
+import { useClassNames } from '@juanmsl/hooks';
 
 type SmartTableRowProps<RowData extends RowDataObject> = {
   data: RowData;

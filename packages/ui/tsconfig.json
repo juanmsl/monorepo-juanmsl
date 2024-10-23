@@ -5,6 +5,10 @@
   "compilerOptions": {
     "rootDir": ".",
     "outDir": "dist",
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "paths": {
+      "@juanmsl/helpers": ["./helpers"],
+      "@juanmsl/hooks": ["./hooks"]
+    }
   },
 }

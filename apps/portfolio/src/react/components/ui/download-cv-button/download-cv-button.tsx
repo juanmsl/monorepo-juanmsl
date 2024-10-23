@@ -1,4 +1,4 @@
-import { Button, HoverCard } from '@juanmsl/ui';
+import { Button, HoverCard } from 'juanmsl/ui';
 
 import { ENV } from '@core/env';
 import { useAsset } from '@hooks';

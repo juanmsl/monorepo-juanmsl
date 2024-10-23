@@ -1,6 +1,6 @@
-import { formatDate, timeBetween } from '@juanmsl/helpers';
-import { Accordion, AccordionItem, Image, Tabs, Typography } from '@juanmsl/ui';
 import { motion } from 'framer-motion';
+import { formatDate, timeBetween } from 'juanmsl/helpers';
+import { Accordion, AccordionItem, Image, Tabs, Typography } from 'juanmsl/ui';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 

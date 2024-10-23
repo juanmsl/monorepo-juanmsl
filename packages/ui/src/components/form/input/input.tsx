@@ -1,9 +1,10 @@
-import { useInputHandlers } from '@juanmsl/hooks';
 import { useMemo } from 'react';
 
 import { Controller } from '../controller';
 import { Field, InputFieldProps } from '../field';
 import { ControllerGeneratorProps, UnControlledComponentProps } from '../form.types';
+
+import { useInputHandlers } from '@juanmsl/hooks';
 
 type IProps = InputFieldProps<{
   type?: 'email' | 'number' | 'search' | 'tel' | 'text' | 'url';

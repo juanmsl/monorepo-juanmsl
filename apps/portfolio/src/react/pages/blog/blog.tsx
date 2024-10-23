@@ -1,4 +1,4 @@
-import { SectionLayout } from '@juanmsl/ui';
+import { SectionLayout } from 'juanmsl/ui';
 import { useTranslation } from 'react-i18next';
 
 import { Header } from '@components/ui';

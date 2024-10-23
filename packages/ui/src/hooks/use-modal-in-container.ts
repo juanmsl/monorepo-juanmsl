@@ -1,9 +1,10 @@
-import { getModalPosition, GetModalPositionParams, PositionObject } from '@juanmsl/helpers';
 import React, { RefObject, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 import { useEventListener } from './use-event-listener';
 import { useObserver } from './use-observer';
 import { useOnClickOutsideRef } from './use-on-click-outside-ref';
+
+import { getModalPosition, GetModalPositionParams, PositionObject } from '@juanmsl/helpers';
 
 const convertDOMRectToPosition = (rect: DOMRectReadOnly): PositionObject => ({
   x: rect.x,

@@ -1,5 +1,3 @@
-import { formatBytes } from '@juanmsl/helpers';
-import { FileTypeEnum, useInputHandlers } from '@juanmsl/hooks';
 import { useEffect, useMemo, useState } from 'react';
 
 import { Grid } from '../../../layouts';
@@ -9,6 +7,9 @@ import { Controller } from '../controller';
 import { ControllerGeneratorProps, UnControlledComponentProps } from '../form.types';
 
 import { FileCardStyle, InputFileContainerStyle } from './input-file.style';
+
+import { formatBytes } from '@juanmsl/helpers';
+import { FileTypeEnum, useInputHandlers } from '@juanmsl/hooks';
 
 type InputFileProps = {
   label?: string;

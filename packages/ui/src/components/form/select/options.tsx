@@ -1,4 +1,3 @@
-import { useEventListener, useMediaQuery } from '@juanmsl/hooks';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTheme } from 'styled-components';
 
@@ -9,6 +8,8 @@ import { Typography } from '../../typography';
 import { SelectOption } from './select-option';
 import { OptionsHeaderStyle, OptionsStyle } from './select.style';
 import { OptionsProps, SelectItem } from './select.types';
+
+import { useEventListener, useMediaQuery } from '@juanmsl/hooks';
 
 export const Options = <T extends SelectItem>({
   onSearchQuery,

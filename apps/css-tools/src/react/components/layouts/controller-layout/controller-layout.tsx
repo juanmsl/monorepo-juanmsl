@@ -1,7 +1,7 @@
-import { useToggleValues } from '@juanmsl/hooks';
-import { Accordion, Button, InputColor, Tabs, Typography } from '@juanmsl/ui';
 import { fromHighlighter } from '@shikijs/markdown-it/core';
 import { motion } from 'framer-motion';
+import { useToggleValues } from 'juanmsl/hooks';
+import { Accordion, Button, InputColor, Tabs, Typography } from 'juanmsl/ui';
 import MarkdownIt from 'markdown-it';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
