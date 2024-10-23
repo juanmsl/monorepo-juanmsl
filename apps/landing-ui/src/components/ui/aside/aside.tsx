@@ -1,6 +1,6 @@
 'use client';
 
-import { Icon, Line, Typography } from '@juanmsl/ui';
+import { Icon, Line, Typography } from 'juanmsl/ui';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslation } from 'react-i18next';

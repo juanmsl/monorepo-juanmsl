@@ -1,4 +1,4 @@
-import { HttpClient } from '@juanmsl/ui';
+import { HttpClient } from 'juanmsl/ui';
 
 import { ENV } from '@core/env';
 

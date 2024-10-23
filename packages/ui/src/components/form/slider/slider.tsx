@@ -1,4 +1,3 @@
-import { useInputHandlers } from '@juanmsl/hooks';
 import { useMemo } from 'react';
 
 import { Controller } from '../controller';
@@ -6,6 +5,8 @@ import { Field, InputFieldProps } from '../field';
 import { ControllerGeneratorProps, UnControlledComponentProps } from '../form.types';
 
 import { SliderStyle } from './slider.style';
+
+import { useInputHandlers } from '@juanmsl/hooks';
 
 type SliderProps = InputFieldProps<{
   min?: number;

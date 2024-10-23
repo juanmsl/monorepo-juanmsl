@@ -1,7 +1,11 @@
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
-  entry: ['./src/index.ts'],
+  entry: {
+    ui: './src/index.ts',
+    hooks: './src/hooks/index.ts',
+    helpers: './src/helpers/index.ts',
+  },
   outDir: './dist',
   dts: true,
   bundle: true,

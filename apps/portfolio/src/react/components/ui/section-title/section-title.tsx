@@ -1,4 +1,4 @@
-import { Typography } from '@juanmsl/ui';
+import { Typography } from 'juanmsl/ui';
 
 import { SectionTitleStyle } from './section-title.style';
 

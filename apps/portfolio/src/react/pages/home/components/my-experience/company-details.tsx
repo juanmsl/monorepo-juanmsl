@@ -1,5 +1,5 @@
-import { formatDate, timeBetween } from '@juanmsl/helpers';
-import { Grid, Icon, IconNameT, Image, Tag, Tooltip, Typography } from '@juanmsl/ui';
+import { formatDate, timeBetween } from 'juanmsl/helpers';
+import { Grid, Icon, IconNameT, Image, Tag, Tooltip, Typography } from 'juanmsl/ui';
 
 import { CompanyDetailsStyle } from './my-experience.style';
 

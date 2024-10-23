@@ -1,4 +1,3 @@
-import { useClassNames } from '@juanmsl/hooks';
 import { useMemo } from 'react';
 import { useTheme } from 'styled-components';
 
@@ -9,6 +8,8 @@ import { Typography } from '../typography';
 
 import { SmartColumnStyle } from './smart-table.style';
 import { ColumnData, Order, RowDataObject } from './smart-table.types';
+
+import { useClassNames } from '@juanmsl/hooks';
 
 type SmartTableColumnProps<RowData extends RowDataObject> = ColumnData<RowData> & {
   toggleSortField: (field: ColumnData<RowData>['sortBy']) => void;

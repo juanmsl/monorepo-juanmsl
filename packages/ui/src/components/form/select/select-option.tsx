@@ -1,4 +1,3 @@
-import { useClassNames } from '@juanmsl/hooks';
 import React, { useCallback } from 'react';
 
 import { Icon } from '../../icon';
@@ -6,6 +5,8 @@ import { Checkbox } from '../checkbox';
 
 import { OptionStyle } from './select.style';
 import { SelectItem, SelectOptionProps, SelectOptionVariant } from './select.types';
+
+import { useClassNames } from '@juanmsl/hooks';
 
 export const SelectOption = <T extends SelectItem>({
   id,

@@ -1,4 +1,4 @@
-import { AccordionItem, Grid, Icon, Input, InputColor, Slider, Typography } from '@juanmsl/ui';
+import { AccordionItem, Grid, Icon, Input, InputColor, Slider, Typography } from 'juanmsl/ui';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'styled-components';

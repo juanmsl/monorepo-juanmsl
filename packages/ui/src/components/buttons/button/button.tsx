@@ -1,4 +1,3 @@
-import { useClassNames } from '@juanmsl/hooks';
 import React, { ButtonHTMLAttributes } from 'react';
 import { useTheme } from 'styled-components';
 
@@ -8,6 +7,8 @@ import { Ripple } from '../../ripple';
 
 import { ButtonColor, ButtonSize, ButtonVariant } from './button.constants';
 import { ButtonStyle, ButtonStyleProps } from './button.style';
+
+import { useClassNames } from '@juanmsl/hooks';
 
 const getColor = (color?: ThemeColor): ButtonStyleProps | null => {
   if (color) {

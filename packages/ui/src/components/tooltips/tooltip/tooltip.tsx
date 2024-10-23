@@ -1,10 +1,11 @@
-import { POSITION } from '@juanmsl/helpers';
-import { useClassNames, useEventListener, useModalInContainer } from '@juanmsl/hooks';
 import React, { cloneElement, ReactElement } from 'react';
 
 import { Modal } from '../../modals';
 
 import { TooltipStyle } from './tooltip.style';
+
+import { POSITION } from '@juanmsl/helpers';
+import { useClassNames, useEventListener, useModalInContainer } from '@juanmsl/hooks';
 
 export type TooltipProps = {
   position?: `${POSITION}`;

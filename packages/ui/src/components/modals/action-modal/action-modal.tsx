@@ -1,4 +1,3 @@
-import { useClassNames } from '@juanmsl/hooks';
 import { createContext, useCallback, useContext, useRef, useState } from 'react';
 
 import { Button, ButtonProps } from '../../buttons';
@@ -7,6 +6,8 @@ import { Typography } from '../../typography';
 import { Modal } from '../modal';
 
 import { ActionModalContainerStyle, ActionModalStyle } from './action-modal.style';
+
+import { useClassNames } from '@juanmsl/hooks';
 
 export type ActionModalProps = {
   children: React.ReactNode;

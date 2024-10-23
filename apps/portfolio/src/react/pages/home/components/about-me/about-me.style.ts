@@ -1,4 +1,4 @@
-import { SectionLayout } from '@juanmsl/ui';
+import { SectionLayout } from 'juanmsl/ui';
 import styled, { css } from 'styled-components';
 
 export const AboutMeStyle = styled(SectionLayout)`

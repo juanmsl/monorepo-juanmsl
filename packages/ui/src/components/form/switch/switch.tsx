@@ -1,4 +1,3 @@
-import { useClassNames, useInputHandlers } from '@juanmsl/hooks';
 import { useMemo } from 'react';
 
 import { Icon, IconNameT } from '../../icon';
@@ -7,6 +6,8 @@ import { Controller } from '../controller';
 import { ControllerGeneratorProps, UnControlledComponentProps } from '../form.types';
 
 import { SwitchContainerStyle, SwitchStyle } from './switch.style';
+
+import { useClassNames, useInputHandlers } from '@juanmsl/hooks';
 
 type SwitchProps = {
   label?: string;

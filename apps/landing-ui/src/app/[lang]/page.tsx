@@ -1,4 +1,4 @@
-import { Typography } from '@juanmsl/ui';
+import { Typography } from 'juanmsl/ui';
 import Link from 'next/link';
 
 import { PageWithParams } from '@core/entities';

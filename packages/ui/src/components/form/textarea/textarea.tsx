@@ -1,4 +1,3 @@
-import { useInputHandlers } from '@juanmsl/hooks';
 import React, { useMemo } from 'react';
 
 import { Controller } from '../controller';
@@ -6,6 +5,8 @@ import { Field, InputFieldProps } from '../field';
 import { ControllerGeneratorProps, UnControlledComponentProps } from '../form.types';
 
 import { TextareaStyle } from './textarea.style';
+
+import { useInputHandlers } from '@juanmsl/hooks';
 
 type TextareaProps = InputFieldProps<{
   rows?: number;

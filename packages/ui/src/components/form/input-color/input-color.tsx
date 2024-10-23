@@ -1,4 +1,3 @@
-import { useInputHandlers, useModalInContainer } from '@juanmsl/hooks';
 import Color from 'color';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { HexAlphaColorPicker, HexColorInput } from 'react-colorful';
@@ -11,6 +10,8 @@ import { Field, InputFieldProps } from '../field';
 import { ControllerGeneratorProps, UnControlledComponentProps } from '../form.types';
 
 import { InputColorBoxStyle, InputColorSelectorStyle, InputColorStyle } from './input-color.style';
+
+import { useInputHandlers, useModalInContainer } from '@juanmsl/hooks';
 
 type ColorProps = InputFieldProps<{
   showValueText?: boolean;

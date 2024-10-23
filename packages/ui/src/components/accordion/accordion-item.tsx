@@ -1,4 +1,3 @@
-import { useClassNames } from '@juanmsl/hooks';
 import React, { useMemo } from 'react';
 
 import { SlideCard } from '../cards';
@@ -7,6 +6,8 @@ import { Typography } from '../typography';
 
 import { useAccordionItem } from './accordion';
 import { AccordionItemStyle } from './accordion.style';
+
+import { useClassNames } from '@juanmsl/hooks';
 
 type NodeFunction = (isOpen: boolean) => React.ReactNode;
 

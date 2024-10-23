@@ -1,9 +1,10 @@
-import { useDebounce, useInView } from '@juanmsl/hooks';
 import { LegacyRef, RefObject, useEffect } from 'react';
 
 import { Icon } from '../icon';
 
 import { InfinityScrollFooterStyle } from './infinity-scroll.style';
+
+import { useDebounce, useInView } from '@juanmsl/hooks';
 
 type InfinityScrollProps<T> = {
   isLoading: boolean;

@@ -1,6 +1,6 @@
 'use client';
 
-import { Icon, Image, THEME, Typography, useMyTheme } from '@juanmsl/ui';
+import { Icon, Image, THEME, Typography, useMyTheme } from 'juanmsl/ui';
 import Link from 'next/link';
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';

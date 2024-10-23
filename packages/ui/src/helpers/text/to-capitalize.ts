@@ -1,16 +1,13 @@
 export type ToCapitalizeOptions = Partial<{
   separator: string;
   join: string;
-  variant: "first-word" | "each-word";
+  variant: 'first-word' | 'each-word';
 }>;
 
-export const toCapitalize = (
-  text: string,
-  options: ToCapitalizeOptions = {},
-) => {
-  const { separator = " ", variant = "each-word", join = separator } = options;
+export const toCapitalize = (text: string, options: ToCapitalizeOptions = {}) => {
+  const { separator = ' ', variant = 'each-word', join = separator } = options;
 
-  if (variant === "first-word") {
+  if (variant === 'first-word') {
     return text[0].toUpperCase() + text.slice(1);
   }
 

@@ -1,4 +1,4 @@
-import { HoverCard } from '@juanmsl/ui';
+import { HoverCard } from 'juanmsl/ui';
 
 import { ProfilePictureStyle } from './profile-picture.style';
 

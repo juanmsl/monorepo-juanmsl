@@ -1,7 +1,8 @@
-import { useClassNames } from '@juanmsl/hooks';
 import { ForwardedRef, forwardRef } from 'react';
 
 import { SectionLayoutContentStyle, SectionLayoutStyle } from './section-layout.style';
+
+import { useClassNames } from '@juanmsl/hooks';
 
 type SectionLayoutProps = {
   children?: React.ReactNode;

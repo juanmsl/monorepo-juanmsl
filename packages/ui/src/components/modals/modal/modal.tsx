@@ -1,9 +1,10 @@
-import { useConstant } from '@juanmsl/hooks';
 import React, { ForwardedRef, forwardRef, useEffect, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import { useTheme } from 'styled-components';
 
 import { ModalOverlayStyle } from './modal.style';
+
+import { useConstant } from '@juanmsl/hooks';
 
 export enum ModalBackdrop {
   OPAQUE = 'opaque',

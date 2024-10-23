@@ -1,4 +1,3 @@
-import { useInputHandlers } from '@juanmsl/hooks';
 import { useMemo } from 'react';
 
 import { Icon, IconNameT } from '../../icon';
@@ -7,6 +6,8 @@ import { Controller } from '../controller';
 import { ControllerGeneratorProps, UnControlledComponentProps } from '../form.types';
 
 import { CheckboxContainerStyle, CheckboxStyle } from './checkbox.style';
+
+import { useInputHandlers } from '@juanmsl/hooks';
 
 type CheckboxProps = {
   label?: string;

@@ -1,4 +1,4 @@
-import { useEventListener, useMousePosition, useObserver } from '@juanmsl/hooks';
+import { useEventListener, useMousePosition, useObserver } from 'juanmsl/hooks';
 import { useRef, useEffect, useCallback } from 'react';
 import { useTheme } from 'styled-components';
 

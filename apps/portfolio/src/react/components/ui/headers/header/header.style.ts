@@ -1,4 +1,4 @@
-import { SectionLayout } from '@juanmsl/ui';
+import { SectionLayout } from 'juanmsl/ui';
 import styled from 'styled-components';
 
 export const HeaderContainerStyle = styled.section`

@@ -1,4 +1,3 @@
-import { useInputHandlers } from '@juanmsl/hooks';
 import { useMemo } from 'react';
 
 import { Typography } from '../../typography';
@@ -6,6 +5,8 @@ import { Controller } from '../controller';
 import { ControllerGeneratorProps, UnControlledComponentProps } from '../form.types';
 
 import { RadioContainerStyle, RadioStyle } from './radio.style';
+
+import { useInputHandlers } from '@juanmsl/hooks';
 
 type RadioProps = {
   label?: string;

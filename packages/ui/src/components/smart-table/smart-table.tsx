@@ -1,4 +1,3 @@
-import { useClassNames } from '@juanmsl/hooks';
 import { useMemo, useState } from 'react';
 
 import { KeyValuesOf } from '../../types';
@@ -16,6 +15,8 @@ import {
   SmartTableContainerStyle,
 } from './smart-table.style';
 import { ColumnData, RowDataObject } from './smart-table.types';
+
+import { useClassNames } from '@juanmsl/hooks';
 
 type SmartTableProps<RowData extends RowDataObject> = {
   columns: Array<ColumnData<RowData>>;

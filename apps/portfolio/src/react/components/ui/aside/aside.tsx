@@ -1,6 +1,6 @@
-import { useMediaQuery, useViewport } from '@juanmsl/hooks';
-import { Icon, IconNameT, Image, Line, Typography } from '@juanmsl/ui';
 import { motion, useCycle } from 'framer-motion';
+import { useMediaQuery, useViewport } from 'juanmsl/hooks';
+import { Icon, IconNameT, Image, Line, Typography } from 'juanmsl/ui';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
