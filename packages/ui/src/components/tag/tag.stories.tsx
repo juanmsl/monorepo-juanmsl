@@ -1,6 +1,7 @@
+import { RadiusVariants, SizeVariants } from '../../core/variants';
 import { Flex } from '../../layouts';
 
-import { Tag, TagSize } from './tag';
+import { Tag } from './tag';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -10,8 +11,8 @@ const meta: Meta<typeof Tag> = {
   argTypes: {
     isSelected: { control: 'boolean' },
     children: { control: 'text' },
-    size: { control: 'inline-radio', options: Object.values(TagSize) },
-    rounded: { control: 'boolean' },
+    size: { control: 'inline-radio', options: Object.values(SizeVariants) },
+    radius: { control: 'inline-radio', options: Object.values(RadiusVariants) },
   },
   args: {
     children: 'Tag',

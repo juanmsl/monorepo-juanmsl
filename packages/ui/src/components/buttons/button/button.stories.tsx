@@ -1,8 +1,8 @@
+import { RadiusVariants, SizeVariants } from '../../../core/variants';
 import { Grid } from '../../../layouts';
 import { IconNames } from '../../icon';
 
-import { Button } from './button';
-import { ButtonColor, ButtonSize, ButtonVariant } from './button.constants';
+import { Button, ButtonColor, ButtonVariant } from './button';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -21,22 +21,22 @@ const meta: Meta<typeof Button> = {
     leftIcon: { options: [undefined, ...IconNames.toSorted()] },
     noShadow: { control: 'boolean' },
     onClick: { control: false },
-    size: { control: 'inline-radio', options: Object.values(ButtonSize) },
+    size: { control: 'inline-radio', options: Object.values(SizeVariants) },
     style: { control: false },
     rightIcon: { options: [undefined, ...IconNames.toSorted()] },
-    rounded: { control: 'boolean' },
+    radius: { control: 'inline-radio', options: Object.values(RadiusVariants) },
     type: { control: false, options: ['button', 'submit', 'reset'] },
     variant: { control: 'inline-radio', options: Object.values(ButtonVariant) },
     width: { control: 'inline-radio', options: ['fit', 'full'] },
   },
   args: {
     width: 'full',
-    size: 'regular',
+    size: 'medium',
+    radius: 'medium',
     children: 'Button',
     noShadow: false,
     disabled: false,
     isLoading: false,
-    rounded: false,
   },
   decorators: [
     Story => (
@@ -76,7 +76,7 @@ export const Sizes: Story = {
   },
   render: args => (
     <Grid gtc='300px' ji='center' gap='1em' ai='center'>
-      {Object.values(ButtonSize).map(size => (
+      {Object.values(SizeVariants).map(size => (
         <Button {...args} size={size} key={size}>
           {size}
         </Button>

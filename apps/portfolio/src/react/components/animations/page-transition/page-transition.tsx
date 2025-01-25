@@ -40,14 +40,14 @@ export const PageTransition = ({ children }: PageTransitionProps) => {
             opacity: 1,
             scale: 1,
           }}
-          transition={{ duration: 0.5, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
         />
       </PageTransitionStyle>
       <PageTransitionStyle
         initial={{ width: '100%' }}
         animate={{ width: 0 }}
         exit={{ width: 0 }}
-        transition={{ duration: 0.5, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
         style={{
           transformOrigin: 'right',
           right: 0,
