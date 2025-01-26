@@ -45,7 +45,7 @@ export const ProjectCard = ({ project, verticalMode = false, className = '' }: P
         <Typography recommendedWith>{description}</Typography>
         <section className='project-technologies'>
           {technologies.items.map(({ name, icon }) => (
-            <Tag key={name} size='small' className='project-technology' rounded>
+            <Tag key={name} size='small' className='project-technology' radius='full'>
               <Image className='project-technology-icon' src={icon} alt={name} />
               {name}
             </Tag>

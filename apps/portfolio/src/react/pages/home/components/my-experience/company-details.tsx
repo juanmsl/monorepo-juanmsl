@@ -49,7 +49,7 @@ export const CompanyDetails = ({ company }: CompanyItemProps) => {
       <section className='company-details-labels'>
         {technologies.items.map(({ name, icon }, key) => (
           <Reveal delay={50 * key} key={key}>
-            <Tag rounded className='company-details-label'>
+            <Tag radius='full' className='company-details-label'>
               <Image className='company-details-labels-icon' src={icon} alt={name} />
               {name}
             </Tag>

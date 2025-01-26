@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@juanmsl/pdf-viewer": "*",
-    "juanmsl": "^0.0.5",
+    "juanmsl": "*",
     "@tanstack/react-query": "^5.17.19",
     "@vercel/analytics": "^1.3.1",
     "@vercel/speed-insights": "^1.0.12",
