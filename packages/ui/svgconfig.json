@@ -1,4 +1,4 @@
 {
-  "rootSVGDirectory": "./src/assets/svg",
+  "rootSVGDirectory": "./svg",
   "outputDirectory": "./src/components/icon/icons"
 }
