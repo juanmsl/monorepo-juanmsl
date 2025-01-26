@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { useEventListener } from './use-event-listener';
+import { useObserver } from './use-observer';
 
 export const useDimensions = (ref: React.RefObject<HTMLElement>) => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
@@ -13,6 +14,7 @@ export const useDimensions = (ref: React.RefObject<HTMLElement>) => {
   };
 
   useEventListener('resize', getSize);
+  useObserver(ref, getSize);
 
   useEffect(getSize, [ref]);
 
