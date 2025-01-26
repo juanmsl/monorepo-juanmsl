@@ -1,5 +1,7 @@
 import { HTMLAttributes } from 'react';
 
+import { RadiusVariants, SizeVariants, useRadiusClassName, useSizeClassName } from '../../core/variants';
+
 import { TagStyle } from './tag.style';
 
 import { useClassNames } from '@juanmsl/hooks';
@@ -13,24 +15,25 @@ export enum TagSize {
 type TagProps = HTMLAttributes<HTMLElement> & {
   children: React.ReactNode;
   isSelected?: boolean;
-  size?: `${TagSize}`;
-  rounded?: boolean;
+  size?: `${SizeVariants}`;
+  radius?: `${RadiusVariants}`;
 };
 
 export const Tag = ({
   children,
   className: customClassName = '',
   isSelected = false,
-  size = 'regular',
-  rounded = false,
+  size = SizeVariants.Medium,
+  radius = RadiusVariants.Medium,
   ...props
 }: TagProps) => {
+  const tagSize = useSizeClassName(size);
+  const tagRadius = useRadiusClassName(radius);
   const className = useClassNames({
     [customClassName]: !!customClassName,
+    [tagRadius]: true,
+    [tagSize]: true,
     'tag-selected': isSelected,
-    rounded: rounded,
-    'small-size': size === TagSize.SMALL,
-    'large-size': size === TagSize.LARGE,
   });
 
   return (

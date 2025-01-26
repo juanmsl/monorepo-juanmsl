@@ -9,7 +9,7 @@ export type ObjectIconsT = Record<
   | 'calendar'
   | 'camera'
   | 'clean-computer'
-  | 'crossed-flag'
+  | 'crossed-flags'
   | 'document'
   | 'door-closed'
   | 'door-open'
@@ -169,7 +169,7 @@ export const ObjectIcons: ObjectIconsT = {
       </g>
     ),
   },
-  'crossed-flag': {
+  'crossed-flags': {
     viewBox: '0 0 32 32',
     svg: fill => (
       <g>

@@ -2,13 +2,29 @@ import React, { ButtonHTMLAttributes } from 'react';
 import { useTheme } from 'styled-components';
 
 import { ThemeColor } from '../../../contexts';
+import { SizeVariants, useSizeClassName, RadiusVariants, useRadiusClassName } from '../../../core/variants';
 import { Icon, IconNameT } from '../../icon';
 import { Ripple } from '../../ripple';
 
-import { ButtonColor, ButtonSize, ButtonVariant } from './button.constants';
 import { ButtonStyle, ButtonStyleProps } from './button.style';
 
 import { useClassNames } from '@juanmsl/hooks';
+
+export enum ButtonVariant {
+  SOLID = 'solid',
+  GHOST = 'ghost',
+  FLAT = 'flat',
+}
+
+export enum ButtonColor {
+  PRIMARY = 'primary',
+  SECONDARY = 'secondary',
+  TERTIARY = 'tertiary',
+  INFO = 'info',
+  WARNING = 'warning',
+  ALERT = 'alert',
+  ACTIVE = 'active',
+}
 
 const getColor = (color?: ThemeColor): ButtonStyleProps | null => {
   if (color) {
@@ -26,8 +42,8 @@ export type ButtonProps = {
   children?: React.ReactNode;
   disabled?: boolean;
   isLoading?: boolean;
-  rounded?: boolean;
-  size?: `${ButtonSize}`;
+  size?: `${SizeVariants}`;
+  radius?: `${RadiusVariants}`;
   variant?: `${ButtonVariant}`;
   leftIcon?: IconNameT;
   rightIcon?: IconNameT;
@@ -44,9 +60,9 @@ const ButtonComponent = (
   {
     children,
     disabled = false,
-    rounded = false,
+    radius = RadiusVariants.Medium,
     isLoading = false,
-    size = 'regular',
+    size = SizeVariants.Medium,
     variant = 'solid',
     leftIcon,
     rightIcon,
@@ -61,10 +77,11 @@ const ButtonComponent = (
   ref: React.ForwardedRef<HTMLButtonElement>,
 ) => {
   const theme = useTheme();
+  const buttonSize = useSizeClassName(size);
+  const buttonRadius = useRadiusClassName(radius);
   const buttonClassName = useClassNames({
-    rounded: rounded,
-    'small-size': size === ButtonSize.SMALL,
-    'large-size': size === ButtonSize.LARGE,
+    [buttonRadius]: true,
+    [buttonSize]: true,
     'ghost-variant': variant === ButtonVariant.GHOST,
     'flat-variant': variant === ButtonVariant.FLAT,
     'is-loading': !disabled && isLoading,

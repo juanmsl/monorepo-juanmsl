@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { RadiusStyles, SizeStyles } from '../../../core/variants';
+
 export type ButtonStyleProps = {
   $color: string;
   $colorDark: string;
@@ -17,19 +19,17 @@ export const ButtonStyle = styled.button<ButtonStyleProps>`
   text-overflow: ellipsis;
   overflow: hidden;
   justify-items: center;
-  border-radius: 1em;
   text-align: center;
   justify-content: center;
   position: relative;
   user-select: none;
 
+  ${SizeStyles}
+  ${RadiusStyles}
+
   .button-loader-icon {
     animation: spin 800ms linear infinite;
     font-size: 1.2em;
-  }
-
-  &.rounded {
-    border-radius: 500px;
   }
 
   &.fit {
@@ -63,26 +63,30 @@ export const ButtonStyle = styled.button<ButtonStyleProps>`
   transition: all 250ms ease;
   border: 1px solid ${props => props.$color};
 
-  &:not(:disabled, .no-shadow):hover {
-    box-shadow:
-      0 1.4em 0.5em -1em ${props => props.theme.colors.black}88,
-      0 0.7em 1em -0.5em ${props => props.theme.colors.black}88;
-  }
+  &:not(:disabled) {
+    &:not(.no-shadow) {
+      &:hover {
+        box-shadow:
+          0 1.4em 0.5em -1em ${props => props.theme.colors.black}88,
+          0 0.7em 1em -0.5em ${props => props.theme.colors.black}88;
+      }
 
-  &:not(:disabled, .no-shadow):active {
-    box-shadow:
-      0 0.3em 0.4em -0.2em ${props => props.theme.colors.black}88,
-      0 0.2em 0.8em -0.1em ${props => props.theme.colors.black}88;
-  }
+      &:active {
+        box-shadow:
+          0 0.3em 0.4em -0.2em ${props => props.theme.colors.black}88,
+          0 0.2em 0.8em -0.1em ${props => props.theme.colors.black}88;
+      }
+    }
 
-  &:not(:disabled):hover {
-    transform: scale(1.02);
-  }
+    &:hover {
+      transform: scale(1.02);
+    }
 
-  &:not(:disabled):active {
-    background: ${props => props.$colorDark};
-    border-color: ${props => props.$colorDark};
-    transform: scale(0.98);
+    &:active {
+      background: ${props => props.$colorDark};
+      border-color: ${props => props.$colorDark};
+      transform: scale(0.98);
+    }
   }
 
   &:disabled {
@@ -97,25 +101,17 @@ export const ButtonStyle = styled.button<ButtonStyleProps>`
     pointer-events: none;
   }
 
-  &.small-size {
-    font-size: ${props => props.theme.constants.typography.small.fontSize};
-  }
-
-  &.large-size {
-    font-size: ${props => props.theme.constants.typography.body.fontSize};
-  }
-
   &.ghost-variant {
     background: transparent;
     color: ${props => props.$color};
     border: 1px solid;
 
     &:not(:disabled):hover {
-      background: ${props => props.theme.colors.background.main};
+      background: ${props => props.$color}22;
     }
 
     &:not(:disabled):active {
-      background: ${props => props.theme.colors.background.paper};
+      background: ${props => props.$color}55;
     }
 
     &:disabled {
@@ -133,11 +129,11 @@ export const ButtonStyle = styled.button<ButtonStyleProps>`
     border: 0;
 
     &:not(:disabled):hover {
-      background: ${props => props.theme.colors.background.main};
+      background: ${props => props.$color}22;
     }
 
     &:not(:disabled):active {
-      background: ${props => props.theme.colors.background.paper};
+      background: ${props => props.$color}55;
     }
 
     &:disabled {
