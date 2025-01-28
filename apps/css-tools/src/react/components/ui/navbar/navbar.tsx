@@ -1,4 +1,4 @@
-import { Icon, Image, Modal, Tooltip, Typography } from 'juanmsl/ui';
+import { Icon, Image, Modal, Tooltip, Typography } from 'polpo/ui';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, NavLink } from 'react-router-dom';

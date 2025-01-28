@@ -1,4 +1,4 @@
-import { Typography } from 'juanmsl/ui';
+import { Typography } from 'polpo/ui';
 
 import { CompaniesListItemStyle } from './my-experience.style';
 

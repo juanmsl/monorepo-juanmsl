@@ -1,4 +1,4 @@
-import { SectionLayout, Tabs } from 'juanmsl/ui';
+import { SectionLayout, Tabs } from 'polpo/ui';
 import styled, { css } from 'styled-components';
 
 export const MyExperienceStyle = styled(SectionLayout)`

@@ -1,5 +1,5 @@
-import { useClassNames } from 'juanmsl/hooks';
-import { Button, FlipCard, Grid, Icon, IconNameT, Image, Tag, Tooltip, Typography } from 'juanmsl/ui';
+import { useClassNames } from 'polpo/hooks';
+import { Button, FlipCard, Grid, Icon, IconNameT, Image, Tag, Tooltip, Typography } from 'polpo/ui';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -42,7 +42,7 @@ export const ProjectCard = ({ project, verticalMode = false, className = '' }: P
         <Typography variant='header4' className='project-title'>
           {name}
         </Typography>
-        <Typography recommendedWith>{description}</Typography>
+        <Typography recommendedWidth>{description}</Typography>
         <section className='project-technologies'>
           {technologies.items.map(({ name, icon }) => (
             <Tag key={name} size='small' className='project-technology' radius='full'>

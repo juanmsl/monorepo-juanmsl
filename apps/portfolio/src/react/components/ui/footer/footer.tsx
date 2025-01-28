@@ -1,4 +1,4 @@
-import { Icon, Image, Line, SectionLayout, Typography } from 'juanmsl/ui';
+import { Icon, Image, Line, SectionLayout, Typography } from 'polpo/ui';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 

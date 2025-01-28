@@ -1,4 +1,4 @@
-import { SectionLayout } from 'juanmsl/ui';
+import { SectionLayout } from 'polpo/ui';
 import styled from 'styled-components';
 
 const glassRotation = 55;

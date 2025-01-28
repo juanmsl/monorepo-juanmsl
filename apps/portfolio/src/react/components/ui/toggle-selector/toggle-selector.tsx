@@ -1,6 +1,6 @@
-import { POSITION } from 'juanmsl/helpers';
-import { useClassNames } from 'juanmsl/hooks';
-import { Tooltip } from 'juanmsl/ui';
+import { POSITION } from 'polpo/helpers';
+import { useClassNames } from 'polpo/hooks';
+import { Tooltip } from 'polpo/ui';
 
 import { ToggleSelectorStyle } from './toggle-selector.style';
 

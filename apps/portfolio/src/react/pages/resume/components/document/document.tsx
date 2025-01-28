@@ -1,6 +1,6 @@
 import { PdfViewer } from '@juanmsl/pdf-viewer';
-import { useDimensions } from 'juanmsl/hooks';
-import { HoverCard } from 'juanmsl/ui';
+import { useDimensions } from 'polpo/hooks';
+import { HoverCard } from 'polpo/ui';
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 

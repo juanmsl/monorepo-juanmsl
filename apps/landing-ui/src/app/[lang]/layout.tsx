@@ -1,5 +1,5 @@
-import { ThemeProvider } from 'juanmsl/ui';
 import { Montserrat_Alternates } from 'next/font/google';
+import { ThemeProvider } from 'polpo/ui';
 
 import './globals.css';
 

@@ -1,4 +1,4 @@
-import { Image } from 'juanmsl/ui';
+import { Image } from 'polpo/ui';
 import { NavLink, Outlet } from 'react-router-dom';
 
 import { MainLayoutStyle } from './main-layout.style';

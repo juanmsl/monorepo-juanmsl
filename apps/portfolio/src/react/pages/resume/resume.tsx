@@ -1,4 +1,4 @@
-import { SectionLayout } from 'juanmsl/ui';
+import { SectionLayout } from 'polpo/ui';
 import { useTranslation } from 'react-i18next';
 
 import { Document } from './components';

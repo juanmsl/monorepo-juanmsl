@@ -1,8 +1,8 @@
 'use client';
 
-import { Icon, Line, Typography } from 'juanmsl/ui';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Icon, Line, Typography } from 'polpo/ui';
 import { useTranslation } from 'react-i18next';
 
 import { AsideItemStyle, AsideStyle } from '@components/ui/aside/aside.style';

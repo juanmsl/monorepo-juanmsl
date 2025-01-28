@@ -1,4 +1,4 @@
-import { Line, Typography } from 'juanmsl/ui';
+import { Line, Typography } from 'polpo/ui';
 import React from 'react';
 
 import { PageLayoutStyle } from './page-layout.style';

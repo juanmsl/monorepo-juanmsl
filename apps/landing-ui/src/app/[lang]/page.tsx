@@ -1,5 +1,5 @@
-import { Typography } from 'juanmsl/ui';
 import Link from 'next/link';
+import { Typography } from 'polpo/ui';
 
 import { PageWithParams } from '@core/entities';
 import initTranslations from '@core/i18n';

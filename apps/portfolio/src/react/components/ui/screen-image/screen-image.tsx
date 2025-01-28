@@ -1,4 +1,4 @@
-import { Image, Typography } from 'juanmsl/ui';
+import { Image, Typography } from 'polpo/ui';
 
 import { ScreenImageContentStyle, ScreenImageStyle } from './screen-image.style';
 
