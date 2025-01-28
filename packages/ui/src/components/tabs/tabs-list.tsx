@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useTheme } from 'styled-components';
 
 import { ThemeColor } from '../../contexts';
+import { RadiusVariants, SizeVariants, useRadiusClassName, useSizeClassName } from '../../core/variants';
 
 import { Tabs } from './tabs';
 import { TabListStyle, TabListStyleProps } from './tabs.style';
@@ -22,23 +23,10 @@ export enum TabListVariant {
   LINE = 'line',
 }
 
-export enum TabListSize {
-  SMALL = 'small',
-  REGULAR = 'regular',
-  LARGE = 'large',
-}
-
 export enum TabListColor {
   PRIMARY = 'primary',
   SECONDARY = 'secondary',
   TERTIARY = 'tertiary',
-}
-
-export enum TabListRadius {
-  NONE = 'none',
-  SMALL = 'small',
-  MEDIUM = 'medium',
-  FULL = 'full',
 }
 
 export enum TabListDirection {
@@ -61,9 +49,9 @@ export type TabListProps = {
   openTab: string;
   variant?: `${TabListVariant}`;
   children?: React.ReactNode;
-  size?: `${TabListSize}`;
+  size?: `${SizeVariants}`;
   color?: `${TabListColor}`;
-  radius?: `${TabListRadius}`;
+  radius?: `${RadiusVariants}`;
   direction?: `${TabListDirection}`;
   className?: string;
   style?: React.CSSProperties;
@@ -76,12 +64,12 @@ export type TabListProps = {
 export const TabsList = ({
   tabs = [],
   variant = TabListVariant.SOLID,
-  radius = TabListRadius.FULL,
+  radius = RadiusVariants.Full,
   direction = TabListDirection.HORIZONTAL,
   color,
   children,
   openTab,
-  size = TabListSize.REGULAR,
+  size = SizeVariants.Medium,
   className = '',
   style = {},
 }: TabListProps) => {
@@ -90,17 +78,15 @@ export const TabsList = ({
   const selectedTabRef = useRef<HTMLSpanElement>(null);
   const [isSelectorActive, setIsSelectorActive] = useState(false);
   const [selector, setSelector] = useState(DefaultRect);
+  const tabRadius = useRadiusClassName(radius);
+  const tabSize = useSizeClassName(size);
   const containerClassNames = useClassNames({
+    [tabRadius]: true,
+    [tabSize]: true,
     'solid-variant': variant === TabListVariant.SOLID,
     'ghost-variant': variant === TabListVariant.GHOST,
     'flat-variant': variant === TabListVariant.FLAT,
     'line-variant': variant === TabListVariant.LINE,
-    'small-size': size === TabListSize.SMALL,
-    'large-size': size === TabListSize.LARGE,
-    'no-radius': radius === TabListRadius.NONE,
-    'small-radius': radius === TabListRadius.SMALL,
-    'medium-radius': radius === TabListRadius.MEDIUM,
-    'full-radius': radius === TabListRadius.FULL,
     'vertical-direction': direction === TabListDirection.VERTICAL,
     [className]: Boolean(className),
   });

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { RadiusClassNames, SizeStyles } from '../../core/variants';
+
 export const TabStyle = styled.span`
   cursor: pointer;
   user-select: none;
@@ -20,13 +22,7 @@ export const TabListStyle = styled.section<TabListStyleProps>`
   font-size: ${props => props.theme.constants.typography.label.fontSize};
   border-radius: 2em;
 
-  &.small-size {
-    font-size: ${props => props.theme.constants.typography.small.fontSize};
-  }
-
-  &.large-size {
-    font-size: ${props => props.theme.constants.typography.body.fontSize};
-  }
+  ${SizeStyles}
 
   .tabs-selector {
     position: absolute;
@@ -54,7 +50,7 @@ export const TabListStyle = styled.section<TabListStyleProps>`
     }
   }
 
-  &.no-radius {
+  &.${RadiusClassNames.None} {
     border-radius: 0;
 
     ${TabStyle}, .tabs-selector {
@@ -62,27 +58,35 @@ export const TabListStyle = styled.section<TabListStyleProps>`
     }
   }
 
-  &.small-radius {
-    border-radius: 0.8em;
+  &.${RadiusClassNames.Small} {
+    border-radius: 0.5em;
 
     ${TabStyle}, .tabs-selector {
       border-radius: 0.3em;
     }
   }
 
-  &.medium-radius {
-    border-radius: 1.3em;
+  &.${RadiusClassNames.Medium} {
+    border-radius: 1em;
 
     ${TabStyle}, .tabs-selector {
       border-radius: 0.8em;
     }
   }
 
-  &.full-radius {
-    border-radius: 1.8em;
+  &.${RadiusClassNames.Large} {
+    border-radius: 1.5em;
 
     ${TabStyle}, .tabs-selector {
       border-radius: 1.3em;
+    }
+  }
+
+  &.${RadiusClassNames.Full} {
+    border-radius: 1.8em;
+
+    ${TabStyle}, .tabs-selector {
+      border-radius: 1.6em;
     }
   }
 

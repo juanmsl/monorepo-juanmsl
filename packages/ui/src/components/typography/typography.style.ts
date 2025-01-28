@@ -10,7 +10,7 @@ export const TypographyStyle = createGlobalStyle(({ theme: { constants } }) =>
         margin: 0;
         padding: 0.5em 0 0.4em;
 
-        &.recommended-with {
+        &.recommended-width {
           max-width: 70ch;
         }
 
