@@ -19,7 +19,7 @@ type TypographyProps = HTMLAttributes<HTMLElement | HTMLLabelElement> & {
   htmlFor?: string;
   align?: React.CSSProperties['textAlign'];
   family?: 'primary' | 'code';
-  recommendedWith?: boolean;
+  recommendedWidth?: boolean;
 };
 
 export const TypographyComponent = (
@@ -35,7 +35,7 @@ export const TypographyComponent = (
     noPadding = false,
     align,
     htmlFor,
-    recommendedWith = false,
+    recommendedWidth = false,
     ...props
   }: TypographyProps,
   ref: React.ForwardedRef<unknown>,
@@ -46,7 +46,7 @@ export const TypographyComponent = (
     [weight ?? '']: !!weight,
     'no-padding': noPadding,
     'code-family': family === 'code',
-    'recommended-with': recommendedWith,
+    'recommended-width': recommendedWidth,
     'nowrap-max-lines': typeof nowrap === 'number',
     'nowrap-max-lines-2': nowrap === 2,
     'nowrap-max-lines-3': nowrap === 3,

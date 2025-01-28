@@ -1,8 +1,9 @@
+import { RadiusVariants, SizeVariants } from '../../core/variants';
 import { Grid } from '../../layouts';
 import { Typography } from '../typography';
 
 import { Tabs } from './tabs';
-import { TabListColor, TabListRadius, TabListSize, TabListVariant } from './tabs-list';
+import { TabListColor, TabListVariant } from './tabs-list';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -11,9 +12,9 @@ const meta: Meta<typeof Tabs.TabList> = {
   component: Tabs.TabList,
   argTypes: {
     variant: { control: 'inline-radio', options: Object.values(TabListVariant) },
-    size: { control: 'inline-radio', options: Object.values(TabListSize) },
+    size: { control: 'inline-radio', options: Object.values(SizeVariants) },
     color: { control: 'inline-radio', options: [undefined, ...Object.values(TabListColor)] },
-    radius: { control: 'inline-radio', options: Object.values(TabListRadius) },
+    radius: { control: 'inline-radio', options: Object.values(RadiusVariants) },
     direction: { control: false },
     tabs: { control: false },
     className: { control: false },
