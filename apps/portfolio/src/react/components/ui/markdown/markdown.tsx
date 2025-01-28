@@ -1,4 +1,4 @@
-import { Typography } from 'juanmsl/ui';
+import { Typography } from 'polpo/ui';
 import { ErrorBoundary } from 'react-error-boundary';
 import MarkdownComponent from 'react-markdown';
 import { Link } from 'react-router-dom';

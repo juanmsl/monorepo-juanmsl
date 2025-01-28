@@ -1,6 +1,6 @@
 import { motion, useCycle } from 'framer-motion';
-import { useMediaQuery, useViewport } from 'juanmsl/hooks';
-import { Icon, IconNameT, Image, Line, Typography } from 'juanmsl/ui';
+import { useMediaQuery, useViewport } from 'polpo/hooks';
+import { Icon, IconNameT, Image, Line, Typography } from 'polpo/ui';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';

@@ -1,4 +1,4 @@
-import { Icon, Image, Typography } from 'juanmsl/ui';
+import { Icon, Image, Typography } from 'polpo/ui';
 
 import { LoaderLogoStyle } from './loader-logo.style';
 

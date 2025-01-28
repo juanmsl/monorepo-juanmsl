@@ -1,4 +1,4 @@
-import { Icon, IconNameT, Tooltip, TooltipProps } from 'juanmsl/ui';
+import { Icon, IconNameT, Tooltip, TooltipProps } from 'polpo/ui';
 
 import { SocialIconsStyle } from './social-icons.style';
 

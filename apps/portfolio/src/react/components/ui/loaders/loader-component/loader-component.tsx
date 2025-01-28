@@ -1,4 +1,4 @@
-import { Icon } from 'juanmsl/ui';
+import { Icon } from 'polpo/ui';
 
 import { LoaderComponentStyle } from './loader-component.style';
 

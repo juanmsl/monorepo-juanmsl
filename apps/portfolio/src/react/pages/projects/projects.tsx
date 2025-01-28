@@ -1,4 +1,4 @@
-import { Grid, SectionLayout } from 'juanmsl/ui';
+import { Grid, SectionLayout } from 'polpo/ui';
 import { useTranslation } from 'react-i18next';
 
 import { Header, ProjectCard } from '@components/ui';

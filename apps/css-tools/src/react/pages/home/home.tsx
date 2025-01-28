@@ -1,4 +1,4 @@
-import { HoverCard, Typography } from 'juanmsl/ui';
+import { HoverCard, Typography } from 'polpo/ui';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 

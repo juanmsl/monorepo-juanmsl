@@ -1,4 +1,4 @@
-import { Image, Typography } from 'juanmsl/ui';
+import { Image, Typography } from 'polpo/ui';
 import { useState } from 'react';
 
 import { GlassStyled, MySkillsStyle, SkillStyle } from './my-skills.style';

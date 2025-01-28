@@ -1,4 +1,4 @@
-import { useEventListener, useMousePosition } from 'juanmsl/hooks';
+import { useEventListener, useMousePosition } from 'polpo/hooks';
 import { useState } from 'react';
 
 import { CustomCursorStyle, GlobalCursorStyle } from './custom-cursor.style';
