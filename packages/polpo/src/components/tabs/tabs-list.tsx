@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useTheme } from 'styled-components';
 
-import { ThemeColor } from '../../contexts';
-import { RadiusVariants, SizeVariants, useRadiusClassName, useSizeClassName } from '../../core/variants';
+import { RadiusVariants, SizeVariants } from '../../core/variants';
 
 import { Tabs } from './tabs';
-import { TabListStyle, TabListStyleProps } from './tabs.style';
+import { TabListStyle, TabListColorStyle } from './tabs.style';
 
 import { useClassNames } from '@polpo/hooks';
+import { ThemeColor } from '@polpo/ui';
 
 const DefaultRect = {
   top: 0,
@@ -34,7 +34,7 @@ export enum TabListDirection {
   VERTICAL = 'vertical',
 }
 
-const getColor = (color?: ThemeColor): TabListStyleProps | null => {
+const getColor = (color?: ThemeColor): TabListColorStyle | null => {
   if (color) {
     return {
       $color: color.main,
@@ -78,11 +78,7 @@ export const TabsList = ({
   const selectedTabRef = useRef<HTMLSpanElement>(null);
   const [isSelectorActive, setIsSelectorActive] = useState(false);
   const [selector, setSelector] = useState(DefaultRect);
-  const tabRadius = useRadiusClassName(radius);
-  const tabSize = useSizeClassName(size);
   const containerClassNames = useClassNames({
-    [tabRadius]: true,
-    [tabSize]: true,
     'solid-variant': variant === TabListVariant.SOLID,
     'ghost-variant': variant === TabListVariant.GHOST,
     'flat-variant': variant === TabListVariant.FLAT,
@@ -112,13 +108,20 @@ export const TabsList = ({
     }
   }, [isSelectorActive, variant, openTab]);
 
-  const containerColors: TabListStyleProps = (color && getColor(theme.colors[color])) || {
+  const containerColors: TabListColorStyle = (color && getColor(theme.colors[color])) || {
     $color: theme.colors.text.main,
     $colorContrast: theme.colors.background.main,
   };
 
   return (
-    <TabListStyle {...containerColors} className={containerClassNames} ref={containerRef} style={style}>
+    <TabListStyle
+      {...containerColors}
+      className={containerClassNames}
+      ref={containerRef}
+      style={style}
+      $size={size}
+      $radius={radius}
+    >
       {Boolean(variant) && <span className={`tabs-selector ${isSelectorActive ? 'active' : ''}`} style={selector} />}
       {tabs.map(({ id, label }) => (
         <Tabs.Tab key={id} id={id} ref={id === openTab ? selectedTabRef : null}>

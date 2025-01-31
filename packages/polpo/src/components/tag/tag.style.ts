@@ -1,8 +1,13 @@
 import styled from 'styled-components';
 
-import { RadiusStyles, SizeStyles } from '../../core/variants';
+import { RadiusStyles, RadiusVariants, SizeStyles, SizeVariants } from '../../core/variants';
 
-export const TagStyle = styled.span`
+type TagStyleProps = {
+  $size: `${SizeVariants}`;
+  $radius: `${RadiusVariants}`;
+};
+
+export const TagStyle = styled.span<TagStyleProps>`
   padding: 0.4em 0.8em;
   border-radius: 0.3em;
   border: 1px solid;
@@ -13,8 +18,8 @@ export const TagStyle = styled.span`
   font-size: ${props => props.theme.constants.typography.label.fontSize};
   user-select: none;
 
-  ${SizeStyles}
-  ${RadiusStyles}
+  ${props => SizeStyles[props.$size]}
+  ${props => RadiusStyles[props.$radius]}
 
   &:hover,
   &.tag-selected {

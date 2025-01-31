@@ -1,3 +1,4 @@
+import { ColorVariants } from '../../core/variants';
 import { Grid } from '../../layouts';
 
 import { Typography } from './typography';
@@ -11,8 +12,9 @@ const meta: Meta<typeof Typography> = {
   argTypes: {
     variant: { control: 'inline-radio', options: Object.values(TypographyVariant) },
     weight: { control: 'inline-radio', options: Object.values(TypographyWeight) },
+    color: { control: 'inline-radio', options: [...Object.values(ColorVariants), undefined] },
     nowrap: { control: 'boolean' },
-    recommendedWith: { control: 'boolean' },
+    recommendedWidth: { control: 'boolean' },
     as: { control: false },
     children: { control: 'text' },
     noPadding: { control: 'boolean' },

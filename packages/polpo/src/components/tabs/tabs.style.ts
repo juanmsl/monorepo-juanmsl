@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-import { RadiusClassNames, SizeStyles } from '../../core/variants';
+import { RadiusVariants, SizeStyles, SizeVariants } from '../../core/variants';
 
 export const TabStyle = styled.span`
   cursor: pointer;
@@ -8,9 +8,52 @@ export const TabStyle = styled.span`
   transition: all 300ms ease;
 `;
 
-export type TabListStyleProps = {
+const RadiusStyles: Record<RadiusVariants, ReturnType<typeof css>> = {
+  [RadiusVariants.None]: css`
+    border-radius: 0;
+
+    ${TabStyle}, .tabs-selector {
+      border-radius: 0;
+    }
+  `,
+  [RadiusVariants.Small]: css`
+    border-radius: 0.5em;
+
+    ${TabStyle}, .tabs-selector {
+      border-radius: 0.3em;
+    }
+  `,
+  [RadiusVariants.Medium]: css`
+    border-radius: 1em;
+
+    ${TabStyle}, .tabs-selector {
+      border-radius: 0.8em;
+    }
+  `,
+  [RadiusVariants.Large]: css`
+    border-radius: 1.5em;
+
+    ${TabStyle}, .tabs-selector {
+      border-radius: 1.3em;
+    }
+  `,
+  [RadiusVariants.Full]: css`
+    border-radius: 1.8em;
+
+    ${TabStyle}, .tabs-selector {
+      border-radius: 1.6em;
+    }
+  `,
+};
+
+export type TabListColorStyle = {
   $color: string;
   $colorContrast: string;
+};
+
+export type TabListStyleProps = TabListColorStyle & {
+  $size: `${SizeVariants}`;
+  $radius: `${RadiusVariants}`;
 };
 
 export const TabListStyle = styled.section<TabListStyleProps>`
@@ -22,7 +65,7 @@ export const TabListStyle = styled.section<TabListStyleProps>`
   font-size: ${props => props.theme.constants.typography.label.fontSize};
   border-radius: 2em;
 
-  ${SizeStyles}
+  ${props => SizeStyles[props.$size]}
 
   .tabs-selector {
     position: absolute;
@@ -50,45 +93,7 @@ export const TabListStyle = styled.section<TabListStyleProps>`
     }
   }
 
-  &.${RadiusClassNames.None} {
-    border-radius: 0;
-
-    ${TabStyle}, .tabs-selector {
-      border-radius: 0;
-    }
-  }
-
-  &.${RadiusClassNames.Small} {
-    border-radius: 0.5em;
-
-    ${TabStyle}, .tabs-selector {
-      border-radius: 0.3em;
-    }
-  }
-
-  &.${RadiusClassNames.Medium} {
-    border-radius: 1em;
-
-    ${TabStyle}, .tabs-selector {
-      border-radius: 0.8em;
-    }
-  }
-
-  &.${RadiusClassNames.Large} {
-    border-radius: 1.5em;
-
-    ${TabStyle}, .tabs-selector {
-      border-radius: 1.3em;
-    }
-  }
-
-  &.${RadiusClassNames.Full} {
-    border-radius: 1.8em;
-
-    ${TabStyle}, .tabs-selector {
-      border-radius: 1.6em;
-    }
-  }
+  ${props => RadiusStyles[props.$radius]}
 
   &.vertical-direction {
     grid-auto-flow: row;

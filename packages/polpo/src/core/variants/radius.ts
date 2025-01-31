@@ -1,7 +1,5 @@
 import { css } from 'styled-components';
 
-import { useClassNames } from '@polpo/hooks';
-
 export enum RadiusVariants {
   None = 'none',
   Small = 'small',
@@ -10,47 +8,20 @@ export enum RadiusVariants {
   Full = 'full',
 }
 
-const getRadiusVariantClassName = (size: `${RadiusVariants}`) => {
-  return `${size}-radius`;
-};
-
-export const RadiusClassNames: Record<keyof typeof RadiusVariants, string> = {
-  None: getRadiusVariantClassName(RadiusVariants.None),
-  Small: getRadiusVariantClassName(RadiusVariants.Small),
-  Medium: getRadiusVariantClassName(RadiusVariants.Medium),
-  Large: getRadiusVariantClassName(RadiusVariants.Large),
-  Full: getRadiusVariantClassName(RadiusVariants.Full),
-};
-
-export const useRadiusClassName = (size: `${RadiusVariants}`) =>
-  useClassNames(
-    Object.entries(RadiusVariants).reduce(
-      (object, [key, value]) => ({
-        ...object,
-        [RadiusClassNames[key as keyof typeof RadiusVariants]]: size === value,
-      }),
-      {},
-    ),
-  );
-
-export const RadiusStyles = css`
-  &.${RadiusClassNames.None} {
+export const RadiusStyles: Record<RadiusVariants, ReturnType<typeof css>> = {
+  [RadiusVariants.None]: css`
     border-radius: 0;
-  }
-
-  &.${RadiusClassNames.Small} {
+  `,
+  [RadiusVariants.Small]: css`
     border-radius: 0.5em;
-  }
-
-  &.${RadiusClassNames.Medium} {
+  `,
+  [RadiusVariants.Medium]: css`
     border-radius: 1em;
-  }
-
-  &.${RadiusClassNames.Large} {
+  `,
+  [RadiusVariants.Large]: css`
     border-radius: 1.5em;
-  }
-
-  &.${RadiusClassNames.Full} {
+  `,
+  [RadiusVariants.Full]: css`
     border-radius: 100em;
-  }
-`;
+  `,
+};

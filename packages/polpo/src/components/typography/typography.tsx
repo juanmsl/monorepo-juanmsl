@@ -1,4 +1,7 @@
 import React, { HTMLAttributes, createElement, forwardRef, useMemo } from 'react';
+import { DefaultTheme, useTheme } from 'styled-components';
+
+import { ColorVariants } from '../../core/variants';
 
 import {
   TypographyVariant,
@@ -8,6 +11,20 @@ import {
 } from './typography.constants';
 
 import { useClassNames } from '@polpo/hooks';
+
+const getTypographyColor = (theme: DefaultTheme, color?: `${ColorVariants}`): React.CSSProperties => {
+  const typographyColors: Record<ColorVariants, React.CSSProperties> = {
+    [ColorVariants.Primary]: { color: theme.colors.primary.main },
+    [ColorVariants.Secondary]: { color: theme.colors.secondary.main },
+    [ColorVariants.Tertiary]: { color: theme.colors.tertiary.main },
+    [ColorVariants.Info]: { color: theme.colors.info.main },
+    [ColorVariants.Active]: { color: theme.colors.active.main },
+    [ColorVariants.Warning]: { color: theme.colors.warning.main },
+    [ColorVariants.Alert]: { color: theme.colors.alert.main },
+  };
+
+  return (color && typographyColors[color]) ?? {};
+};
 
 type TypographyProps = HTMLAttributes<HTMLElement | HTMLLabelElement> & {
   variant?: `${TypographyVariant}`;
@@ -20,6 +37,7 @@ type TypographyProps = HTMLAttributes<HTMLElement | HTMLLabelElement> & {
   align?: React.CSSProperties['textAlign'];
   family?: 'primary' | 'code';
   recommendedWidth?: boolean;
+  color?: `${ColorVariants}`;
 };
 
 export const TypographyComponent = (
@@ -34,12 +52,14 @@ export const TypographyComponent = (
     family = 'primary',
     noPadding = false,
     align,
+    color,
     htmlFor,
     recommendedWidth = false,
     ...props
   }: TypographyProps,
   ref: React.ForwardedRef<unknown>,
 ) => {
+  const theme = useTheme();
   const className = useClassNames({
     [TypographyVariantsClassNames[variant]]: TypographyVariantsClassNames[variant] !== undefined,
     [customClassname]: !!customClassname,
@@ -69,6 +89,7 @@ export const TypographyComponent = (
       htmlFor,
       style: {
         textAlign: align,
+        ...getTypographyColor(theme, color),
         ...style,
       },
     },
