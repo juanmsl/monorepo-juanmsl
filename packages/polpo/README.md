@@ -1,12 +1,9 @@
 
 # Polpo
 
+A lightweight and customizable UI component library designed for React applications. This library provides a set of reusable components to speed up development and maintain a consistent user interface across your projects.
+
 [![npm version](https://badge.fury.io/js/polpo.svg)](https://www.npmjs.com/package/polpo)
-
-## Description
-
-`polpo` is a lightweight and customizable UI component library designed for React applications. This library provides a set of reusable components to speed up development and maintain a consistent user interface across your projects.
-
 
 ## Components
 

@@ -3,9 +3,9 @@ import { create } from '@storybook/theming';
 export default create({
   base: 'dark',
   brandTitle: 'Juanmsl',
-  brandUrl: 'https://juanmsl.com',
+  brandUrl: 'https://www.npmjs.com/package/polpo',
   brandImage:
-    'https://images.ctfassets.net/oums43ieu6nl/2ylSC9qo4LKhdbuA5w0UEv/629d5bff94b007225fe27dc472963a2e/Storybook_logo.png',
+    'https://images.ctfassets.net/oums43ieu6nl/2ylSC9qo4LKhdbuA5w0UEv/092b9842073058c8b66760aa84c3bbfd/polpo.png',
   brandTarget: '_blank',
 
   // Typography

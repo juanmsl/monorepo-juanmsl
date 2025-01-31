@@ -1,11 +1,16 @@
 import styled from 'styled-components';
 
-import { RadiusStyles, SizeStyles } from '../../../core/variants';
+import { RadiusStyles, RadiusVariants, SizeStyles, SizeVariants } from '../../../core/variants';
 
-export type ButtonStyleProps = {
+export type ButtonColorStyles = {
   $color: string;
   $colorDark: string;
   $colorContrast: string;
+};
+
+export type ButtonStyleProps = ButtonColorStyles & {
+  $size: `${SizeVariants}`;
+  $radius: `${RadiusVariants}`;
 };
 
 export const ButtonStyle = styled.button<ButtonStyleProps>`
@@ -23,9 +28,6 @@ export const ButtonStyle = styled.button<ButtonStyleProps>`
   justify-content: center;
   position: relative;
   user-select: none;
-
-  ${SizeStyles}
-  ${RadiusStyles}
 
   .button-loader-icon {
     animation: spin 800ms linear infinite;
@@ -62,6 +64,9 @@ export const ButtonStyle = styled.button<ButtonStyleProps>`
   box-shadow: 0 0 0 0 transparent;
   transition: all 250ms ease;
   border: 1px solid ${props => props.$color};
+
+  ${props => SizeStyles[props.$size]}
+  ${props => RadiusStyles[props.$radius]}
 
   &:not(:disabled) {
     &:not(.no-shadow) {

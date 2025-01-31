@@ -1,8 +1,8 @@
-import { RadiusVariants, SizeVariants } from '../../../core/variants';
+import { ColorVariants, RadiusVariants, SizeVariants } from '../../../core/variants';
 import { Grid } from '../../../layouts';
 import { IconNames } from '../../icon';
 
-import { Button, ButtonColor, ButtonVariant } from './button';
+import { Button, ButtonVariant } from './button';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -14,7 +14,7 @@ const meta: Meta<typeof Button> = {
     className: { control: false },
     color: {
       control: 'inline-radio',
-      options: [undefined, ...Object.values(ButtonColor)],
+      options: [undefined, ...Object.values(ColorVariants)],
     },
     disabled: { control: 'boolean' },
     isLoading: { control: 'boolean' },
@@ -93,7 +93,7 @@ export const Colors: Story = {
   render: args => (
     <Grid gtc='300px' ji='center' gap='1em' ai='center'>
       <Button {...args}>Default</Button>
-      {Object.values(ButtonColor).map(color => (
+      {Object.values(ColorVariants).map(color => (
         <Button {...args} color={color} key={color}>
           {color}
         </Button>

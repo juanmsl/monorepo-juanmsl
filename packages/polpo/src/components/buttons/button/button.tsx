@@ -2,11 +2,11 @@ import React, { ButtonHTMLAttributes } from 'react';
 import { useTheme } from 'styled-components';
 
 import { ThemeColor } from '../../../contexts';
-import { SizeVariants, useSizeClassName, RadiusVariants, useRadiusClassName } from '../../../core/variants';
+import { SizeVariants, RadiusVariants, ColorVariants } from '../../../core/variants';
 import { Icon, IconNameT } from '../../icon';
 import { Ripple } from '../../ripple';
 
-import { ButtonStyle, ButtonStyleProps } from './button.style';
+import { ButtonStyle, ButtonColorStyles } from './button.style';
 
 import { useClassNames } from '@polpo/hooks';
 
@@ -16,17 +16,7 @@ export enum ButtonVariant {
   FLAT = 'flat',
 }
 
-export enum ButtonColor {
-  PRIMARY = 'primary',
-  SECONDARY = 'secondary',
-  TERTIARY = 'tertiary',
-  INFO = 'info',
-  WARNING = 'warning',
-  ALERT = 'alert',
-  ACTIVE = 'active',
-}
-
-const getColor = (color?: ThemeColor): ButtonStyleProps | null => {
+const getColor = (color?: ThemeColor): ButtonColorStyles | null => {
   if (color) {
     return {
       $color: color.main,
@@ -53,7 +43,7 @@ export type ButtonProps = {
   style?: React.CSSProperties;
   type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
   noShadow?: boolean;
-  color?: `${ButtonColor}`;
+  color?: `${ColorVariants}`;
 };
 
 const ButtonComponent = (
@@ -77,11 +67,7 @@ const ButtonComponent = (
   ref: React.ForwardedRef<HTMLButtonElement>,
 ) => {
   const theme = useTheme();
-  const buttonSize = useSizeClassName(size);
-  const buttonRadius = useRadiusClassName(radius);
   const buttonClassName = useClassNames({
-    [buttonRadius]: true,
-    [buttonSize]: true,
     'ghost-variant': variant === ButtonVariant.GHOST,
     'flat-variant': variant === ButtonVariant.FLAT,
     'is-loading': !disabled && isLoading,
@@ -90,7 +76,7 @@ const ButtonComponent = (
     [className]: !!className,
   });
 
-  const buttonColors: ButtonStyleProps = (color && getColor(theme.colors[color])) || {
+  const buttonColors: ButtonColorStyles = (color && getColor(theme.colors[color])) || {
     $color: theme.colors.text.main,
     $colorDark: theme.colors.text.dark,
     $colorContrast: theme.colors.background.main,
@@ -105,6 +91,8 @@ const ButtonComponent = (
       disabled={disabled}
       onClick={onClick}
       type={type}
+      $size={size}
+      $radius={radius}
     >
       {leftIcon && (!isLoading || disabled) && <Icon className='button-left-icon' name={leftIcon} />}
       <span className='button-text'>
