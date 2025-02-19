@@ -84,7 +84,7 @@ export const InputColor = ({
 
   return (
     <Field id={id} error={error} isFocus={isFocus} {...fieldProps}>
-      <ModalProvider position='bottom' distancePercentage={0} offset={5}>
+      <ModalProvider position='bottom right' offset={5}>
         <InputColorStyle>
           <InputColorBoxStyle
             className={className}
