@@ -1,6 +1,6 @@
-import { POSITION } from 'polpo/helpers';
+import { PositionContainer } from 'polpo/helpers';
 import { useClassNames } from 'polpo/hooks';
-import { Tooltip } from 'polpo/ui';
+import { Tooltip, TooltipProps } from 'polpo/ui';
 
 import { ToggleSelectorStyle } from './toggle-selector.style';
 
@@ -15,7 +15,7 @@ type ToggleSelectorProps = {
   rightLabel?: string;
   position: 'left' | 'right';
   toggle: () => void;
-  tooltipPosition?: `${POSITION}`;
+  tooltipPosition?: TooltipProps['position'];
   orientation?: `${ToggleSelectorOrientation}`;
 };
 
@@ -25,7 +25,7 @@ export const ToggleSelector = ({
   rightLabel,
   position,
   toggle,
-  tooltipPosition = 'top',
+  tooltipPosition = PositionContainer.TOP,
   orientation = ToggleSelectorOrientation.HORIZONTAL,
 }: ToggleSelectorProps) => {
   const className = useClassNames({

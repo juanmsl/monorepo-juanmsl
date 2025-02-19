@@ -1,4 +1,4 @@
-import { useEventListener, useMousePosition, useObserver } from 'polpo/hooks';
+import { useEventListener, useMousePosition, useResizeObserver } from 'polpo/hooks';
 import { useRef, useEffect, useCallback } from 'react';
 import { useTheme } from 'styled-components';
 
@@ -221,7 +221,7 @@ export const Particles = ({
     return remapped > 0 ? remapped : 0;
   };
 
-  useObserver(canvasContainerRef, initCanvas);
+  useResizeObserver(canvasContainerRef, initCanvas);
 
   return (
     <div className={className} ref={canvasContainerRef} aria-hidden='true'>
