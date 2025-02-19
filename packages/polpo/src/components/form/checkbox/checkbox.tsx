@@ -1,18 +1,40 @@
 import { useMemo } from 'react';
+import { DefaultTheme, useTheme } from 'styled-components';
 
+import { ColorVariants } from '../../../core/variants';
 import { Icon, IconNameT } from '../../icon';
 import { Typography } from '../../typography';
 import { Controller } from '../controller';
 import { ControllerGeneratorProps, UnControlledComponentProps } from '../form.types';
 
-import { CheckboxContainerStyle, CheckboxStyle } from './checkbox.style';
+import { CheckboxContainerStyle, CheckboxFillStyle, CheckboxStyle } from './checkbox.style';
 
 import { useInputHandlers } from '@polpo/hooks';
+
+type CheckboxColor = {
+  color: string;
+  colorIcon: string;
+};
+
+const getCheckboxColor = (theme: DefaultTheme, color: `${ColorVariants}`): CheckboxColor => {
+  const checkboxColors: Record<ColorVariants, CheckboxColor> = {
+    [ColorVariants.Primary]: { color: theme.colors.primary.main, colorIcon: theme.colors.primary.contrast },
+    [ColorVariants.Secondary]: { color: theme.colors.secondary.main, colorIcon: theme.colors.secondary.contrast },
+    [ColorVariants.Tertiary]: { color: theme.colors.tertiary.main, colorIcon: theme.colors.tertiary.contrast },
+    [ColorVariants.Info]: { color: theme.colors.info.main, colorIcon: theme.colors.info.contrast },
+    [ColorVariants.Active]: { color: theme.colors.active.main, colorIcon: theme.colors.active.contrast },
+    [ColorVariants.Warning]: { color: theme.colors.warning.main, colorIcon: theme.colors.warning.contrast },
+    [ColorVariants.Alert]: { color: theme.colors.alert.main, colorIcon: theme.colors.alert.contrast },
+  };
+
+  return checkboxColors[color] ?? checkboxColors[ColorVariants.Primary];
+};
 
 type CheckboxProps = {
   label?: string;
   placeholder?: never;
   icon?: IconNameT;
+  color?: `${ColorVariants}`;
 };
 
 export const Checkbox = ({
@@ -29,6 +51,7 @@ export const Checkbox = ({
   autoComplete = 'off',
   icon = 'checkmark',
   label,
+  color = ColorVariants.Primary,
   /*
    * isDirty = false,
    * isTouched = false,
@@ -36,6 +59,7 @@ export const Checkbox = ({
    * error,
    */
 }: UnControlledComponentProps<CheckboxProps, boolean>) => {
+  const theme = useTheme();
   const id = useMemo(() => crypto.randomUUID(), []);
   const { handlers } = useInputHandlers<HTMLInputElement>({
     onChange: e => setValue(e.target.checked),
@@ -43,10 +67,19 @@ export const Checkbox = ({
     onFocus: onFocus,
   });
 
+  const checkboxColor = getCheckboxColor(theme, color);
+
   return (
-    <CheckboxContainerStyle className={className} style={style}>
+    <CheckboxContainerStyle
+      $color={checkboxColor.color}
+      $colorIcon={checkboxColor.colorIcon}
+      className={className}
+      style={style}
+    >
       <CheckboxStyle className={value ? 'is-checked' : ''}>
-        <Icon name={icon} className='checkbox-icon' />
+        <CheckboxFillStyle>
+          <Icon name={icon} className='checkbox-icon' />
+        </CheckboxFillStyle>
         <input
           id={id}
           type='checkbox'

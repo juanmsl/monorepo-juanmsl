@@ -45,12 +45,14 @@ export const SliderStyle = styled.section<SliderStyleProps>`
       &::-webkit-slider-thumb {
         background: ${props => props.theme.colors.primary.main};
         box-shadow: 0 0 0 6px ${props => props.theme.colors.primary.main}88;
+        cursor: grab;
       }
     }
 
     &:active {
       &::-webkit-slider-thumb {
         box-shadow: 0 0 0 12px ${props => props.theme.colors.primary.main}55;
+        cursor: grabbing;
       }
     }
 

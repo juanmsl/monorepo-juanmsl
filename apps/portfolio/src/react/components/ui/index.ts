@@ -1,5 +1,4 @@
 export * from './aside';
-export * from './custom-cursor';
 export * from './download-cv-button';
 export * from './footer';
 export * from './headers';

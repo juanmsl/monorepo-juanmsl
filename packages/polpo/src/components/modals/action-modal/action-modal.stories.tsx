@@ -1,12 +1,7 @@
-import { useState } from 'react';
-
-import { Grid } from '../../../layouts';
-import { Button } from '../../buttons';
-import { IconNames } from '../../icon';
-import { Line } from '../../line';
-import { Typography } from '../../typography';
-
 import { ActionModal } from './action-modal';
+
+import { useModalTransition } from '@polpo/hooks';
+import { Button, Grid, IconNames, Line, Typography } from '@polpo/ui';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -14,8 +9,6 @@ const meta: Meta<typeof ActionModal> = {
   title: 'Modals/ActionModal',
   component: ActionModal,
   argTypes: {
-    isOpen: { control: false },
-    onClose: { control: false },
     actionRequired: { control: 'boolean' },
     icon: { options: [undefined, ...IconNames.toSorted()] },
     noCloseButton: { control: 'boolean' },
@@ -31,66 +24,20 @@ const meta: Meta<typeof ActionModal> = {
   },
   decorators: [
     Story => {
-      const [isOpen, setIsOpen] = useState(false);
+      const { modalState, closeModal, openModal, isVisible } = useModalTransition(300);
 
       return (
         <>
-          <Button onClick={() => setIsOpen(true)}>Open modal</Button>
-          <Story isOpen={isOpen} onClose={() => setIsOpen(false)} />
+          <Button onClick={openModal}>Open modal</Button>
+          <Story modalState={modalState} closeModal={closeModal} isVisible={isVisible} />
         </>
       );
     },
   ],
-  render: (args, { isOpen, onClose }) => {
-    return <ActionModal {...args} isOpen={isOpen} onClose={onClose} />;
-  },
 };
 
 export default meta;
 type Story = StoryObj<typeof ActionModal>;
-
-export const Default: Story = {
-  args: {},
-};
-
-export const Confirmation: Story = {
-  argTypes: {
-    children: { control: false },
-  },
-  args: {
-    backCard: true,
-    lineOnTop: true,
-    icon: 'user',
-  },
-  render: (args, { isOpen, onClose }) => {
-    return (
-      <ActionModal {...args} isOpen={isOpen} onClose={onClose}>
-        <Typography variant='header4' align='center' noPadding>
-          Action modal
-        </Typography>
-        <Typography>Are you sure want to execute an action?</Typography>
-        <Grid ai='center' gtc='repeat(2, minmax(100px, 1fr))' jc='center' gap='1em' style={{ margin: 'auto' }}>
-          <ActionModal.ActionButton
-            size='small'
-            width='full'
-            variant='ghost'
-            onClick={() => alert('Action button clicked')}
-          >
-            No
-          </ActionModal.ActionButton>
-          <ActionModal.ActionButton
-            size='small'
-            width='full'
-            color='primary'
-            onClick={() => alert('Action button clicked')}
-          >
-            Yes
-          </ActionModal.ActionButton>
-        </Grid>
-      </ActionModal>
-    );
-  },
-};
 
 export const Classic: Story = {
   argTypes: {
@@ -100,9 +47,9 @@ export const Classic: Story = {
     lineOnTop: true,
     noPadding: true,
   },
-  render: (args, { isOpen, onClose }) => {
+  render: (args, { closeModal, isVisible, modalState }) => {
     return (
-      <ActionModal {...args} isOpen={isOpen} onClose={onClose}>
+      <ActionModal {...args} isVisible={isVisible} modalState={modalState} onClose={closeModal}>
         <Typography variant='header4' noPadding style={{ padding: '0 1rem' }}>
           Action modal
         </Typography>
@@ -115,7 +62,11 @@ export const Classic: Story = {
             size='small'
             width='full'
             variant='ghost'
-            onClick={() => alert('Action button clicked')}
+            onClick={() =>
+              new Promise(resolve => {
+                setTimeout(resolve, 2000);
+              })
+            }
           >
             No
           </ActionModal.ActionButton>
@@ -123,7 +74,58 @@ export const Classic: Story = {
             size='small'
             width='full'
             color='primary'
-            onClick={() => alert('Action button clicked')}
+            onClick={() =>
+              new Promise(resolve => {
+                setTimeout(resolve, 2000);
+              })
+            }
+          >
+            Yes
+          </ActionModal.ActionButton>
+        </Grid>
+      </ActionModal>
+    );
+  },
+};
+
+export const Confirmation: Story = {
+  argTypes: {
+    children: { control: false },
+  },
+  args: {
+    backCard: true,
+    lineOnTop: true,
+    icon: 'user',
+  },
+  render: (args, { closeModal, isVisible, modalState }) => {
+    return (
+      <ActionModal {...args} isVisible={isVisible} modalState={modalState} onClose={closeModal}>
+        <Typography variant='header4' align='center' noPadding>
+          Action modal
+        </Typography>
+        <Typography>Are you sure want to execute an action?</Typography>
+        <Grid ai='center' gtc='repeat(2, minmax(100px, 1fr))' jc='center' gap='1em' style={{ margin: 'auto' }}>
+          <ActionModal.ActionButton
+            size='small'
+            width='full'
+            variant='ghost'
+            onClick={() =>
+              new Promise(resolve => {
+                setTimeout(resolve, 2000);
+              })
+            }
+          >
+            No
+          </ActionModal.ActionButton>
+          <ActionModal.ActionButton
+            size='small'
+            width='full'
+            color='primary'
+            onClick={() =>
+              new Promise(resolve => {
+                setTimeout(resolve, 2000);
+              })
+            }
           >
             Yes
           </ActionModal.ActionButton>

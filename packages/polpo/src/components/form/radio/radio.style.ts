@@ -1,32 +1,23 @@
 import styled from 'styled-components';
 
+export const RadioFillStyle = styled.section`
+  transition: all 200ms ease-out;
+  border-radius: inherit;
+  margin: auto;
+  width: 0;
+  height: 0;
+`;
+
 export const RadioStyle = styled.section`
   border-radius: 50%;
-  background: ${props => props.theme.colors.gray9};
-  color: ${props => props.theme.colors.gray6};
-  border: 2px solid;
+  background: ${props => props.theme.colors.background.paper};
   transition: all 300ms ease;
+  width: 1.4em;
+  height: 1.4em;
+  outline: 2px solid;
+  display: flex;
   position: relative;
   padding: 2px;
-
-  .radio-dot {
-    width: 1em;
-    height: 1em;
-    border-radius: 50%;
-    display: block;
-    opacity: 0;
-    transition: opacity 300ms ease;
-    background: ${props => props.theme.colors.primary.main};
-  }
-
-  &.is-checked {
-    background: ${props => props.theme.colors.primary.contrast};
-    color: ${props => props.theme.colors.primary.main};
-
-    .radio-dot {
-      opacity: 1;
-    }
-  }
 
   .radio-input {
     position: absolute;
@@ -40,7 +31,11 @@ export const RadioStyle = styled.section`
   }
 `;
 
-export const RadioContainerStyle = styled.section`
+type RadioContainerStyleProps = {
+  $color: string;
+};
+
+export const RadioContainerStyle = styled.section<RadioContainerStyleProps>`
   display: flex;
   align-items: center;
   gap: 1em;
@@ -51,8 +46,34 @@ export const RadioContainerStyle = styled.section`
     user-select: none;
   }
 
+  ${RadioStyle} {
+    color: ${props => props.$color};
+
+    &.is-checked {
+      ${RadioFillStyle} {
+        width: 100%;
+        height: 100%;
+        background: ${props => props.$color};
+      }
+    }
+  }
+
   ${RadioStyle}:hover,
   &:has(.radio-label:hover) ${RadioStyle} {
-    box-shadow: 0 0 0 0.4em ${props => props.theme.colors.primary.main}88;
+    box-shadow: 0 0 0 0.4em ${props => props.$color}88;
+
+    ${RadioFillStyle} {
+      width: 20%;
+      height: 20%;
+      background: ${props => props.$color}88;
+    }
+
+    &:is(.is-checked) {
+      ${RadioFillStyle} {
+        width: 80%;
+        height: 80%;
+        background: ${props => props.$color};
+      }
+    }
   }
 `;

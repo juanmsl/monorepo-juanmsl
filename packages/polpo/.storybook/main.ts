@@ -18,6 +18,11 @@ const config: StorybookConfig = {
       files: '**/*.@(mdx|stories.@(mdx|js|jsx|mjs|ts|tsx))',
     },
     {
+      directory: '../src/hooks',
+      titlePrefix: 'Hooks',
+      files: '**/*.@(mdx|stories.@(mdx|js|jsx|mjs|ts|tsx))',
+    },
+    {
       directory: '../src/layouts',
       titlePrefix: 'Layouts',
       files: '**/*.@(mdx|stories.@(mdx|js|jsx|mjs|ts|tsx))',

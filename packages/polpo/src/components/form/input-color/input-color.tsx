@@ -4,14 +4,14 @@ import { HexAlphaColorPicker, HexColorInput } from 'react-colorful';
 import useEyeDropper from 'use-eye-dropper';
 
 import { Icon } from '../../icon';
-import { Modal } from '../../modals';
+import { ModalProvider } from '../../modals';
 import { Controller } from '../controller';
 import { Field, InputFieldProps } from '../field';
 import { ControllerGeneratorProps, UnControlledComponentProps } from '../form.types';
 
 import { InputColorBoxStyle, InputColorSelectorStyle, InputColorStyle } from './input-color.style';
 
-import { useInputHandlers, useModalInContainer } from '@polpo/hooks';
+import { useInputHandlers } from '@polpo/hooks';
 
 type ColorProps = InputFieldProps<{
   showValueText?: boolean;
@@ -54,10 +54,6 @@ export const InputColor = ({
       onFocus && onFocus(e);
     },
   });
-  const { modalRef, isVisible, setIsVisible, modalStyle, containerRef } = useModalInContainer({
-    position: 'bottom',
-    distancePercentage: 0,
-  });
 
   const borderColor = useMemo(() => {
     const color = Color(value === '' ? '#000000' : value);
@@ -88,66 +84,60 @@ export const InputColor = ({
 
   return (
     <Field id={id} error={error} isFocus={isFocus} {...fieldProps}>
-      <InputColorStyle
-        onClick={e => {
-          e.stopPropagation();
-          setIsVisible(true);
-        }}
-        ref={containerRef}
-      >
-        <InputColorBoxStyle
-          className={className}
-          style={{
-            borderColor,
-            background: value,
-            color: value,
-            ...style,
-          }}
-        >
-          <Modal id='input-color' isOpen={isVisible}>
-            <InputColorSelectorStyle ref={modalRef} style={modalStyle}>
-              <HexAlphaColorPicker id={id} color={value} onChange={setValue} />
-              <section className='color-input-container'>
-                {isSupported() ? (
-                  <Icon
-                    name='dropper'
-                    onClick={() => {
-                      void openEyeDropper();
-                    }}
-                  />
-                ) : (
-                  <span />
-                )}
-                <HexColorInput
-                  className='color-input'
-                  id={id}
-                  name={name}
-                  color={value}
-                  placeholder='Type a color'
-                  prefixed
-                  alpha
-                  onChange={setValue}
-                />
-                <span />
-              </section>
-            </InputColorSelectorStyle>
-          </Modal>
-        </InputColorBoxStyle>
-        {showValueText ? (
-          <input
-            id={id}
-            name={name}
-            value={inputValue}
-            placeholder={placeholder}
-            readOnly={readOnly}
-            autoFocus={autoFocus}
-            disabled={disabled}
-            autoComplete={autoComplete}
-            className='color-input'
-            {...handlers}
+      <ModalProvider position='bottom right' offset={5}>
+        <InputColorStyle>
+          <InputColorBoxStyle
+            className={className}
+            style={{
+              borderColor,
+              background: value,
+              color: value,
+              ...style,
+            }}
           />
-        ) : null}
-      </InputColorStyle>
+          {showValueText ? (
+            <input
+              id={id}
+              name={name}
+              value={inputValue}
+              placeholder={placeholder}
+              readOnly={readOnly}
+              autoFocus={autoFocus}
+              disabled={disabled}
+              autoComplete={autoComplete}
+              className='color-input'
+              {...handlers}
+            />
+          ) : null}
+        </InputColorStyle>
+
+        <InputColorSelectorStyle id='input-color' backdrop='transparent'>
+          <HexAlphaColorPicker id={id} color={value} onChange={setValue} />
+          <section className='color-input-container'>
+            {isSupported() ? (
+              <Icon
+                name='dropper'
+                onClick={() => {
+                  void openEyeDropper();
+                }}
+              />
+            ) : (
+              <span />
+            )}
+            <HexColorInput
+              className='color-input'
+              id={id}
+              name={name}
+              color={value}
+              placeholder='Type a color'
+              prefixed
+              alpha
+              onChange={setValue}
+            />
+            <span />
+          </section>
+        </InputColorSelectorStyle>
+      </ModalProvider>
     </Field>
   );
 };

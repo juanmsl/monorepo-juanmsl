@@ -1,44 +1,34 @@
 import styled from 'styled-components';
 
-export const CheckboxStyle = styled.section`
-  border-radius: 42%;
-  background: ${props => props.theme.colors.background.paper};
-  color: ${props => props.theme.colors.primary.main};
-  transition: all 300ms ease;
+export const CheckboxFillStyle = styled.section`
+  transition: all 200ms ease-out;
+  border-radius: inherit;
+  margin: auto;
+  width: 0;
+  height: 0;
+  overflow: hidden;
   position: relative;
-  padding: 2px;
-  width: 1.4em;
-  height: 1.4em;
-  border: 1px solid;
+  display: grid;
+  place-content: center;
+  place-items: center;
 
   .checkbox-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: ${props => props.theme.colors.primary.contrast};
-    font-size: 0.7em;
+    font-size: 0.8em;
     z-index: 1;
     opacity: 0;
     transition: opacity 300ms ease;
-
-    path {
-      filter: drop-shadow(0px 0 3px rgba(0, 0, 0, 1));
-    }
   }
+`;
 
-  &.is-checked {
-    background: ${props => props.theme.colors.primary.main};
-    color: ${props => props.theme.colors.primary.main};
-
-    .checkbox-icon {
-      opacity: 1;
-    }
-
-    &:hover {
-      background: ${props => props.theme.colors.primary.light};
-    }
-  }
+export const CheckboxStyle = styled.section`
+  border-radius: 40%;
+  background: ${props => props.theme.colors.background.paper};
+  transition: all 300ms ease;
+  width: 1.4em;
+  height: 1.4em;
+  outline: 2px solid;
+  display: flex;
+  position: relative;
 
   .checkbox-input {
     position: absolute;
@@ -52,7 +42,12 @@ export const CheckboxStyle = styled.section`
   }
 `;
 
-export const CheckboxContainerStyle = styled.section`
+type CheckboxContainerStyleProps = {
+  $color: string;
+  $colorIcon: string;
+};
+
+export const CheckboxContainerStyle = styled.section<CheckboxContainerStyleProps>`
   display: flex;
   align-items: center;
   gap: 1em;
@@ -63,13 +58,43 @@ export const CheckboxContainerStyle = styled.section`
     user-select: none;
   }
 
-  ${CheckboxStyle}:hover,
-  &:has(.checkbox-label:hover) ${CheckboxStyle} {
-    box-shadow: 0 0 0 0.4em ${props => props.theme.colors.primary.main}88;
+  ${CheckboxStyle} {
+    color: ${props => props.$color};
+
+    &.is-checked {
+      ${CheckboxFillStyle} {
+        width: 100%;
+        height: 100%;
+        background: ${props => props.$color};
+        color: ${props => props.$colorIcon};
+      }
+
+      .checkbox-icon {
+        opacity: 1;
+      }
+    }
   }
 
-  ${CheckboxStyle}:active,
-  &:has(.checkbox-label:active) ${CheckboxStyle} {
-    transform: scale(0.95);
+  ${CheckboxStyle}:hover,
+  &:has(.checkbox-label:hover) ${CheckboxStyle} {
+    box-shadow: 0 0 0 0.3em ${props => props.$color}88;
+    padding: 2px;
+
+    ${CheckboxFillStyle} {
+      width: 20%;
+      height: 20%;
+      border-radius: 20%;
+      background: ${props => props.$color}88;
+      color: ${props => props.$colorIcon};
+    }
+
+    &:is(.is-checked) {
+      ${CheckboxFillStyle} {
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        background: ${props => props.$color};
+      }
+    }
   }
 `;

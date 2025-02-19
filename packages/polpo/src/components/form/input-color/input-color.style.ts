@@ -1,17 +1,20 @@
 import styled from 'styled-components';
 
-export const InputColorStyle = styled.section`
+import { ModalProvider } from '@polpo/ui';
+
+export const InputColorStyle = styled(ModalProvider.Trigger)`
   display: grid;
   grid-auto-flow: column;
   align-items: center;
   justify-content: start;
+  gap: 0.5em;
 
   .input-color-value {
     margin-left: 10px;
   }
 
   .color-input {
-    padding: 0 1em;
+    padding-right: 1em;
     border-radius: inherit;
     width: 100%;
     font-size: ${props => props.theme.constants.typography.label.fontSize};
@@ -41,9 +44,7 @@ export const InputColorBoxStyle = styled.section`
   }
 `;
 
-export const InputColorSelectorStyle = styled.section`
-  position: fixed;
-  z-index: 1;
+export const InputColorSelectorStyle = styled(ModalProvider.Modal)`
   display: grid;
   gap: 10px;
   background: ${props => props.theme.colors.background.main};

@@ -29,6 +29,7 @@ export const Options = <T extends SelectItem>({
   modalRef,
   Component,
   variant,
+  modalState,
 }: OptionsProps<T>) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(`(min-width: ${theme.constants.breakpoints.mobileL})`);
@@ -92,15 +93,18 @@ export const Options = <T extends SelectItem>({
     [value, compareValueOrValuesAreEqual, multiselect, unselectOption, selectOption, Component, variant],
   );
 
+  if (!isOpen) return null;
+
   return (
     <Modal
-      isOpen={isOpen}
-      id='form-select'
+      id='modal-form-select'
+      isVisible={isOpen}
+      modalState={modalState}
       backdrop={isMobile ? 'transparent' : 'blur'}
       opacity={isMobile ? 0 : 0.8}
-      zIndex={150}
+      ref={modalRef}
     >
-      <OptionsStyle ref={modalRef} style={{ ...style, zIndex: 150 }} tabIndex={-1}>
+      <OptionsStyle style={style} tabIndex={-1}>
         {onSearchQuery && (
           <OptionsHeaderStyle>
             <input

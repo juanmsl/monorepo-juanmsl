@@ -1,5 +1,5 @@
-import { Icon, Image, Modal, Tooltip, Typography } from 'polpo/ui';
-import { useState } from 'react';
+import { useModalTransition } from 'polpo/hooks';
+import { Icon, Image, Tooltip, Typography } from 'polpo/ui';
 import { useTranslation } from 'react-i18next';
 import { Link, NavLink } from 'react-router-dom';
 
@@ -9,7 +9,7 @@ import { PATHS } from '@core/constants';
 
 export const Navbar = () => {
   const { t } = useTranslation();
-  const [isModalOpen, setModalOpen] = useState(false);
+  const { isVisible, modalState, openModal, closeModal } = useModalTransition(300);
 
   return (
     <NavbarStyle>
@@ -40,20 +40,26 @@ export const Navbar = () => {
       </section>
       <section className='section-bottom'>
         <Tooltip position='right' content='Share your opinion here!' offset='10'>
-          <span className='modal-suggestions-trigger' onClick={() => setModalOpen(true)}>
+          <span className='modal-suggestions-trigger' onClick={openModal}>
             <Icon name='cv' />
           </span>
         </Tooltip>
       </section>
 
-      <Modal isOpen={isModalOpen} opacity={0.5} onClick={() => setModalOpen(false)} id='navbar-suggestions'>
-        <NavbarSuggestionsModal>
-          <iframe
-            className='modal-iframe'
-            src='https://docs.google.com/forms/d/e/1FAIpQLSfl0_MGEclyW63dI7PqkwKYR9DqdgxnSdv2hjkY0wUktiSbbw/viewform?embedded=true'
-          />
-        </NavbarSuggestionsModal>
-      </Modal>
+      <NavbarSuggestionsModal
+        isVisible={isVisible}
+        modalState={modalState}
+        opacity={0.5}
+        backdrop='opaque'
+        backdropOnClick={closeModal}
+        id='navbar-suggestions'
+        position='center'
+      >
+        <iframe
+          className='modal-iframe'
+          src='https://docs.google.com/forms/d/e/1FAIpQLSfl0_MGEclyW63dI7PqkwKYR9DqdgxnSdv2hjkY0wUktiSbbw/viewform?embedded=true'
+        />
+      </NavbarSuggestionsModal>
     </NavbarStyle>
   );
 };

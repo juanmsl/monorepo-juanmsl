@@ -1,66 +1,65 @@
-import { useCallback, useRef } from 'react';
+import { CSSProperties, useMemo } from 'react';
 
 import { Icon } from '../../icon';
-import { Modal } from '../modal';
+import { ModalProps } from '../modal-provider';
 
 import { AsideModalStyle } from './aside-modal.style';
 
-export enum AsidePosition {
-  LEFT = 'left',
-  RIGHT = 'right',
-  TOP = 'top',
-  BOTTOM = 'bottom',
-}
+import { PositionContainer } from '@polpo/helpers';
 
-type AsideModalProps = {
-  children: React.ReactNode;
-  isOpen: boolean;
+type AsideModalProps = Omit<
+  ModalProps,
+  'id' | 'animation' | 'closeAnimationClassName' | 'modalAtCenter' | 'rootStyle'
+> & {
   onClose: () => void;
-  position?: `${AsidePosition}`;
+  position?:
+    | `${PositionContainer.TOP}`
+    | `${PositionContainer.LEFT}`
+    | `${PositionContainer.RIGHT}`
+    | `${PositionContainer.BOTTOM}`;
   size?: number | `${number}px` | `${number}em`;
-  className?: string;
-  style?: React.CSSProperties;
-  zIndex?: number;
 };
 
 export const AsideModal = ({
-  children,
-  isOpen,
-  onClose,
-  position = AsidePosition.LEFT,
+  position = PositionContainer.LEFT,
   size,
+  onClose,
+  children,
+  isVisible,
   className = '',
-  zIndex = 100,
   style = {},
+  modalState,
+  ...backdropProps
 }: AsideModalProps) => {
-  const ref = useRef<HTMLElement>(null);
+  const modalRootStyles = useMemo<CSSProperties>(() => {
+    const computedSize = {
+      [PositionContainer.TOP]: { height: size, width: '100%' },
+      [PositionContainer.LEFT]: { height: '100%', width: size },
+      [PositionContainer.RIGHT]: { height: '100%', width: size },
+      [PositionContainer.BOTTOM]: { height: size, width: '100%' },
+    };
 
-  const handleOnClose = useCallback((callback: () => void) => {
-    ref.current?.classList.remove('open-animation');
-    ref.current?.classList.add('close-animation');
-    setTimeout(() => {
-      callback();
-      ref.current?.classList.remove('close-animation');
-    }, 290);
-  }, []);
+    return computedSize[position];
+  }, [position, size]);
 
   return (
-    <Modal id='aside' isOpen={isOpen} opacity={0.6} onClick={() => handleOnClose(onClose)} zIndex={100}>
-      <AsideModalStyle
-        className={`open-animation ${position} ${className}`}
-        ref={ref}
-        style={{
-          ...style,
-          zIndex,
-          width: position === 'left' || position === 'right' ? size : undefined,
-          height: position === 'top' || position === 'bottom' ? size : undefined,
-        }}
-      >
-        <span className='close-modal-button' onClick={() => handleOnClose(onClose)}>
-          <Icon name='cross' />
-        </span>
-        <section className='aside-modal-content'>{children}</section>
-      </AsideModalStyle>
-    </Modal>
+    <AsideModalStyle
+      id='aside'
+      isVisible={isVisible}
+      modalState={modalState}
+      {...backdropProps}
+      opacity={0.6}
+      animation='none'
+      className={`${className} ${position}`}
+      rootStyle={modalRootStyles}
+      backdropOnClick={onClose}
+      style={style}
+      position={position}
+    >
+      <span className='close-modal-button' onClick={onClose}>
+        <Icon name='cross' />
+      </span>
+      <section className='aside-modal-content'>{children}</section>
+    </AsideModalStyle>
   );
 };

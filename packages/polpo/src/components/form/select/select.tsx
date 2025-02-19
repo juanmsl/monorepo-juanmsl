@@ -24,14 +24,6 @@ import {
 
 import { useMediaQuery, useModalInContainer } from '@polpo/hooks';
 
-/*
- *type SelectContextState<T extends SelectItem = unknown> = {
- *value: T;
- *};
- *
- *const SelectContext = createContext<SelectContextState | null>(null);
- */
-
 export const Select = <T extends SelectItem>({
   // Select props
   options,
@@ -76,17 +68,21 @@ export const Select = <T extends SelectItem>({
   const id = useMemo(() => crypto.randomUUID(), []);
   const theme = useTheme();
   const isMobile = useMediaQuery(`(min-width: ${theme.constants.breakpoints.mobileL})`);
-  const { modalRef, isVisible, setIsVisible, modalStyle, containerRef } = useModalInContainer({
+  const { modalRef, isVisible, openModal, closeModal, containerRef, modalState } = useModalInContainer({
     position: 'bottom',
-    distancePercentage: 50,
     offset: 5,
+    transitionDuration: 200,
   });
 
   const openSelect = useCallback(
     (open: boolean) => {
-      setIsVisible(open && !disabled);
+      if (open && !disabled) {
+        openModal();
+      } else {
+        closeModal();
+      }
     },
-    [disabled, setIsVisible],
+    [closeModal, disabled, openModal],
   );
 
   const compareValuesIsEqual = useCallback(
@@ -167,10 +163,10 @@ export const Select = <T extends SelectItem>({
         setValue(filteredValues.length === 0 ? [] : filteredValues);
       } else {
         setValue(null);
-        setIsVisible(false);
+        closeModal();
       }
     },
-    [compareValuesIsEqual, multiselect, setIsVisible, setValue, value],
+    [closeModal, compareValuesIsEqual, multiselect, setValue, value],
   );
 
   const selectOption = useCallback(
@@ -183,10 +179,10 @@ export const Select = <T extends SelectItem>({
         setValue([...(value as Array<T>), selectedOption] as MultiValue<T>);
       } else {
         setValue(selectedOption as SingleValue<T>);
-        setIsVisible(false);
+        closeModal();
       }
     },
-    [maxOptions, multiselect, setIsVisible, setValue, value],
+    [closeModal, maxOptions, multiselect, setValue, value],
   );
 
   const clearOption = useCallback(
@@ -249,6 +245,7 @@ export const Select = <T extends SelectItem>({
           <Icon name={isVisible ? 'caret-up' : 'caret-down'} />
         </section>
         <Options
+          modalState={modalState}
           modalRef={modalRef}
           isOpen={isVisible}
           value={value}
@@ -265,7 +262,6 @@ export const Select = <T extends SelectItem>({
               width: containerRef.current?.offsetWidth,
               transform: 'none',
               maxHeight: '250px',
-              ...modalStyle,
             }) ||
             {}
           }

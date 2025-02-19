@@ -4,7 +4,7 @@ import { Icon, IconNameT } from '../../icon';
 import { Typography } from '../../typography';
 
 import { FieldStyle } from './field.style';
-import { FieldProps, FieldVariant } from './field.types';
+import { FieldOrientation, FieldProps, FieldVariant } from './field.types';
 
 import { useClassNames } from '@polpo/hooks';
 
@@ -27,6 +27,7 @@ const FieldComponent = (
     error,
     onClickLeftIcon,
     onClickRightIcon,
+    fieldOrientation = FieldOrientation.VERTICAL,
     children,
     isFocus = false,
     variant,
@@ -39,6 +40,7 @@ const FieldComponent = (
     'variant-content-border': variant === FieldVariant.CONTENT_BORDER,
     'variant-content-line': variant === FieldVariant.CONTENT_LINE,
     'variant-full-border': variant === FieldVariant.FULL_BORDER,
+    'variant-inline': fieldOrientation === FieldOrientation.HORIZONTAL,
   });
 
   const handleClick = (callback?: () => void) => (e: React.MouseEvent) => {

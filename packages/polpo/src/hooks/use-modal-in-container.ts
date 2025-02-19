@@ -1,10 +1,17 @@
-import React, { RefObject, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { RefObject, useCallback, useLayoutEffect, useRef } from 'react';
 
+import { useClickOutside } from './use-click-outside';
 import { useEventListener } from './use-event-listener';
-import { useObserver } from './use-observer';
-import { useOnClickOutsideRef } from './use-on-click-outside-ref';
+import { useModalTransition } from './use-modal-transition';
+import { useResizeObserver } from './use-resize-observer';
 
-import { getModalPosition, GetModalPositionParams, PositionObject } from '@polpo/helpers';
+import {
+  getModalPosition,
+  GetModalPositionParams,
+  ModalReference,
+  PositionContainer,
+  PositionObject,
+} from '@polpo/helpers';
 
 const convertDOMRectToPosition = (rect: DOMRectReadOnly): PositionObject => ({
   x: rect.x,
@@ -15,34 +22,29 @@ const convertDOMRectToPosition = (rect: DOMRectReadOnly): PositionObject => ({
   left: rect.left,
 });
 
-type useModalInContainerParams = Partial<
-  Pick<GetModalPositionParams, 'position' | 'distancePercentage' | 'offset' | 'windowOffset'>
-> & {
+export type UseModalInContainerParams = Partial<Omit<GetModalPositionParams, 'c' | 'm'>> & {
   closeOnClickOutside?: boolean;
+  transitionDuration?: number;
 };
 
 export const useModalInContainer = <Container extends HTMLElement, Modal extends HTMLElement = Container>({
   closeOnClickOutside = true,
-  offset = 5,
+  offset = 20,
   windowOffset = 10,
-  position,
-  distancePercentage = 50,
-}: useModalInContainerParams = {}) => {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
-  const [modalStyle, setModalStyle] = useState<React.CSSProperties>({});
+  position = PositionContainer.BOTTOM,
+  modalReference = ModalReference.CONTAINER,
+  transitionDuration = 0,
+}: UseModalInContainerParams = {}) => {
+  const modalState = useModalTransition(transitionDuration);
+
+  const { isVisible, closeModal } = modalState;
 
   const modalRef = useRef<Modal>(null);
   const containerRef = useRef<Container>(null);
 
-  useEffect(() => {
-    if (closeOnClickOutside) {
-      document.documentElement.style.overflow = isVisible ? 'hidden' : 'auto';
-    }
-  }, [isVisible, closeOnClickOutside]);
-
-  useOnClickOutsideRef<Modal>(modalRef, () => {
+  useClickOutside<Modal>(modalRef, () => {
     if (isVisible && closeOnClickOutside) {
-      setIsVisible(false);
+      closeModal();
     }
   });
 
@@ -52,23 +54,23 @@ export const useModalInContainer = <Container extends HTMLElement, Modal extends
       const container = containerRef.current?.getClientRects()[0];
 
       if (!container || !modal) {
-        setModalStyle({});
-
         return;
       }
 
-      const nextStyles = getModalPosition({
+      const modalStyle = getModalPosition({
         c: convertDOMRectToPosition(container),
         m: convertDOMRectToPosition(modal),
-        distancePercentage,
+        modalReference,
         windowOffset,
         position,
         offset,
       });
 
-      setModalStyle(nextStyles);
+      Object.keys(modalStyle).forEach(key => {
+        modalRef.current?.style.setProperty(key, modalStyle[key]);
+      });
     },
-    [distancePercentage, windowOffset, position, offset],
+    [modalReference, windowOffset, position, offset],
   );
 
   const callback = useCallback(() => {
@@ -79,15 +81,13 @@ export const useModalInContainer = <Container extends HTMLElement, Modal extends
 
   useLayoutEffect(callback, [callback]);
 
-  useObserver<Container>(containerRef, callback);
-  useObserver<Modal>(modalRef, callback);
+  useResizeObserver<Container>(containerRef, callback);
+  useResizeObserver<Modal>(modalRef, callback);
   useEventListener('resize', callback);
   useEventListener('scroll', callback, modalRef);
 
   return {
-    isVisible,
-    setIsVisible,
-    modalStyle,
+    ...modalState,
     containerRef,
     modalRef,
   };

@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-export const AsideModalStyle = styled.section`
-  position: absolute;
-  background: ${props => props.theme.colors.background.main};
+import { Modal } from '@polpo/ui';
+
+export const AsideModalStyle = styled(Modal)`
   color: ${props => props.theme.colors.text.main};
+  overflow: auto;
+  height: 100%;
 
   .aside-modal-content {
-    overflow: auto;
-    height: 100%;
     padding: 2em;
   }
 
@@ -23,17 +23,12 @@ export const AsideModalStyle = styled.section`
   }
 
   &.left {
-    height: 100%;
-    top: 0;
-    left: 0;
     border-right: 4px solid ${props => props.theme.colors.primary.main};
+    animation: slideIn-left 300ms ease;
 
-    &.open-animation {
-      animation: slideIn-left 300ms ease;
-    }
-
-    &.close-animation {
+    &.modal-close {
       animation: slideOut-left 300ms ease;
+      transform: translateX(-100%);
     }
 
     .close-modal-button {
@@ -44,17 +39,12 @@ export const AsideModalStyle = styled.section`
   }
 
   &.right {
-    height: 100%;
-    top: 0;
-    right: 0;
     border-left: 4px solid ${props => props.theme.colors.primary.main};
+    animation: slideIn-right 300ms ease;
 
-    &.open-animation {
-      animation: slideIn-right 300ms ease;
-    }
-
-    &.close-animation {
+    &.modal-close {
       animation: slideOut-right 300ms ease;
+      transform: translateX(100%);
     }
 
     .close-modal-button {
@@ -65,17 +55,12 @@ export const AsideModalStyle = styled.section`
   }
 
   &.top {
-    top: 0;
-    right: 0;
-    width: 100%;
     border-bottom: 4px solid ${props => props.theme.colors.primary.main};
+    animation: slideIn-top 300ms ease;
 
-    &.open-animation {
-      animation: slideIn-top 300ms ease;
-    }
-
-    &.close-animation {
+    &.modal-close {
       animation: slideOut-top 300ms ease;
+      transform: translateY(-100%);
     }
 
     .close-modal-button {
@@ -86,17 +71,12 @@ export const AsideModalStyle = styled.section`
   }
 
   &.bottom {
-    bottom: 0;
-    right: 0;
-    width: 100%;
     border-top: 4px solid ${props => props.theme.colors.primary.main};
+    animation: slideIn-bottom 300ms ease;
 
-    &.open-animation {
-      animation: slideIn-bottom 300ms ease;
-    }
-
-    &.close-animation {
+    &.modal-close {
       animation: slideOut-bottom 300ms ease;
+      transform: translateY(100%);
     }
 
     .close-modal-button {

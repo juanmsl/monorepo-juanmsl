@@ -1,3 +1,4 @@
+import { Modal } from 'polpo/ui';
 import styled from 'styled-components';
 
 export const NavbarStyle = styled.nav`
@@ -81,7 +82,7 @@ export const NavbarStyle = styled.nav`
   }
 `;
 
-export const NavbarSuggestionsModal = styled.section`
+export const NavbarSuggestionsModal = styled(Modal)`
   background: ${props => props.theme.colors.background.main};
   color: ${props => props.theme.colors.text.main};
   border: 1px solid ${props => props.theme.colors.text.main};
@@ -94,10 +95,6 @@ export const NavbarSuggestionsModal = styled.section`
   box-shadow:
     0 0 23px 10px #08070799 inset,
     0 10px 80px -20px ${props => props.theme.colors.text.main}CC;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 
   .modal-iframe {
     margin: 0;

@@ -1,10 +1,8 @@
-import { useState } from 'react';
+import { AsideModal } from './aside-modal';
 
-import { Button } from '../../buttons';
-import { Image } from '../../image';
-import { Typography } from '../../typography';
-
-import { AsideModal, AsidePosition } from './aside-modal';
+import { PositionContainer } from '@polpo/helpers';
+import { useModalTransition } from '@polpo/hooks';
+import { Button, Image, Typography } from '@polpo/ui';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -12,30 +10,27 @@ const meta: Meta<typeof AsideModal> = {
   title: 'Modals/AsideModal',
   component: AsideModal,
   argTypes: {
-    isOpen: { control: false },
-    onClose: { control: false },
-    position: { control: 'inline-radio', options: Object.values(AsidePosition) },
+    position: {
+      control: 'inline-radio',
+      options: [PositionContainer.TOP, PositionContainer.LEFT, PositionContainer.RIGHT, PositionContainer.BOTTOM],
+    },
     children: { control: 'text' },
     size: { control: { type: 'range', min: 100, max: 500, step: 10 } },
     className: { control: false },
     style: { control: false },
-    zIndex: { control: false },
   },
   decorators: [
     Story => {
-      const [isOpen, setIsOpen] = useState(false);
+      const { modalState, closeModal, openModal, isVisible } = useModalTransition(300);
 
       return (
         <>
-          <Button onClick={() => setIsOpen(true)}>Open modal</Button>
-          <Story isOpen={isOpen} onClose={() => setIsOpen(false)} />
+          <Button onClick={openModal}>Open modal</Button>
+          <Story modalState={modalState} closeModal={closeModal} isVisible={isVisible} />
         </>
       );
     },
   ],
-  render: (args, { isOpen, onClose }) => {
-    return <AsideModal {...args} isOpen={isOpen} onClose={onClose} />;
-  },
 };
 
 export default meta;
@@ -48,9 +43,9 @@ export const Aside: Story = {
   args: {
     size: 500,
   },
-  render: (args, { isOpen, onClose }) => {
+  render: (args, { closeModal, isVisible, modalState }) => {
     return (
-      <AsideModal {...args} isOpen={isOpen} onClose={onClose}>
+      <AsideModal {...args} isVisible={isVisible} modalState={modalState} onClose={closeModal}>
         <Typography variant='header4'>Aside modal</Typography>
         <Typography>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam amet at cupiditate dolorum eaque eligendi

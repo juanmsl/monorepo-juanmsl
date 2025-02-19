@@ -3,68 +3,63 @@ import { createContext, useCallback, useContext, useRef, useState } from 'react'
 import { Button, ButtonProps } from '../../buttons';
 import { Icon, IconNameT } from '../../icon';
 import { Typography } from '../../typography';
-import { Modal } from '../modal';
+import { ModalProps } from '../modal-provider';
 
-import { ActionModalContainerStyle, ActionModalStyle } from './action-modal.style';
+import { ModalStyle, ActionModalStyle } from './action-modal.style';
 
+import { PositionContainer } from '@polpo/helpers';
 import { useClassNames } from '@polpo/hooks';
 
-export type ActionModalProps = {
-  children: React.ReactNode;
-  isOpen: boolean;
+type ActionModalContextType = {
   onClose: () => void;
-  actionRequired?: boolean;
-  icon?: IconNameT;
-  noCloseButton?: boolean;
-  className?: string;
-  style?: React.CSSProperties;
-  lineOnTop?: boolean;
-  backCard?: boolean;
-  noPadding?: boolean;
+  isActionInProgress: boolean;
+  setIsActionInProgress: (isActionInProgress: boolean) => void;
 };
 
-type ActionModalContextEntity = {
-  onClose: () => void;
-};
+const ActionModalContext = createContext<ActionModalContextType | null>(null);
 
-const ActionModalContext = createContext<ActionModalContextEntity | null>(null);
-
-const useActionModal = () => {
+const useActionModalContext = () => {
   const context = useContext(ActionModalContext);
 
-  if (context === null) {
-    throw new Error('useActionModal must be used with in a ActionModal');
+  if (!context) {
+    throw new Error('useActionModalContext must be used within a ActionModal');
   }
 
   return context;
 };
 
+export type ActionModalProps = Omit<
+  ModalProps,
+  'id' | 'animation' | 'closeAnimationClassName' | 'position' | 'rootStyle'
+> & {
+  onClose: () => void;
+  actionRequired?: boolean;
+  icon?: IconNameT;
+  noCloseButton?: boolean;
+  lineOnTop?: boolean;
+  backCard?: boolean;
+  noPadding?: boolean;
+};
+
 export const ActionModal = ({
-  children,
-  isOpen,
   onClose,
   actionRequired,
   icon,
   noCloseButton,
-  className = '',
-  style = {},
   lineOnTop = false,
   backCard = false,
   noPadding = false,
+  children,
+  isVisible,
+  className = '',
+  style = {},
+  modalState,
+  ...backdropProps
 }: ActionModalProps) => {
+  const [isActionInProgress, setIsActionInProgress] = useState(false);
   const ref = useRef<HTMLElement>(null);
 
-  const handleOnClose = useCallback((callback: () => void) => {
-    ref.current?.classList.remove('open-animation');
-    ref.current?.classList.add('close-animation');
-    setTimeout(() => {
-      callback();
-      ref.current?.classList.remove('close-animation');
-    }, 490);
-  }, []);
-
   const remainAction = useCallback(() => {
-    ref.current?.classList.remove('open-animation');
     ref.current?.classList.add('shake-animation');
     setTimeout(() => {
       ref.current?.classList.remove('shake-animation');
@@ -77,43 +72,39 @@ export const ActionModal = ({
     'no-padding': noPadding,
   });
 
-  const contentClassName = useClassNames({
-    'action-modal-content': true,
-    [className]: Boolean(className),
-  });
-
   return (
-    <Modal
-      id='action-modal'
-      opacity={0.8}
-      isOpen={isOpen}
-      zIndex={9999}
-      onClick={actionRequired ? remainAction : () => handleOnClose(onClose)}
-    >
-      <ActionModalContext.Provider value={{ onClose: () => handleOnClose(onClose) }}>
-        <ActionModalContainerStyle>
-          <section ref={ref} className='open-animation'>
-            <ActionModalStyle className={actionModalClassName}>
-              {!noCloseButton && !actionRequired && (
-                <section className='close-modal-button' onClick={() => handleOnClose(onClose)}>
-                  <Icon name='cross' />
-                </section>
-              )}
-              {icon ? (
-                <Typography variant='header4' className='action-modal-icon'>
-                  <Icon name={icon} />
-                </Typography>
-              ) : null}
-              <section className='action-modal-body'>
-                <section className={contentClassName} style={style}>
-                  {children}
-                </section>
+    <ActionModalContext.Provider value={{ onClose, isActionInProgress, setIsActionInProgress }}>
+      <ModalStyle
+        id='action-modal'
+        animation='bounce'
+        opacity={0.8}
+        isVisible={isVisible}
+        {...backdropProps}
+        modalState={modalState}
+        backdropOnClick={actionRequired ? remainAction : onClose}
+        position={PositionContainer.CENTER}
+      >
+        <section ref={ref} className='modal-content'>
+          <ActionModalStyle className={actionModalClassName}>
+            {!noCloseButton && !actionRequired && (
+              <section className='close-modal-button' onClick={() => onClose()}>
+                <Icon name='cross' inCircle />
               </section>
-            </ActionModalStyle>
-          </section>
-        </ActionModalContainerStyle>
-      </ActionModalContext.Provider>
-    </Modal>
+            )}
+            {icon ? (
+              <Typography variant='header4' className='action-modal-icon'>
+                <Icon name={icon} />
+              </Typography>
+            ) : null}
+            <section className='action-modal-body'>
+              <section className={`action-modal-content ${className}`} style={style}>
+                {children}
+              </section>
+            </section>
+          </ActionModalStyle>
+        </section>
+      </ModalStyle>
+    </ActionModalContext.Provider>
   );
 };
 
@@ -122,23 +113,30 @@ type ActionButtonProps = Omit<ButtonProps, 'onClick'> & {
 };
 
 const ActionButton = ({ onClick, children, isLoading: manualIsLoading, ...buttonProps }: ActionButtonProps) => {
-  const { onClose } = useActionModal();
+  const { onClose, isActionInProgress, setIsActionInProgress } = useActionModalContext();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleAction = useCallback(() => {
     setIsLoading(true);
+    setIsActionInProgress(true);
     const result = onClick();
 
     if (result instanceof Promise) {
       result.then(() => {
         onClose();
         setIsLoading(false);
+        setIsActionInProgress(false);
       });
     } else {
       onClose();
       setIsLoading(false);
+      setIsActionInProgress(false);
     }
-  }, [onClick, onClose]);
+  }, [onClick, onClose, setIsActionInProgress]);
+
+  if (!isLoading && isActionInProgress) {
+    return null;
+  }
 
   return (
     <Button {...buttonProps} onClick={handleAction} isLoading={manualIsLoading || isLoading}>

@@ -1,22 +1,21 @@
 import styled from 'styled-components';
 
-export const TooltipStyle = styled.span`
-  background: ${props => props.theme.colors.background.main};
+import { Modal } from '@polpo/ui';
+
+export const TooltipStyle = styled(Modal)`
   color: ${props => props.theme.colors.text.main};
   font-size: ${props => props.theme.constants.typography.small.fontSize};
   line-height: 1em;
   border-radius: 5px;
-  position: fixed;
   padding: 0.5em 1em;
-  z-index: 1000;
   display: block;
-  animation: fadeIn 250ms ease-out;
   border: 1px solid;
+  pointer-events: none;
 
   &::before {
     content: '';
     display: block;
-    background: ${props => props.theme.colors.background.main};
+    background: ${props => props.theme.colors.background.paper};
     position: absolute;
     z-index: 1;
     width: 10px;
@@ -29,6 +28,14 @@ export const TooltipStyle = styled.span`
   }
 
   &.left {
+    animation: fadeInRight 250ms ease-out;
+
+    &.close-animation {
+      animation: fadeOutLeft 250ms ease-out;
+      transform: translateX(-10px);
+      opacity: 0;
+    }
+
     &::before {
       top: 50%;
       left: 100%;
@@ -37,6 +44,14 @@ export const TooltipStyle = styled.span`
   }
 
   &.right {
+    animation: fadeInLeft 250ms ease-out;
+
+    &.close-animation {
+      animation: fadeOutRight 250ms ease-out;
+      transform: translateX(10px);
+      opacity: 0;
+    }
+
     &::before {
       top: 50%;
       right: 100%;
@@ -45,6 +60,14 @@ export const TooltipStyle = styled.span`
   }
 
   &.top {
+    animation: fadeInDown 250ms ease-out;
+
+    &.close-animation {
+      animation: fadeOutUp 250ms ease-out;
+      transform: translateY(-10px);
+      opacity: 0;
+    }
+
     &::before {
       top: 100%;
       left: 50%;
@@ -53,6 +76,14 @@ export const TooltipStyle = styled.span`
   }
 
   &.bottom {
+    animation: fadeInUp 250ms ease-out;
+
+    &.close-animation {
+      animation: fadeOutDown 250ms ease-out;
+      transform: translateY(10px);
+      opacity: 0;
+    }
+
     &::before {
       left: 50%;
       bottom: 100%;

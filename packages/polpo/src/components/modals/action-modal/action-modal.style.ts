@@ -1,23 +1,14 @@
 import { styled } from 'styled-components';
 
-export const ActionModalContainerStyle = styled.section`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10000;
+import { Modal } from '../modal-provider';
 
-  .open-animation {
-    animation: bounceIn 500ms ease;
-    position: relative;
-  }
+export const ModalStyle = styled(Modal)`
+  background: transparent;
 
-  .close-animation {
-    animation: bounceOut 500ms ease;
-  }
-
-  .shake-animation {
-    animation: headShake 600ms linear;
+  .modal-content {
+    &.shake-animation {
+      animation: headShake 600ms linear;
+    }
   }
 `;
 
@@ -85,18 +76,15 @@ export const ActionModalStyle = styled.section`
   }
 
   .close-modal-button {
-    width: 2em;
-    height: 2em;
+    width: 1em;
+    height: 1em;
     border-radius: 50%;
-    border: 1px solid;
     cursor: pointer;
-    display: grid;
-    place-content: center;
     background: ${props => props.theme.colors.background.main};
     position: absolute;
     left: 100%;
     bottom: 100%;
-    font-size: ${props => props.theme.constants.typography.small.fontSize};
+    font-size: ${props => props.theme.constants.typography.header4.fontSize};
     opacity: 0;
     transition: opacity 300ms ease;
     z-index: 1;

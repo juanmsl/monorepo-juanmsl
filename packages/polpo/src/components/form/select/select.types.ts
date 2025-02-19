@@ -3,6 +3,8 @@ import React from 'react';
 import { InputFieldProps } from '../field';
 import { ControllerGeneratorProps, UnControlledComponentProps } from '../form.types';
 
+import { ModalState } from '@polpo/hooks';
+
 export type SelectItem = string | number | Record<string, unknown> | unknown;
 
 export type MultiValue<T extends SelectItem> = Array<T>;
@@ -65,6 +67,7 @@ export type OptionsProps<T extends SelectItem> = {
   multiselect?: boolean;
   value: SelectValue<T>;
   variant: `${SelectOptionVariant}`;
+  modalState: ModalState;
 };
 
 // SELECT OPTION
