@@ -1,6 +1,7 @@
 export * from './accordion';
 export * from './buttons';
 export * from './cards';
+export * from './cursor';
 export * from './form';
 export * from './icon';
 export * from './image';

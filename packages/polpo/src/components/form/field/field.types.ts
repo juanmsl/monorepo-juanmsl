@@ -8,6 +8,11 @@ export enum FieldVariant {
   CONTENT_LINE = 'line',
 }
 
+export enum FieldOrientation {
+  HORIZONTAL = 'horizontal',
+  VERTICAL = 'vertical',
+}
+
 type FieldSharedProps = {
   rightIcon?: IconNameT;
   leftIcon?: IconNameT;
@@ -23,6 +28,7 @@ export type FieldProps = FieldSharedProps & {
   id: string;
   error?: string;
   isFocus?: boolean;
+  fieldOrientation?: `${FieldOrientation}`;
 };
 
 export type InputFieldProps<T> = T & FieldSharedProps;

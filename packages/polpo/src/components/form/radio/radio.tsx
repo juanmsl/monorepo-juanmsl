@@ -1,17 +1,34 @@
 import { useMemo } from 'react';
+import { DefaultTheme, useTheme } from 'styled-components';
 
+import { ColorVariants } from '../../../core/variants';
 import { Typography } from '../../typography';
 import { Controller } from '../controller';
 import { ControllerGeneratorProps, UnControlledComponentProps } from '../form.types';
 
-import { RadioContainerStyle, RadioStyle } from './radio.style';
+import { RadioContainerStyle, RadioFillStyle, RadioStyle } from './radio.style';
 
 import { useInputHandlers } from '@polpo/hooks';
+
+const getRadioColor = (theme: DefaultTheme, color: `${ColorVariants}`): string => {
+  const radioColors: Record<ColorVariants, string> = {
+    [ColorVariants.Primary]: theme.colors.primary.main,
+    [ColorVariants.Secondary]: theme.colors.secondary.main,
+    [ColorVariants.Tertiary]: theme.colors.tertiary.main,
+    [ColorVariants.Info]: theme.colors.info.main,
+    [ColorVariants.Active]: theme.colors.active.main,
+    [ColorVariants.Warning]: theme.colors.warning.main,
+    [ColorVariants.Alert]: theme.colors.alert.main,
+  };
+
+  return radioColors[color] ?? radioColors[ColorVariants.Primary];
+};
 
 type RadioProps = {
   label?: string;
   radioValue: string;
   placeholder?: never;
+  color?: `${ColorVariants}`;
 };
 
 export const Radio = ({
@@ -28,6 +45,7 @@ export const Radio = ({
   autoComplete = 'off',
   radioValue,
   label,
+  color = ColorVariants.Primary,
   /*
    * isDirty = false,
    * isTouched = false,
@@ -35,6 +53,7 @@ export const Radio = ({
    * error,
    */
 }: UnControlledComponentProps<RadioProps, string>) => {
+  const theme = useTheme();
   const id = useMemo(() => crypto.randomUUID(), []);
   const { handlers } = useInputHandlers({
     onChange: e => setValue(e.target.value),
@@ -43,9 +62,9 @@ export const Radio = ({
   });
 
   return (
-    <RadioContainerStyle className={className} style={style}>
+    <RadioContainerStyle $color={getRadioColor(theme, color)} className={className} style={style}>
       <RadioStyle className={radioValue === value ? 'is-checked' : ''}>
-        <span className='radio-dot' />
+        <RadioFillStyle />
         <input
           id={id}
           type='radio'

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const FieldStyle = styled.section`
   display: grid;
+  grid-auto-columns: auto;
   gap: 0.5em;
 
   .field-content {
@@ -74,6 +75,16 @@ export const FieldStyle = styled.section`
     .field-content,
     .field-message {
       padding: 0 1em;
+    }
+  }
+
+  &.variant-inline {
+    grid-auto-flow: column;
+    padding: 0.5em 0;
+    align-items: center;
+
+    .field-label {
+      width: auto;
     }
   }
 `;

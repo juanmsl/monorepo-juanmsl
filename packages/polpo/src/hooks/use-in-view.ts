@@ -1,20 +1,18 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
+
+import { useIntersectionObserver } from './use-intersection-observer';
 
 export const useInView = (initOptions: IntersectionObserverInit = {}) => {
   const [inView, setInView] = useState(false);
   const ref = useRef<Element>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
+  useIntersectionObserver(
+    ref,
+    ([entry]) => {
       setInView(entry.isIntersecting);
-    }, initOptions);
-
-    ref.current && observer.observe(ref.current);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [initOptions]);
+    },
+    initOptions,
+  );
 
   return { ref, inView };
 };

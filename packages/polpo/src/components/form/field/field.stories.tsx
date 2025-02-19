@@ -3,6 +3,8 @@ import { ContainerDecorator } from '../form.stories.types';
 
 import { Field } from './field';
 
+import { FieldOrientation, FieldVariant } from '@polpo/ui';
+
 import type { Meta, StoryObj } from '@storybook/react';
 
 export const FieldSharedArgTypes: Meta<typeof Field>['argTypes'] = {
@@ -10,7 +12,8 @@ export const FieldSharedArgTypes: Meta<typeof Field>['argTypes'] = {
   rightIcon: { options: [undefined, ...IconNames.toSorted()] },
   leftIcon: { options: [undefined, ...IconNames.toSorted()] },
   errorIcon: { options: [undefined, ...IconNames.toSorted()] },
-  variant: { control: 'select', options: [undefined, 'full-border', 'content-border', 'line'] },
+  fieldOrientation: { control: 'inline-radio', options: Object.values(FieldOrientation) },
+  variant: { control: 'select', options: [undefined, ...Object.values(FieldVariant)] },
 };
 
 export const FieldSharedArgs: StoryObj<typeof Field>['args'] = {
@@ -37,6 +40,7 @@ const meta: Meta<typeof Field> = {
     ...FieldSharedArgs,
     leftIcon: 'facebook',
     rightIcon: 'airplane',
+    fieldOrientation: 'vertical',
   },
   decorators: [ContainerDecorator],
 };

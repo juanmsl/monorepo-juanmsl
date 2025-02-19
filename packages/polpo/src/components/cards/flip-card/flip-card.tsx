@@ -16,7 +16,7 @@ export const FlipCard = ({
   flipSpeed = 500,
   isFlipped = false,
   children,
-}: FlipCardProps): React.ReactElement => {
+}: FlipCardProps) => {
   const getComponent = (key: 0 | 1): React.ReactNode => {
     if (children.length !== 2) {
       throw new Error('Component FlipCard requires 2 children');

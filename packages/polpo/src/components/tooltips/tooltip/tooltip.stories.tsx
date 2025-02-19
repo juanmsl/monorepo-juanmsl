@@ -1,6 +1,6 @@
 import { Tooltip } from './tooltip';
 
-import { POSITION } from '@polpo/helpers';
+import { PositionContainer } from '@polpo/helpers';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -8,7 +8,10 @@ const meta: Meta<typeof Tooltip> = {
   title: 'Tooltips/Tooltip',
   component: Tooltip,
   argTypes: {
-    position: { control: 'inline-radio', options: Object.values(POSITION) },
+    position: {
+      control: 'inline-radio',
+      options: [PositionContainer.TOP, PositionContainer.LEFT, PositionContainer.RIGHT, PositionContainer.BOTTOM],
+    },
     offset: { control: { type: 'range', min: 0, max: 200, step: 1 } },
     disabled: { control: 'boolean' },
     content: { control: 'text' },

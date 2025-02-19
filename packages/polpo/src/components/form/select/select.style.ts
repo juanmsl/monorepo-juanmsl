@@ -58,7 +58,7 @@ export const SelectStyle = styled.section`
 `;
 
 export const OptionsStyle = styled.section`
-  position: fixed;
+  position: relative;
   border-radius: 4px;
   border: 1px solid ${props => props.theme.colors.primary.main};
   box-shadow: 0 3px 7px 0 rgba(145, 145, 145, 0.13);
@@ -69,9 +69,6 @@ export const OptionsStyle = styled.section`
   gap: 5px;
   align-content: start;
   outline: 0;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   width: 80vw;
   max-height: 80dvh;
   min-width: fit-content;
