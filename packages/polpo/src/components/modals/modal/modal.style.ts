@@ -4,6 +4,11 @@ export const ModalStyle = styled.section`
   position: fixed;
   z-index: 1001;
   pointer-events: none;
+  transition:
+    top 50ms ease,
+    left 50ms ease,
+    right 50ms ease,
+    bottom 50ms ease;
 
   &.screen-center {
     top: 50%;

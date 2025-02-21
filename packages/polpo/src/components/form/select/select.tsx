@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { useTheme } from 'styled-components';
 
 import { Icon } from '../../icon';
@@ -22,7 +22,7 @@ import {
   UnControlledSelectProps,
 } from './select.types';
 
-import { useMediaQuery, useModalInContainer } from '@polpo/hooks';
+import { useMediaQuery } from '@polpo/hooks';
 
 export const Select = <T extends SelectItem>({
   // Select props
@@ -68,21 +68,18 @@ export const Select = <T extends SelectItem>({
   const id = useMemo(() => crypto.randomUUID(), []);
   const theme = useTheme();
   const isMobile = useMediaQuery(`(min-width: ${theme.constants.breakpoints.mobileL})`);
-  const { modalRef, isVisible, openModal, closeModal, containerRef, modalState } = useModalInContainer({
-    position: 'bottom',
-    offset: 5,
-    transitionDuration: 200,
-  });
+  const containerRef = useRef<HTMLElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   const openSelect = useCallback(
     (open: boolean) => {
       if (open && !disabled) {
-        openModal();
+        setIsOpen(true);
       } else {
-        closeModal();
+        setIsOpen(false);
       }
     },
-    [closeModal, disabled, openModal],
+    [disabled],
   );
 
   const compareValuesIsEqual = useCallback(
@@ -163,10 +160,10 @@ export const Select = <T extends SelectItem>({
         setValue(filteredValues.length === 0 ? [] : filteredValues);
       } else {
         setValue(null);
-        closeModal();
+        setIsOpen(false);
       }
     },
-    [closeModal, compareValuesIsEqual, multiselect, setValue, value],
+    [compareValuesIsEqual, multiselect, setValue, value],
   );
 
   const selectOption = useCallback(
@@ -179,10 +176,10 @@ export const Select = <T extends SelectItem>({
         setValue([...(value as Array<T>), selectedOption] as MultiValue<T>);
       } else {
         setValue(selectedOption as SingleValue<T>);
-        closeModal();
+        setIsOpen(false);
       }
     },
-    [closeModal, maxOptions, multiselect, setValue, value],
+    [maxOptions, multiselect, setValue, value],
   );
 
   const clearOption = useCallback(
@@ -210,7 +207,7 @@ export const Select = <T extends SelectItem>({
     <Field
       id={id}
       error={error}
-      isFocus={isVisible}
+      isFocus={isOpen}
       onClickLeftIcon={() => openSelect(true)}
       onClickRightIcon={() => openSelect(true)}
       ref={containerRef}
@@ -225,7 +222,7 @@ export const Select = <T extends SelectItem>({
             type='button'
             className={`input-button ${(Array.isArray(value) ? value.length > 0 : value) ? '' : 'placeholder'}`}
             aria-haspopup='listbox'
-            aria-expanded={isVisible}
+            aria-expanded={isOpen}
             onFocus={e => {
               openSelect(true);
               onFocus && onFocus(e);
@@ -242,12 +239,12 @@ export const Select = <T extends SelectItem>({
               <Icon name='cross' />
             </section>
           )}
-          <Icon name={isVisible ? 'caret-up' : 'caret-down'} />
+          <Icon name={isOpen ? 'caret-up' : 'caret-down'} />
         </section>
         <Options
-          modalState={modalState}
-          modalRef={modalRef}
-          isOpen={isVisible}
+          containerRef={containerRef}
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
           value={value}
           compareValueOrValuesAreEqual={compareValueOrValuesAreEqual}
           Component={OptionComponent}

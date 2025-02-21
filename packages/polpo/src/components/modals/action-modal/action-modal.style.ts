@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-import { Modal } from '../modal-provider';
+import { Modal } from '../modal';
 
 export const ModalStyle = styled(Modal)`
   background: transparent;
@@ -16,6 +16,7 @@ export const ActionModalStyle = styled.section`
   position: relative;
 
   .action-modal-body {
+    box-shadow: 0 0 10px -5px;
     border-radius: 10px;
     overflow: hidden;
     display: grid;
@@ -82,13 +83,12 @@ export const ActionModalStyle = styled.section`
     cursor: pointer;
     background: ${props => props.theme.colors.background.main};
     position: absolute;
-    left: 100%;
-    bottom: 100%;
-    font-size: ${props => props.theme.constants.typography.header4.fontSize};
+    top: 10px;
+    right: 5px;
+    font-size: ${props => props.theme.constants.typography.header3.fontSize};
     opacity: 0;
     transition: opacity 300ms ease;
     z-index: 1;
-    transform: translate(-50%, 50%);
   }
 
   &.line-on-top {

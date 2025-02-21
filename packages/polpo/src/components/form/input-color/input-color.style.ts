@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import { ModalProvider } from '@polpo/ui';
+import { Modal } from '../../modals';
 
-export const InputColorStyle = styled(ModalProvider.Trigger)`
+export const InputColorStyle = styled.section`
   display: grid;
   grid-auto-flow: column;
   align-items: center;
@@ -44,7 +44,7 @@ export const InputColorBoxStyle = styled.section`
   }
 `;
 
-export const InputColorSelectorStyle = styled(ModalProvider.Modal)`
+export const InputColorSelectorStyle = styled(Modal)`
   display: grid;
   gap: 10px;
   background: ${props => props.theme.colors.background.main};

@@ -3,8 +3,6 @@ import React from 'react';
 import { InputFieldProps } from '../field';
 import { ControllerGeneratorProps, UnControlledComponentProps } from '../form.types';
 
-import { ModalState } from '@polpo/hooks';
-
 export type SelectItem = string | number | Record<string, unknown> | unknown;
 
 export type MultiValue<T extends SelectItem> = Array<T>;
@@ -51,6 +49,7 @@ export type ControllerGeneratorSelectProps<T extends SelectItem> =
 
 export type OptionsProps<T extends SelectItem> = {
   isOpen: boolean;
+  onClose: () => void;
   style?: React.CSSProperties;
   onSearchQuery?: (value: string) => void;
   searchQueryValue?: string;
@@ -62,12 +61,11 @@ export type OptionsProps<T extends SelectItem> = {
   options: Array<T>;
   selectOption: (option: T) => void;
   unselectOption: (option: T) => void;
-  modalRef: React.RefObject<HTMLElement>;
+  containerRef: React.RefObject<HTMLElement>;
   Component: React.FC<OptionComponentProps<T>>;
   multiselect?: boolean;
   value: SelectValue<T>;
   variant: `${SelectOptionVariant}`;
-  modalState: ModalState;
 };
 
 // SELECT OPTION

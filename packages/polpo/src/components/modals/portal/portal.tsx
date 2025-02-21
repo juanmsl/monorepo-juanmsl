@@ -1,4 +1,4 @@
-import { ForwardedRef, forwardRef, ReactNode } from 'react';
+import { ForwardedRef, forwardRef, ReactNode, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 
 import { useDomContainer } from '@polpo/hooks';
@@ -9,7 +9,8 @@ type PortalProps = {
 };
 
 const PortalComponent = ({ children, id }: PortalProps, ref: ForwardedRef<HTMLElement>) => {
-  const root = useDomContainer(id, ref);
+  const uuid = useMemo(() => crypto.randomUUID(), []);
+  const root = useDomContainer(`${id}-${uuid}`, ref);
 
   return createPortal(children, root);
 };

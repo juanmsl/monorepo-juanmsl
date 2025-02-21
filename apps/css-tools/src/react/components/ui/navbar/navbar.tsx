@@ -1,4 +1,4 @@
-import { useModalTransition } from 'polpo/hooks';
+import { useModal } from 'polpo/hooks';
 import { Icon, Image, Tooltip, Typography } from 'polpo/ui';
 import { useTranslation } from 'react-i18next';
 import { Link, NavLink } from 'react-router-dom';
@@ -9,7 +9,7 @@ import { PATHS } from '@core/constants';
 
 export const Navbar = () => {
   const { t } = useTranslation();
-  const { isVisible, modalState, openModal, closeModal } = useModalTransition(300);
+  const { openModal, containerRef, closeModal, isOpen } = useModal();
 
   return (
     <NavbarStyle>
@@ -47,8 +47,10 @@ export const Navbar = () => {
       </section>
 
       <NavbarSuggestionsModal
-        isVisible={isVisible}
-        modalState={modalState}
+        isOpen={isOpen}
+        onClose={closeModal}
+        containerRef={containerRef}
+        transitionDuration={300}
         opacity={0.5}
         backdrop='opaque'
         backdropOnClick={closeModal}

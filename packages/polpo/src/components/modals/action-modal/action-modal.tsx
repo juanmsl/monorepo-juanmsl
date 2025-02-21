@@ -3,7 +3,7 @@ import { createContext, useCallback, useContext, useRef, useState } from 'react'
 import { Button, ButtonProps } from '../../buttons';
 import { Icon, IconNameT } from '../../icon';
 import { Typography } from '../../typography';
-import { ModalProps } from '../modal-provider';
+import { ModalProps } from '../modal';
 
 import { ModalStyle, ActionModalStyle } from './action-modal.style';
 
@@ -30,18 +30,21 @@ const useActionModalContext = () => {
 
 export type ActionModalProps = Omit<
   ModalProps,
-  'id' | 'animation' | 'closeAnimationClassName' | 'position' | 'rootStyle'
+  'id' | 'animation' | 'closeAnimationClassName' | 'position' | 'rootStyle' | 'className' | 'style'
 > & {
-  onClose: () => void;
   actionRequired?: boolean;
   icon?: IconNameT;
   noCloseButton?: boolean;
   lineOnTop?: boolean;
   backCard?: boolean;
   noPadding?: boolean;
+  className?: string;
+  style?: React.CSSProperties;
 };
 
 export const ActionModal = ({
+  children,
+  isOpen,
   onClose,
   actionRequired,
   icon,
@@ -49,12 +52,9 @@ export const ActionModal = ({
   lineOnTop = false,
   backCard = false,
   noPadding = false,
-  children,
-  isVisible,
   className = '',
   style = {},
-  modalState,
-  ...backdropProps
+  ...modalProps
 }: ActionModalProps) => {
   const [isActionInProgress, setIsActionInProgress] = useState(false);
   const ref = useRef<HTMLElement>(null);
@@ -78,9 +78,9 @@ export const ActionModal = ({
         id='action-modal'
         animation='bounce'
         opacity={0.8}
-        isVisible={isVisible}
-        {...backdropProps}
-        modalState={modalState}
+        isOpen={isOpen}
+        onClose={onClose}
+        {...modalProps}
         backdropOnClick={actionRequired ? remainAction : onClose}
         position={PositionContainer.CENTER}
       >
@@ -88,7 +88,7 @@ export const ActionModal = ({
           <ActionModalStyle className={actionModalClassName}>
             {!noCloseButton && !actionRequired && (
               <section className='close-modal-button' onClick={() => onClose()}>
-                <Icon name='cross' inCircle />
+                <Icon name='cross' inCircle scale={2} />
               </section>
             )}
             {icon ? (

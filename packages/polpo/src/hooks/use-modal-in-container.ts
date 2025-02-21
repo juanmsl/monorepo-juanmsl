@@ -6,9 +6,8 @@ import { useModalTransition } from './use-modal-transition';
 import { useResizeObserver } from './use-resize-observer';
 
 import {
-  getModalPosition,
-  GetModalPositionParams,
-  ModalReference,
+  getModalPositionRelativeToContainer,
+  getModalPositionRelativeToScreen,
   PositionContainer,
   PositionObject,
 } from '@polpo/helpers';
@@ -22,25 +21,37 @@ const convertDOMRectToPosition = (rect: DOMRectReadOnly): PositionObject => ({
   left: rect.left,
 });
 
-export type UseModalInContainerParams = Partial<Omit<GetModalPositionParams, 'c' | 'm'>> & {
+export type UseModalInContainerParams<
+  Container extends HTMLElement = HTMLElement,
+  Modal extends HTMLElement = Container,
+> = {
   closeOnClickOutside?: boolean;
   transitionDuration?: number;
+  windowOffset?: number;
+  offset?: number;
+  position?: `${PositionContainer}`;
+  modalRef: RefObject<Modal>;
+  containerRef?: RefObject<Container>;
+  onClose?: () => void;
 };
 
-export const useModalInContainer = <Container extends HTMLElement, Modal extends HTMLElement = Container>({
+export const useModalInContainer = <
+  Container extends HTMLElement = HTMLElement,
+  Modal extends HTMLElement = Container,
+>({
   closeOnClickOutside = true,
   offset = 20,
   windowOffset = 10,
   position = PositionContainer.BOTTOM,
-  modalReference = ModalReference.CONTAINER,
   transitionDuration = 0,
-}: UseModalInContainerParams = {}) => {
-  const modalState = useModalTransition(transitionDuration);
+  modalRef,
+  containerRef,
+  onClose,
+}: UseModalInContainerParams<Container, Modal>) => {
+  const containerTemporalRef = useRef<Container>(null);
+  const modalState = useModalTransition(transitionDuration, onClose);
 
   const { isVisible, closeModal } = modalState;
-
-  const modalRef = useRef<Modal>(null);
-  const containerRef = useRef<Container>(null);
 
   useClickOutside<Modal>(modalRef, () => {
     if (isVisible && closeOnClickOutside) {
@@ -49,46 +60,43 @@ export const useModalInContainer = <Container extends HTMLElement, Modal extends
   });
 
   const getPosition = useCallback(
-    (modalRef: RefObject<HTMLElement>) => {
+    (modalRef: RefObject<Modal>, containerRef: RefObject<Container>) => {
       const modal = modalRef.current?.getClientRects()[0];
       const container = containerRef.current?.getClientRects()[0];
 
-      if (!container || !modal) {
+      if (!modal) {
         return;
       }
 
-      const modalStyle = getModalPosition({
-        c: convertDOMRectToPosition(container),
-        m: convertDOMRectToPosition(modal),
-        modalReference,
-        windowOffset,
-        position,
-        offset,
-      });
+      const modalStyle: Record<string, string> = !container
+        ? getModalPositionRelativeToScreen({ position: position as PositionContainer, windowOffset })
+        : getModalPositionRelativeToContainer({
+            c: convertDOMRectToPosition(container),
+            m: convertDOMRectToPosition(modal),
+            offset,
+            windowOffset,
+            position: position as PositionContainer,
+          });
 
       Object.keys(modalStyle).forEach(key => {
         modalRef.current?.style.setProperty(key, modalStyle[key]);
       });
     },
-    [modalReference, windowOffset, position, offset],
+    [position, windowOffset, offset],
   );
 
   const callback = useCallback(() => {
     if (isVisible) {
-      getPosition(modalRef);
+      getPosition(modalRef, containerRef ?? containerTemporalRef);
     }
-  }, [getPosition, isVisible]);
+  }, [getPosition, isVisible, containerRef, modalRef]);
 
   useLayoutEffect(callback, [callback]);
 
-  useResizeObserver<Container>(containerRef, callback);
+  useResizeObserver<Container>(containerRef ?? containerTemporalRef, callback);
   useResizeObserver<Modal>(modalRef, callback);
   useEventListener('resize', callback);
   useEventListener('scroll', callback, modalRef);
 
-  return {
-    ...modalState,
-    containerRef,
-    modalRef,
-  };
+  return modalState;
 };

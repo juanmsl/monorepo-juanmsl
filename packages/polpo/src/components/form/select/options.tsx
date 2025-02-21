@@ -26,12 +26,13 @@ export const Options = <T extends SelectItem>({
   loadMore = () => null,
   isLoading = false,
   hasNextPage = false,
-  modalRef,
+  containerRef,
   Component,
   variant,
-  modalState,
+  onClose,
 }: OptionsProps<T>) => {
   const theme = useTheme();
+  const modalContainerRef = useRef<HTMLElement>(null);
   const isMobile = useMediaQuery(`(min-width: ${theme.constants.breakpoints.mobileL})`);
   const [internalSearchQuery, setInternalSearchQuery] = useState('');
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -71,10 +72,10 @@ export const Options = <T extends SelectItem>({
       if (searchInputRef.current) {
         searchInputRef.current.focus();
       } else {
-        modalRef.current?.focus();
+        modalContainerRef.current?.focus();
       }
     }
-  }, [isOpen, modalRef]);
+  }, [isOpen, modalContainerRef]);
 
   const renderInternalOption = useCallback(
     (option: T, key: number) => (
@@ -93,16 +94,17 @@ export const Options = <T extends SelectItem>({
     [value, compareValueOrValuesAreEqual, multiselect, unselectOption, selectOption, Component, variant],
   );
 
-  if (!isOpen) return null;
-
   return (
     <Modal
       id='modal-form-select'
-      isVisible={isOpen}
-      modalState={modalState}
+      isOpen={isOpen}
+      onClose={onClose}
       backdrop={isMobile ? 'transparent' : 'blur'}
       opacity={isMobile ? 0 : 0.8}
-      ref={modalRef}
+      position='bottom'
+      offset={5}
+      transitionDuration={200}
+      containerRef={containerRef}
     >
       <OptionsStyle style={style} tabIndex={-1}>
         {onSearchQuery && (
@@ -119,7 +121,7 @@ export const Options = <T extends SelectItem>({
             />
           </OptionsHeaderStyle>
         )}
-        <section className='options-list-container' tabIndex={-1}>
+        <section className='options-list-container' ref={modalContainerRef} tabIndex={-1}>
           <ul className='options-list' role='listbox'>
             {options.length === 0 ? (
               <li className='option option-empty' tabIndex={-1}>

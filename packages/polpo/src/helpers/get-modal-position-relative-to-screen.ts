@@ -1,7 +1,7 @@
 import { PositionContainer } from './get-modal-position';
 
 export type GetModalPositionRelativeToScreenParams = {
-  position: `${PositionContainer}` | undefined;
+  position: PositionContainer;
   windowOffset: number;
 };
 
@@ -76,6 +76,7 @@ export const getModalPositionRelativeToScreen = ({
       };
 
     case PositionContainer.LEFT:
+    case PositionContainer.LEFT_CENTER:
       return {
         top: '50%',
         left: `${windowOffset}px`,
@@ -85,6 +86,7 @@ export const getModalPositionRelativeToScreen = ({
       };
 
     case PositionContainer.RIGHT:
+    case PositionContainer.RIGHT_CENTER:
       return {
         top: '50%',
         right: `${windowOffset}px`,

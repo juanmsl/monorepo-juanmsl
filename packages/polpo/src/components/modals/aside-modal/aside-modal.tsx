@@ -1,7 +1,7 @@
 import { CSSProperties, useMemo } from 'react';
 
 import { Icon } from '../../icon';
-import { ModalProps } from '../modal-provider';
+import { ModalProps } from '../modal';
 
 import { AsideModalStyle } from './aside-modal.style';
 
@@ -9,27 +9,26 @@ import { PositionContainer } from '@polpo/helpers';
 
 type AsideModalProps = Omit<
   ModalProps,
-  'id' | 'animation' | 'closeAnimationClassName' | 'modalAtCenter' | 'rootStyle'
+  'id' | 'animation' | 'closeAnimationClassName' | 'position' | 'rootStyle' | 'className' | 'style'
 > & {
-  onClose: () => void;
   position?:
     | `${PositionContainer.TOP}`
     | `${PositionContainer.LEFT}`
     | `${PositionContainer.RIGHT}`
     | `${PositionContainer.BOTTOM}`;
   size?: number | `${number}px` | `${number}em`;
+  className?: string;
+  style?: React.CSSProperties;
 };
 
 export const AsideModal = ({
+  children,
+  isOpen,
+  onClose,
   position = PositionContainer.LEFT,
   size,
-  onClose,
-  children,
-  isVisible,
   className = '',
-  style = {},
-  modalState,
-  ...backdropProps
+  ...modalProps
 }: AsideModalProps) => {
   const modalRootStyles = useMemo<CSSProperties>(() => {
     const computedSize = {
@@ -45,16 +44,16 @@ export const AsideModal = ({
   return (
     <AsideModalStyle
       id='aside'
-      isVisible={isVisible}
-      modalState={modalState}
-      {...backdropProps}
+      isOpen={isOpen}
+      onClose={onClose}
       opacity={0.6}
+      windowOffset={0}
       animation='none'
       className={`${className} ${position}`}
       rootStyle={modalRootStyles}
       backdropOnClick={onClose}
-      style={style}
       position={position}
+      {...modalProps}
     >
       <span className='close-modal-button' onClick={onClose}>
         <Icon name='cross' />
