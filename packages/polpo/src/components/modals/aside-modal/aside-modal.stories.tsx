@@ -1,7 +1,8 @@
+import { useState } from 'react';
+
 import { AsideModal } from './aside-modal';
 
 import { PositionContainer } from '@polpo/helpers';
-import { useModalTransition } from '@polpo/hooks';
 import { Button, Image, Typography } from '@polpo/ui';
 
 import type { Meta, StoryObj } from '@storybook/react';
@@ -21,12 +22,12 @@ const meta: Meta<typeof AsideModal> = {
   },
   decorators: [
     Story => {
-      const { modalState, closeModal, openModal, isVisible } = useModalTransition(300);
+      const [isOpen, setIsOpen] = useState(false);
 
       return (
         <>
-          <Button onClick={openModal}>Open modal</Button>
-          <Story modalState={modalState} closeModal={closeModal} isVisible={isVisible} />
+          <Button onClick={() => setIsOpen(true)}>Open modal</Button>
+          <Story isOpen={isOpen} onClose={() => setIsOpen(false)} />
         </>
       );
     },
@@ -43,9 +44,9 @@ export const Aside: Story = {
   args: {
     size: 500,
   },
-  render: (args, { closeModal, isVisible, modalState }) => {
+  render: (args, { onClose, isOpen }) => {
     return (
-      <AsideModal {...args} isVisible={isVisible} modalState={modalState} onClose={closeModal}>
+      <AsideModal {...args} isOpen={isOpen} onClose={onClose}>
         <Typography variant='header4'>Aside modal</Typography>
         <Typography>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam amet at cupiditate dolorum eaque eligendi

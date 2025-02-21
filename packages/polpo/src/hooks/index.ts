@@ -14,6 +14,7 @@ export * from './use-in-view';
 export * from './use-input-handlers';
 export * from './use-intersection-observer';
 export * from './use-media-query';
+export * from './use-modal';
 export * from './use-modal-in-container';
 export * from './use-modal-transition';
 export * from './use-mouse-position';

@@ -1,9 +1,9 @@
+import { useState } from 'react';
+
 import { Button } from '../../buttons';
 import ActionModalStory from '../action-modal/action-modal.stories';
 
 import { ConfirmationModal } from './confirmation-modal';
-
-import { useModalTransition } from '@polpo/hooks';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -27,23 +27,22 @@ const meta: Meta<typeof ConfirmationModal> = {
   },
   decorators: [
     Story => {
-      const { modalState, closeModal, openModal, isVisible } = useModalTransition(300);
+      const [isOpen, setIsOpen] = useState(false);
 
       return (
         <>
-          <Button onClick={openModal}>Open modal</Button>
-          <Story modalState={modalState} closeModal={closeModal} isVisible={isVisible} />
+          <Button onClick={() => setIsOpen(true)}>Open modal</Button>
+          <Story isOpen={isOpen} onClose={() => setIsOpen(false)} />
         </>
       );
     },
   ],
-  render: ({ children, ...args }, { closeModal, isVisible, modalState }) => {
+  render: ({ children, ...args }, { onClose, isOpen }) => {
     return (
       <ConfirmationModal
         {...args}
-        isVisible={isVisible}
-        modalState={modalState}
-        onClose={closeModal}
+        isOpen={isOpen}
+        onClose={onClose}
         onAccept={() =>
           new Promise(resolve => {
             setTimeout(resolve, 1000);

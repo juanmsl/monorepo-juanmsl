@@ -3,7 +3,7 @@ import React, { cloneElement, ReactElement } from 'react';
 import { TooltipStyle } from './tooltip.style';
 
 import { PositionContainer } from '@polpo/helpers';
-import { useClassNames, useEventListener, useModalInContainer } from '@polpo/hooks';
+import { useClassNames, useEventListener, useModal } from '@polpo/hooks';
 
 export type TooltipProps = {
   position?:
@@ -24,13 +24,7 @@ export const Tooltip = ({
   offset = 5,
   disabled = false,
 }: TooltipProps) => {
-  const { modalRef, containerRef, isVisible, openModal, closeModal, modalState } = useModalInContainer({
-    closeOnClickOutside: false,
-    position,
-    offset: 6 + +offset,
-    windowOffset: 10,
-    transitionDuration: 250,
-  });
+  const { containerRef, openModal, closeModal, isOpen } = useModal();
 
   const classNames = useClassNames({
     [position]: true,
@@ -48,10 +42,15 @@ export const Tooltip = ({
       <TooltipStyle
         backdrop='none'
         id='tooltip'
-        isVisible={isVisible}
-        ref={modalRef}
+        isOpen={isOpen}
+        containerRef={containerRef}
+        onClose={closeModal}
+        position={position}
         className={classNames}
-        modalState={modalState}
+        closeOnClickOutside={false}
+        offset={6 + +offset}
+        windowOffset={10}
+        transitionDuration={250}
       >
         <span className='tooltip-content'>{content}</span>
       </TooltipStyle>

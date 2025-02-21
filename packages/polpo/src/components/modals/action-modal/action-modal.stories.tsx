@@ -1,6 +1,7 @@
+import { useState } from 'react';
+
 import { ActionModal } from './action-modal';
 
-import { useModalTransition } from '@polpo/hooks';
 import { Button, Grid, IconNames, Line, Typography } from '@polpo/ui';
 
 import type { Meta, StoryObj } from '@storybook/react';
@@ -24,12 +25,12 @@ const meta: Meta<typeof ActionModal> = {
   },
   decorators: [
     Story => {
-      const { modalState, closeModal, openModal, isVisible } = useModalTransition(300);
+      const [isOpen, setIsOpen] = useState(false);
 
       return (
         <>
-          <Button onClick={openModal}>Open modal</Button>
-          <Story modalState={modalState} closeModal={closeModal} isVisible={isVisible} />
+          <Button onClick={() => setIsOpen(true)}>Open modal</Button>
+          <Story isOpen={isOpen} onClose={() => setIsOpen(false)} />
         </>
       );
     },
@@ -47,9 +48,9 @@ export const Classic: Story = {
     lineOnTop: true,
     noPadding: true,
   },
-  render: (args, { closeModal, isVisible, modalState }) => {
+  render: (args, { onClose, isOpen }) => {
     return (
-      <ActionModal {...args} isVisible={isVisible} modalState={modalState} onClose={closeModal}>
+      <ActionModal {...args} isOpen={isOpen} onClose={onClose}>
         <Typography variant='header4' noPadding style={{ padding: '0 1rem' }}>
           Action modal
         </Typography>
@@ -57,7 +58,15 @@ export const Classic: Story = {
         <Grid gap='1em' style={{ padding: '0 1rem 1rem' }}>
           <Typography>Are you sure want to execute an action?</Typography>
         </Grid>
-        <Grid ai='center' gtc='repeat(2, 80px)' jc='end' gap='1em' style={{ padding: '0 1rem 1rem' }}>
+        <Grid
+          ai='center'
+          columnSize='80px'
+          ji='center'
+          flow='column'
+          jc='end'
+          gap='1em'
+          style={{ padding: '0 1rem 1rem' }}
+        >
           <ActionModal.ActionButton
             size='small'
             width='full'
@@ -97,14 +106,22 @@ export const Confirmation: Story = {
     lineOnTop: true,
     icon: 'user',
   },
-  render: (args, { closeModal, isVisible, modalState }) => {
+  render: (args, { onClose, isOpen }) => {
     return (
-      <ActionModal {...args} isVisible={isVisible} modalState={modalState} onClose={closeModal}>
+      <ActionModal {...args} isOpen={isOpen} onClose={onClose}>
         <Typography variant='header4' align='center' noPadding>
           Action modal
         </Typography>
         <Typography>Are you sure want to execute an action?</Typography>
-        <Grid ai='center' gtc='repeat(2, minmax(100px, 1fr))' jc='center' gap='1em' style={{ margin: 'auto' }}>
+        <Grid
+          ai='center'
+          columnSize='minmax(100px, 1fr)'
+          ji='center'
+          flow='column'
+          jc='center'
+          gap='1em'
+          style={{ margin: 'auto' }}
+        >
           <ActionModal.ActionButton
             size='small'
             width='full'
