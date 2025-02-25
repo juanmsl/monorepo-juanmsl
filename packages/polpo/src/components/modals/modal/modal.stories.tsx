@@ -4,12 +4,12 @@ import { Modal as ModalComponent, ModalProps } from './modal';
 
 import { PositionContainer } from '@polpo/helpers';
 import { useModal } from '@polpo/hooks';
-import { Grid, Line, Typography } from '@polpo/ui';
+import { Grid, Line, ModalBackdrop, Typography } from '@polpo/ui';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const Modal = ({ children, ...props }: ModalProps) => (
-  <ModalComponent {...props} id='menu' backdrop='none' style={{ borderRadius: '1em' }}>
+  <ModalComponent backdrop='none' {...props} style={{ borderRadius: '1em' }}>
     <Grid style={{ width: '400px', maxWidth: '100%', padding: '1em' }}>
       <Typography variant='header4' color='primary'>
         {children}
@@ -28,11 +28,26 @@ const meta: Meta<typeof ModalComponent> = {
   title: 'Modals/Modal',
   component: ModalComponent,
   argTypes: {
-    closeOnClickOutside: { control: 'boolean' },
-    transitionDuration: { control: false },
+    animation: { control: { type: 'inline-radio', options: ['none', 'fade-down', 'bounce'] } },
     windowOffset: { control: { type: 'range', min: 0, max: 100 } },
-    position: { control: 'inline-radio', options: Object.values(PositionContainer) },
     offset: { control: { type: 'range', min: 0, max: 100 } },
+    position: { control: 'inline-radio', options: Object.values(PositionContainer) },
+    closeOnClickOutside: { control: 'boolean' },
+    opacity: { control: { type: 'range', min: 0, max: 1, step: 0.1 } },
+    backdrop: { control: { type: 'inline-radio', options: Object.values(ModalBackdrop) } },
+    transitionDuration: { control: false },
+    backdropOnClick: { control: false },
+    zIndex: { control: false },
+    id: { control: false },
+    children: { control: false },
+    isOpen: { control: false },
+    onClose: { control: false },
+    className: { control: false },
+    style: { control: false },
+    rootStyle: { control: false },
+    closeAnimationClassName: { control: false },
+    containerRef: { control: false },
+    modalRef: { control: false },
   },
   args: {
     offset: 20,
@@ -44,7 +59,9 @@ export default meta;
 type Story = StoryObj<typeof ModalComponent>;
 
 export const AllContainerPositions: Story = {
-  args: {},
+  argTypes: {
+    position: { control: false },
+  },
   render: args => {
     const modal1 = useModal<HTMLButtonElement>();
     const modal2 = useModal<HTMLButtonElement>();
@@ -230,7 +247,9 @@ export const AllContainerPositions: Story = {
 };
 
 export const AllScreenPositions: Story = {
-  args: {},
+  argTypes: {
+    position: { control: false },
+  },
   render: args => {
     const modal1 = useModal();
     const modal2 = useModal();

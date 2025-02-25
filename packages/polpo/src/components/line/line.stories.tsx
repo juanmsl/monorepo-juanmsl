@@ -22,18 +22,17 @@ const meta: Meta<typeof Line> = {
   args: {
     color: 'currentColor',
   },
-  render: (args, { orientation }) => <Line {...args} orientation={orientation} />,
   decorators: [
-    Story => (
+    (Story, { args }) => (
       <Grid ac='start' gtr='auto 1fr auto auto' gap='0.5em' style={{ width: '300px', height: '300px' }}>
         <Typography variant='small' noPadding>
           Vertical
         </Typography>
-        <Story orientation={LineOrientation.VERTICAL} />
+        <Story args={{ ...args, orientation: LineOrientation.VERTICAL }} />
         <Typography variant='small' noPadding>
           Horizontal
         </Typography>
-        <Story orientation={LineOrientation.HORIZONTAL} />
+        <Story args={{ ...args, orientation: LineOrientation.HORIZONTAL }} />
       </Grid>
     ),
   ],

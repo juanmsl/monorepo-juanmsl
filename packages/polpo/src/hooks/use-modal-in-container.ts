@@ -40,8 +40,8 @@ export const useModalInContainer = <
   Modal extends HTMLElement = Container,
 >({
   closeOnClickOutside = true,
-  offset = 20,
-  windowOffset = 10,
+  offset = 0,
+  windowOffset = 0,
   position = PositionContainer.BOTTOM,
   transitionDuration = 0,
   modalRef,

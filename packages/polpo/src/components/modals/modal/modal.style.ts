@@ -4,37 +4,6 @@ export const ModalStyle = styled.section`
   position: fixed;
   z-index: 1001;
   pointer-events: none;
-  transition:
-    top 50ms ease,
-    left 50ms ease,
-    right 50ms ease,
-    bottom 50ms ease;
-
-  &.screen-center {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  &.screen-left {
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-  }
-  &.screen-right {
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-  }
-  &.screen-top {
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  &.screen-bottom {
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
 `;
 
 export const ModalContentStyle = styled.section`

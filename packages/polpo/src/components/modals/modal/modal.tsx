@@ -7,7 +7,7 @@ import { ModalState, useClassNames, useModalInContainer, UseModalInContainerPara
 import { Portal } from '@polpo/ui';
 
 export type ModalProps = Omit<BackdropProps, 'modalState'> &
-  Omit<UseModalInContainerParams, 'modalRef'> & {
+  Omit<UseModalInContainerParams, 'modalRef' | 'onClose'> & {
     id: string;
     children: React.ReactNode;
     isOpen: boolean;
@@ -30,13 +30,14 @@ export const Modal = ({
   rootStyle = {},
   animation = 'fade-down',
   closeAnimationClassName = 'modal-close',
-  closeOnClickOutside,
-  offset,
-  windowOffset,
-  position,
-  transitionDuration = 300,
-  containerRef,
   modalRef: modalRefProp,
+  closeOnClickOutside,
+  transitionDuration = 300,
+  windowOffset = 10,
+  offset = 20,
+  position,
+  containerRef,
+  zIndex = 1000,
   ...backdropProps
 }: ModalProps) => {
   const modalRef = useRef<HTMLElement>(null);
@@ -71,8 +72,16 @@ export const Modal = ({
 
   return (
     <Portal id={`modal-${id}`}>
-      <Backdrop {...backdropProps} modalState={modalState} />
-      <ModalStyle ref={modalRefProp ?? modalRef} style={rootStyle}>
+      <Backdrop {...backdropProps} modalState={modalState} zIndex={zIndex} />
+      <ModalStyle
+        ref={modalRefProp ?? modalRef}
+        style={{
+          maxWidth: `calc(100dvw - ${windowOffset * 2}px)`,
+          maxHeight: `calc(100dvh - ${windowOffset * 2}px)`,
+          ...rootStyle,
+          zIndex: +zIndex + 1,
+        }}
+      >
         <ModalContentStyle style={style} className={modalContentClassName}>
           {children}
         </ModalContentStyle>

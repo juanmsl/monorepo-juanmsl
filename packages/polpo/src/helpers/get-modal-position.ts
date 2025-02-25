@@ -18,11 +18,6 @@ export enum PositionContainer {
   BOTTOM_CENTER = 'bottom center',
 }
 
-export enum ModalReference {
-  CONTAINER = 'container',
-  SCREEN = 'screen',
-}
-
 export type PositionObject = {
   x: number;
   y: number;
@@ -212,6 +207,5 @@ export const getModalPositionRelativeToContainer = ({
   return {
     left: `${fixedPosition.left}px`,
     top: `${fixedPosition.top}px`,
-    'max-width': `${window.innerWidth - offset * 2}px`,
   };
 };

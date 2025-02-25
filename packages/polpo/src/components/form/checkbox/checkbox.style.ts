@@ -13,7 +13,7 @@ export const CheckboxFillStyle = styled.section`
   place-items: center;
 
   .checkbox-icon {
-    font-size: 0.8em;
+    font-size: 0.7em;
     z-index: 1;
     opacity: 0;
     transition: opacity 300ms ease;
@@ -24,9 +24,10 @@ export const CheckboxStyle = styled.section`
   border-radius: 40%;
   background: ${props => props.theme.colors.background.paper};
   transition: all 300ms ease;
-  width: 1.4em;
-  height: 1.4em;
-  outline: 2px solid;
+  width: 1em;
+  height: 1em;
+  margin: 2px;
+  outline: 1px solid;
   display: flex;
   position: relative;
 
@@ -48,14 +49,17 @@ type CheckboxContainerStyleProps = {
 };
 
 export const CheckboxContainerStyle = styled.section<CheckboxContainerStyleProps>`
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: auto 1fr;
   align-items: center;
-  gap: 1em;
+  gap: 0.5em;
   width: fit-content;
 
   .checkbox-label {
     cursor: pointer;
     user-select: none;
+    width: 100%;
   }
 
   ${CheckboxStyle} {
@@ -96,5 +100,12 @@ export const CheckboxContainerStyle = styled.section<CheckboxContainerStyleProps
         background: ${props => props.$color};
       }
     }
+  }
+
+  ${CheckboxStyle}:focus,
+  &:has(.checkbox-input:focus) ${CheckboxStyle},
+  &:has(.checkbox-label:focus) ${CheckboxStyle} {
+    box-shadow: 0 0 0 0.3em ${props => props.$color}88;
+    padding: 2px;
   }
 `;

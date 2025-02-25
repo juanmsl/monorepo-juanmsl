@@ -7,7 +7,7 @@ import { Select } from './select';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-const meta: Meta<typeof Select> = {
+const meta: Meta<typeof Select<string>> = {
   title: 'Form/Select',
   component: Select,
   argTypes: {
@@ -25,65 +25,126 @@ const meta: Meta<typeof Select> = {
     maxOptions: { control: { type: 'number' } },
     showClearOption: { control: 'boolean' },
     multiselect: { control: false },
-    optionVariant: {
-      control: 'select',
-      options: [undefined, 'checkbox', 'icon', 'default'],
-      if: { arg: 'multiselect' },
-    },
   },
   args: {
     label: 'Select',
     searchQueryPlaceholder: 'Search',
     ...FieldSharedArgs,
-    optionVariant: undefined,
+    placeholder: 'Select an option',
+    options: [
+      'Leda Pinna',
+      'Antonio Sansone',
+      'Orlando Simeone',
+      'Giorgio Villa',
+      'Virgilio Paoli',
+      'Nicola Loi',
+      'Giordano Manzo',
+      'Emilio Galletti',
+      'Moira Galimberti',
+      'Fedele Spina',
+      'Débora Buzzi',
+      'Ferrari Sacco',
+      'Rosalba Lodi',
+      'Bianca Paris',
+      'Salvatrice di Paola',
+      'Antonietta Mancuso',
+      'Corradina Battistini',
+      'Elisabeth Annunziata',
+      'Federica Vinciguerra',
+      'Ennio Spinelli',
+      'Susanna Franzoni',
+      'Ottavio di Bella',
+      'Melania Genovese',
+      'Marzio Tomasi',
+      'Anselmo Bettoni',
+      'Robert Boni',
+      'Leonardo Guido',
+      'Ermelinda Biagini',
+      'Aurélio Falcone',
+      'Hubert Paolini',
+      'Imelda Sessa',
+      'Santino Viviani',
+      'Peter Franchini',
+      'Guglielmo Lorenzon',
+      'Martha Casiraghi',
+      'Stefano Cuomo',
+      'Valéria di Giovanni',
+      'Cecília Ambrosio',
+      'Vincenzina Bernardini',
+      'Renato Marchi',
+      'Raffaello Guida',
+      'Gregório Battisti',
+      'Alberto Bruni',
+      'Giovannino Lepore',
+      'Ludovica Randazzo',
+      'Iris Merli',
+      'Alida Fois',
+      'Innocenzo Palazzo',
+      'Giacinto Vergani',
+      'Alessio Drago',
+    ],
+    renderOption: v => v,
   },
   decorators: [ContainerDecorator],
+};
+
+export default meta;
+type Story = StoryObj<typeof Select<string>>;
+
+export const SingleValue: Story = {
+  args: {},
   render: args => {
     const [value, setValue] = useState<string | null>(null);
 
+    return <Select<string> {...args} multiselect={false} value={value} setValue={value => setValue(value)} />;
+  },
+};
+
+export const MultipleValues: Story = {
+  render: args => {
+    const [value, setValue] = useState<Array<string>>([]);
+
+    return <Select<string> {...args} multiselect={true} value={value} setValue={value => setValue(value)} />;
+  },
+};
+
+export const SearchQuery: Story = {
+  render: ({ options, ...args }) => {
+    const [value, setValue] = useState<Array<string>>([]);
+    const [searchQueryValue, setSearchQueryValue] = useState<string>('');
+
     return (
-      <Select
+      <Select<string>
         {...args}
-        options={[
-          'A',
-          'B',
-          'C',
-          'D',
-          'E',
-          'F',
-          'H',
-          'I',
-          'J',
-          'K',
-          'L',
-          'M',
-          'N',
-          'O',
-          'P',
-          'Q',
-          'R',
-          'S',
-          'T',
-          'U',
-          'V',
-          'W',
-          'X',
-          'Y',
-          'Z',
-        ]}
+        options={options.filter(option => option.toLowerCase().includes(searchQueryValue.toLowerCase()))}
+        multiselect={true}
         value={value}
-        renderOption={v => v}
-        optionVariant={undefined}
-        multiselect={false}
         setValue={value => setValue(value)}
+        searchQueryPlaceholder='Search option'
+        searchQueryValue={searchQueryValue}
+        onSearchQuery={setSearchQueryValue}
       />
     );
   },
 };
 
-export default meta;
-type Story = StoryObj<typeof Select>;
+export const SearchQueryWithClearOption: Story = {
+  render: ({ options, ...args }) => {
+    const [value, setValue] = useState<Array<string>>([]);
+    const [searchQueryValue, setSearchQueryValue] = useState<string>('');
 
-export const Default: Story = {
-  args: {},
+    return (
+      <Select<string>
+        {...args}
+        options={options.filter(option => option.toLowerCase().includes(searchQueryValue.toLowerCase()))}
+        multiselect={true}
+        value={value}
+        showClearOption={true}
+        setValue={value => setValue(value)}
+        searchQueryPlaceholder='Search option'
+        searchQueryValue={searchQueryValue}
+        onSearchQuery={setSearchQueryValue}
+      />
+    );
+  },
 };

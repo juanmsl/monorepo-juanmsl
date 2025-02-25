@@ -4,6 +4,7 @@ export const FieldStyle = styled.section`
   display: grid;
   grid-auto-columns: auto;
   gap: 0.5em;
+  transition: all 200ms ease;
 
   .field-content {
     display: grid;

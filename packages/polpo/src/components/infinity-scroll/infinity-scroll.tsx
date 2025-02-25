@@ -6,7 +6,7 @@ import { InfinityScrollFooterStyle } from './infinity-scroll.style';
 
 import { useDebounce, useInView } from '@polpo/hooks';
 
-type InfinityScrollProps<T> = {
+export type InfinityScrollProps<T> = {
   isLoading: boolean;
   hasNextPage: boolean;
   loadMore: () => void;

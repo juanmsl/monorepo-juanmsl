@@ -46,7 +46,7 @@ export const MultipleOptions: Story = {
     const [option4, setOption4] = useState(false);
 
     return (
-      <SectionLayout>
+      <SectionLayout fitHeightContent>
         <Checkbox {...args} value={option1} setValue={setOption1} label='Option 1' />
         <Checkbox {...args} value={option2} setValue={setOption2} label='Option 2' />
         <Checkbox {...args} value={option3} setValue={setOption3} label='Option 3' />
@@ -71,7 +71,7 @@ export const Colors: Story = {
     const [option7, setOption7] = useState(false);
 
     return (
-      <SectionLayout>
+      <SectionLayout fitHeightContent>
         <Checkbox {...args} color='primary' value={option1} setValue={setOption1} label='Primary' />
         <Checkbox {...args} color='secondary' value={option2} setValue={setOption2} label='Secondary' />
         <Checkbox {...args} color='tertiary' value={option3} setValue={setOption3} label='Tertiary' />

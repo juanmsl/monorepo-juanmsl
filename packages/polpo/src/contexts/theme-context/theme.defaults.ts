@@ -182,7 +182,7 @@ export const LightTheme: PaletteThemeEntity = {
     disabled: '#c1c0c0',
   },
   border: {
-    main: '#ececec',
+    main: '#c1c1c1',
   },
   primary: {
     main: '#450b7c',

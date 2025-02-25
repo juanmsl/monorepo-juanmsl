@@ -1,15 +1,12 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTheme } from 'styled-components';
 
-import { InfinityScroll } from '../../infinity-scroll';
-import { Modal } from '../../modals';
-import { Typography } from '../../typography';
+import { Menu } from '../../modals';
 
-import { SelectOption } from './select-option';
-import { OptionsHeaderStyle, OptionsStyle } from './select.style';
+import { OptionsHeaderStyle, OptionsMenuStyle } from './select.style';
 import { OptionsProps, SelectItem } from './select.types';
 
-import { useEventListener, useMediaQuery } from '@polpo/hooks';
+import { useClassNames, useEventListener, useMediaQuery, useResizeObserver } from '@polpo/hooks';
 
 export const Options = <T extends SelectItem>({
   onSearchQuery,
@@ -21,19 +18,19 @@ export const Options = <T extends SelectItem>({
   selectOption,
   unselectOption,
   isOpen,
-  style,
   options,
   loadMore = () => null,
   isLoading = false,
   hasNextPage = false,
   containerRef,
   Component,
-  variant,
   onClose,
+  emptyMessage = 'No options to select',
+  maxHeight = 400,
 }: OptionsProps<T>) => {
   const theme = useTheme();
   const modalContainerRef = useRef<HTMLElement>(null);
-  const isMobile = useMediaQuery(`(min-width: ${theme.constants.breakpoints.mobileL})`);
+  const isMobile = useMediaQuery(`(max-width: ${theme.constants.breakpoints.mobileL})`);
   const [internalSearchQuery, setInternalSearchQuery] = useState('');
   const searchInputRef = useRef<HTMLInputElement>(null);
 
@@ -77,70 +74,119 @@ export const Options = <T extends SelectItem>({
     }
   }, [isOpen, modalContainerRef]);
 
-  const renderInternalOption = useCallback(
-    (option: T, key: number) => (
-      <SelectOption
-        key={key}
-        id={`${key}`}
-        selected={!!value && value !== '' && compareValueOrValuesAreEqual(option, value)}
-        data={option}
-        multiselect={multiselect}
-        unselectOption={unselectOption}
-        selectOption={selectOption}
-        Component={Component}
-        variant={variant}
-      />
-    ),
-    [value, compareValueOrValuesAreEqual, multiselect, unselectOption, selectOption, Component, variant],
+  const optionIsSelected = useCallback(
+    (option: T) => !!value && value !== '' && compareValueOrValuesAreEqual(option, value),
+    [compareValueOrValuesAreEqual, value],
   );
 
+  const handleKeyDown = useCallback(
+    (option: T) => (e: React.KeyboardEvent) => {
+      if (['Enter', ' '].includes(e.key)) {
+        e.preventDefault();
+
+        const selected = optionIsSelected(option);
+
+        if (selected && multiselect) {
+          unselectOption(option);
+        } else {
+          selectOption(option);
+        }
+      }
+    },
+    [multiselect, selectOption, optionIsSelected, unselectOption],
+  );
+
+  const renderInternalOption = useCallback(
+    (option: T, key: number) => {
+      const selected = optionIsSelected(option);
+
+      return (
+        <Menu.Option
+          key={key}
+          id={`${key}`}
+          label={<Component data={option} isSelected={selected} multiselect={multiselect} />}
+          onClick={(selected: boolean) => {
+            if (multiselect) {
+              if (selected) selectOption(option);
+              else unselectOption(option);
+            } else {
+              selectOption(option);
+            }
+          }}
+          onKeyDown={handleKeyDown(option)}
+          asCheckbox={multiselect}
+          selected={selected}
+        />
+      );
+    },
+    [optionIsSelected, Component, multiselect, handleKeyDown, selectOption, unselectOption],
+  );
+
+  const [height, setHeight] = useState<string>('400px');
+
+  const getHeight = useCallback(() => {
+    const containerBottom = containerRef.current?.getBoundingClientRect().bottom ?? 0;
+
+    const height = Math.min(window.innerHeight - containerBottom - 20, maxHeight);
+
+    setHeight(`${Math.round(height)}px`);
+  }, [containerRef, maxHeight]);
+
+  useResizeObserver(containerRef, getHeight);
+  useEventListener('resize', getHeight);
+
+  const menuClassName = useClassNames({
+    'search-input': Boolean(onSearchQuery),
+  });
+
   return (
-    <Modal
-      id='modal-form-select'
+    <OptionsMenuStyle
+      id='form-select'
       isOpen={isOpen}
       onClose={onClose}
-      backdrop={isMobile ? 'transparent' : 'blur'}
-      opacity={isMobile ? 0 : 0.8}
-      position='bottom'
+      backdrop={isMobile ? 'blur' : 'opaque'}
+      opacity={isMobile ? 0.8 : 0.4}
+      position={isMobile ? 'center' : 'bottom'}
       offset={5}
       transitionDuration={200}
-      containerRef={containerRef}
+      containerRef={isMobile ? undefined : containerRef}
+      className={menuClassName}
+      style={
+        isMobile
+          ? {
+              maxHeight: window.innerHeight - 100,
+              width: window.innerWidth - 100,
+            }
+          : {
+              maxHeight: height,
+              minHeight: '200px',
+              width: containerRef.current?.offsetWidth ?? 'auto',
+            }
+      }
+      rootStyle={isMobile ? {} : {}}
     >
-      <OptionsStyle style={style} tabIndex={-1}>
-        {onSearchQuery && (
-          <OptionsHeaderStyle>
-            <input
-              name='query'
-              className='input-search'
-              value={searchQueryValue ?? internalSearchQuery}
-              onChange={handleSearchQuery}
-              placeholder={searchQueryPlaceholder}
-              onClick={e => e.stopPropagation()}
-              ref={searchInputRef}
-              autoFocus
-            />
-          </OptionsHeaderStyle>
-        )}
-        <section className='options-list-container' ref={modalContainerRef} tabIndex={-1}>
-          <ul className='options-list' role='listbox'>
-            {options.length === 0 ? (
-              <li className='option option-empty' tabIndex={-1}>
-                <Typography noPadding variant='label'>
-                  No options to select
-                </Typography>
-              </li>
-            ) : (
-              <InfinityScroll
-                isLoading={isLoading}
-                hasNextPage={hasNextPage}
-                loadMore={loadMore}
-                data={options}
-                renderItem={renderInternalOption}
-              />
-            )}
-          </ul>
-        </section>
-      </OptionsStyle>
-    </Modal>
+      {onSearchQuery && (
+        <OptionsHeaderStyle>
+          <input
+            name='query'
+            className='input-search'
+            value={searchQueryValue ?? internalSearchQuery}
+            onChange={handleSearchQuery}
+            placeholder={searchQueryPlaceholder}
+            onClick={e => e.stopPropagation()}
+            ref={searchInputRef}
+            autoFocus
+          />
+        </OptionsHeaderStyle>
+      )}
+      <Menu.OptionsGroup
+        isLoading={isLoading}
+        hasNextPage={hasNextPage}
+        loadMore={loadMore}
+        data={options}
+        renderItem={renderInternalOption}
+        emptyMessage={emptyMessage}
+      />
+    </OptionsMenuStyle>
   );
 };
