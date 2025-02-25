@@ -29,7 +29,6 @@ export type SharedSelectProps<T extends SelectItem> = InputFieldProps<{
 
 export type MultiSelectProps<T extends SelectItem> = SharedSelectProps<T> & {
   multiselect: true;
-  optionVariant?: `${SelectOptionVariant}`;
 };
 
 export type SingleSelectProps<T extends SelectItem> = SharedSelectProps<T> & {
@@ -50,7 +49,6 @@ export type ControllerGeneratorSelectProps<T extends SelectItem> =
 export type OptionsProps<T extends SelectItem> = {
   isOpen: boolean;
   onClose: () => void;
-  style?: React.CSSProperties;
   onSearchQuery?: (value: string) => void;
   searchQueryValue?: string;
   searchQueryPlaceholder?: string;
@@ -65,30 +63,14 @@ export type OptionsProps<T extends SelectItem> = {
   Component: React.FC<OptionComponentProps<T>>;
   multiselect?: boolean;
   value: SelectValue<T>;
-  variant: `${SelectOptionVariant}`;
+  emptyMessage?: string;
+  maxHeight?: number;
 };
 
 // SELECT OPTION
-
-export enum SelectOptionVariant {
-  CHECKBOX = 'checkbox',
-  ICON = 'icon',
-  DEFAULT = 'default',
-}
 
 export type OptionComponentProps<T extends SelectItem> = {
   data: T;
   isSelected: boolean;
   multiselect: boolean;
-};
-
-export type SelectOptionProps<T extends SelectItem> = {
-  id: string;
-  selected: boolean;
-  selectOption: (value: T) => void;
-  unselectOption: (value: T) => void;
-  data: T;
-  multiselect: boolean;
-  Component: React.FC<OptionComponentProps<T>>;
-  variant: `${SelectOptionVariant}`;
 };

@@ -15,8 +15,6 @@ export const getModalPositionRelativeToScreen = ({
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        'max-width': `calc(100dvw - ${windowOffset * 2}px)`,
-        'max-height': `calc(100dvh - ${windowOffset * 2}px)`,
       };
 
     case PositionContainer.TOP:
@@ -25,8 +23,6 @@ export const getModalPositionRelativeToScreen = ({
         top: `${windowOffset}px`,
         left: '50%',
         transform: 'translateX(-50%)',
-        'max-width': `calc(100vw - ${windowOffset * 2}px)`,
-        'max-height': `calc(100dvh - ${windowOffset * 2}px)`,
       };
 
     case PositionContainer.TOP_LEFT:
@@ -34,8 +30,6 @@ export const getModalPositionRelativeToScreen = ({
       return {
         top: `${windowOffset}px`,
         left: `${windowOffset}px`,
-        'max-width': `calc(100dvw - ${windowOffset * 2}px)`,
-        'max-height': `calc(100dvh - ${windowOffset * 2}px)`,
       };
 
     case PositionContainer.TOP_RIGHT:
@@ -43,8 +37,6 @@ export const getModalPositionRelativeToScreen = ({
       return {
         top: `${windowOffset}px`,
         right: `${windowOffset}px`,
-        'max-width': `calc(100dvw - ${windowOffset * 2}px)`,
-        'max-height': `calc(100dvh - ${windowOffset * 2}px)`,
       };
 
     case PositionContainer.BOTTOM:
@@ -53,8 +45,6 @@ export const getModalPositionRelativeToScreen = ({
         bottom: `${windowOffset}px`,
         left: '50%',
         transform: 'translateX(-50%)',
-        'max-width': `calc(100dvw - ${windowOffset * 2}px)`,
-        'max-height': `calc(100dvh - ${windowOffset * 2}px)`,
       };
 
     case PositionContainer.LEFT_BOTTOM:
@@ -62,8 +52,6 @@ export const getModalPositionRelativeToScreen = ({
       return {
         bottom: `${windowOffset}px`,
         left: `${windowOffset}px`,
-        'max-width': `calc(100dvw - ${windowOffset * 2}px)`,
-        'max-height': `calc(100dvh - ${windowOffset * 2}px)`,
       };
 
     case PositionContainer.RIGHT_BOTTOM:
@@ -71,8 +59,6 @@ export const getModalPositionRelativeToScreen = ({
       return {
         bottom: `${windowOffset}px`,
         right: `${windowOffset}px`,
-        'max-width': `calc(100dvw - ${windowOffset * 2}px)`,
-        'max-height': `calc(100dvh - ${windowOffset * 2}px)`,
       };
 
     case PositionContainer.LEFT:
@@ -81,8 +67,6 @@ export const getModalPositionRelativeToScreen = ({
         top: '50%',
         left: `${windowOffset}px`,
         transform: 'translateY(-50%)',
-        'max-width': `calc(100dvw - ${windowOffset * 2}px)`,
-        'max-height': `calc(100dvh - ${windowOffset * 2}px)`,
       };
 
     case PositionContainer.RIGHT:
@@ -91,8 +75,6 @@ export const getModalPositionRelativeToScreen = ({
         top: '50%',
         right: `${windowOffset}px`,
         transform: 'translateY(-50%)',
-        'max-width': `calc(100dvw - ${windowOffset * 2}px)`,
-        'max-height': `calc(100dvh - ${windowOffset * 2}px)`,
       };
   }
 
@@ -100,7 +82,5 @@ export const getModalPositionRelativeToScreen = ({
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    'max-width': `calc(100dvw - ${windowOffset * 2}px)`,
-    'max-height': `calc(100dvh - ${windowOffset * 2}px)`,
   };
 };

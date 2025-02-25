@@ -31,7 +31,7 @@ const getCheckboxColor = (theme: DefaultTheme, color: `${ColorVariants}`): Check
 };
 
 type CheckboxProps = {
-  label?: string;
+  label?: React.ReactNode;
   placeholder?: never;
   icon?: IconNameT;
   color?: `${ColorVariants}`;
@@ -75,6 +75,7 @@ export const Checkbox = ({
       $colorIcon={checkboxColor.colorIcon}
       className={className}
       style={style}
+      onClick={e => e.stopPropagation()}
     >
       <CheckboxStyle className={value ? 'is-checked' : ''}>
         <CheckboxFillStyle>

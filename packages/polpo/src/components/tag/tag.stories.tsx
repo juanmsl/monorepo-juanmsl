@@ -29,20 +29,19 @@ export const Single: Story = {
 
 export const Many: Story = {
   args: {},
-  render: (args, { isSelected }) => <Tag isSelected={isSelected} {...args} />,
   decorators: [
-    Story => (
+    (Story, { args }) => (
       <Flex wrap='wrap' gap='1em'>
-        <Story />
-        <Story />
-        <Story />
-        <Story />
-        <Story />
-        <Story />
-        <Story />
-        <Story />
-        <Story />
-        <Story />
+        <Story {...args} />
+        <Story {...args} />
+        <Story {...args} />
+        <Story {...args} />
+        <Story {...args} />
+        <Story {...args} />
+        <Story {...args} />
+        <Story {...args} />
+        <Story {...args} />
+        <Story {...args} />
       </Flex>
     ),
   ],

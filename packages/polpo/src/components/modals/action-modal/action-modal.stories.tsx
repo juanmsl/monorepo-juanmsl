@@ -24,13 +24,13 @@ const meta: Meta<typeof ActionModal> = {
     children: 'Action modal content',
   },
   decorators: [
-    Story => {
+    (Story, { args }) => {
       const [isOpen, setIsOpen] = useState(false);
 
       return (
         <>
           <Button onClick={() => setIsOpen(true)}>Open modal</Button>
-          <Story isOpen={isOpen} onClose={() => setIsOpen(false)} />
+          <Story args={{ ...args, isOpen, onClose: () => setIsOpen(false) }} />
         </>
       );
     },
@@ -48,9 +48,9 @@ export const Classic: Story = {
     lineOnTop: true,
     noPadding: true,
   },
-  render: (args, { onClose, isOpen }) => {
+  render: args => {
     return (
-      <ActionModal {...args} isOpen={isOpen} onClose={onClose}>
+      <ActionModal {...args}>
         <Typography variant='header4' noPadding style={{ padding: '0 1rem' }}>
           Action modal
         </Typography>
@@ -106,9 +106,9 @@ export const Confirmation: Story = {
     lineOnTop: true,
     icon: 'user',
   },
-  render: (args, { onClose, isOpen }) => {
+  render: args => {
     return (
-      <ActionModal {...args} isOpen={isOpen} onClose={onClose}>
+      <ActionModal {...args}>
         <Typography variant='header4' align='center' noPadding>
           Action modal
         </Typography>

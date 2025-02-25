@@ -1,5 +1,4 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
-import { useTheme } from 'styled-components';
 
 import { Icon } from '../../icon';
 import { Typography } from '../../typography';
@@ -15,14 +14,11 @@ import {
   MultiValue,
   OptionComponentProps,
   SelectItem,
-  SelectOptionVariant,
   SelectValue,
   SingleSelectProps,
   SingleValue,
   UnControlledSelectProps,
 } from './select.types';
-
-import { useMediaQuery } from '@polpo/hooks';
 
 export const Select = <T extends SelectItem>({
   // Select props
@@ -37,7 +33,6 @@ export const Select = <T extends SelectItem>({
   hasNextPage,
   multiselect,
   maxOptions,
-  optionVariant = SelectOptionVariant.DEFAULT,
   // Shared props
   name,
   value,
@@ -66,8 +61,6 @@ export const Select = <T extends SelectItem>({
   ...fieldProps
 }: UnControlledSelectProps<T>) => {
   const id = useMemo(() => crypto.randomUUID(), []);
-  const theme = useTheme();
-  const isMobile = useMediaQuery(`(min-width: ${theme.constants.breakpoints.mobileL})`);
   const containerRef = useRef<HTMLElement>(null);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -254,19 +247,10 @@ export const Select = <T extends SelectItem>({
           loadMore={loadMore}
           searchQueryValue={searchQueryValue}
           onSearchQuery={onSearchQuery}
-          style={
-            (isMobile && {
-              width: containerRef.current?.offsetWidth,
-              transform: 'none',
-              maxHeight: '250px',
-            }) ||
-            {}
-          }
           searchQueryPlaceholder={searchQueryPlaceholder}
           options={options}
           selectOption={selectOption}
           unselectOption={unSelectOption}
-          variant={optionVariant}
         />
       </SelectStyle>
     </Field>

@@ -125,13 +125,14 @@ export const GlobalAnimations = createGlobalStyle`
 
   @keyframes bounceOut {
     20% {
-      transform: scale3d(0.98, 0.98, 0.98);
+      transform: scale3d(1, 1, 1);
+      opacity: 1;
     }
 
     50%,
     55% {
       opacity: 1;
-      transform: scale3d(1.05, 1.05, 1.05);
+      transform: scale3d(1.02, 1.02, 1.02);
     }
 
     to {

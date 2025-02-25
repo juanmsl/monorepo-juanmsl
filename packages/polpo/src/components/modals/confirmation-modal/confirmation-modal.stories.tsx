@@ -1,9 +1,9 @@
-import { useState } from 'react';
-
 import { Button } from '../../buttons';
 import ActionModalStory from '../action-modal/action-modal.stories';
 
 import { ConfirmationModal } from './confirmation-modal';
+
+import { useModal } from '@polpo/hooks';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -26,38 +26,32 @@ const meta: Meta<typeof ConfirmationModal> = {
     children: 'Are you sure want to execute an action?',
   },
   decorators: [
-    Story => {
-      const [isOpen, setIsOpen] = useState(false);
+    (Story, { args }) => {
+      const { isOpen, openModal, closeModal } = useModal();
 
       return (
         <>
-          <Button onClick={() => setIsOpen(true)}>Open modal</Button>
-          <Story isOpen={isOpen} onClose={() => setIsOpen(false)} />
+          <Button onClick={openModal}>Open modal</Button>
+          <Story
+            args={{
+              ...args,
+              isOpen,
+              onClose: closeModal,
+              onAccept: () =>
+                new Promise(resolve => {
+                  setTimeout(resolve, 1000);
+                }),
+
+              onReject: () =>
+                new Promise(resolve => {
+                  setTimeout(resolve, 1000);
+                }),
+            }}
+          />
         </>
       );
     },
   ],
-  render: ({ children, ...args }, { onClose, isOpen }) => {
-    return (
-      <ConfirmationModal
-        {...args}
-        isOpen={isOpen}
-        onClose={onClose}
-        onAccept={() =>
-          new Promise(resolve => {
-            setTimeout(resolve, 1000);
-          })
-        }
-        onReject={() =>
-          new Promise(resolve => {
-            setTimeout(resolve, 1000);
-          })
-        }
-      >
-        {children}
-      </ConfirmationModal>
-    );
-  },
 };
 
 export default meta;

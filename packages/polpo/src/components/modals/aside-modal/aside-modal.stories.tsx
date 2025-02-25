@@ -21,13 +21,13 @@ const meta: Meta<typeof AsideModal> = {
     style: { control: false },
   },
   decorators: [
-    Story => {
+    (Story, { args }) => {
       const [isOpen, setIsOpen] = useState(false);
 
       return (
         <>
           <Button onClick={() => setIsOpen(true)}>Open modal</Button>
-          <Story isOpen={isOpen} onClose={() => setIsOpen(false)} />
+          <Story args={{ ...args, isOpen, onClose: () => setIsOpen(false) }} />
         </>
       );
     },
@@ -44,9 +44,9 @@ export const Aside: Story = {
   args: {
     size: 500,
   },
-  render: (args, { onClose, isOpen }) => {
+  render: args => {
     return (
-      <AsideModal {...args} isOpen={isOpen} onClose={onClose}>
+      <AsideModal {...args}>
         <Typography variant='header4'>Aside modal</Typography>
         <Typography>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam amet at cupiditate dolorum eaque eligendi
