@@ -5,9 +5,9 @@
   "license": "MIT",
   "type": "module",
   "imports": {
-    "@juanmsl/ui": "./src",
-    "@juanmsl/hooks": "./src/hooks",
-    "@juanmsl/helpers": "./src/helpers"
+    "@polpo/ui": "./src",
+    "@polpo/hooks": "./src/hooks",
+    "@polpo/helpers": "./src/helpers"
   },
   "exports": {
     ".": null,
@@ -45,7 +45,9 @@
     "build-storybook": "storybook build"
   },
   "devDependencies": {
+    "@juanmsl/eslint-config": "*",
     "@juanmsl/svg-to-react": "*",
+    "@juanmsl/tsconfig": "*",
     "@storybook/addon-essentials": "^8.5.2",
     "@storybook/addon-interactions": "^8.5.2",
     "@storybook/addon-links": "^8.5.2",

@@ -13,10 +13,11 @@
     "build:watch": "tsup --watch",
     "clean": "rm -rf ./dist",
     "build": "yarn clean && tsup",
-    "publish-package": "yarn lint && yarn build && yarn publish --no-git-tag-version",
-    "transform-svgs": "node ../../node_modules/@juanmsl/svg-to-react && yarn lint:fix"
+    "publish-package": "yarn lint && yarn build && yarn publish --no-git-tag-version"
   },
   "devDependencies": {
+    "@juanmsl/eslint-config": "*",
+    "@juanmsl/tsconfig": "*",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.18",
     "@types/react-pdf": "^7.0.0",
@@ -35,7 +36,7 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "react-pdf": "^7.7.1"
+    "react-pdf": "^9.2.1"
   },
   "publishConfig": {
     "access": "public"
