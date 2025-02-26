@@ -1,6 +1,6 @@
 {
   "name": "polpo",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -40,7 +40,7 @@
     "clean": "rm -rf ./dist",
     "build": "yarn clean && tsup",
     "publish-package": "yarn lint && yarn build && yarn publish --no-git-tag-version",
-    "transform-svgs": "node ../../node_modules/@juanmsl/svg-to-react && yarn lint:fix",
+    "transform-svgs": "svg-to-react && yarn lint:fix",
     "dev": "storybook dev -p 6006 --quiet",
     "build-storybook": "storybook build"
   },
