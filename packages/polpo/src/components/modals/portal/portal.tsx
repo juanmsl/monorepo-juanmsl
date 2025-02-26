@@ -12,6 +12,10 @@ const PortalComponent = ({ children, id }: PortalProps, ref: ForwardedRef<HTMLEl
   const uuid = useMemo(() => crypto.randomUUID(), []);
   const root = useDomContainer(`${id}-${uuid}`, ref);
 
+  if (root === null) {
+    return null;
+  }
+
   return createPortal(children, root);
 };
 

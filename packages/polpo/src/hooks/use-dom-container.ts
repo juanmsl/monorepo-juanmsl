@@ -1,17 +1,9 @@
-import { ForwardedRef, useEffect, useMemo } from 'react';
+import { ForwardedRef, useEffect, useState } from 'react';
 
 export const useDomContainer = (containerID: string, ref?: ForwardedRef<HTMLElement>) => {
+  const [container, setContainer] = useState<HTMLElement | null>(() => document.getElementById(containerID));
+
   useEffect(() => {
-    return () => {
-      const domContainer = document.getElementById(containerID);
-
-      if (domContainer?.parentNode === document.body) {
-        document.body.removeChild(domContainer);
-      }
-    };
-  }, [containerID, ref]);
-
-  return useMemo(() => {
     let domContainer = document.getElementById(containerID);
 
     if (!domContainer) {
@@ -25,8 +17,16 @@ export const useDomContainer = (containerID: string, ref?: ForwardedRef<HTMLElem
       }
 
       document.body.appendChild(domContainer);
+
+      setContainer(domContainer);
     }
 
-    return domContainer;
+    return () => {
+      if (domContainer) {
+        document.body.removeChild(domContainer);
+      }
+    };
   }, [containerID, ref]);
+
+  return container;
 };
