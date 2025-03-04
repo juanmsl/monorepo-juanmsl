@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Modal } from '@polpo/ui';
+import { Modal } from '../modal';
 
 export const MenuModalStyle = styled(Modal)`
   border-radius: 0.5em;
@@ -8,15 +8,18 @@ export const MenuModalStyle = styled(Modal)`
   background: ${props => props.theme.colors.background.main};
   box-shadow: 0 0 25px ${props => props.theme.colors.background.paper};
   user-select: none;
+  position: relative;
+  overflow-y: auto;
 
   .menu-content {
     display: grid;
-    gap: 2px;
-    padding: 5px;
+    gap: 4px;
+    padding: 0;
     margin: 0;
     list-style: none;
     align-content: start;
     height: 100%;
+    position: relative;
     overflow-y: auto;
   }
 
@@ -24,6 +27,16 @@ export const MenuModalStyle = styled(Modal)`
     margin: 0.4em 0;
     color: ${props => props.theme.colors.border.main};
   }
+`;
+
+export const MenuLabelStyle = styled.li`
+  background: ${props => props.theme.colors.background.main};
+  color: hsl(from ${props => props.theme.colors.text.light} h s 70%);
+  font-weight: lighter;
+  padding: 5px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 `;
 
 export const MenuOptionStyle = styled.li`
@@ -35,6 +48,7 @@ export const MenuOptionStyle = styled.li`
   display: flex;
   align-items: center;
   outline: 0;
+  margin: 0 5px;
 
   .option-icon {
     margin-right: 0.5em;

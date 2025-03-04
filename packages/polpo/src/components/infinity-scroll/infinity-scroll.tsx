@@ -11,8 +11,8 @@ export type InfinityScrollProps<T> = {
   hasNextPage: boolean;
   loadMore: () => void;
   data: Array<T>;
-  renderItem: (item: T, key: number) => React.ReactElement;
-  customLoadMoreElement?: (ref: RefObject<Element>) => React.ReactElement;
+  renderItem: (item: T, key: number) => React.ReactNode;
+  customLoadMoreElement?: (ref: RefObject<Element>) => React.ReactNode;
   emptyMessage?: string;
   children?: React.ReactNode;
 };

@@ -1,20 +1,43 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { RefObject, useCallback, useMemo } from 'react';
 
-import { MenuModalStyle, MenuOptionStyle } from './menu.style';
+import { Checkbox } from '../../form';
+import { Icon, IconNameT } from '../../icon';
+import { InfinityScroll, InfinityScrollProps } from '../../infinity-scroll';
+import { Line } from '../../line';
+import { Typography, TypographyProps } from '../../typography';
+import { ModalProps } from '../modal';
+
+import { MenuLabelStyle, MenuModalStyle, MenuOptionStyle } from './menu.style';
 
 import { useClassNames } from '@polpo/hooks';
-import {
-  Checkbox,
-  Icon,
-  IconNameT,
-  InfinityScroll,
-  InfinityScrollProps,
-  Line,
-  ModalProps,
-  Typography,
-} from '@polpo/ui';
 
-export type MenuOptionProps = {
+type MenuProps = ModalProps & {
+  children: React.ReactNode;
+  contentClassName?: string;
+  contentStyle?: React.CSSProperties;
+  menuContentRef?: RefObject<HTMLUListElement>;
+};
+
+export const Menu = ({
+  children,
+  isOpen,
+  onClose,
+  id,
+  menuContentRef,
+  contentClassName = '',
+  contentStyle = {},
+  ...modalProps
+}: MenuProps) => {
+  return (
+    <MenuModalStyle {...modalProps} id={`menu-${id}`} isOpen={isOpen} onClose={onClose}>
+      <ul className={`menu-content ${contentClassName}`} role='listbox' style={contentStyle} ref={menuContentRef}>
+        {children}
+      </ul>
+    </MenuModalStyle>
+  );
+};
+
+export type MenuOptionProps = Omit<React.HTMLAttributes<HTMLLIElement>, 'onClick'> & {
   id?: string;
   children?: React.ReactNode;
   label?: React.ReactNode;
@@ -25,7 +48,6 @@ export type MenuOptionProps = {
   asCheckbox?: boolean;
   icon?: IconNameT;
   onClick?: (newValue: boolean) => void;
-  onKeyDown?: (event: React.KeyboardEvent) => void;
 };
 
 const MenuOption = ({
@@ -39,7 +61,7 @@ const MenuOption = ({
   className = '',
   style = {},
   onClick = () => null,
-  onKeyDown = () => null,
+  ...liProps
 }: MenuOptionProps) => {
   const menuOptionClassName = useClassNames({
     [className]: true,
@@ -91,13 +113,13 @@ const MenuOption = ({
 
   return (
     <MenuOptionStyle
+      {...liProps}
       id={id}
       role='option'
       tabIndex={-1}
       aria-selected={selected}
       aria-disabled={disabled}
       onClick={handleClick}
-      onKeyDown={onKeyDown}
       className={menuOptionClassName}
       style={style}
     >
@@ -106,37 +128,50 @@ const MenuOption = ({
   );
 };
 
-type MenuProps = ModalProps & {
-  children: React.ReactNode;
-};
-
-export const Menu = ({ children, isOpen, onClose, id, ...modalProps }: MenuProps) => {
-  return (
-    <MenuModalStyle {...modalProps} id={`menu-${id}`} isOpen={isOpen} onClose={onClose}>
-      {children}
-    </MenuModalStyle>
-  );
-};
-
 Menu.Option = MenuOption;
 
 const MenuDivider = () => {
-  return <Line className='divider' />;
+  return (
+    <li>
+      <Line className='divider' />
+    </li>
+  );
 };
 
 Menu.Divider = MenuDivider;
 
-type MenuOptionsGroupProps<T> = InfinityScrollProps<T> & {
-  className?: string;
-  style?: React.CSSProperties;
+type MenuOptionsGroupProps<T> = Partial<InfinityScrollProps<T>> & {
+  label?: React.ReactNode;
 };
 
-const MenuOptionsGroup = <T,>({ className = '', style = {}, ...infinityScrollProps }: MenuOptionsGroupProps<T>) => {
+const MenuOptionsGroup = <T,>({ label, children, ...infinityScrollProps }: MenuOptionsGroupProps<T>) => {
   return (
-    <ul className={`menu-content ${className}`} role='listbox' style={style}>
-      <InfinityScroll {...infinityScrollProps} />
-    </ul>
+    <>
+      {Boolean(label) && <Menu.GroupLabel>{label}</Menu.GroupLabel>}
+      <InfinityScroll
+        data={infinityScrollProps.data ?? []}
+        loadMore={infinityScrollProps.loadMore ?? (() => null)}
+        isLoading={infinityScrollProps.isLoading ?? false}
+        hasNextPage={infinityScrollProps.hasNextPage ?? false}
+        emptyMessage={infinityScrollProps.emptyMessage}
+        renderItem={infinityScrollProps.renderItem ?? ((_: T, key: number) => `${key}`)}
+      >
+        {children}
+      </InfinityScroll>
+    </>
   );
 };
 
 Menu.OptionsGroup = MenuOptionsGroup;
+
+const MenuGroupLabel = ({ children, className = '', ...props }: Omit<TypographyProps, 'variant'>) => {
+  return (
+    <MenuLabelStyle>
+      <Typography {...props} variant='label' className={`menu-group-label ${className}`}>
+        {children}
+      </Typography>
+    </MenuLabelStyle>
+  );
+};
+
+Menu.GroupLabel = MenuGroupLabel;

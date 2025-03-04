@@ -1,6 +1,7 @@
-import { Cursor } from './cursor';
+import { SectionLayout } from '../../layouts';
+import { Typography } from '../typography';
 
-import { SectionLayout, Typography } from '@polpo/ui';
+import { Cursor } from './cursor';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

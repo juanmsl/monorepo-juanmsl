@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useTheme } from 'styled-components';
 
+import { ThemeColor } from '../../contexts';
 import { RadiusVariants, SizeVariants } from '../../core/variants';
 
 import { Tabs } from './tabs';
 import { TabListStyle, TabListColorStyle } from './tabs.style';
 
 import { useClassNames } from '@polpo/hooks';
-import { ThemeColor } from '@polpo/ui';
 
 const DefaultRect = {
   top: 0,

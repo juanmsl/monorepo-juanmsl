@@ -82,7 +82,6 @@ export const CheckboxContainerStyle = styled.section<CheckboxContainerStyleProps
   ${CheckboxStyle}:hover,
   &:has(.checkbox-label:hover) ${CheckboxStyle} {
     box-shadow: 0 0 0 0.3em ${props => props.$color}88;
-    padding: 2px;
 
     ${CheckboxFillStyle} {
       width: 20%;
@@ -106,6 +105,5 @@ export const CheckboxContainerStyle = styled.section<CheckboxContainerStyleProps
   &:has(.checkbox-input:focus) ${CheckboxStyle},
   &:has(.checkbox-label:focus) ${CheckboxStyle} {
     box-shadow: 0 0 0 0.3em ${props => props.$color}88;
-    padding: 2px;
   }
 `;

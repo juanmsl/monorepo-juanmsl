@@ -1,8 +1,12 @@
 import { useState } from 'react';
 
-import { ActionModal } from './action-modal';
+import { Grid } from '../../../layouts';
+import { Button } from '../../buttons';
+import { IconNames } from '../../icon';
+import { Line } from '../../line';
+import { Typography } from '../../typography';
 
-import { Button, Grid, IconNames, Line, Typography } from '@polpo/ui';
+import { ActionModal } from './action-modal';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

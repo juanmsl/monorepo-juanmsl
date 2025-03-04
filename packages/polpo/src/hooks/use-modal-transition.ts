@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useMemo } from 'react';
 
 export enum ModalState {
   OPENING = 'OPENING',
@@ -7,7 +7,13 @@ export enum ModalState {
   CLOSED = 'CLOSED',
 }
 
-export const useModalTransition = (transitionDuration: number = 0, onClose: () => void = () => null) => {
+export type UseModalTransitionParams = {
+  transitionDuration?: number;
+  onClose: () => void;
+  isOpen: boolean;
+};
+
+export const useModalTransition = ({ transitionDuration = 0, onClose, isOpen }: UseModalTransitionParams) => {
   const [modalState, setModalState] = React.useState<ModalState>(ModalState.CLOSED);
 
   const isVisible = useMemo(() => {
@@ -45,10 +51,16 @@ export const useModalTransition = (transitionDuration: number = 0, onClose: () =
     }
   }, [modalState, transitionDuration]);
 
+  useLayoutEffect(() => {
+    if (modalState === ModalState.CLOSED && isOpen) {
+      openModal();
+    } else if (modalState === ModalState.OPEN && !isOpen) {
+      closeModal();
+    }
+  }, [isOpen, openModal, closeModal, modalState]);
+
   return {
     isVisible,
-    closeModal,
-    openModal,
     modalState,
   };
 };

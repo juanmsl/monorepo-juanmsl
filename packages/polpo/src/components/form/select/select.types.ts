@@ -25,6 +25,9 @@ export type SharedSelectProps<T extends SelectItem> = InputFieldProps<{
   hasNextPage?: boolean;
   maxOptions?: number;
   showClearOption?: boolean;
+  height?: number;
+  searchQueryClassName?: string;
+  searchQueryStyle?: React.CSSProperties;
 }>;
 
 export type MultiSelectProps<T extends SelectItem> = SharedSelectProps<T> & {
@@ -52,7 +55,9 @@ export type OptionsProps<T extends SelectItem> = {
   onSearchQuery?: (value: string) => void;
   searchQueryValue?: string;
   searchQueryPlaceholder?: string;
-  compareValueOrValuesAreEqual: (a: T, b: SelectValue<T>) => boolean;
+  searchQueryClassName?: string;
+  searchQueryStyle?: React.CSSProperties;
+  optionIsSelected: (option: T) => boolean;
   loadMore?: () => void;
   isLoading?: boolean;
   hasNextPage?: boolean;
@@ -62,9 +67,8 @@ export type OptionsProps<T extends SelectItem> = {
   containerRef: React.RefObject<HTMLElement>;
   Component: React.FC<OptionComponentProps<T>>;
   multiselect?: boolean;
-  value: SelectValue<T>;
   emptyMessage?: string;
-  maxHeight?: number;
+  height?: number;
 };
 
 // SELECT OPTION

@@ -7,7 +7,6 @@
     "outDir": "dist",
     "baseUrl": "src",
     "paths": {
-      "@polpo/ui": ["./"],
       "@polpo/helpers": ["./helpers"],
       "@polpo/hooks": ["./hooks"]
     }

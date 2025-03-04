@@ -42,6 +42,9 @@ export const Select = <T extends SelectItem>({
   className = '',
   style = {},
   showClearOption = false,
+  height,
+  searchQueryStyle,
+  searchQueryClassName,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   autoFocus = false,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -196,6 +199,11 @@ export const Select = <T extends SelectItem>({
     }
   }, [multiselect, value]);
 
+  const optionIsSelected = useCallback(
+    (option: T) => Boolean(value) && value !== '' && compareValueOrValuesAreEqual(option, value),
+    [compareValueOrValuesAreEqual, value],
+  );
+
   return (
     <Field
       id={id}
@@ -238,8 +246,7 @@ export const Select = <T extends SelectItem>({
           containerRef={containerRef}
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
-          value={value}
-          compareValueOrValuesAreEqual={compareValueOrValuesAreEqual}
+          optionIsSelected={optionIsSelected}
           Component={OptionComponent}
           multiselect={multiselect}
           isLoading={isLoading}
@@ -251,6 +258,9 @@ export const Select = <T extends SelectItem>({
           options={options}
           selectOption={selectOption}
           unselectOption={unSelectOption}
+          height={height}
+          searchQueryClassName={searchQueryClassName}
+          searchQueryStyle={searchQueryStyle}
         />
       </SelectStyle>
     </Field>

@@ -1,9 +1,12 @@
 import { useState } from 'react';
 
+import { Button } from '../../buttons';
+import { Image } from '../../image';
+import { Typography } from '../../typography';
+
 import { AsideModal } from './aside-modal';
 
 import { PositionContainer } from '@polpo/helpers';
-import { Button, Image, Typography } from '@polpo/ui';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

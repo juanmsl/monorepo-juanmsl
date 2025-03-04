@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Modal } from '@polpo/ui';
+import { Modal } from '../../modals';
 
 export const TooltipStyle = styled(Modal)`
   color: ${props => props.theme.colors.text.main};

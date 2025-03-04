@@ -1,17 +1,24 @@
-import React, { CSSProperties, useLayoutEffect, useRef } from 'react';
+import React, { CSSProperties, useMemo, useRef } from 'react';
+
+import { Portal } from '../portal';
 
 import { Backdrop, BackdropProps } from './backdrop';
 import { ModalContentStyle, ModalStyle } from './modal.style';
 
-import { ModalState, useClassNames, useModalInContainer, UseModalInContainerParams } from '@polpo/hooks';
-import { Portal } from '@polpo/ui';
+import {
+  ModalState,
+  useClassNames,
+  useModalInContainer,
+  UseModalInContainerParams,
+  useModalTransition,
+  UseModalTransitionParams,
+} from '@polpo/hooks';
 
 export type ModalProps = Omit<BackdropProps, 'modalState'> &
-  Omit<UseModalInContainerParams, 'modalRef' | 'onClose'> & {
+  UseModalTransitionParams &
+  Omit<UseModalInContainerParams, 'modalRef'> & {
     id: string;
     children: React.ReactNode;
-    isOpen: boolean;
-    onClose: () => void;
     className?: string;
     style?: React.CSSProperties;
     rootStyle?: CSSProperties;
@@ -40,15 +47,22 @@ export const Modal = ({
   zIndex = 1000,
   ...backdropProps
 }: ModalProps) => {
+  const uuid = useMemo(() => crypto.randomUUID(), []);
   const modalRef = useRef<HTMLElement>(null);
-  const { openModal, closeModal, modalState, isVisible } = useModalInContainer({
+  const { modalState, isVisible } = useModalTransition({
+    transitionDuration,
+    onClose,
+    isOpen,
+  });
+
+  useModalInContainer({
     modalRef: modalRefProp ?? modalRef,
     containerRef,
     closeOnClickOutside,
     offset,
     windowOffset,
     position,
-    transitionDuration,
+    isOpen: isVisible,
     onClose,
   });
 
@@ -58,20 +72,12 @@ export const Modal = ({
     [closeAnimationClassName]: modalState === ModalState.CLOSING || modalState === ModalState.CLOSED,
   });
 
-  useLayoutEffect(() => {
-    if (modalState === ModalState.CLOSED && isOpen) {
-      openModal();
-    } else if (modalState === ModalState.OPEN && !isOpen) {
-      closeModal();
-    }
-  }, [isOpen, openModal, closeModal, modalState]);
-
   if (!isVisible) {
     return null;
   }
 
   return (
-    <Portal id={`modal-${id}`}>
+    <Portal id={`modal-${id}-${uuid}`}>
       <Backdrop {...backdropProps} modalState={modalState} zIndex={zIndex} />
       <ModalStyle
         ref={modalRefProp ?? modalRef}
@@ -82,7 +88,10 @@ export const Modal = ({
           zIndex: +zIndex + 1,
         }}
       >
-        <ModalContentStyle style={style} className={modalContentClassName}>
+        <ModalContentStyle
+          style={{ ...style, animationDuration: `${transitionDuration}ms` }}
+          className={modalContentClassName}
+        >
           {children}
         </ModalContentStyle>
       </ModalStyle>

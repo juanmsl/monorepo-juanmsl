@@ -24,13 +24,17 @@ const meta: Meta<typeof Select<string>> = {
     hasNextPage: { control: 'boolean' },
     maxOptions: { control: { type: 'number' } },
     showClearOption: { control: 'boolean' },
+    height: { control: { type: 'range', min: 200, max: 400 } },
     multiselect: { control: false },
+    searchQueryClassName: { control: false },
+    searchQueryStyle: { control: false },
   },
   args: {
     label: 'Select',
     searchQueryPlaceholder: 'Search',
     ...FieldSharedArgs,
     placeholder: 'Select an option',
+    height: 300,
     options: [
       'Leda Pinna',
       'Antonio Sansone',

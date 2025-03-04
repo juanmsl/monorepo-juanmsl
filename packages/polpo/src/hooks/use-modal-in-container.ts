@@ -2,7 +2,6 @@ import { RefObject, useCallback, useLayoutEffect, useRef } from 'react';
 
 import { useClickOutside } from './use-click-outside';
 import { useEventListener } from './use-event-listener';
-import { useModalTransition } from './use-modal-transition';
 import { useResizeObserver } from './use-resize-observer';
 
 import {
@@ -26,13 +25,13 @@ export type UseModalInContainerParams<
   Modal extends HTMLElement = Container,
 > = {
   closeOnClickOutside?: boolean;
-  transitionDuration?: number;
   windowOffset?: number;
   offset?: number;
   position?: `${PositionContainer}`;
   modalRef: RefObject<Modal>;
   containerRef?: RefObject<Container>;
-  onClose?: () => void;
+  isOpen: boolean;
+  onClose: () => void;
 };
 
 export const useModalInContainer = <
@@ -43,19 +42,16 @@ export const useModalInContainer = <
   offset = 0,
   windowOffset = 0,
   position = PositionContainer.BOTTOM,
-  transitionDuration = 0,
   modalRef,
   containerRef,
+  isOpen,
   onClose,
 }: UseModalInContainerParams<Container, Modal>) => {
   const containerTemporalRef = useRef<Container>(null);
-  const modalState = useModalTransition(transitionDuration, onClose);
-
-  const { isVisible, closeModal } = modalState;
 
   useClickOutside<Modal>(modalRef, () => {
-    if (isVisible && closeOnClickOutside) {
-      closeModal();
+    if (isOpen && closeOnClickOutside) {
+      onClose();
     }
   });
 
@@ -86,10 +82,10 @@ export const useModalInContainer = <
   );
 
   const callback = useCallback(() => {
-    if (isVisible) {
+    if (isOpen) {
       getPosition(modalRef, containerRef ?? containerTemporalRef);
     }
-  }, [getPosition, isVisible, containerRef, modalRef]);
+  }, [getPosition, isOpen, containerRef, modalRef]);
 
   useLayoutEffect(callback, [callback]);
 
@@ -97,6 +93,4 @@ export const useModalInContainer = <
   useResizeObserver<Modal>(modalRef, callback);
   useEventListener('resize', callback);
   useEventListener('scroll', callback, modalRef);
-
-  return modalState;
 };
