@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 
 import { Icon } from '../../icon';
+import { Menu } from '../../modals';
 import { Typography } from '../../typography';
 import { Controller } from '../controller';
 import { Field } from '../field';
@@ -204,6 +205,49 @@ export const Select = <T extends SelectItem>({
     [compareValueOrValuesAreEqual, value],
   );
 
+  const handleKeyDown = useCallback(
+    (option: T) => (e: React.KeyboardEvent) => {
+      if (['Enter', ' '].includes(e.key)) {
+        e.preventDefault();
+
+        const selected = optionIsSelected(option);
+
+        if (selected && multiselect) {
+          unSelectOption(option);
+        } else {
+          selectOption(option);
+        }
+      }
+    },
+    [multiselect, selectOption, optionIsSelected, unSelectOption],
+  );
+
+  const renderInternalOption = useCallback(
+    (option: T, key: number) => {
+      const selected = optionIsSelected(option);
+
+      return (
+        <Menu.Option
+          key={key}
+          id={`${key}`}
+          label={<OptionComponent data={option} isSelected={selected} multiselect={!!multiselect} />}
+          onKeyDown={handleKeyDown(option)}
+          asCheckbox={multiselect}
+          selected={selected}
+          onClick={(selected: boolean) => {
+            if (multiselect) {
+              if (selected) selectOption(option);
+              else unSelectOption(option);
+            } else {
+              selectOption(option);
+            }
+          }}
+        />
+      );
+    },
+    [OptionComponent, handleKeyDown, multiselect, optionIsSelected, selectOption, unSelectOption],
+  );
+
   return (
     <Field
       id={id}
@@ -243,12 +287,10 @@ export const Select = <T extends SelectItem>({
           <Icon name={isOpen ? 'caret-up' : 'caret-down'} />
         </section>
         <Options
+          renderOption={renderInternalOption}
           containerRef={containerRef}
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
-          optionIsSelected={optionIsSelected}
-          Component={OptionComponent}
-          multiselect={multiselect}
           isLoading={isLoading}
           hasNextPage={hasNextPage}
           loadMore={loadMore}
@@ -256,8 +298,6 @@ export const Select = <T extends SelectItem>({
           onSearchQuery={onSearchQuery}
           searchQueryPlaceholder={searchQueryPlaceholder}
           options={options}
-          selectOption={selectOption}
-          unselectOption={unSelectOption}
           height={height}
           searchQueryClassName={searchQueryClassName}
           searchQueryStyle={searchQueryStyle}

@@ -44,26 +44,23 @@ const meta: Meta<typeof Menu> = {
               containerRef,
               children: (
                 <>
-                  <Menu.OptionsGroup label='Checkbox'>
-                    <Menu.Option asCheckbox icon='house' disabled label='Option 1' />
-                    <Menu.Option asCheckbox icon='magnifying-glass' selected label='Option 2' />
-                    <Menu.Option asCheckbox icon='document' label='Option 3' />
-                    <Menu.Option asCheckbox icon='spinner' disabled selected label='Option 4' />
-                  </Menu.OptionsGroup>
+                  <Menu.GroupLabel>Checkbox</Menu.GroupLabel>
+                  <Menu.Option asCheckbox icon='house' disabled label='Option 1' />
+                  <Menu.Option asCheckbox icon='magnifying-glass' selected label='Option 2' />
+                  <Menu.Option asCheckbox icon='document' label='Option 3' />
+                  <Menu.Option asCheckbox icon='spinner' disabled selected label='Option 4' />
                   <Menu.Divider />
-                  <Menu.OptionsGroup label='Options disabled'>
-                    <Menu.Option icon='instagram' label='Option 5' />
-                    <Menu.Option icon='airplane' disabled label='Option 6' />
-                    <Menu.Option icon='whatsapp' disabled selected label='Option 7' />
-                    <Menu.Option icon='order-list' label='Option 8' />
-                  </Menu.OptionsGroup>
+                  <Menu.GroupLabel>Options disabled</Menu.GroupLabel>
+                  <Menu.Option icon='instagram' label='Option 5' />
+                  <Menu.Option icon='airplane' disabled label='Option 6' />
+                  <Menu.Option icon='whatsapp' disabled selected label='Option 7' />
+                  <Menu.Option icon='order-list' label='Option 8' />
                   <Menu.Divider />
-                  <Menu.OptionsGroup label='Options'>
-                    <Menu.Option icon='thinking' label='Option 9' />
-                    <Menu.Option icon='game-control' label='Option 10' />
-                    <Menu.Option icon='bicycle' selected label='Option 11' />
-                    <Menu.Option icon='link' label='Option 12' />
-                  </Menu.OptionsGroup>
+                  <Menu.GroupLabel>Options</Menu.GroupLabel>
+                  <Menu.Option icon='thinking' label='Option 9' />
+                  <Menu.Option icon='game-control' label='Option 10' />
+                  <Menu.Option icon='bicycle' selected label='Option 11' />
+                  <Menu.Option icon='link' label='Option 12' />
                 </>
               ),
             }}

@@ -1,6 +1,7 @@
 import React, { RefObject, useCallback, useEffect, useRef, useState } from 'react';
 import { useTheme } from 'styled-components';
 
+import { InfinityScroll } from '../../infinity-scroll';
 import { Menu } from '../../modals/menu';
 
 import { OptionsHeaderStyle } from './select.style';
@@ -44,20 +45,16 @@ const useDynamicHeight = ({ height, containerRef, modalRef, optionsGroupRef, opt
 export const Options = <T extends SelectItem>({
   onSearchQuery,
   searchQueryValue,
-  optionIsSelected,
+  renderOption,
   searchQueryPlaceholder = 'Search option',
   searchQueryClassName = '',
   searchQueryStyle = {},
-  multiselect = false,
-  selectOption,
-  unselectOption,
   isOpen,
   options,
   loadMore = () => null,
   isLoading = false,
   hasNextPage = false,
   containerRef,
-  Component,
   onClose,
   emptyMessage = 'No options to select',
   height = 300,
@@ -109,49 +106,6 @@ export const Options = <T extends SelectItem>({
       }
     }
   }, [isOpen, modalContainerRef]);
-
-  const handleKeyDown = useCallback(
-    (option: T) => (e: React.KeyboardEvent) => {
-      if (['Enter', ' '].includes(e.key)) {
-        e.preventDefault();
-
-        const selected = optionIsSelected(option);
-
-        if (selected && multiselect) {
-          unselectOption(option);
-        } else {
-          selectOption(option);
-        }
-      }
-    },
-    [multiselect, selectOption, optionIsSelected, unselectOption],
-  );
-
-  const renderInternalOption = useCallback(
-    (option: T, key: number) => {
-      const selected = optionIsSelected(option);
-
-      return (
-        <Menu.Option
-          key={key}
-          id={`${key}`}
-          label={<Component data={option} isSelected={selected} multiselect={multiselect} />}
-          onKeyDown={handleKeyDown(option)}
-          asCheckbox={multiselect}
-          selected={selected}
-          onClick={(selected: boolean) => {
-            if (multiselect) {
-              if (selected) selectOption(option);
-              else unselectOption(option);
-            } else {
-              selectOption(option);
-            }
-          }}
-        />
-      );
-    },
-    [optionIsSelected, Component, multiselect, handleKeyDown, selectOption, unselectOption],
-  );
 
   const { minHeight, maxHeight } = useDynamicHeight({
     height,
@@ -205,12 +159,12 @@ export const Options = <T extends SelectItem>({
           />
         </OptionsHeaderStyle>
       )}
-      <Menu.OptionsGroup
+      <InfinityScroll
         isLoading={isLoading}
         hasNextPage={hasNextPage}
         loadMore={loadMore}
         data={options}
-        renderItem={renderInternalOption}
+        renderItem={renderOption}
         emptyMessage={emptyMessage}
       />
     </Menu>

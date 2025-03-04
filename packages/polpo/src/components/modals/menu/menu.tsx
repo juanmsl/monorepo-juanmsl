@@ -2,7 +2,6 @@ import React, { RefObject, useCallback, useMemo } from 'react';
 
 import { Checkbox } from '../../form';
 import { Icon, IconNameT } from '../../icon';
-import { InfinityScroll, InfinityScrollProps } from '../../infinity-scroll';
 import { Line } from '../../line';
 import { Typography, TypographyProps } from '../../typography';
 import { ModalProps } from '../modal';
@@ -139,30 +138,6 @@ const MenuDivider = () => {
 };
 
 Menu.Divider = MenuDivider;
-
-type MenuOptionsGroupProps<T> = Partial<InfinityScrollProps<T>> & {
-  label?: React.ReactNode;
-};
-
-const MenuOptionsGroup = <T,>({ label, children, ...infinityScrollProps }: MenuOptionsGroupProps<T>) => {
-  return (
-    <>
-      {Boolean(label) && <Menu.GroupLabel>{label}</Menu.GroupLabel>}
-      <InfinityScroll
-        data={infinityScrollProps.data ?? []}
-        loadMore={infinityScrollProps.loadMore ?? (() => null)}
-        isLoading={infinityScrollProps.isLoading ?? false}
-        hasNextPage={infinityScrollProps.hasNextPage ?? false}
-        emptyMessage={infinityScrollProps.emptyMessage}
-        renderItem={infinityScrollProps.renderItem ?? ((_: T, key: number) => `${key}`)}
-      >
-        {children}
-      </InfinityScroll>
-    </>
-  );
-};
-
-Menu.OptionsGroup = MenuOptionsGroup;
 
 const MenuGroupLabel = ({ children, className = '', ...props }: Omit<TypographyProps, 'variant'>) => {
   return (

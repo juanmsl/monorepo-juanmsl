@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { InfinityScrollProps } from '../../infinity-scroll';
 import { InputFieldProps } from '../field';
 import { ControllerGeneratorProps, UnControlledComponentProps } from '../form.types';
 
@@ -57,18 +58,14 @@ export type OptionsProps<T extends SelectItem> = {
   searchQueryPlaceholder?: string;
   searchQueryClassName?: string;
   searchQueryStyle?: React.CSSProperties;
-  optionIsSelected: (option: T) => boolean;
   loadMore?: () => void;
   isLoading?: boolean;
   hasNextPage?: boolean;
   options: Array<T>;
-  selectOption: (option: T) => void;
-  unselectOption: (option: T) => void;
   containerRef: React.RefObject<HTMLElement>;
-  Component: React.FC<OptionComponentProps<T>>;
-  multiselect?: boolean;
   emptyMessage?: string;
   height?: number;
+  renderOption: InfinityScrollProps<T>['renderItem'];
 };
 
 // SELECT OPTION
