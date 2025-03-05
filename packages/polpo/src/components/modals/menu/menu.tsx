@@ -3,6 +3,7 @@ import React, { RefObject, useCallback, useMemo } from 'react';
 import { Checkbox } from '../../form';
 import { Icon, IconNameT } from '../../icon';
 import { Line } from '../../line';
+import { Ripple } from '../../ripple';
 import { Typography, TypographyProps } from '../../typography';
 import { ModalProps } from '../modal';
 
@@ -92,6 +93,7 @@ const MenuOption = ({
           value={selected}
           setValue={n => onClick(n)}
           name='option'
+          style={{ pointerEvents: 'none' }}
           label={
             <>
               {icon !== undefined && <Icon className='option-icon' name={icon} />}
@@ -122,6 +124,7 @@ const MenuOption = ({
       className={menuOptionClassName}
       style={style}
     >
+      <Ripple zIndex={10} />
       {menuOptionContent}
     </MenuOptionStyle>
   );

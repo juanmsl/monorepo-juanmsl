@@ -15,9 +15,19 @@ type UseDynamicHeight = {
   modalRef: RefObject<HTMLElement>;
   optionsGroupRef: RefObject<HTMLElement>;
   optionsLength: number;
+  offset: number;
+  windowOffset: number;
 };
 
-const useDynamicHeight = ({ height, containerRef, modalRef, optionsGroupRef, optionsLength }: UseDynamicHeight) => {
+const useDynamicHeight = ({
+  height,
+  containerRef,
+  modalRef,
+  optionsGroupRef,
+  optionsLength,
+  offset,
+  windowOffset,
+}: UseDynamicHeight) => {
   const [maxHeight, setMaxHeight] = useState<string>(`${height}px`);
   const [minHeight, setMinHeight] = useState<string | undefined>(undefined);
 
@@ -27,14 +37,18 @@ const useDynamicHeight = ({ height, containerRef, modalRef, optionsGroupRef, opt
     const modalHeight = modalRef.current?.getBoundingClientRect().height ?? 0;
     const optionsHeight = optionsGroupRef.current?.scrollHeight ?? 0;
 
-    const maxHeight = Math.min(window.innerHeight - containerBottom - 15, height);
-    const newHeight = Math.min(window.innerHeight - modalTop - 11, height);
+    const maxHeight = Math.min(window.innerHeight - containerBottom - offset - windowOffset, height);
+    const newHeight = Math.min(window.innerHeight - modalTop - offset - windowOffset, height);
     const minHeight =
-      optionsLength <= 3 ? modalHeight : optionsHeight > height ? Math.min(150, window.innerHeight - 20) : 0;
+      optionsLength <= 1
+        ? modalHeight
+        : optionsHeight > height
+          ? Math.min(100, window.innerHeight - windowOffset * 2)
+          : 100;
 
     setMaxHeight(`${Math.round(maxHeight > 150 ? maxHeight : newHeight)}px`);
     setMinHeight(`${Math.round(minHeight)}px`);
-  }, [containerRef, height, modalRef, optionsGroupRef, optionsLength]);
+  }, [containerRef, height, modalRef, offset, optionsGroupRef, optionsLength, windowOffset]);
 
   useResizeObserver(containerRef, getMaxHeight);
   useEventListener('resize', getMaxHeight);
@@ -113,6 +127,8 @@ export const Options = <T extends SelectItem>({
     modalRef,
     optionsGroupRef,
     optionsLength: options.length,
+    offset: 5,
+    windowOffset: 10,
   });
 
   return (

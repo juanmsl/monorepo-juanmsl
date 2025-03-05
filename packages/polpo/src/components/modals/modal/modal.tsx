@@ -8,6 +8,7 @@ import { ModalContentStyle, ModalStyle } from './modal.style';
 import {
   ModalState,
   useClassNames,
+  useClickOutside,
   useModalInContainer,
   UseModalInContainerParams,
   useModalTransition,
@@ -19,12 +20,14 @@ export type ModalProps = Omit<BackdropProps, 'modalState'> &
   Omit<UseModalInContainerParams, 'modalRef'> & {
     id: string;
     children: React.ReactNode;
+    onClose: () => void;
     className?: string;
     style?: React.CSSProperties;
     rootStyle?: CSSProperties;
     animation?: 'none' | 'fade-down' | 'bounce';
     closeAnimationClassName?: string;
     modalRef?: React.RefObject<HTMLElement>;
+    closeOnClickOutside?: boolean;
   };
 
 export const Modal = ({
@@ -38,7 +41,7 @@ export const Modal = ({
   animation = 'fade-down',
   closeAnimationClassName = 'modal-close',
   modalRef: modalRefProp,
-  closeOnClickOutside,
+  closeOnClickOutside = true,
   transitionDuration = 300,
   windowOffset = 10,
   offset = 20,
@@ -51,19 +54,22 @@ export const Modal = ({
   const modalRef = useRef<HTMLElement>(null);
   const { modalState, isVisible } = useModalTransition({
     transitionDuration,
-    onClose,
     isOpen,
   });
 
   useModalInContainer({
     modalRef: modalRefProp ?? modalRef,
     containerRef,
-    closeOnClickOutside,
     offset,
     windowOffset,
     position,
     isOpen: isVisible,
-    onClose,
+  });
+
+  useClickOutside<HTMLElement>(modalRefProp ?? modalRef, () => {
+    if (isOpen && closeOnClickOutside) {
+      onClose();
+    }
   });
 
   const modalContentClassName = useClassNames({

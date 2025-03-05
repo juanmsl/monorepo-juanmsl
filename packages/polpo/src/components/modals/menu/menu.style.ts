@@ -42,13 +42,21 @@ export const MenuLabelStyle = styled.li`
 export const MenuOptionStyle = styled.li`
   padding: 0.1em 0.5em;
   border-radius: 0.3em;
-  border: 1px solid transparent;
   transition: all 300ms ease;
   cursor: pointer;
   display: flex;
   align-items: center;
   outline: 0;
   margin: 0 5px;
+  position: relative;
+
+  .ripple-effect {
+    background: ${props => props.theme.colors.text.main}55;
+  }
+
+  &:first-child {
+    margin-top: 5px;
+  }
 
   .option-icon {
     margin-right: 0.5em;
@@ -64,13 +72,17 @@ export const MenuOptionStyle = styled.li`
     cursor: default;
   }
 
-  &.is-selected,
-  &:hover {
-    background: ${props => props.theme.colors.background.paper};
-  }
-
   &:focus,
   &:hover {
-    border: 1px solid ${props => props.theme.colors.border.main};
+    background: ${props => props.theme.colors.background.paper}44;
+  }
+
+  &.is-selected {
+    background: ${props => props.theme.colors.background.paper};
+
+    &:focus,
+    &:hover {
+      background: ${props => props.theme.colors.background.paper}AA;
+    }
   }
 `;

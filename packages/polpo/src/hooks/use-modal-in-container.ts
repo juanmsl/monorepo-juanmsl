@@ -1,6 +1,5 @@
 import { RefObject, useCallback, useLayoutEffect, useRef } from 'react';
 
-import { useClickOutside } from './use-click-outside';
 import { useEventListener } from './use-event-listener';
 import { useResizeObserver } from './use-resize-observer';
 
@@ -24,36 +23,26 @@ export type UseModalInContainerParams<
   Container extends HTMLElement = HTMLElement,
   Modal extends HTMLElement = Container,
 > = {
-  closeOnClickOutside?: boolean;
   windowOffset?: number;
   offset?: number;
   position?: `${PositionContainer}`;
   modalRef: RefObject<Modal>;
   containerRef?: RefObject<Container>;
   isOpen: boolean;
-  onClose: () => void;
 };
 
 export const useModalInContainer = <
   Container extends HTMLElement = HTMLElement,
   Modal extends HTMLElement = Container,
 >({
-  closeOnClickOutside = true,
   offset = 0,
   windowOffset = 0,
   position = PositionContainer.BOTTOM,
   modalRef,
   containerRef,
   isOpen,
-  onClose,
 }: UseModalInContainerParams<Container, Modal>) => {
   const containerTemporalRef = useRef<Container>(null);
-
-  useClickOutside<Modal>(modalRef, () => {
-    if (isOpen && closeOnClickOutside) {
-      onClose();
-    }
-  });
 
   const getPosition = useCallback(
     (modalRef: RefObject<Modal>, containerRef: RefObject<Container>) => {

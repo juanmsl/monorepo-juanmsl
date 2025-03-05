@@ -25,6 +25,7 @@ export const SelectStyle = styled.section`
     grid-auto-rows: auto;
     position: relative;
     cursor: pointer;
+    user-select: none;
 
     &.three-columns {
       grid-template-columns: 1fr auto auto;
@@ -53,6 +54,14 @@ export const SelectStyle = styled.section`
 
     &.placeholder {
       color: #919191;
+    }
+  }
+
+  .select-caret-icon {
+    transition: transform 200ms ease;
+
+    &.is-select-open {
+      transform: rotate(180deg);
     }
   }
 `;

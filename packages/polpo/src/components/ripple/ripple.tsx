@@ -9,6 +9,7 @@ type RippleProps = {
   times?: number;
   className?: string;
   style?: React.CSSProperties;
+  zIndex?: React.CSSProperties['zIndex'];
 };
 
 export const Ripple = ({
@@ -18,6 +19,7 @@ export const Ripple = ({
   times = 1,
   className = '',
   style = {},
+  zIndex = 1,
 }: RippleProps) => {
   const ref = useRef<HTMLSpanElement>(null);
 
@@ -59,5 +61,5 @@ export const Ripple = ({
     );
   };
 
-  return <RippleStyle ref={ref} onMouseDown={handleClick} className={className} style={style} />;
+  return <RippleStyle ref={ref} onMouseDown={handleClick} className={className} style={{ ...style, zIndex }} />;
 };

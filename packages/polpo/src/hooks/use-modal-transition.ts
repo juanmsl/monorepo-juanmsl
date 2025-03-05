@@ -9,11 +9,10 @@ export enum ModalState {
 
 export type UseModalTransitionParams = {
   transitionDuration?: number;
-  onClose: () => void;
   isOpen: boolean;
 };
 
-export const useModalTransition = ({ transitionDuration = 0, onClose, isOpen }: UseModalTransitionParams) => {
+export const useModalTransition = ({ transitionDuration = 0, isOpen }: UseModalTransitionParams) => {
   const [modalState, setModalState] = React.useState<ModalState>(ModalState.CLOSED);
 
   const isVisible = useMemo(() => {
@@ -30,13 +29,12 @@ export const useModalTransition = ({ transitionDuration = 0, onClose, isOpen }: 
         setModalState(ModalState.CLOSING);
         setTimeout(() => {
           setModalState(ModalState.CLOSED);
-          onClose();
         }, transitionDuration);
       } else {
         setModalState(ModalState.CLOSED);
       }
     }
-  }, [onClose, modalState, transitionDuration]);
+  }, [modalState, transitionDuration]);
 
   const openModal = useCallback(() => {
     if ([ModalState.CLOSING, ModalState.CLOSED].includes(modalState)) {

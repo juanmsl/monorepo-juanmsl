@@ -47,6 +47,7 @@ const FieldComponent = (
     e.stopPropagation();
     const input = document.getElementById(id);
     input?.focus();
+    input?.click();
     callback && callback();
   };
 

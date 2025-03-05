@@ -70,11 +70,7 @@ export const Select = <T extends SelectItem>({
 
   const openSelect = useCallback(
     (open: boolean) => {
-      if (open && !disabled) {
-        setIsOpen(true);
-      } else {
-        setIsOpen(false);
-      }
+      setIsOpen(open && !disabled);
     },
     [disabled],
   );
@@ -150,33 +146,30 @@ export const Select = <T extends SelectItem>({
     [OptionComponent, multiselect, renderMultipleValue],
   );
 
-  const unSelectOption = useCallback(
-    (unselectedOption: T) => {
-      if (multiselect) {
-        const filteredValues = value.filter(item => !compareValuesIsEqual(item, unselectedOption));
-        setValue(filteredValues.length === 0 ? [] : filteredValues);
-      } else {
-        setValue(null);
-        setIsOpen(false);
-      }
-    },
-    [compareValuesIsEqual, multiselect, setValue, value],
-  );
+  const toggleOption = useCallback(
+    (option: T, isSelected: boolean) => {
+      if (isSelected) {
+        if (multiselect) {
+          if (maxOptions && Array.isArray(value) && value.length >= maxOptions) {
+            return;
+          }
 
-  const selectOption = useCallback(
-    (selectedOption: T) => {
-      if (multiselect) {
-        if (maxOptions && Array.isArray(value) && value.length >= maxOptions) {
-          return;
+          setValue([...(value as Array<T>), option] as MultiValue<T>);
+        } else {
+          setValue(option as SingleValue<T>);
+          setIsOpen(false);
         }
-
-        setValue([...(value as Array<T>), selectedOption] as MultiValue<T>);
       } else {
-        setValue(selectedOption as SingleValue<T>);
-        setIsOpen(false);
+        if (multiselect) {
+          const filteredValues = value.filter(item => !compareValuesIsEqual(item, option));
+          setValue(filteredValues.length === 0 ? [] : filteredValues);
+        } else {
+          setValue(null);
+          setIsOpen(false);
+        }
       }
     },
-    [maxOptions, multiselect, setValue, value],
+    [compareValuesIsEqual, maxOptions, multiselect, setValue, value],
   );
 
   const clearOption = useCallback(
@@ -212,14 +205,10 @@ export const Select = <T extends SelectItem>({
 
         const selected = optionIsSelected(option);
 
-        if (selected && multiselect) {
-          unSelectOption(option);
-        } else {
-          selectOption(option);
-        }
+        toggleOption(option, !(selected && multiselect));
       }
     },
-    [multiselect, selectOption, optionIsSelected, unSelectOption],
+    [multiselect, optionIsSelected, toggleOption],
   );
 
   const renderInternalOption = useCallback(
@@ -234,32 +223,18 @@ export const Select = <T extends SelectItem>({
           onKeyDown={handleKeyDown(option)}
           asCheckbox={multiselect}
           selected={selected}
-          onClick={(selected: boolean) => {
-            if (multiselect) {
-              if (selected) selectOption(option);
-              else unSelectOption(option);
-            } else {
-              selectOption(option);
-            }
-          }}
+          onClick={(selected: boolean) => toggleOption(option, multiselect ? selected : true)}
         />
       );
     },
-    [OptionComponent, handleKeyDown, multiselect, optionIsSelected, selectOption, unSelectOption],
+    [OptionComponent, handleKeyDown, multiselect, optionIsSelected, toggleOption],
   );
 
   return (
-    <Field
-      id={id}
-      error={error}
-      isFocus={isOpen}
-      onClickLeftIcon={() => openSelect(true)}
-      onClickRightIcon={() => openSelect(true)}
-      ref={containerRef}
-      {...fieldProps}
-    >
+    <Field id={id} error={error} isFocus={isOpen} ref={containerRef} {...fieldProps}>
       <SelectStyle id={name} style={style} onBlur={onBlur} className={`${disabled ? 'disabled' : ''} ${className}`}>
         <section
+          id={id}
           className={`select-container ${valueNonEmpty && showClearOption ? 'three-columns' : ''}`}
           onClick={() => openSelect(true)}
         >
@@ -284,13 +259,13 @@ export const Select = <T extends SelectItem>({
               <Icon name='cross' />
             </section>
           )}
-          <Icon name={isOpen ? 'caret-up' : 'caret-down'} />
+          <Icon className={`select-caret-icon ${isOpen && 'is-select-open'}`} name='caret-down' />
         </section>
         <Options
           renderOption={renderInternalOption}
           containerRef={containerRef}
           isOpen={isOpen}
-          onClose={() => setIsOpen(false)}
+          onClose={() => openSelect(false)}
           isLoading={isLoading}
           hasNextPage={hasNextPage}
           loadMore={loadMore}
