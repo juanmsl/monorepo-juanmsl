@@ -14,14 +14,9 @@ const meta: Meta<typeof InfinityScroll> = {
     isLoading: { control: 'boolean' },
     hasNextPage: { control: 'boolean' },
     loadMore: { control: false },
-    data: { control: false },
-    renderItem: { control: false },
     customLoadMoreElement: { control: false },
     emptyMessage: { control: 'text' },
     children: { control: 'text' },
-  },
-  args: {
-    renderItem: (item, key) => <p key={key}>{item as string}</p>,
   },
   decorators: [
     Story => (
@@ -48,20 +43,15 @@ const meta: Meta<typeof InfinityScroll> = {
 
     return (
       <Grid gap='10px' style={{ padding: '10px' }}>
-        <InfinityScroll
-          {...args}
-          data={data}
-          hasNextPage={hasNextPage}
-          isLoading={isLoading}
-          loadMore={loadMore}
-          renderItem={(v: string) => (
-            <section style={{ padding: '10px', background: '#55882233' }}>
+        <InfinityScroll {...args} hasNextPage={hasNextPage} isLoading={isLoading} loadMore={loadMore}>
+          {data.map((v: string, key: number) => (
+            <section key={key} style={{ padding: '10px', background: '#55882233' }}>
               <Typography variant='label' weight='bold' align='center' as='p'>
                 {v}
               </Typography>
             </section>
-          )}
-        />
+          ))}
+        </InfinityScroll>
       </Grid>
     );
   },
@@ -72,4 +62,57 @@ type Story = StoryObj<typeof InfinityScroll>;
 
 export const Default: Story = {
   args: {},
+  render: args => {
+    const [data, setData] = useState<Array<string>>([]);
+    const [hasNextPage, setHasNextPage] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
+
+    const loadMore = useCallback(() => {
+      if (!hasNextPage) return;
+
+      setIsLoading(true);
+      setTimeout(() => {
+        setData([...data, ...['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']]);
+        setHasNextPage(data.length < 100);
+        setIsLoading(false);
+      }, 1000);
+    }, [data, hasNextPage]);
+
+    return (
+      <Grid gap='10px' style={{ padding: '10px' }}>
+        <InfinityScroll {...args} hasNextPage={hasNextPage} isLoading={isLoading} loadMore={loadMore}>
+          {data.map((v: string, key: number) => (
+            <section key={key} style={{ padding: '10px', background: '#55882233' }}>
+              <Typography variant='label' weight='bold' align='center' as='p'>
+                {v}
+              </Typography>
+            </section>
+          ))}
+        </InfinityScroll>
+      </Grid>
+    );
+  },
+};
+
+export const Empty: Story = {
+  args: {
+    emptyMessage: 'No data',
+  },
+  render: args => {
+    const [data] = useState<Array<string>>([]);
+
+    return (
+      <Grid gap='10px' style={{ padding: '10px' }}>
+        <InfinityScroll {...args} hasNextPage={false} isLoading={false} loadMore={() => null}>
+          {data.map((v: string, key: number) => (
+            <section key={key} style={{ padding: '10px', background: '#55882233' }}>
+              <Typography variant='label' weight='bold' align='center' as='p'>
+                {v}
+              </Typography>
+            </section>
+          ))}
+        </InfinityScroll>
+      </Grid>
+    );
+  },
 };

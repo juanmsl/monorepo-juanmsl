@@ -7,7 +7,7 @@ import { Ripple } from '../../ripple';
 import { Typography, TypographyProps } from '../../typography';
 import { ModalProps } from '../modal';
 
-import { MenuLabelStyle, MenuModalStyle, MenuOptionStyle } from './menu.style';
+import { GroupStyle, LabelStyle, MenuModalStyle, OptionStyle } from './menu.style';
 
 import { useClassNames } from '@polpo/hooks';
 
@@ -113,7 +113,7 @@ const MenuOption = ({
   }, [asCheckbox, children, disabled, icon, label, onClick, selected]);
 
   return (
-    <MenuOptionStyle
+    <OptionStyle
       {...liProps}
       id={id}
       role='option'
@@ -126,13 +126,13 @@ const MenuOption = ({
     >
       <Ripple zIndex={10} />
       {menuOptionContent}
-    </MenuOptionStyle>
+    </OptionStyle>
   );
 };
 
 Menu.Option = MenuOption;
 
-const MenuDivider = () => {
+const Divider = () => {
   return (
     <li>
       <Line className='divider' />
@@ -140,16 +140,46 @@ const MenuDivider = () => {
   );
 };
 
-Menu.Divider = MenuDivider;
+Menu.Divider = Divider;
 
-const MenuGroupLabel = ({ children, className = '', ...props }: Omit<TypographyProps, 'variant'>) => {
+const Label = ({ children, className = '', ...props }: Omit<TypographyProps, 'variant'>) => {
   return (
-    <MenuLabelStyle>
-      <Typography {...props} variant='label' className={`menu-group-label ${className}`}>
+    <LabelStyle tabIndex={-1}>
+      <Typography {...props} variant='small' className={`menu-group-label ${className}`}>
         {children}
       </Typography>
-    </MenuLabelStyle>
+    </LabelStyle>
   );
 };
 
-Menu.GroupLabel = MenuGroupLabel;
+Menu.GroupLabel = Label;
+
+type MenuGroupProps = Omit<React.HTMLAttributes<HTMLLIElement>, 'onClick'> & {
+  children: React.ReactNode;
+  label: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
+  contentClassName?: string;
+  contentStyle?: React.CSSProperties;
+};
+
+const Group = ({
+  children,
+  label,
+  className = '',
+  style = {},
+  contentClassName = '',
+  contentStyle = {},
+  ...props
+}: MenuGroupProps) => {
+  return (
+    <GroupStyle tabIndex={-1} {...props} className={className} style={style}>
+      {label && <Label>{label}</Label>}
+      <ul className={`menu-group-content ${contentClassName}`} role='listbox' style={contentStyle}>
+        {children}
+      </ul>
+    </GroupStyle>
+  );
+};
+
+Menu.Group = Group;

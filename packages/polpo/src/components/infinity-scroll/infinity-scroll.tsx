@@ -6,27 +6,23 @@ import { InfinityScrollFooterStyle } from './infinity-scroll.style';
 
 import { useDebounce, useInView } from '@polpo/hooks';
 
-export type InfinityScrollProps<T> = {
+export type InfinityScrollProps = {
   isLoading: boolean;
   hasNextPage: boolean;
   loadMore: () => void;
-  data: Array<T>;
-  renderItem: (item: T, key: number) => React.ReactNode;
   customLoadMoreElement?: (ref: RefObject<Element>) => React.ReactNode;
   emptyMessage?: string;
   children?: React.ReactNode;
 };
 
-export const InfinityScroll = <T,>({
+export const InfinityScroll = ({
   isLoading: isLoadingProp = false,
   hasNextPage = false,
   loadMore,
-  data = [],
-  renderItem,
   customLoadMoreElement,
   emptyMessage,
   children,
-}: InfinityScrollProps<T>): React.ReactElement => {
+}: InfinityScrollProps): React.ReactElement => {
   const { ref, inView } = useInView();
   const isLoading = useDebounce(isLoadingProp, 100);
 
@@ -36,12 +32,13 @@ export const InfinityScroll = <T,>({
     }
   }, [hasNextPage, isLoading, loadMore, inView]);
 
+  const childrenExists = Array.isArray(children) ? children.length > 0 : Boolean(children);
+
   return (
     <>
       {children}
-      {data.map(renderItem)}
       <InfinityScrollFooterStyle>
-        {!!emptyMessage && data.length === 0 && !isLoading && <p className='empty-message'>{emptyMessage}</p>}
+        {Boolean(emptyMessage) && !childrenExists && !isLoading && <p className='empty-message'>{emptyMessage}</p>}
         {(hasNextPage || isLoading) &&
           (customLoadMoreElement ? (
             customLoadMoreElement(ref)

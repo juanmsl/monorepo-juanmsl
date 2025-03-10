@@ -1,6 +1,7 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { createContext, useCallback, useContext, useMemo, useRef, useState } from 'react';
 
 import { Icon } from '../../icon';
+import { InfinityScroll } from '../../infinity-scroll';
 import { Menu } from '../../modals';
 import { Typography } from '../../typography';
 import { Controller } from '../controller';
@@ -19,21 +20,150 @@ import {
   SingleSelectProps,
   SingleValue,
   UnControlledSelectProps,
+  SelectContextValue,
 } from './select.types';
+
+const SelectContext = createContext<SelectContextValue<unknown> | null>(null);
+
+const useSelectContext = <T extends SelectItem>(): SelectContextValue<T> => {
+  const context = useContext(SelectContext as React.Context<SelectContextValue<T> | null>);
+
+  if (!context) {
+    throw new Error('useSelectContext must be used within a Select component');
+  }
+
+  return context;
+};
+
+type OptionProps<T extends SelectItem> = {
+  children: React.ReactNode;
+  value: T;
+};
+
+const Option = <T extends SelectItem>({ children, value }: OptionProps<T>) => {
+  const { multiselect, isEqualComparator, maxOptions, selectedValue, setValue, setIsOpen } = useSelectContext<T>();
+
+  const compareValuesIsEqual = useCallback(
+    (a: T, b: T): boolean => {
+      if (['number', 'string'].includes(typeof a)) {
+        return a === b;
+      }
+
+      return !!isEqualComparator && isEqualComparator(a, b);
+    },
+    [isEqualComparator],
+  );
+
+  const toggleOption = useCallback(
+    (isSelected: boolean) => {
+      if (isSelected) {
+        if (multiselect) {
+          if (maxOptions && Array.isArray(selectedValue) && selectedValue.length >= maxOptions) {
+            return;
+          }
+
+          setValue([...selectedValue, value]);
+        } else {
+          setValue(value);
+          setIsOpen(false);
+        }
+      } else {
+        if (multiselect) {
+          setValue(selectedValue.filter(item => !compareValuesIsEqual(item, value)));
+        } else {
+          setValue(null);
+          setIsOpen(false);
+        }
+      }
+    },
+    [multiselect, maxOptions, selectedValue, setValue, value, setIsOpen, compareValuesIsEqual],
+  );
+
+  const isSelected = useMemo(() => {
+    if (selectedValue === '' || selectedValue === null) {
+      return false;
+    }
+
+    if (!Array.isArray(selectedValue)) {
+      return compareValuesIsEqual(value, selectedValue);
+    }
+
+    if (['number', 'string'].includes(typeof value)) {
+      return selectedValue.includes(value);
+    }
+
+    return selectedValue.some(item => !!isEqualComparator && isEqualComparator(value, item));
+  }, [compareValuesIsEqual, isEqualComparator, selectedValue, value]);
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (['Enter', ' '].includes(e.key)) {
+        e.preventDefault();
+
+        toggleOption(!(isSelected && multiselect));
+      }
+    },
+    [toggleOption, isSelected, multiselect],
+  );
+
+  const optionLabel = useMemo(() => {
+    if (typeof children === 'string') {
+      return (
+        <Typography data-value={value} noPadding variant='label' nowrap>
+          {children}
+        </Typography>
+      );
+    }
+
+    return children;
+  }, [children, value]);
+
+  return (
+    <Menu.Option
+      label={optionLabel}
+      onKeyDown={handleKeyDown}
+      asCheckbox={multiselect}
+      selected={isSelected}
+      onClick={(selected: boolean) => toggleOption(multiselect ? selected : true)}
+    />
+  );
+};
+
+type OptionLabelProps = {
+  children: React.ReactNode;
+};
+
+const OptionLabel = ({ children }: OptionLabelProps) => {
+  const labelComponent = useMemo(() => {
+    if (typeof children === 'string') {
+      return (
+        <Typography noPadding variant='label' nowrap>
+          {children}
+        </Typography>
+      );
+    }
+
+    return children;
+  }, [children]);
+
+  return <Menu.GroupLabel>{labelComponent}</Menu.GroupLabel>;
+};
 
 export const Select = <T extends SelectItem>({
   // Select props
   options,
-  renderOption,
+  renderValue,
   isEqualComparator,
   searchQueryValue,
   searchQueryPlaceholder,
   onSearchQuery,
-  loadMore,
-  isLoading,
-  hasNextPage,
+  loadMore = () => null,
+  isLoading = false,
+  hasNextPage = false,
+  emptyMessage = 'No options to select',
   multiselect,
   maxOptions,
+  children,
   // Shared props
   name,
   value,
@@ -75,43 +205,13 @@ export const Select = <T extends SelectItem>({
     [disabled],
   );
 
-  const compareValuesIsEqual = useCallback(
-    (a: T, b: T): boolean => {
-      if (['number', 'string'].includes(typeof a)) {
-        return a === b;
-      }
-
-      return !!isEqualComparator && isEqualComparator(a, b);
-    },
-    [isEqualComparator],
-  );
-
-  const compareValueOrValuesAreEqual = useCallback(
-    (a: T, b: SelectValue<T>): boolean => {
-      if (b === null) {
-        return true;
-      }
-
-      if (!Array.isArray(b)) {
-        return compareValuesIsEqual(a, b);
-      }
-
-      if (['number', 'string'].includes(typeof a)) {
-        return b.includes(a);
-      }
-
-      return b.some(item => !!isEqualComparator && isEqualComparator(a, item));
-    },
-    [compareValuesIsEqual, isEqualComparator],
-  );
-
   const OptionComponent = useCallback(
     ({ data }: OptionComponentProps<T>) => (
       <Typography noPadding variant='label' nowrap>
-        {renderOption(data)}
+        {renderValue(data)}
       </Typography>
     ),
-    [renderOption],
+    [renderValue],
   );
 
   const renderMultipleValue = useCallback(
@@ -127,7 +227,7 @@ export const Select = <T extends SelectItem>({
     [maxOptions, options.length],
   );
 
-  const renderValue = useCallback(
+  const renderSingleValue = useCallback(
     (value: SelectValue<T>): React.ReactNode => {
       if (value === null) {
         return null;
@@ -141,35 +241,9 @@ export const Select = <T extends SelectItem>({
         );
       }
 
-      return <OptionComponent data={value} isSelected={false} multiselect={!!multiselect} />;
+      return <OptionComponent data={value} />;
     },
-    [OptionComponent, multiselect, renderMultipleValue],
-  );
-
-  const toggleOption = useCallback(
-    (option: T, isSelected: boolean) => {
-      if (isSelected) {
-        if (multiselect) {
-          if (maxOptions && Array.isArray(value) && value.length >= maxOptions) {
-            return;
-          }
-
-          setValue([...(value as Array<T>), option] as MultiValue<T>);
-        } else {
-          setValue(option as SingleValue<T>);
-          setIsOpen(false);
-        }
-      } else {
-        if (multiselect) {
-          const filteredValues = value.filter(item => !compareValuesIsEqual(item, option));
-          setValue(filteredValues.length === 0 ? [] : filteredValues);
-        } else {
-          setValue(null);
-          setIsOpen(false);
-        }
-      }
-    },
-    [compareValuesIsEqual, maxOptions, multiselect, setValue, value],
+    [OptionComponent, renderMultipleValue],
   );
 
   const clearOption = useCallback(
@@ -193,92 +267,84 @@ export const Select = <T extends SelectItem>({
     }
   }, [multiselect, value]);
 
-  const optionIsSelected = useCallback(
-    (option: T) => Boolean(value) && value !== '' && compareValueOrValuesAreEqual(option, value),
-    [compareValueOrValuesAreEqual, value],
-  );
+  const renderedOptions = useMemo<React.ReactNode>(() => {
+    if (!children)
+      return options.map((option, key) => (
+        <Select.Option value={option} key={key}>
+          <OptionComponent data={option} />
+        </Select.Option>
+      ));
 
-  const handleKeyDown = useCallback(
-    (option: T) => (e: React.KeyboardEvent) => {
-      if (['Enter', ' '].includes(e.key)) {
-        e.preventDefault();
-
-        const selected = optionIsSelected(option);
-
-        toggleOption(option, !(selected && multiselect));
-      }
-    },
-    [multiselect, optionIsSelected, toggleOption],
-  );
-
-  const renderInternalOption = useCallback(
-    (option: T, key: number) => {
-      const selected = optionIsSelected(option);
-
-      return (
-        <Menu.Option
-          key={key}
-          id={`${key}`}
-          label={<OptionComponent data={option} isSelected={selected} multiselect={!!multiselect} />}
-          onKeyDown={handleKeyDown(option)}
-          asCheckbox={multiselect}
-          selected={selected}
-          onClick={(selected: boolean) => toggleOption(option, multiselect ? selected : true)}
-        />
-      );
-    },
-    [OptionComponent, handleKeyDown, multiselect, optionIsSelected, toggleOption],
-  );
+    return children;
+  }, [OptionComponent, children, options]);
 
   return (
-    <Field id={id} error={error} isFocus={isOpen} ref={containerRef} {...fieldProps}>
-      <SelectStyle id={name} style={style} onBlur={onBlur} className={`${disabled ? 'disabled' : ''} ${className}`}>
-        <section
-          id={id}
-          className={`select-container ${valueNonEmpty && showClearOption ? 'three-columns' : ''}`}
-          onClick={() => openSelect(true)}
-        >
-          <button
-            type='button'
-            className={`input-button ${(Array.isArray(value) ? value.length > 0 : value) ? '' : 'placeholder'}`}
-            aria-haspopup='listbox'
-            aria-expanded={isOpen}
-            onFocus={e => {
-              openSelect(true);
-              onFocus && onFocus(e);
-            }}
+    <SelectContext.Provider
+      value={
+        {
+          selectedValue: value,
+          setValue,
+          multiselect: multiselect ?? false,
+          isEqualComparator,
+          maxOptions: maxOptions ?? null,
+          setIsOpen,
+        } as SelectContextValue<unknown>
+      }
+    >
+      <Field id={id} error={error} isFocus={isOpen} ref={containerRef} {...fieldProps}>
+        <SelectStyle id={name} style={style} onBlur={onBlur} className={`${disabled ? 'disabled' : ''} ${className}`}>
+          <section
+            id={id}
+            className={`select-container ${valueNonEmpty && showClearOption ? 'three-columns' : ''}`}
+            onClick={() => openSelect(true)}
           >
-            {(valueNonEmpty && renderValue(value)) || (
-              <Typography variant='label' noPadding nowrap>
-                {placeholder}
-              </Typography>
+            <button
+              type='button'
+              className={`input-button ${(Array.isArray(value) ? value.length > 0 : value) ? '' : 'placeholder'}`}
+              aria-haspopup='listbox'
+              aria-expanded={isOpen}
+              onFocus={e => {
+                openSelect(true);
+                onFocus && onFocus(e);
+              }}
+            >
+              {(valueNonEmpty && renderSingleValue(value)) || (
+                <Typography variant='label' noPadding nowrap>
+                  {placeholder}
+                </Typography>
+              )}
+            </button>
+            {valueNonEmpty && showClearOption && (
+              <section className='icon-close' onClick={clearOption}>
+                <Icon name='cross' />
+              </section>
             )}
-          </button>
-          {valueNonEmpty && showClearOption && (
-            <section className='icon-close' onClick={clearOption}>
-              <Icon name='cross' />
-            </section>
-          )}
-          <Icon className={`select-caret-icon ${isOpen && 'is-select-open'}`} name='caret-down' />
-        </section>
-        <Options
-          renderOption={renderInternalOption}
-          containerRef={containerRef}
-          isOpen={isOpen}
-          onClose={() => openSelect(false)}
-          isLoading={isLoading}
-          hasNextPage={hasNextPage}
-          loadMore={loadMore}
-          searchQueryValue={searchQueryValue}
-          onSearchQuery={onSearchQuery}
-          searchQueryPlaceholder={searchQueryPlaceholder}
-          options={options}
-          height={height}
-          searchQueryClassName={searchQueryClassName}
-          searchQueryStyle={searchQueryStyle}
-        />
-      </SelectStyle>
-    </Field>
+            <Icon className={`select-caret-icon ${isOpen && 'is-select-open'}`} name='caret-down' />
+          </section>
+          <Options
+            containerRef={containerRef}
+            isOpen={isOpen}
+            onClose={() => openSelect(false)}
+            searchQueryValue={searchQueryValue}
+            onSearchQuery={onSearchQuery}
+            searchQueryPlaceholder={searchQueryPlaceholder}
+            optionsLength={Array.isArray(renderedOptions) ? renderedOptions.length : 0}
+            height={height}
+            searchQueryClassName={searchQueryClassName}
+            searchQueryStyle={searchQueryStyle}
+          >
+            <InfinityScroll
+              isLoading={isLoading}
+              hasNextPage={hasNextPage}
+              loadMore={loadMore}
+              emptyMessage={emptyMessage}
+            >
+              {renderedOptions}
+            </InfinityScroll>
+          </Options>
+        </SelectStyle>
+      </Field>
+    </SelectContext.Provider>
   );
 };
 
@@ -327,3 +393,5 @@ const SelectController = <T extends SelectItem>(props: ControllerGeneratorSelect
 };
 
 Select.Controller = SelectController;
+Select.Option = Option;
+Select.OptionLabel = OptionLabel;

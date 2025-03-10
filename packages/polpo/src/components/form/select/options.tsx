@@ -1,11 +1,10 @@
 import React, { RefObject, useCallback, useEffect, useRef, useState } from 'react';
 import { useTheme } from 'styled-components';
 
-import { InfinityScroll } from '../../infinity-scroll';
 import { Menu } from '../../modals/menu';
 
 import { OptionsHeaderStyle } from './select.style';
-import { OptionsProps, SelectItem } from './select.types';
+import { OptionsProps } from './select.types';
 
 import { useEventListener, useMediaQuery, useResizeObserver } from '@polpo/hooks';
 
@@ -56,23 +55,19 @@ const useDynamicHeight = ({
   return { maxHeight, minHeight };
 };
 
-export const Options = <T extends SelectItem>({
+export const Options = ({
   onSearchQuery,
   searchQueryValue,
-  renderOption,
   searchQueryPlaceholder = 'Search option',
   searchQueryClassName = '',
   searchQueryStyle = {},
   isOpen,
-  options,
-  loadMore = () => null,
-  isLoading = false,
-  hasNextPage = false,
+  optionsLength,
   containerRef,
   onClose,
-  emptyMessage = 'No options to select',
   height = 300,
-}: OptionsProps<T>) => {
+  children,
+}: OptionsProps) => {
   const theme = useTheme();
   const optionsGroupRef = useRef<HTMLUListElement>(null);
   const modalRef = useRef<HTMLElement>(null);
@@ -126,7 +121,7 @@ export const Options = <T extends SelectItem>({
     containerRef,
     modalRef,
     optionsGroupRef,
-    optionsLength: options.length,
+    optionsLength,
     offset: 5,
     windowOffset: 10,
   });
@@ -175,14 +170,7 @@ export const Options = <T extends SelectItem>({
           />
         </OptionsHeaderStyle>
       )}
-      <InfinityScroll
-        isLoading={isLoading}
-        hasNextPage={hasNextPage}
-        loadMore={loadMore}
-        data={options}
-        renderItem={renderOption}
-        emptyMessage={emptyMessage}
-      />
+      {children}
     </Menu>
   );
 };

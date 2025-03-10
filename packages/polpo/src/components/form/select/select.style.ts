@@ -71,7 +71,7 @@ export const OptionsHeaderStyle = styled.section`
   padding: 2px 5px;
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 15;
   border-bottom: 1px solid ${props => props.theme.colors.border.main};
 
   .input-search {
