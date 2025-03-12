@@ -33,26 +33,9 @@ export const FieldStyle = styled.section`
     justify-content: start;
   }
 
-  &.error {
-    color: ${props => props.theme.colors.alert.main};
-  }
-
-  &.focus {
-    color: ${props => props.theme.colors.info.main};
-  }
-
-  &.error,
-  &.focus {
-    .field-left-icon,
-    .field-right-icon,
-    .field-children {
-      color: ${props => props.theme.colors.text.main};
-    }
-  }
-
   &.variant-content-border {
     .field-content {
-      border: 1px solid;
+      border: 1px solid ${props => props.theme.colors.border.main};
       border-radius: 4px;
       padding: 1em;
       background: ${props => props.theme.colors.background.main};
@@ -67,7 +50,7 @@ export const FieldStyle = styled.section`
   }
 
   &.variant-full-border {
-    border: 1px solid;
+    border: 1px solid ${props => props.theme.colors.border.main};
     border-radius: 4px;
     padding: 0.5em 0;
     background: ${props => props.theme.colors.background.main};
@@ -86,6 +69,26 @@ export const FieldStyle = styled.section`
 
     .field-label {
       width: auto;
+    }
+  }
+
+  &.error {
+    color: ${props => props.theme.colors.alert.main};
+    border-color: ${props => props.theme.colors.alert.main};
+  }
+
+  &.focus {
+    color: ${props => props.theme.colors.info.main};
+    border-color: ${props => props.theme.colors.info.main};
+  }
+
+  &.error,
+  &.focus {
+    .field-left-icon,
+    .field-right-icon,
+    .field-children {
+      color: ${props => props.theme.colors.text.main};
+      border-color: ${props => props.theme.colors.text.main};
     }
   }
 `;

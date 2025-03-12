@@ -1,10 +1,10 @@
 import { Button } from '../../buttons';
+import { ModalBackdrop } from '../modal';
 
 import { Menu } from './menu';
 
 import { PositionContainer } from '@polpo/helpers';
 import { useModal } from '@polpo/hooks';
-import { ModalBackdrop } from '@polpo/ui';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -38,19 +38,29 @@ const meta: Meta<typeof Menu> = {
             args={{
               ...args,
               isOpen,
+              offset: 10,
+              style: { height: 300, minWidth: 200 },
               onClose: closeModal,
               containerRef,
               children: (
                 <>
+                  <Menu.GroupLabel>Checkbox</Menu.GroupLabel>
                   <Menu.Option asCheckbox icon='house' disabled label='Option 1' />
                   <Menu.Option asCheckbox icon='magnifying-glass' selected label='Option 2' />
                   <Menu.Option asCheckbox icon='document' label='Option 3' />
                   <Menu.Option asCheckbox icon='spinner' disabled selected label='Option 4' />
                   <Menu.Divider />
+                  <Menu.GroupLabel>Options disabled</Menu.GroupLabel>
                   <Menu.Option icon='instagram' label='Option 5' />
                   <Menu.Option icon='airplane' disabled label='Option 6' />
                   <Menu.Option icon='whatsapp' disabled selected label='Option 7' />
                   <Menu.Option icon='order-list' label='Option 8' />
+                  <Menu.Divider />
+                  <Menu.GroupLabel>Options</Menu.GroupLabel>
+                  <Menu.Option icon='thinking' label='Option 9' />
+                  <Menu.Option icon='game-control' label='Option 10' />
+                  <Menu.Option icon='bicycle' selected label='Option 11' />
+                  <Menu.Option icon='link' label='Option 12' />
                 </>
               ),
             }}

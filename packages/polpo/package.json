@@ -1,6 +1,6 @@
 {
   "name": "polpo",
-  "version": "0.1.3",
+  "version": "0.1.6",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -41,8 +41,9 @@
     "build": "yarn clean && tsup",
     "publish-package": "yarn lint && yarn build && yarn publish --no-git-tag-version",
     "transform-svgs": "svg-to-react && yarn lint:fix",
-    "dev": "storybook dev -p 6006 --quiet",
-    "build-storybook": "storybook build"
+    "dev": "storybook dev -p 6006 --quiet --debug hmr",
+    "build-storybook": "storybook build",
+    "debug": "storybook doctor"
   },
   "devDependencies": {
     "@juanmsl/eslint-config": "*",

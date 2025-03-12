@@ -1,8 +1,6 @@
 import { RefObject, useCallback, useLayoutEffect, useRef } from 'react';
 
-import { useClickOutside } from './use-click-outside';
 import { useEventListener } from './use-event-listener';
-import { useModalTransition } from './use-modal-transition';
 import { useResizeObserver } from './use-resize-observer';
 
 import {
@@ -25,39 +23,26 @@ export type UseModalInContainerParams<
   Container extends HTMLElement = HTMLElement,
   Modal extends HTMLElement = Container,
 > = {
-  closeOnClickOutside?: boolean;
-  transitionDuration?: number;
   windowOffset?: number;
   offset?: number;
   position?: `${PositionContainer}`;
   modalRef: RefObject<Modal>;
   containerRef?: RefObject<Container>;
-  onClose?: () => void;
+  isOpen: boolean;
 };
 
 export const useModalInContainer = <
   Container extends HTMLElement = HTMLElement,
   Modal extends HTMLElement = Container,
 >({
-  closeOnClickOutside = true,
   offset = 0,
   windowOffset = 0,
   position = PositionContainer.BOTTOM,
-  transitionDuration = 0,
   modalRef,
   containerRef,
-  onClose,
+  isOpen,
 }: UseModalInContainerParams<Container, Modal>) => {
   const containerTemporalRef = useRef<Container>(null);
-  const modalState = useModalTransition(transitionDuration, onClose);
-
-  const { isVisible, closeModal } = modalState;
-
-  useClickOutside<Modal>(modalRef, () => {
-    if (isVisible && closeOnClickOutside) {
-      closeModal();
-    }
-  });
 
   const getPosition = useCallback(
     (modalRef: RefObject<Modal>, containerRef: RefObject<Container>) => {
@@ -86,10 +71,10 @@ export const useModalInContainer = <
   );
 
   const callback = useCallback(() => {
-    if (isVisible) {
+    if (isOpen) {
       getPosition(modalRef, containerRef ?? containerTemporalRef);
     }
-  }, [getPosition, isVisible, containerRef, modalRef]);
+  }, [getPosition, isOpen, containerRef, modalRef]);
 
   useLayoutEffect(callback, [callback]);
 
@@ -97,6 +82,4 @@ export const useModalInContainer = <
   useResizeObserver<Modal>(modalRef, callback);
   useEventListener('resize', callback);
   useEventListener('scroll', callback, modalRef);
-
-  return modalState;
 };

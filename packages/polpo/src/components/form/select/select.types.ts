@@ -9,13 +9,46 @@ export type MultiValue<T extends SelectItem> = Array<T>;
 
 export type SingleValue<T extends SelectItem> = T | null;
 
-export type SelectValue<T extends SelectItem> = SingleValue<T> | MultiValue<T>;
+// SELECT CONTEXT
+
+export type SharedSelectContextValue<T extends SelectItem> = {
+  isEqualComparator?: (a: T, b: T) => boolean;
+  maxOptions: number | null;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export type MultiSelectContextValue<T extends SelectItem> = SharedSelectContextValue<T> & {
+  selectedValue: MultiValue<T>;
+  setValue: (value: MultiValue<T>) => void;
+  multiselect: true;
+};
+
+export type SingleSelectContextValue<T extends SelectItem> = SharedSelectContextValue<T> & {
+  selectedValue: SingleValue<T>;
+  setValue: (value: SingleValue<T>) => void;
+  multiselect: false;
+};
+
+export type SelectContextValue<T extends SelectItem> = SingleSelectContextValue<T> | MultiSelectContextValue<T>;
 
 // SELECT
 
+export type OptionComponentProps<T extends SelectItem> = {
+  value: T;
+};
+
+export type ValueComponentProps<T extends SelectItem> =
+  | {
+      value: MultiValue<T>;
+      multiselect: true;
+    }
+  | {
+      value: SingleValue<T>;
+      multiselect?: false;
+    };
+
 export type SharedSelectProps<T extends SelectItem> = InputFieldProps<{
   options: Array<T>;
-  renderOption: (item: T) => React.ReactNode;
   isEqualComparator?: (a: T, b: T) => boolean;
   searchQueryValue?: string;
   searchQueryPlaceholder?: string;
@@ -23,8 +56,15 @@ export type SharedSelectProps<T extends SelectItem> = InputFieldProps<{
   loadMore?: () => void;
   isLoading?: boolean;
   hasNextPage?: boolean;
+  emptyMessage?: string;
   maxOptions?: number;
+  optionComponent?: React.FC<OptionComponentProps<T>>;
+  valueComponent?: React.FC<ValueComponentProps<T>>;
   showClearOption?: boolean;
+  height?: number;
+  searchQueryClassName?: string;
+  searchQueryStyle?: React.CSSProperties;
+  children?: React.ReactNode;
 }>;
 
 export type MultiSelectProps<T extends SelectItem> = SharedSelectProps<T> & {
@@ -33,7 +73,6 @@ export type MultiSelectProps<T extends SelectItem> = SharedSelectProps<T> & {
 
 export type SingleSelectProps<T extends SelectItem> = SharedSelectProps<T> & {
   multiselect?: false;
-  optionVariant?: never;
 };
 
 export type UnControlledSelectProps<T extends SelectItem> =
@@ -46,31 +85,16 @@ export type ControllerGeneratorSelectProps<T extends SelectItem> =
 
 // SELECT OPTIONS
 
-export type OptionsProps<T extends SelectItem> = {
+export type OptionsProps = {
   isOpen: boolean;
   onClose: () => void;
   onSearchQuery?: (value: string) => void;
   searchQueryValue?: string;
   searchQueryPlaceholder?: string;
-  compareValueOrValuesAreEqual: (a: T, b: SelectValue<T>) => boolean;
-  loadMore?: () => void;
-  isLoading?: boolean;
-  hasNextPage?: boolean;
-  options: Array<T>;
-  selectOption: (option: T) => void;
-  unselectOption: (option: T) => void;
+  searchQueryClassName?: string;
+  searchQueryStyle?: React.CSSProperties;
+  optionsLength: number;
   containerRef: React.RefObject<HTMLElement>;
-  Component: React.FC<OptionComponentProps<T>>;
-  multiselect?: boolean;
-  value: SelectValue<T>;
-  emptyMessage?: string;
-  maxHeight?: number;
-};
-
-// SELECT OPTION
-
-export type OptionComponentProps<T extends SelectItem> = {
-  data: T;
-  isSelected: boolean;
-  multiselect: boolean;
+  height?: number;
+  children?: React.ReactNode;
 };

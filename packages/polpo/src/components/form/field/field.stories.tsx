@@ -2,8 +2,7 @@ import { IconNames } from '../../icon';
 import { ContainerDecorator } from '../form.stories.types';
 
 import { Field } from './field';
-
-import { FieldOrientation, FieldVariant } from '@polpo/ui';
+import { FieldOrientation, FieldVariant } from './field.types';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

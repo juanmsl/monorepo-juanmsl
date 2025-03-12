@@ -26,7 +26,7 @@ const getTypographyColor = (theme: DefaultTheme, color?: `${ColorVariants}`): Re
   return (color && typographyColors[color]) ?? {};
 };
 
-type TypographyProps = HTMLAttributes<HTMLElement | HTMLLabelElement> & {
+export type TypographyProps = HTMLAttributes<HTMLElement | HTMLLabelElement> & {
   variant?: `${TypographyVariant}`;
   nowrap?: boolean | number;
   as?: keyof React.ReactHTML;

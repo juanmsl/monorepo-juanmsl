@@ -85,7 +85,13 @@ export const InputColor = ({
 
   return (
     <Field id={id} error={error} isFocus={isFocus} {...fieldProps}>
-      <InputColorStyle onClick={() => setIsOpen(true)} ref={containerRef}>
+      <InputColorStyle
+        onClick={e => {
+          e.stopPropagation();
+          setIsOpen(true);
+        }}
+        ref={containerRef}
+      >
         <InputColorBoxStyle
           className={className}
           style={{

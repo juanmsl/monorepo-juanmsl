@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import { Menu } from '@polpo/ui';
-
 export const SelectStyle = styled.section`
   cursor: pointer;
 
@@ -27,6 +25,7 @@ export const SelectStyle = styled.section`
     grid-auto-rows: auto;
     position: relative;
     cursor: pointer;
+    user-select: none;
 
     &.three-columns {
       grid-template-columns: 1fr auto auto;
@@ -57,26 +56,27 @@ export const SelectStyle = styled.section`
       color: #919191;
     }
   }
-`;
 
-export const OptionsMenuStyle = styled(Menu)`
-  overflow-y: auto;
+  .select-caret-icon {
+    transition: transform 200ms ease;
 
-  &.search-input {
-    display: grid;
-    grid-template-rows: auto 1fr;
-    grid-template-columns: 1fr;
+    &.is-select-open {
+      transform: rotate(180deg);
+    }
   }
 `;
 
 export const OptionsHeaderStyle = styled.section`
-  margin: 5px;
+  background: ${props => props.theme.colors.background.main};
+  padding: 2px 5px;
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  border-bottom: 1px solid ${props => props.theme.colors.border.main};
 
   .input-search {
-    padding: 0.8em 1em;
-    border: 1px solid ${props => props.theme.colors.border.main};
-    font-size: 0.8em;
+    padding: 0.8em 5px;
+    font-size: ${props => props.theme.constants.typography.label.fontSize};
     width: 100%;
-    border-radius: 4px;
   }
 `;

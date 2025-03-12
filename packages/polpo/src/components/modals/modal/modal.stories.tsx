@@ -1,10 +1,13 @@
+import { Grid } from '../../../layouts';
 import { Button } from '../../buttons';
+import { Line } from '../../line';
+import { Typography } from '../../typography';
 
+import { ModalBackdrop } from './backdrop';
 import { Modal as ModalComponent, ModalProps } from './modal';
 
 import { PositionContainer } from '@polpo/helpers';
 import { useModal } from '@polpo/hooks';
-import { Grid, Line, ModalBackdrop, Typography } from '@polpo/ui';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

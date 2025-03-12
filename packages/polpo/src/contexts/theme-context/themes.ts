@@ -70,6 +70,8 @@ export type PaletteThemeEntity = {
     main: string;
     paper: string;
     disabled: string;
+    light: string;
+    dark: string;
   };
   text: {
     main: string;

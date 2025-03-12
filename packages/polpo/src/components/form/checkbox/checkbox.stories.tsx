@@ -1,12 +1,11 @@
 import { useState } from 'react';
 
 import { ColorVariants } from '../../../core/variants';
+import { SectionLayout } from '../../../layouts';
 import { IconNames } from '../../icon';
 import { UnControlledComponentArgTypes } from '../form.stories.types';
 
 import { Checkbox } from './checkbox';
-
-import { SectionLayout } from '@polpo/ui';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

@@ -137,6 +137,8 @@ export const CommonTheme: CommonThemeEntity = {
 export const DarkTheme: PaletteThemeEntity = {
   background: {
     main: '#24263A',
+    light: '#292b40',
+    dark: '#1e2032',
     paper: '#131520',
     disabled: '#3e3e42',
   },
@@ -172,6 +174,8 @@ export const DarkTheme: PaletteThemeEntity = {
 export const LightTheme: PaletteThemeEntity = {
   background: {
     main: '#FFFFFF',
+    light: '#efefef',
+    dark: '#b5b5b5',
     paper: '#f1f1f1',
     disabled: '#d1d1d1',
   },

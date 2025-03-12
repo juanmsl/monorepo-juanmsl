@@ -1,11 +1,14 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { createContext, useCallback, useContext, useMemo, useRef, useState } from 'react';
 
 import { Icon } from '../../icon';
+import { InfinityScroll } from '../../infinity-scroll';
+import { Menu } from '../../modals';
 import { Typography } from '../../typography';
 import { Controller } from '../controller';
 import { Field } from '../field';
 import { ControllerGeneratorProps } from '../form.types';
 
+import { Option } from './option';
 import { Options } from './options';
 import { SelectStyle } from './select.style';
 import {
@@ -14,25 +17,85 @@ import {
   MultiValue,
   OptionComponentProps,
   SelectItem,
-  SelectValue,
   SingleSelectProps,
   SingleValue,
   UnControlledSelectProps,
+  SelectContextValue,
+  ValueComponentProps,
 } from './select.types';
+
+const SelectContext = createContext<SelectContextValue<unknown> | null>(null);
+
+export const useSelectContext = <T extends SelectItem>(): SelectContextValue<T> => {
+  const context = useContext(SelectContext as React.Context<SelectContextValue<T> | null>);
+
+  if (!context) {
+    throw new Error('useSelectContext must be used within a Select component');
+  }
+
+  return context;
+};
+
+type OptionLabelProps = {
+  children: React.ReactNode;
+};
+
+const OptionLabel = ({ children }: OptionLabelProps) => {
+  const labelComponent = useMemo(() => {
+    if (typeof children === 'string') {
+      return (
+        <Typography noPadding variant='label' nowrap>
+          {children}
+        </Typography>
+      );
+    }
+
+    return children;
+  }, [children]);
+
+  return <Menu.GroupLabel>{labelComponent}</Menu.GroupLabel>;
+};
+
+const DefaultOption = <T extends SelectItem>({ value }: OptionComponentProps<T>) => {
+  return (
+    <Typography variant='label' nowrap>
+      {typeof value === 'string' || typeof value === 'number' ? value : JSON.stringify(value)}
+    </Typography>
+  );
+};
+
+const DefaultValue = <T extends SelectItem>({ value, multiselect }: ValueComponentProps<T>) => {
+  if (multiselect) {
+    return (
+      <Typography noPadding nowrap variant='label'>
+        {`${value.length} item${value.length === 1 ? '' : 's'} selected`}
+      </Typography>
+    );
+  }
+
+  if (value === null) {
+    return null;
+  }
+
+  return <DefaultOption value={value} />;
+};
 
 export const Select = <T extends SelectItem>({
   // Select props
   options,
-  renderOption,
   isEqualComparator,
   searchQueryValue,
   searchQueryPlaceholder,
   onSearchQuery,
-  loadMore,
-  isLoading,
-  hasNextPage,
+  loadMore = () => null,
+  isLoading = false,
+  hasNextPage = false,
+  emptyMessage = 'No options to select',
   multiselect,
+  optionComponent: OptionComponent = DefaultOption,
+  valueComponent: ValueComponent = DefaultValue,
   maxOptions,
+  children,
   // Shared props
   name,
   value,
@@ -42,6 +105,9 @@ export const Select = <T extends SelectItem>({
   className = '',
   style = {},
   showClearOption = false,
+  height,
+  searchQueryStyle,
+  searchQueryClassName,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   autoFocus = false,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -66,113 +132,9 @@ export const Select = <T extends SelectItem>({
 
   const openSelect = useCallback(
     (open: boolean) => {
-      if (open && !disabled) {
-        setIsOpen(true);
-      } else {
-        setIsOpen(false);
-      }
+      setIsOpen(open && !disabled);
     },
     [disabled],
-  );
-
-  const compareValuesIsEqual = useCallback(
-    (a: T, b: T): boolean => {
-      if (['number', 'string'].includes(typeof a)) {
-        return a === b;
-      }
-
-      return !!isEqualComparator && isEqualComparator(a, b);
-    },
-    [isEqualComparator],
-  );
-
-  const compareValueOrValuesAreEqual = useCallback(
-    (a: T, b: SelectValue<T>): boolean => {
-      if (b === null) {
-        return true;
-      }
-
-      if (!Array.isArray(b)) {
-        return compareValuesIsEqual(a, b);
-      }
-
-      if (['number', 'string'].includes(typeof a)) {
-        return b.includes(a);
-      }
-
-      return b.some(item => !!isEqualComparator && isEqualComparator(a, item));
-    },
-    [compareValuesIsEqual, isEqualComparator],
-  );
-
-  const OptionComponent = useCallback(
-    ({ data }: OptionComponentProps<T>) => (
-      <Typography noPadding variant='label' nowrap>
-        {renderOption(data)}
-      </Typography>
-    ),
-    [renderOption],
-  );
-
-  const renderMultipleValue = useCallback(
-    (values: Array<T>): React.ReactNode => {
-      if (maxOptions) {
-        const limit = Math.min(maxOptions, options.length);
-
-        return `${values.length}/${limit} item${values.length === 1 ? '' : 's'} selected`;
-      }
-
-      return `${values.length} item${values.length === 1 ? '' : 's'} selected`;
-    },
-    [maxOptions, options.length],
-  );
-
-  const renderValue = useCallback(
-    (value: SelectValue<T>): React.ReactNode => {
-      if (value === null) {
-        return null;
-      }
-
-      if (Array.isArray(value)) {
-        return (
-          <Typography noPadding nowrap variant='label'>
-            {renderMultipleValue(value)}
-          </Typography>
-        );
-      }
-
-      return <OptionComponent data={value} isSelected={false} multiselect={!!multiselect} />;
-    },
-    [OptionComponent, multiselect, renderMultipleValue],
-  );
-
-  const unSelectOption = useCallback(
-    (unselectedOption: T) => {
-      if (multiselect) {
-        const filteredValues = value.filter(item => !compareValuesIsEqual(item, unselectedOption));
-        setValue(filteredValues.length === 0 ? [] : filteredValues);
-      } else {
-        setValue(null);
-        setIsOpen(false);
-      }
-    },
-    [compareValuesIsEqual, multiselect, setValue, value],
-  );
-
-  const selectOption = useCallback(
-    (selectedOption: T) => {
-      if (multiselect) {
-        if (maxOptions && Array.isArray(value) && value.length >= maxOptions) {
-          return;
-        }
-
-        setValue([...(value as Array<T>), selectedOption] as MultiValue<T>);
-      } else {
-        setValue(selectedOption as SingleValue<T>);
-        setIsOpen(false);
-      }
-    },
-    [maxOptions, multiselect, setValue, value],
   );
 
   const clearOption = useCallback(
@@ -196,64 +158,86 @@ export const Select = <T extends SelectItem>({
     }
   }, [multiselect, value]);
 
+  const renderedOptions = useMemo<React.ReactNode>(() => {
+    if (!children)
+      return options.map((value, key) => (
+        <Select.Option value={value} key={key}>
+          <OptionComponent value={value} />
+        </Select.Option>
+      ));
+
+    return children;
+  }, [OptionComponent, children, options]);
+
   return (
-    <Field
-      id={id}
-      error={error}
-      isFocus={isOpen}
-      onClickLeftIcon={() => openSelect(true)}
-      onClickRightIcon={() => openSelect(true)}
-      ref={containerRef}
-      {...fieldProps}
+    <SelectContext.Provider
+      value={
+        {
+          selectedValue: value,
+          setValue,
+          multiselect: multiselect ?? false,
+          isEqualComparator,
+          maxOptions: maxOptions ?? null,
+          setIsOpen,
+        } as SelectContextValue<unknown>
+      }
     >
-      <SelectStyle id={name} style={style} onBlur={onBlur} className={`${disabled ? 'disabled' : ''} ${className}`}>
-        <section
-          className={`select-container ${valueNonEmpty && showClearOption ? 'three-columns' : ''}`}
-          onClick={() => openSelect(true)}
-        >
-          <button
-            type='button'
-            className={`input-button ${(Array.isArray(value) ? value.length > 0 : value) ? '' : 'placeholder'}`}
-            aria-haspopup='listbox'
-            aria-expanded={isOpen}
-            onFocus={e => {
-              openSelect(true);
-              onFocus && onFocus(e);
-            }}
+      <Field id={id} error={error} isFocus={isOpen} ref={containerRef} {...fieldProps}>
+        <SelectStyle id={name} style={style} onBlur={onBlur} className={`${disabled ? 'disabled' : ''} ${className}`}>
+          <section
+            id={id}
+            className={`select-container ${valueNonEmpty && showClearOption ? 'three-columns' : ''}`}
+            onClick={() => openSelect(true)}
           >
-            {(valueNonEmpty && renderValue(value)) || (
-              <Typography variant='label' noPadding nowrap>
-                {placeholder}
-              </Typography>
+            <button
+              type='button'
+              className={`input-button ${(Array.isArray(value) ? value.length > 0 : value) ? '' : 'placeholder'}`}
+              aria-haspopup='listbox'
+              aria-expanded={isOpen}
+              onFocus={e => {
+                openSelect(true);
+                onFocus && onFocus(e);
+              }}
+            >
+              {valueNonEmpty ? (
+                <ValueComponent {...(multiselect ? { value, multiselect } : { value: value })} />
+              ) : (
+                <Typography variant='label' noPadding nowrap>
+                  {placeholder}
+                </Typography>
+              )}
+            </button>
+            {valueNonEmpty && showClearOption && (
+              <section className='icon-close' onClick={clearOption}>
+                <Icon name='cross' />
+              </section>
             )}
-          </button>
-          {valueNonEmpty && showClearOption && (
-            <section className='icon-close' onClick={clearOption}>
-              <Icon name='cross' />
-            </section>
-          )}
-          <Icon name={isOpen ? 'caret-up' : 'caret-down'} />
-        </section>
-        <Options
-          containerRef={containerRef}
-          isOpen={isOpen}
-          onClose={() => setIsOpen(false)}
-          value={value}
-          compareValueOrValuesAreEqual={compareValueOrValuesAreEqual}
-          Component={OptionComponent}
-          multiselect={multiselect}
-          isLoading={isLoading}
-          hasNextPage={hasNextPage}
-          loadMore={loadMore}
-          searchQueryValue={searchQueryValue}
-          onSearchQuery={onSearchQuery}
-          searchQueryPlaceholder={searchQueryPlaceholder}
-          options={options}
-          selectOption={selectOption}
-          unselectOption={unSelectOption}
-        />
-      </SelectStyle>
-    </Field>
+            <Icon className={`select-caret-icon ${isOpen && 'is-select-open'}`} name='caret-down' />
+          </section>
+          <Options
+            containerRef={containerRef}
+            isOpen={isOpen}
+            onClose={() => openSelect(false)}
+            searchQueryValue={searchQueryValue}
+            onSearchQuery={onSearchQuery}
+            searchQueryPlaceholder={searchQueryPlaceholder}
+            optionsLength={Array.isArray(renderedOptions) ? renderedOptions.length : renderedOptions ? 1 : 0}
+            height={height}
+            searchQueryClassName={searchQueryClassName}
+            searchQueryStyle={searchQueryStyle}
+          >
+            <InfinityScroll
+              isLoading={isLoading}
+              hasNextPage={hasNextPage}
+              loadMore={loadMore}
+              emptyMessage={emptyMessage}
+            >
+              {renderedOptions}
+            </InfinityScroll>
+          </Options>
+        </SelectStyle>
+      </Field>
+    </SelectContext.Provider>
   );
 };
 
@@ -302,3 +286,5 @@ const SelectController = <T extends SelectItem>(props: ControllerGeneratorSelect
 };
 
 Select.Controller = SelectController;
+Select.Option = Option;
+Select.OptionLabel = OptionLabel;
