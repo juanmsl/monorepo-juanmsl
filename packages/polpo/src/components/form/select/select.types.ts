@@ -9,8 +9,6 @@ export type MultiValue<T extends SelectItem> = Array<T>;
 
 export type SingleValue<T extends SelectItem> = T | null;
 
-export type SelectValue<T extends SelectItem> = SingleValue<T> | MultiValue<T>;
-
 // SELECT CONTEXT
 
 export type SharedSelectContextValue<T extends SelectItem> = {
@@ -35,9 +33,22 @@ export type SelectContextValue<T extends SelectItem> = SingleSelectContextValue<
 
 // SELECT
 
+export type OptionComponentProps<T extends SelectItem> = {
+  value: T;
+};
+
+export type ValueComponentProps<T extends SelectItem> =
+  | {
+      value: MultiValue<T>;
+      multiselect: true;
+    }
+  | {
+      value: SingleValue<T>;
+      multiselect?: false;
+    };
+
 export type SharedSelectProps<T extends SelectItem> = InputFieldProps<{
   options: Array<T>;
-  renderValue: (value: T) => React.ReactNode;
   isEqualComparator?: (a: T, b: T) => boolean;
   searchQueryValue?: string;
   searchQueryPlaceholder?: string;
@@ -47,6 +58,8 @@ export type SharedSelectProps<T extends SelectItem> = InputFieldProps<{
   hasNextPage?: boolean;
   emptyMessage?: string;
   maxOptions?: number;
+  optionComponent?: React.FC<OptionComponentProps<T>>;
+  valueComponent?: React.FC<ValueComponentProps<T>>;
   showClearOption?: boolean;
   height?: number;
   searchQueryClassName?: string;
@@ -85,29 +98,3 @@ export type OptionsProps = {
   height?: number;
   children?: React.ReactNode;
 };
-
-// SELECT OPTION
-
-export type OptionComponentProps<T extends SelectItem> = {
-  data: T;
-};
-
-export enum OptionType {
-  OPTION = 'option',
-  LABEL = 'label',
-  DIVIDER = 'divider',
-}
-
-export type OptionObject<T extends SelectItem> =
-  | {
-      value: T;
-      option: React.ReactNode;
-      type: OptionType.OPTION;
-    }
-  | {
-      option: React.ReactNode;
-      type: OptionType.LABEL;
-    }
-  | {
-      type: OptionType.DIVIDER;
-    };

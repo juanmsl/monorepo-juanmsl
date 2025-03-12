@@ -107,7 +107,7 @@ const MenuOption = ({
     return (
       <>
         {icon !== undefined && <Icon className='option-icon' name={icon} />}
-        <Typography variant='label'>{label}</Typography>
+        {typeof label === 'string' ? <Typography variant='label'>{label}</Typography> : label}
       </>
     );
   }, [asCheckbox, children, disabled, icon, label, onClick, selected]);

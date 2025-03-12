@@ -1,6 +1,10 @@
 import { useState } from 'react';
 
+import { Flex } from '../../../layouts';
+import { Icon } from '../../icon';
 import { Menu } from '../../modals';
+import { Tag } from '../../tag';
+import { Typography } from '../../typography';
 import { FieldSharedArgs, FieldSharedArgTypes } from '../field/field.stories';
 import { ContainerDecorator, UnControlledComponentArgTypes } from '../form.stories.types';
 
@@ -105,7 +109,7 @@ const meta: Meta<typeof Select<string>> = {
     ...FieldSharedArgTypes,
     ...UnControlledComponentArgTypes,
     options: { control: false },
-    renderValue: { control: false },
+    optionComponent: { control: false },
     isEqualComparator: { control: false },
     searchQueryValue: { control: 'text' },
     searchQueryPlaceholder: { control: 'text' },
@@ -129,7 +133,6 @@ const meta: Meta<typeof Select<string>> = {
     height: 300,
     options: [],
     children: renderGroupsOfNames(groupsOfNames),
-    renderValue: v => v,
   },
   decorators: [ContainerDecorator],
 };
@@ -137,7 +140,7 @@ const meta: Meta<typeof Select<string>> = {
 export default meta;
 type Story = StoryObj<typeof Select<string>>;
 
-export const SimpleOptionsSingleValue: Story = {
+export const SingleValue: Story = {
   args: {
     options: names,
     children: undefined,
@@ -149,7 +152,7 @@ export const SimpleOptionsSingleValue: Story = {
   },
 };
 
-export const SimpleOptionsMultipleValues: Story = {
+export const MultipleValues: Story = {
   args: {
     options: names,
     children: undefined,
@@ -172,7 +175,7 @@ export const NoOptions: Story = {
   },
 };
 
-export const GroupedOptionsSingleValue: Story = {
+export const GroupedOptions1: Story = {
   args: {},
   render: args => {
     const [value, setValue] = useState<string | null>(null);
@@ -181,7 +184,7 @@ export const GroupedOptionsSingleValue: Story = {
   },
 };
 
-export const GroupedOptionsMultipleValues: Story = {
+export const GroupedOptions2: Story = {
   render: args => {
     const [value, setValue] = useState<Array<string>>([]);
 
@@ -189,7 +192,7 @@ export const GroupedOptionsMultipleValues: Story = {
   },
 };
 
-export const SearchQuerySingleValue: Story = {
+export const SearchQuery1: Story = {
   render: args => {
     const [value, setValue] = useState<string | null>(null);
     const [searchQueryValue, setSearchQueryValue] = useState<string>('');
@@ -215,7 +218,7 @@ export const SearchQuerySingleValue: Story = {
   },
 };
 
-export const SearchQueryMultipleValues: Story = {
+export const SearchQuery2: Story = {
   render: args => {
     const [value, setValue] = useState<Array<string>>([]);
     const [searchQueryValue, setSearchQueryValue] = useState<string>('');
@@ -238,5 +241,62 @@ export const SearchQueryMultipleValues: Story = {
         )}
       </Select>
     );
+  },
+};
+
+export const CustomSelectedValue: Story = {
+  args: {
+    valueComponent: ({ value, multiselect }) =>
+      multiselect ? (
+        <Flex gap='4px' wrap='wrap'>
+          {value.map(v => (
+            <Tag key={v} size='small'>
+              {v}
+            </Tag>
+          ))}
+        </Flex>
+      ) : (
+        value
+      ),
+  },
+  render: args => {
+    const [value, setValue] = useState<Array<string>>([]);
+
+    return <Select<string> {...args} multiselect={true} value={value} setValue={value => setValue(value)} />;
+  },
+};
+
+export const CustomOptions: Story = {
+  args: {
+    options: names,
+    children: undefined,
+    optionComponent: ({ value }) => (
+      <Flex gap='1em' jc='center' ai='center'>
+        <Icon name='user' />
+        <Flex jc='start' flow='column' style={{ padding: '4px 0' }}>
+          <Flex gap='5px' jc='start' ai='baseline'>
+            <Typography noPadding weight='light' variant='small'>
+              First name:
+            </Typography>
+            <Typography noPadding weight='bold' variant='label'>
+              {value.split(' ')[0]}
+            </Typography>
+          </Flex>
+          <Flex gap='5px' jc='start' ai='baseline'>
+            <Typography noPadding weight='light' variant='small'>
+              Last name:
+            </Typography>
+            <Typography noPadding weight='bold' variant='label'>
+              {value.split(' ')[1]}
+            </Typography>
+          </Flex>
+        </Flex>
+      </Flex>
+    ),
+  },
+  render: args => {
+    const [value, setValue] = useState<string | null>(null);
+
+    return <Select<string> {...args} multiselect={false} value={value} setValue={value => setValue(value)} />;
   },
 };

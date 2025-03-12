@@ -8,6 +8,7 @@ import { Controller } from '../controller';
 import { Field } from '../field';
 import { ControllerGeneratorProps } from '../form.types';
 
+import { Option } from './option';
 import { Options } from './options';
 import { SelectStyle } from './select.style';
 import {
@@ -16,16 +17,16 @@ import {
   MultiValue,
   OptionComponentProps,
   SelectItem,
-  SelectValue,
   SingleSelectProps,
   SingleValue,
   UnControlledSelectProps,
   SelectContextValue,
+  ValueComponentProps,
 } from './select.types';
 
 const SelectContext = createContext<SelectContextValue<unknown> | null>(null);
 
-const useSelectContext = <T extends SelectItem>(): SelectContextValue<T> => {
+export const useSelectContext = <T extends SelectItem>(): SelectContextValue<T> => {
   const context = useContext(SelectContext as React.Context<SelectContextValue<T> | null>);
 
   if (!context) {
@@ -33,100 +34,6 @@ const useSelectContext = <T extends SelectItem>(): SelectContextValue<T> => {
   }
 
   return context;
-};
-
-type OptionProps<T extends SelectItem> = {
-  children: React.ReactNode;
-  value: T;
-};
-
-const Option = <T extends SelectItem>({ children, value }: OptionProps<T>) => {
-  const { multiselect, isEqualComparator, maxOptions, selectedValue, setValue, setIsOpen } = useSelectContext<T>();
-
-  const compareValuesIsEqual = useCallback(
-    (a: T, b: T): boolean => {
-      if (['number', 'string'].includes(typeof a)) {
-        return a === b;
-      }
-
-      return !!isEqualComparator && isEqualComparator(a, b);
-    },
-    [isEqualComparator],
-  );
-
-  const toggleOption = useCallback(
-    (isSelected: boolean) => {
-      if (isSelected) {
-        if (multiselect) {
-          if (maxOptions && Array.isArray(selectedValue) && selectedValue.length >= maxOptions) {
-            return;
-          }
-
-          setValue([...selectedValue, value]);
-        } else {
-          setValue(value);
-          setIsOpen(false);
-        }
-      } else {
-        if (multiselect) {
-          setValue(selectedValue.filter(item => !compareValuesIsEqual(item, value)));
-        } else {
-          setValue(null);
-          setIsOpen(false);
-        }
-      }
-    },
-    [multiselect, maxOptions, selectedValue, setValue, value, setIsOpen, compareValuesIsEqual],
-  );
-
-  const isSelected = useMemo(() => {
-    if (selectedValue === '' || selectedValue === null) {
-      return false;
-    }
-
-    if (!Array.isArray(selectedValue)) {
-      return compareValuesIsEqual(value, selectedValue);
-    }
-
-    if (['number', 'string'].includes(typeof value)) {
-      return selectedValue.includes(value);
-    }
-
-    return selectedValue.some(item => !!isEqualComparator && isEqualComparator(value, item));
-  }, [compareValuesIsEqual, isEqualComparator, selectedValue, value]);
-
-  const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent) => {
-      if (['Enter', ' '].includes(e.key)) {
-        e.preventDefault();
-
-        toggleOption(!(isSelected && multiselect));
-      }
-    },
-    [toggleOption, isSelected, multiselect],
-  );
-
-  const optionLabel = useMemo(() => {
-    if (typeof children === 'string') {
-      return (
-        <Typography data-value={value} noPadding variant='label' nowrap>
-          {children}
-        </Typography>
-      );
-    }
-
-    return children;
-  }, [children, value]);
-
-  return (
-    <Menu.Option
-      label={optionLabel}
-      onKeyDown={handleKeyDown}
-      asCheckbox={multiselect}
-      selected={isSelected}
-      onClick={(selected: boolean) => toggleOption(multiselect ? selected : true)}
-    />
-  );
 };
 
 type OptionLabelProps = {
@@ -149,10 +56,33 @@ const OptionLabel = ({ children }: OptionLabelProps) => {
   return <Menu.GroupLabel>{labelComponent}</Menu.GroupLabel>;
 };
 
+const DefaultOption = <T extends SelectItem>({ value }: OptionComponentProps<T>) => {
+  return (
+    <Typography variant='label' nowrap>
+      {typeof value === 'string' || typeof value === 'number' ? value : JSON.stringify(value)}
+    </Typography>
+  );
+};
+
+const DefaultValue = <T extends SelectItem>({ value, multiselect }: ValueComponentProps<T>) => {
+  if (multiselect) {
+    return (
+      <Typography noPadding nowrap variant='label'>
+        {`${value.length} item${value.length === 1 ? '' : 's'} selected`}
+      </Typography>
+    );
+  }
+
+  if (value === null) {
+    return null;
+  }
+
+  return <DefaultOption value={value} />;
+};
+
 export const Select = <T extends SelectItem>({
   // Select props
   options,
-  renderValue,
   isEqualComparator,
   searchQueryValue,
   searchQueryPlaceholder,
@@ -162,6 +92,8 @@ export const Select = <T extends SelectItem>({
   hasNextPage = false,
   emptyMessage = 'No options to select',
   multiselect,
+  optionComponent: OptionComponent = DefaultOption,
+  valueComponent: ValueComponent = DefaultValue,
   maxOptions,
   children,
   // Shared props
@@ -205,47 +137,6 @@ export const Select = <T extends SelectItem>({
     [disabled],
   );
 
-  const OptionComponent = useCallback(
-    ({ data }: OptionComponentProps<T>) => (
-      <Typography noPadding variant='label' nowrap>
-        {renderValue(data)}
-      </Typography>
-    ),
-    [renderValue],
-  );
-
-  const renderMultipleValue = useCallback(
-    (values: Array<T>): React.ReactNode => {
-      if (maxOptions) {
-        const limit = Math.min(maxOptions, options.length);
-
-        return `${values.length}/${limit} item${values.length === 1 ? '' : 's'} selected`;
-      }
-
-      return `${values.length} item${values.length === 1 ? '' : 's'} selected`;
-    },
-    [maxOptions, options.length],
-  );
-
-  const renderSingleValue = useCallback(
-    (value: SelectValue<T>): React.ReactNode => {
-      if (value === null) {
-        return null;
-      }
-
-      if (Array.isArray(value)) {
-        return (
-          <Typography noPadding nowrap variant='label'>
-            {renderMultipleValue(value)}
-          </Typography>
-        );
-      }
-
-      return <OptionComponent data={value} />;
-    },
-    [OptionComponent, renderMultipleValue],
-  );
-
   const clearOption = useCallback(
     (e: React.MouseEvent) => {
       e.stopPropagation();
@@ -269,9 +160,9 @@ export const Select = <T extends SelectItem>({
 
   const renderedOptions = useMemo<React.ReactNode>(() => {
     if (!children)
-      return options.map((option, key) => (
-        <Select.Option value={option} key={key}>
-          <OptionComponent data={option} />
+      return options.map((value, key) => (
+        <Select.Option value={value} key={key}>
+          <OptionComponent value={value} />
         </Select.Option>
       ));
 
@@ -308,7 +199,9 @@ export const Select = <T extends SelectItem>({
                 onFocus && onFocus(e);
               }}
             >
-              {(valueNonEmpty && renderSingleValue(value)) || (
+              {valueNonEmpty ? (
+                <ValueComponent {...(multiselect ? { value, multiselect } : { value: value })} />
+              ) : (
                 <Typography variant='label' noPadding nowrap>
                   {placeholder}
                 </Typography>
@@ -328,7 +221,7 @@ export const Select = <T extends SelectItem>({
             searchQueryValue={searchQueryValue}
             onSearchQuery={onSearchQuery}
             searchQueryPlaceholder={searchQueryPlaceholder}
-            optionsLength={Array.isArray(renderedOptions) ? renderedOptions.length : 0}
+            optionsLength={Array.isArray(renderedOptions) ? renderedOptions.length : renderedOptions ? 1 : 0}
             height={height}
             searchQueryClassName={searchQueryClassName}
             searchQueryStyle={searchQueryStyle}
