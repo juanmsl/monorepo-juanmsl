@@ -1,4 +1,5 @@
 import React, { createContext, useCallback, useContext, useMemo, useRef, useState } from 'react';
+import { useTheme } from 'styled-components';
 
 import { Icon } from '../../icon';
 import { InfinityScroll } from '../../infinity-scroll';
@@ -10,7 +11,7 @@ import { ControllerGeneratorProps } from '../form.types';
 
 import { Option } from './option';
 import { Options } from './options';
-import { SelectStyle } from './select.style';
+import { OptionsMenuStyle, SelectStyle } from './select.style';
 import {
   ControllerGeneratorSelectProps,
   MultiSelectProps,
@@ -23,6 +24,8 @@ import {
   SelectContextValue,
   ValueComponentProps,
 } from './select.types';
+
+import { useMediaQuery } from '@polpo/hooks';
 
 const SelectContext = createContext<SelectContextValue<unknown> | null>(null);
 
@@ -77,7 +80,11 @@ const DefaultValue = <T extends SelectItem>({ value, multiselect }: ValueCompone
     return null;
   }
 
-  return <DefaultOption value={value} />;
+  return (
+    <Typography noPadding variant='label' nowrap>
+      {typeof value === 'string' || typeof value === 'number' ? value : JSON.stringify(value)}
+    </Typography>
+  );
 };
 
 export const Select = <T extends SelectItem>({
@@ -126,6 +133,9 @@ export const Select = <T extends SelectItem>({
   // Field props
   ...fieldProps
 }: UnControlledSelectProps<T>) => {
+  const theme = useTheme();
+  const modalRef = useRef<HTMLElement>(null);
+  const isMobile = useMediaQuery(`(max-width: ${theme.constants.breakpoints.mobileL})`);
   const id = useMemo(() => crypto.randomUUID(), []);
   const containerRef = useRef<HTMLElement>(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -214,27 +224,39 @@ export const Select = <T extends SelectItem>({
             )}
             <Icon className={`select-caret-icon ${isOpen && 'is-select-open'}`} name='caret-down' />
           </section>
-          <Options
-            containerRef={containerRef}
+          <OptionsMenuStyle
+            id='form-select'
             isOpen={isOpen}
             onClose={() => openSelect(false)}
-            searchQueryValue={searchQueryValue}
-            onSearchQuery={onSearchQuery}
-            searchQueryPlaceholder={searchQueryPlaceholder}
-            optionsLength={Array.isArray(renderedOptions) ? renderedOptions.length : renderedOptions ? 1 : 0}
-            height={height}
-            searchQueryClassName={searchQueryClassName}
-            searchQueryStyle={searchQueryStyle}
+            backdrop={isMobile ? 'blur' : 'transparent'}
+            opacity={isMobile ? 0.8 : 0.4}
+            position={isMobile ? 'center' : 'bottom'}
+            offset={5}
+            modalRef={modalRef}
+            windowOffset={10}
+            transitionDuration={200}
+            containerRef={isMobile ? undefined : containerRef}
+            contentClassName='menu-content'
           >
-            <InfinityScroll
-              isLoading={isLoading}
-              hasNextPage={hasNextPage}
-              loadMore={loadMore}
-              emptyMessage={emptyMessage}
+            <Options
+              containerRef={containerRef}
+              onSearchQuery={onSearchQuery}
+              searchQueryValue={searchQueryValue}
+              searchQueryPlaceholder={searchQueryPlaceholder}
+              searchQueryClassName={searchQueryClassName}
+              searchQueryStyle={searchQueryStyle}
+              height={height}
             >
-              {renderedOptions}
-            </InfinityScroll>
-          </Options>
+              <InfinityScroll
+                isLoading={isLoading}
+                hasNextPage={hasNextPage}
+                loadMore={loadMore}
+                emptyMessage={emptyMessage}
+              >
+                {renderedOptions}
+              </InfinityScroll>
+            </Options>
+          </OptionsMenuStyle>
         </SelectStyle>
       </Field>
     </SelectContext.Provider>

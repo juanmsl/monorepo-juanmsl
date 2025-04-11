@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { ColorVariants } from '../../../core/variants';
+import { ColorVariants, SizeVariants } from '../../../core/variants';
 import { SectionLayout } from '../../../layouts';
 import { IconNames } from '../../icon';
 import { UnControlledComponentArgTypes } from '../form.stories.types';
@@ -16,6 +16,7 @@ const meta: Meta<typeof Checkbox> = {
     ...UnControlledComponentArgTypes,
     placeholder: { table: { disable: true } },
     label: { control: 'text' },
+    size: { control: 'inline-radio', options: Object.values(SizeVariants) },
     icon: { options: [undefined, ...IconNames.toSorted()] },
     color: { control: { type: 'inline-radio', options: Object.values(ColorVariants) } },
   },

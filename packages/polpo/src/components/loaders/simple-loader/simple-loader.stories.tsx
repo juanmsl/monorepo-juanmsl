@@ -1,4 +1,6 @@
-import { SimpleLoader } from './simple-loader';
+import { Grid } from '../../../layouts';
+
+import { LoaderIcons, SimpleLoader } from './simple-loader';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -6,11 +8,14 @@ const meta: Meta<typeof SimpleLoader> = {
   title: 'SimpleLoader',
   component: SimpleLoader,
   argTypes: {
-    spinDuration: { control: { type: 'range', min: 100, max: 1000, step: 50 } },
+    icon: {
+      control: {
+        type: 'radio',
+        options: Object.values(LoaderIcons),
+      },
+    },
   },
-  args: {
-    spinDuration: 500,
-  },
+  args: {},
 };
 
 export default meta;
@@ -18,4 +23,20 @@ type Story = StoryObj<typeof SimpleLoader>;
 
 export const Default: Story = {
   args: {},
+};
+
+export const All: Story = {
+  argTypes: {
+    icon: { control: false },
+  },
+  parameters: {
+    layout: 'padded',
+  },
+  render: args => (
+    <Grid gtc='repeat(auto-fit, 100px)' gtr='auto auto' pc='center' gap='3em'>
+      {Object.values(LoaderIcons).map(icon => (
+        <SimpleLoader key={icon} {...args} icon={icon} />
+      ))}
+    </Grid>
+  ),
 };

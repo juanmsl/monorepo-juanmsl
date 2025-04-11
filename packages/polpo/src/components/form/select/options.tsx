@@ -1,89 +1,66 @@
 import React, { RefObject, useCallback, useEffect, useRef, useState } from 'react';
 import { useTheme } from 'styled-components';
 
-import { Menu } from '../../modals/menu';
-
-import { OptionsHeaderStyle } from './select.style';
+import { OptionsHeaderStyle, OptionsStyle } from './select.style';
 import { OptionsProps } from './select.types';
 
 import { useEventListener, useMediaQuery, useResizeObserver } from '@polpo/hooks';
 
 type UseDynamicHeight = {
   height: number;
+  minHeight: number;
   containerRef: RefObject<HTMLElement>;
-  modalRef: RefObject<HTMLElement>;
-  optionsGroupRef: RefObject<HTMLElement>;
-  optionsLength: number;
   offset: number;
   windowOffset: number;
 };
 
 const useDynamicHeight = ({
   height,
+  minHeight: defaultMinHeight,
   containerRef,
-  modalRef,
-  optionsGroupRef,
-  optionsLength,
   offset,
   windowOffset,
 }: UseDynamicHeight) => {
-  const [maxHeight, setMaxHeight] = useState<string>(`${height}px`);
-  const [minHeight, setMinHeight] = useState<string | undefined>(undefined);
+  const [h, setH] = useState<string | undefined>(undefined);
 
   const getMaxHeight = useCallback(() => {
     const containerBottom = containerRef.current?.getBoundingClientRect().bottom ?? 0;
-    const modalTop = modalRef.current?.getBoundingClientRect().top ?? 0;
-    const modalHeight = modalRef.current?.getBoundingClientRect().height ?? 0;
-    const optionsHeight = optionsGroupRef.current?.scrollHeight ?? 0;
 
-    const maxHeight = Math.min(window.innerHeight - containerBottom - offset - windowOffset, height);
-    const newHeight = Math.min(window.innerHeight - modalTop - offset - windowOffset, height);
-    const minHeight =
-      optionsLength <= 1
-        ? modalHeight
-        : optionsHeight > height
-          ? Math.min(100, window.innerHeight - windowOffset * 2)
-          : 100;
+    const heightBottom = window.innerHeight - containerBottom - windowOffset - offset - 5;
+    const heightTop = window.innerHeight - windowOffset * 3;
+    const heightCalculated = heightBottom < defaultMinHeight ? heightTop : heightBottom;
+    const maxHeight = Math.min(heightCalculated, height);
+    const minHeight = Math.max(maxHeight, defaultMinHeight);
 
-    setMaxHeight(`${Math.round(maxHeight > 150 ? maxHeight : newHeight)}px`);
-    setMinHeight(`${Math.round(minHeight)}px`);
-  }, [containerRef, height, modalRef, offset, optionsGroupRef, optionsLength, windowOffset]);
+    setH(`${Math.round(minHeight)}px`);
+  }, [containerRef, windowOffset, offset, defaultMinHeight, height]);
+
+  useEffect(() => {
+    getMaxHeight();
+  }, [getMaxHeight]);
 
   useResizeObserver(containerRef, getMaxHeight);
   useEventListener('resize', getMaxHeight);
 
-  return { maxHeight, minHeight };
+  return { h };
 };
 
 export const Options = ({
-  onSearchQuery,
+  children,
   searchQueryValue,
   searchQueryPlaceholder = 'Search option',
   searchQueryClassName = '',
   searchQueryStyle = {},
-  isOpen,
-  optionsLength,
+  onSearchQuery,
   containerRef,
-  onClose,
   height = 300,
-  children,
 }: OptionsProps) => {
-  const theme = useTheme();
+  const optionsGroupContainerRef = useRef<HTMLDivElement>(null);
   const optionsGroupRef = useRef<HTMLUListElement>(null);
-  const modalRef = useRef<HTMLElement>(null);
-  const modalContainerRef = useRef<HTMLElement>(null);
-  const isMobile = useMediaQuery(`(max-width: ${theme.constants.breakpoints.mobileL})`);
   const [internalSearchQuery, setInternalSearchQuery] = useState('');
   const searchInputRef = useRef<HTMLInputElement>(null);
-
-  const handleSearchQuery = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const { value } = e.target;
-      onSearchQuery && onSearchQuery(value);
-      setInternalSearchQuery(value);
-    },
-    [onSearchQuery],
-  );
+  const theme = useTheme();
+  const isMobile = useMediaQuery(`(max-width: ${theme.constants.breakpoints.mobileL})`);
 
   useEventListener('keydown', e => {
     if (['ArrowDown', 'ArrowUp'].includes(e.code)) {
@@ -91,7 +68,7 @@ export const Options = ({
       const focusedItem = document.activeElement;
       const isListItem = focusedItem?.tagName === 'LI';
 
-      if (isOpen && isListItem) {
+      if (isListItem) {
         switch (e.code) {
           case 'ArrowDown':
             (focusedItem?.nextSibling as HTMLElement)?.focus();
@@ -106,43 +83,47 @@ export const Options = ({
     }
   });
 
-  useEffect(() => {
-    if (isOpen) {
-      if (searchInputRef.current) {
-        searchInputRef.current.focus();
-      } else {
-        modalContainerRef.current?.focus();
-      }
-    }
-  }, [isOpen, modalContainerRef]);
+  const handleSearchQuery = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { value } = e.target;
+      onSearchQuery && onSearchQuery(value);
+      setInternalSearchQuery(value);
+    },
+    [onSearchQuery],
+  );
 
-  const { minHeight, maxHeight } = useDynamicHeight({
+  useEffect(() => {
+    if (searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, []);
+
+  const { h } = useDynamicHeight({
     height,
+    minHeight: 150,
     containerRef,
-    modalRef,
-    optionsGroupRef,
-    optionsLength,
     offset: 5,
     windowOffset: 10,
   });
 
+  const [shouldUseAuto, setShouldUseAuto] = useState(false);
+
+  const calculateHeight = useCallback(() => {
+    const optionsContainerHeight =
+      Math.round(optionsGroupContainerRef.current?.getBoundingClientRect().height ?? 0) + 2;
+    const optionsHeight = Math.round(optionsGroupRef.current?.scrollHeight ?? 0);
+
+    setShouldUseAuto(optionsContainerHeight >= optionsHeight);
+  }, []);
+
+  useEffect(calculateHeight, [calculateHeight]);
+  useResizeObserver(optionsGroupContainerRef, calculateHeight);
+  useResizeObserver(optionsGroupRef, calculateHeight);
+  useEventListener('resize', calculateHeight);
+
   return (
-    <Menu
-      id='form-select'
-      isOpen={isOpen}
-      onClose={onClose}
-      backdrop={isMobile ? 'blur' : 'transparent'}
-      opacity={isMobile ? 0.8 : 0.4}
-      position={isMobile ? 'center' : 'bottom'}
-      offset={5}
-      windowOffset={10}
-      modalRef={modalRef}
-      menuContentRef={optionsGroupRef}
-      transitionDuration={200}
-      containerRef={isMobile ? undefined : containerRef}
-      contentStyle={{
-        overflow: 'initial',
-      }}
+    <OptionsStyle
+      className={onSearchQuery ? 'with-search-query' : ''}
       style={
         isMobile
           ? {
@@ -150,8 +131,8 @@ export const Options = ({
               width: window.innerWidth - 100,
             }
           : {
-              minHeight,
-              maxHeight,
+              height: shouldUseAuto ? 'auto' : h,
+              maxHeight: height,
               width: containerRef.current?.offsetWidth ?? 'auto',
             }
       }
@@ -170,7 +151,11 @@ export const Options = ({
           />
         </OptionsHeaderStyle>
       )}
-      {children}
-    </Menu>
+      <section className='select-options-list-container' ref={optionsGroupContainerRef}>
+        <ul className='select-options-list' ref={optionsGroupRef}>
+          {children}
+        </ul>
+      </section>
+    </OptionsStyle>
   );
 };

@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { DefaultTheme, useTheme } from 'styled-components';
 
-import { ColorVariants } from '../../../core/variants';
+import { ColorVariants, SizeVariants } from '../../../core/variants';
 import { Icon, IconNameT } from '../../icon';
 import { Typography } from '../../typography';
 import { Controller } from '../controller';
@@ -30,11 +30,18 @@ const getCheckboxColor = (theme: DefaultTheme, color: `${ColorVariants}`): Check
   return checkboxColors[color] ?? checkboxColors[ColorVariants.Primary];
 };
 
+const CheckboxSizeMap = {
+  [SizeVariants.Small]: 1,
+  [SizeVariants.Medium]: 1.2,
+  [SizeVariants.Large]: 1.4,
+};
+
 type CheckboxProps = {
   label?: React.ReactNode;
   placeholder?: never;
   icon?: IconNameT;
   color?: `${ColorVariants}`;
+  size?: `${SizeVariants}`;
 };
 
 export const Checkbox = ({
@@ -52,6 +59,7 @@ export const Checkbox = ({
   icon = 'checkmark',
   label,
   color = ColorVariants.Primary,
+  size = SizeVariants.Medium,
   /*
    * isDirty = false,
    * isTouched = false,
@@ -77,7 +85,10 @@ export const Checkbox = ({
       style={style}
       onClick={e => e.stopPropagation()}
     >
-      <CheckboxStyle className={value ? 'is-checked' : ''}>
+      <CheckboxStyle
+        className={value ? 'is-checked' : ''}
+        style={{ fontSize: `${CheckboxSizeMap[size] ?? CheckboxSizeMap[SizeVariants.Medium]}em` }}
+      >
         <CheckboxFillStyle>
           <Icon name={icon} className='checkbox-icon' />
         </CheckboxFillStyle>

@@ -6,6 +6,7 @@
     "rootDir": ".",
     "outDir": "dist",
     "baseUrl": "src",
+    "resolveJsonModule": true,
     "paths": {
       "@polpo/helpers": ["./helpers"],
       "@polpo/hooks": ["./hooks"]

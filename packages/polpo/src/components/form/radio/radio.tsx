@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { DefaultTheme, useTheme } from 'styled-components';
 
-import { ColorVariants } from '../../../core/variants';
+import { ColorVariants, SizeVariants } from '../../../core/variants';
 import { Typography } from '../../typography';
 import { Controller } from '../controller';
 import { ControllerGeneratorProps, UnControlledComponentProps } from '../form.types';
@@ -24,11 +24,18 @@ const getRadioColor = (theme: DefaultTheme, color: `${ColorVariants}`): string =
   return radioColors[color] ?? radioColors[ColorVariants.Primary];
 };
 
+const RadioSizeMap = {
+  [SizeVariants.Small]: 1,
+  [SizeVariants.Medium]: 1.2,
+  [SizeVariants.Large]: 1.4,
+};
+
 type RadioProps = {
   label?: string;
   radioValue: string;
   placeholder?: never;
   color?: `${ColorVariants}`;
+  size?: `${SizeVariants}`;
 };
 
 export const Radio = ({
@@ -46,6 +53,7 @@ export const Radio = ({
   radioValue,
   label,
   color = ColorVariants.Primary,
+  size = SizeVariants.Medium,
   /*
    * isDirty = false,
    * isTouched = false,
@@ -63,7 +71,10 @@ export const Radio = ({
 
   return (
     <RadioContainerStyle $color={getRadioColor(theme, color)} className={className} style={style}>
-      <RadioStyle className={radioValue === value ? 'is-checked' : ''}>
+      <RadioStyle
+        className={radioValue === value ? 'is-checked' : ''}
+        style={{ fontSize: `${RadioSizeMap[size] ?? RadioSizeMap[SizeVariants.Medium]}em` }}
+      >
         <RadioFillStyle />
         <input
           id={id}

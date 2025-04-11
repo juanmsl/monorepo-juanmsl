@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useContext, useState } from 'react';
+import React, { createContext, useCallback, useContext, useMemo, useState } from 'react';
 
 import { Line } from '../line';
 
@@ -6,7 +6,7 @@ import { AccordionStyle } from './accordion.style';
 
 type AccordionContextState = {
   toggleItem: (id: string) => void;
-  openedItem: string;
+  openedItems: Array<string>;
 };
 
 const AccordionContext = createContext<AccordionContextState | null>(null);
@@ -18,11 +18,11 @@ export const useAccordionItem = (id: string): [boolean, () => void] => {
     throw new Error('You cant use this component out off an Accordion component');
   }
 
-  const { toggleItem, openedItem } = context;
+  const { toggleItem, openedItems } = context;
 
   const toggle = () => toggleItem(id);
 
-  return [openedItem === id, toggle];
+  return [openedItems.includes(id), toggle];
 };
 
 type AccordionProps = {
@@ -30,20 +30,38 @@ type AccordionProps = {
   className?: string;
   style?: React.CSSProperties;
   noSeparators?: boolean;
+  multiple?: boolean;
+  defaultOpened?: Array<string> | string;
 };
 
-export const Accordion = ({ children, className = '', noSeparators, style = {} }: AccordionProps) => {
-  const [openedItem, setOpenedItem] = useState<string>('');
+export const Accordion = ({
+  children,
+  className = '',
+  noSeparators,
+  multiple,
+  style = {},
+  defaultOpened = [],
+}: AccordionProps) => {
+  const [openedItems, setOpenedItems] = useState<{ [index: string]: boolean }>(() => {
+    return (Array.isArray(defaultOpened) ? defaultOpened : [defaultOpened]).reduce((acc, id) => {
+      return typeof id === 'string' ? { ...acc, [id]: true } : acc;
+    }, {});
+  });
 
-  const toggleItem = useCallback((id: string) => {
-    setOpenedItem(prev => (prev === id ? '' : id));
-  }, []);
+  const toggleItem = useCallback(
+    (id: string) => {
+      setOpenedItems(prev => ({ ...(multiple ? prev : {}), [id]: !prev[id] }));
+    },
+    [multiple],
+  );
+
+  const openedItemsIDs = useMemo(() => Object.keys(openedItems).filter(id => openedItems[id]), [openedItems]);
 
   return (
     <AccordionContext.Provider
       value={{
         toggleItem,
-        openedItem,
+        openedItems: openedItemsIDs,
       }}
     >
       <AccordionStyle className={className} style={style}>

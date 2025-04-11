@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { Menu } from '../../modals';
+
 export const SelectStyle = styled.section`
   cursor: pointer;
 
@@ -66,12 +68,44 @@ export const SelectStyle = styled.section`
   }
 `;
 
+export const OptionsMenuStyle = styled(Menu)`
+  .menu-content {
+    gap: 0;
+    display: block;
+    height: auto;
+    overflow: initial;
+  }
+`;
+
+export const OptionsStyle = styled.section`
+  gap: 0;
+  display: grid;
+  grid-template-rows: 1fr;
+  height: 100%;
+  overflow: auto;
+
+  &.with-search-query {
+    grid-template-rows: auto 1fr;
+  }
+
+  .select-options-list-container {
+    height: 100%;
+    overflow: auto;
+  }
+
+  .select-options-list {
+    display: grid;
+    gap: 0.2em;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    align-content: start;
+  }
+`;
+
 export const OptionsHeaderStyle = styled.section`
   background: ${props => props.theme.colors.background.main};
   padding: 2px 5px;
-  position: sticky;
-  top: 0;
-  z-index: 15;
   border-bottom: 1px solid ${props => props.theme.colors.border.main};
 
   .input-search {

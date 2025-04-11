@@ -1,14 +1,17 @@
 import { useState } from 'react';
 
-import { Flex } from '../../../layouts';
+import { Flex, Grid } from '../../../layouts';
 import { Icon } from '../../icon';
+import { Image } from '../../image';
 import { Menu } from '../../modals';
 import { Tag } from '../../tag';
 import { Typography } from '../../typography';
 import { FieldSharedArgs, FieldSharedArgTypes } from '../field/field.stories';
 import { ContainerDecorator, UnControlledComponentArgTypes } from '../form.stories.types';
 
+import DataJson from './data.stories.json';
 import { Select } from './select';
+import { OptionComponentProps } from './select.types';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -139,6 +142,7 @@ const meta: Meta<typeof Select<string>> = {
 
 export default meta;
 type Story = StoryObj<typeof Select<string>>;
+type StoryItem = StoryObj<typeof Select<DataItem>>;
 
 export const SingleValue: Story = {
   args: {
@@ -298,5 +302,68 @@ export const CustomOptions: Story = {
     const [value, setValue] = useState<string | null>(null);
 
     return <Select<string> {...args} multiselect={false} value={value} setValue={value => setValue(value)} />;
+  },
+};
+
+type DataItem = {
+  isActive: boolean;
+  picture: string;
+  age: number;
+  eyeColor: string;
+  firstName: string;
+  lastName: string;
+  gender: string;
+};
+
+const OptionComponent = ({ value }: OptionComponentProps<DataItem>) => (
+  <Grid gap='1em' jc='start' gtc='48px 1fr' ai='center'>
+    <Grid ai='center' style={{ position: 'relative', padding: '4px' }}>
+      <Image src={value.picture} width={40} height={40} />
+      <span
+        style={{
+          display: 'block',
+          width: 15,
+          height: 15,
+          borderRadius: '50%',
+          background: value.eyeColor,
+          position: 'absolute',
+          top: 0,
+          right: 0,
+        }}
+      />
+    </Grid>
+    <Grid jc='start'>
+      <Typography noPadding weight='bold' variant='label'>
+        {value.firstName} {value.lastName}
+      </Typography>
+      <Typography noPadding weight='light' variant='small'>
+        {value.age} years
+      </Typography>
+    </Grid>
+  </Grid>
+);
+
+export const Custom: StoryItem = {
+  args: {
+    options: DataJson,
+    children: undefined,
+    valueComponent: ({ value, multiselect }) => {
+      if (multiselect) {
+        return value.length;
+      }
+
+      if (value === null) {
+        return null;
+      }
+
+      return <OptionComponent value={value} />;
+    },
+    isEqualComparator: (a, b) => a.firstName === b.firstName && a.lastName === b.lastName,
+    optionComponent: OptionComponent,
+  },
+  render: args => {
+    const [value, setValue] = useState<DataItem | null>(null);
+
+    return <Select<DataItem> {...args} multiselect={false} value={value} setValue={value => setValue(value)} />;
   },
 };

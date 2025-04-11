@@ -12,8 +12,8 @@ export const RadioStyle = styled.section`
   border-radius: 50%;
   background: ${props => props.theme.colors.background.paper};
   transition: all 300ms ease;
-  width: 1.4em;
-  height: 1.4em;
+  width: 1em;
+  height: 1em;
   outline: 2px solid;
   display: flex;
   position: relative;

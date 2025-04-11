@@ -94,6 +94,7 @@ const MenuOption = ({
           setValue={n => onClick(n)}
           name='option'
           style={{ pointerEvents: 'none' }}
+          size='small'
           label={
             <>
               {icon !== undefined && <Icon className='option-icon' name={icon} />}
