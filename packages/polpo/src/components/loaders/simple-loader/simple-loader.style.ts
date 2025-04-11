@@ -6,8 +6,7 @@ export const SimpleLoaderStyle = styled.section`
   display: grid;
   place-content: center;
 
-  .simple-loader-spinner {
-    animation: spin linear infinite;
+  svg {
     font-size: 3em;
   }
 `;

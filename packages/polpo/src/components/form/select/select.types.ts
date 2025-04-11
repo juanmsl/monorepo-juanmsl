@@ -86,14 +86,11 @@ export type ControllerGeneratorSelectProps<T extends SelectItem> =
 // SELECT OPTIONS
 
 export type OptionsProps = {
-  isOpen: boolean;
-  onClose: () => void;
   onSearchQuery?: (value: string) => void;
   searchQueryValue?: string;
   searchQueryPlaceholder?: string;
   searchQueryClassName?: string;
   searchQueryStyle?: React.CSSProperties;
-  optionsLength: number;
   containerRef: React.RefObject<HTMLElement>;
   height?: number;
   children?: React.ReactNode;

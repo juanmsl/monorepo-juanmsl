@@ -202,7 +202,7 @@ export const LightTheme: PaletteThemeEntity = {
   },
   tertiary: {
     main: '#49e9fb',
-    contrast: '#333333',
+    contrast: '#FFFFFF',
     light: '#a2edff',
     dark: '#1fa5b5',
   },

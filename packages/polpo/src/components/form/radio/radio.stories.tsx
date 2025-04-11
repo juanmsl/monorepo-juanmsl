@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { ColorVariants } from '../../../core/variants';
+import { ColorVariants, SizeVariants } from '../../../core/variants';
 import { Grid, SectionLayout } from '../../../layouts';
 import { UnControlledComponentArgTypes } from '../form.stories.types';
 
@@ -15,6 +15,7 @@ const meta: Meta<typeof Radio> = {
     ...UnControlledComponentArgTypes,
     label: { control: 'text' },
     radioValue: { control: false },
+    size: { control: 'inline-radio', options: Object.values(SizeVariants) },
     placeholder: { table: { disable: true } },
     color: { control: { type: 'inline-radio', options: Object.values(ColorVariants) } },
   },

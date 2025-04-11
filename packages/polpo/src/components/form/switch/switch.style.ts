@@ -1,14 +1,20 @@
 import styled, { css } from 'styled-components';
 
-type SwitchStyleProps = {
+export type SwitchColorStyles = {
+  $color: string;
+  $colorDark: string;
+  $colorContrast: string;
+};
+
+type SwitchStyleProps = SwitchColorStyles & {
   $padding: number;
   $width: number;
   $dotSize: number;
 };
 
 export const SwitchStyle = styled.section<SwitchStyleProps>(
-  ({ $width, $dotSize, $padding, theme }) => css`
-    width: ${$width}em;
+  ({ $width, $dotSize, $padding, theme, $color, $colorDark, $colorContrast }) => css`
+    width: ${$width + $padding * 2}em;
     border-radius: 100em;
     background: ${theme.colors.background.paper};
     padding: ${$padding}em;
@@ -19,7 +25,7 @@ export const SwitchStyle = styled.section<SwitchStyleProps>(
       width: ${$dotSize}em;
       height: ${$dotSize}em;
       border-radius: 100em;
-      background: ${theme.colors.white};
+      background: ${$color};
       display: block;
       transition: all 300ms ease;
       margin-left: 0;
@@ -27,31 +33,37 @@ export const SwitchStyle = styled.section<SwitchStyleProps>(
       z-index: 1;
     }
 
-    .switch-left-icon,
-    .switch-right-icon {
+    .switch-icon {
+      cursor: pointer;
+      display: block;
+    }
+
+    .switch-internal-left-icon,
+    .switch-internal-right-icon {
       width: ${$dotSize}em;
       height: ${$dotSize}em;
       position: absolute;
       top: ${$padding}em;
       display: grid;
       place-content: center;
-      color: ${theme.colors.white};
+      color: ${$colorContrast};
       transition: all 300ms ease;
     }
 
-    .switch-left-icon {
+    .switch-internal-left-icon {
       left: ${$padding}em;
     }
 
-    .switch-right-icon {
+    .switch-internal-right-icon {
       right: ${$padding}em;
     }
 
     &.is-checked {
-      background: ${theme.colors.primary.main};
+      background: ${$color};
 
       .switch-dot {
-        margin-left: ${$width - $dotSize - $padding * 2}em;
+        margin-left: ${$width - $dotSize}em;
+        background: color-mix(in srgb, ${$color}, ${$colorContrast} 75%);
       }
     }
 
@@ -62,13 +74,13 @@ export const SwitchStyle = styled.section<SwitchStyleProps>(
         background: ${theme.colors.text.disabled};
       }
 
-      .switch-left-icon,
-      .switch-right-icon {
+      .switch-internal-left-icon,
+      .switch-internal-right-icon {
         color: ${theme.colors.text.disabled};
       }
 
       &.is-checked {
-        background: ${theme.colors.primary.dark};
+        background: ${$colorDark};
       }
     }
 
@@ -85,36 +97,41 @@ export const SwitchStyle = styled.section<SwitchStyleProps>(
   `,
 );
 
-type SwitchContainerStyle = {
-  $padding: number;
+type SwitchContainerStyle = Omit<SwitchColorStyles, '$colorDark'> & {
   $width: number;
   $dotHoverSize: number;
+  $dotSize: number;
 };
 
 export const SwitchContainerStyle = styled.section<SwitchContainerStyle>(
-  ({ $padding, $width, $dotHoverSize }) => css`
+  ({ $width, $dotHoverSize, $dotSize, $color, $colorContrast }) => css`
     display: flex;
     align-items: center;
-    gap: 1em;
+    gap: 0.5em;
     width: fit-content;
 
     .switch-label {
       cursor: pointer;
       user-select: none;
+      padding: 0 0.5em;
     }
 
-    ${SwitchStyle}:hover .switch-dot {
-      box-shadow: 0 0 0 0.4em ${props => props.theme.colors.primary.main}88;
+    ${SwitchStyle}:not(:has(.is-readonly, input:disabled)):hover .switch-dot,
+    &:has(.switch-icon:hover) ${SwitchStyle}:not(:has(.is-readonly, input:disabled)) .switch-dot,
+    &:has(.switch-label:hover) ${SwitchStyle}:not(:has(.is-readonly, input:disabled)) .switch-dot {
+      box-shadow: 0 0 0 ${0.3 * $dotSize}em color-mix(in srgb, ${$color} 50%, ${$colorContrast});
     }
 
-    ${SwitchStyle}:active .switch-dot,
-    &:has(.switch-label:active) .switch-dot {
+    ${SwitchStyle}:not(:has(.is-readonly, input:disabled)):active .switch-dot,
+    &:has(.switch-icon:active) ${SwitchStyle}:not(:has(.is-readonly, input:disabled)) .switch-dot,
+    &:has(.switch-label:active) ${SwitchStyle}:not(:has(.is-readonly, input:disabled)) .switch-dot {
       width: ${$dotHoverSize}em;
     }
 
-    ${SwitchStyle}.is-checked:active .switch-dot,
-    &:has(.switch-label:active) ${SwitchStyle}.is-checked .switch-dot {
-      margin-left: ${$width - $dotHoverSize - $padding * 2}em;
+    ${SwitchStyle}:not(:has(.is-readonly, input:disabled)).is-checked:active .switch-dot,
+    &:has(.switch-icon:active) ${SwitchStyle}:not(:has(.is-readonly, input:disabled)).is-checked .switch-dot,
+    &:has(.switch-label:active) ${SwitchStyle}:not(:has(.is-readonly, input:disabled)).is-checked .switch-dot {
+      margin-left: ${$width - $dotHoverSize}em;
     }
   `,
 );
