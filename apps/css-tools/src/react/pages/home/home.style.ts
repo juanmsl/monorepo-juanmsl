@@ -91,6 +91,13 @@ export const HomeStyle = styled.main`
       24px 24px 0 0 ${props => props.theme.colors.primary.main}48;
   }
 
+  .gradients {
+    width: 200px;
+    background: linear-gradient(90deg, ${props => props.theme.colors.primary.main}, transparent);
+    color: ${props => props.theme.colors.primary.contrast};
+    padding: 10px 10px 20px;
+  }
+
   .text-shadow {
     color: ${props => props.theme.colors.primary.contrast};
     filter: drop-shadow(0 0 5px ${props => props.theme.colors.primary.main});

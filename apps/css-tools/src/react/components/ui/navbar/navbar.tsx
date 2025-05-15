@@ -1,5 +1,5 @@
 import { useModal } from 'polpo/hooks';
-import { Icon, Image, Tooltip, Typography } from 'polpo/ui';
+import { Icon, Image, Line, Tooltip, Typography } from 'polpo/ui';
 import { useTranslation } from 'react-i18next';
 import { Link, NavLink } from 'react-router-dom';
 
@@ -26,6 +26,7 @@ export const Navbar = () => {
               <Icon name='house' />
             </NavLink>
           </Tooltip>
+          <Line orientation='horizontal' />
           <Tooltip position='right' content='box-shadow' offset='10'>
             <NavLink className='navbar-options--link' to={PATHS.BOX_SHADOW_URL}>
               <Icon name='box-shadow' />
@@ -36,9 +37,15 @@ export const Navbar = () => {
               <Icon name='text-shadow' />
             </NavLink>
           </Tooltip>
+          <Tooltip position='right' content='gradients' offset='10'>
+            <NavLink className='navbar-options--link' to={PATHS.GRADIENTS_URL}>
+              <Icon name='gradient-1' />
+            </NavLink>
+          </Tooltip>
         </section>
       </section>
       <section className='section-bottom'>
+        <Line orientation='horizontal' />
         <Tooltip position='right' content='Share your opinion here!' offset='10'>
           <span className='modal-suggestions-trigger' onClick={openModal}>
             <Icon name='cv' />

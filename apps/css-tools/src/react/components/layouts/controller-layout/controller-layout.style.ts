@@ -1,29 +1,38 @@
 import styled from 'styled-components';
 
+import { SectionCard } from '@components/ui';
+
 export const ControllerLayoutStyle = styled.section`
   display: grid;
   height: 100%;
-  padding: 10px;
-  gap: 10px;
-  grid-template:
-    'sandbox' auto
-    'controller' 1fr
-    'examples' auto
-    / 1fr;
-
-  @media screen and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {
-    overflow: auto;
-    grid-template:
-      'sandbox controller' 1fr
-      'examples css' 270px
-      / 1fr 350px;
-  }
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 450px;
+  overflow: auto;
 
   @media screen and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
-    grid-template:
-      'sandbox controller' 1fr
-      'examples css' 270px
-      / 1fr 450px;
+    overflow: auto;
+    grid-template-columns: 1fr 470px;
+    grid-template-rows: 1fr;
+  }
+
+  .controller-layout-content {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .controller-layout-controls {
+    display: grid;
+    gap: 10px;
+    grid-template-rows: 1fr;
+    padding: 0 10px 10px 10px;
+    height: 100%;
+    overflow: auto;
+
+    @media screen and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
+      grid-template-rows: 1fr 270px;
+      padding: 10px 10px 10px 0;
+    }
   }
 
   .shadows-item {
@@ -58,15 +67,11 @@ export const ControllerLayoutStyle = styled.section`
     }
 
     &-body {
-      padding: 10px 20px 20px;
+      padding: 20px;
       display: grid;
       background: ${props => props.theme.colors.background.main};
       gap: 1em;
       border-radius: 0 0 14px 14px;
-    }
-
-    .checkbox-inset {
-      justify-self: center;
     }
   }
 
@@ -88,8 +93,7 @@ export const ControllerLayoutStyle = styled.section`
   }
 `;
 
-export const ControllerStyle = styled.section`
-  grid-area: controller;
+export const ControllerStyle = styled(SectionCard)`
   display: grid;
   grid-template:
     'tabs' auto
@@ -99,9 +103,6 @@ export const ControllerStyle = styled.section`
   align-items: start;
   height: 100%;
   overflow: auto;
-  border: 2px solid ${props => props.theme.colors.primary.main};
-  background: ${props => props.theme.colors.background.paper};
-  border-radius: 15px;
 
   .controller-tabs {
     grid-area: tabs;
@@ -160,24 +161,20 @@ export const ControllerStyle = styled.section`
     padding: 10px;
     border-radius: 0 0 15px 15px;
 
-    @media all and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {
+    @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
       grid-auto-flow: column;
     }
   }
 `;
 
-export const CSSStyle = styled.section`
-  grid-area: css;
+export const CSSStyle = styled(SectionCard)`
   width: 100%;
   height: 100%;
   overflow: auto;
-  border: 2px solid ${props => props.theme.colors.primary.main};
-  background: ${props => props.theme.colors.background.paper};
   color: ${props => props.theme.colors.white};
   display: none;
   position: relative;
   cursor: pointer;
-  border-radius: 15px;
 
   .code {
     height: 100%;
@@ -214,36 +211,62 @@ export const CSSStyle = styled.section`
     }
   }
 
-  @media all and (min-width: ${props => props.theme.constants.breakpoints.tablet}) {
+  @media all and (min-width: ${props => props.theme.constants.breakpoints.laptopS}) {
     display: grid;
   }
 `;
 
 export const SandboxStyle = styled.section`
-  grid-area: sandbox;
   width: 100%;
-  height: 100%;
-  min-height: 300px;
   display: grid;
   place-content: center;
+  height: 100%;
+`;
+
+export const ExampleTriggerStyle = styled.section`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: ${props => props.theme.colors.background.paper};
+  width: 2em;
+  height: 2em;
   padding: 1em;
-  border-radius: 15px;
+  border-radius: 50%;
+  margin: 1em;
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+  transition: all 300ms ease;
+  font-size: 1.5em;
+  zindex: 200;
+
+  &:hover {
+    background: ${props => props.theme.colors.primary.main};
+    color: ${props => props.theme.colors.primary.contrast};
+  }
 `;
 
 export const ExamplesStyle = styled.section`
-  grid-area: examples;
-  display: grid;
-  grid-template: 1fr / 1fr;
-  grid-auto-flow: column;
+  display: flex;
+  flex-wrap: wrap;
   gap: 80px;
+  padding: 4em 2em;
+  place-content: center;
+  zip-index: 100;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
   height: 100%;
-  overflow-x: auto;
-  place-content: start;
-  min-height: 100%;
-  padding: 60px;
-  justify-items: center;
-  background: ${props => props.theme.colors.background.paper};
-  backdrop-filter: blur(2px);
-  border-radius: 15px;
-  border: 2px solid ${props => props.theme.colors.primary.main};
+  overflow: auto;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(
+    180deg,
+    ${props => props.theme.colors.background.paper}AA,
+    ${props => props.theme.colors.background.paper}
+  );
+
+  &.is-open {
+    top: 0;
+  }
 `;

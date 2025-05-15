@@ -4,19 +4,25 @@ import React from 'react';
 import { BoxShadowStyle } from './box-shadow.style';
 
 import { BoxShadowLine } from '@core/constants';
-import { useBoxShadow } from '@hooks';
+import { getBoxShadowCSS } from '@hooks';
 
 type BoxShadowProps = {
   boxShadowList: Array<BoxShadowLine>;
-  onClick: () => void;
+  onClick: (e: React.MouseEvent<HTMLElement>) => void;
   children: React.ReactNode;
 };
 
 export const BoxShadow = ({ boxShadowList, onClick, children }: BoxShadowProps) => {
-  const boxShadow = useBoxShadow(boxShadowList);
-
   return (
-    <BoxShadowStyle onClick={onClick} style={{ boxShadow: boxShadow.filter(line => line).join(', ') }}>
+    <BoxShadowStyle
+      onClick={onClick}
+      style={{
+        boxShadow: boxShadowList
+          .map(getBoxShadowCSS)
+          .filter(line => line)
+          .join(', '),
+      }}
+    >
       <Typography variant='label' weight='bold'>
         {children}
       </Typography>

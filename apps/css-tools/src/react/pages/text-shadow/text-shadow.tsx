@@ -1,14 +1,14 @@
 import { AccordionItem, Grid, Icon, Input, InputColor, Slider, Typography } from 'polpo/ui';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'styled-components';
 
 import { TextShadowStyle } from './text-shadow.style';
 
 import { ControllerLayout, ExampleComponentProps } from '@components/layouts';
-import { TextShadow } from '@components/ui';
+import { DistanceSelector, TextShadow } from '@components/ui';
 import { TextShadowLine, TextShadowList } from '@core/constants';
-import { useTextShadow } from '@hooks';
+import { getTextShadowCSS } from '@hooks';
 
 const Example = ({ index, example, onClick }: ExampleComponentProps<TextShadowLine>) => {
   const { t } = useTranslation();
@@ -23,13 +23,8 @@ const Example = ({ index, example, onClick }: ExampleComponentProps<TextShadowLi
 export const TextShadowPage = () => {
   const { t } = useTranslation();
   const theme = useTheme();
-  const [selectedList, setSelectedList] = useState(TextShadowList[0]);
   const [textColor, setTextColor] = useState(theme.colors.primary.main);
   const [text, setText] = useState('Text Shadow 😆');
-
-  const textShadow = useTextShadow(selectedList);
-
-  const css = useMemo(() => `text-shadow:\n  ${textShadow.filter(line => line).join(',\n  ')};`, [textShadow]);
 
   const actions = () => (
     <>
@@ -47,10 +42,12 @@ export const TextShadowPage = () => {
   return (
     <ControllerLayout
       list={TextShadowList}
-      selected={selectedList}
-      setSelected={setSelectedList}
-      css={css}
-      selectExample={index => setSelectedList(TextShadowList[index])}
+      getCSS={item =>
+        `text-shadow:\n  ${item
+          .map(getTextShadowCSS)
+          .filter(line => line)
+          .join(',\n  ')};`
+      }
       ExampleComponent={Example}
       newItem={{
         x: 0,
@@ -59,67 +56,80 @@ export const TextShadowPage = () => {
         color: '#000000',
       }}
       renderActions={actions}
-      renderAccordionItem={({ x, y, blur, color, updateItem, deleteItem }, key) => (
+      renderAccordionItem={({ item, updateItem, deleteItem, index }) => (
         <AccordionItem
-          key={key}
+          key={index}
           className='shadows-item'
           classNames={{
             header: 'shadows-item-header',
             body: 'shadows-item-body',
           }}
-          startContent={() => <InputColor name='color' value={color} setValue={updateItem('color', key)} />}
+          startContent={() => <InputColor name='color' value={item.color} setValue={updateItem('color')} />}
           content={
             <Grid flow='column' gap='1em' ai='center' jc='space-between'>
               <section>
                 <Typography variant='body' weight='bold' family='code' noPadding>
-                  {t('shadow:shadow-#', { index: key + 1 })}
+                  {t('shadow:shadow-#', { index: index + 1 })}
                 </Typography>
                 <Typography variant='small' family='code' noPadding className='shadows-item-header--subtitle'>
-                  {textShadow[key] || t('shadow:no-shadow')}
+                  {getTextShadowCSS(item) || t('shadow:no-shadow')}
                 </Typography>
               </section>
-              {selectedList.length > 1 ? (
-                <Icon name='cross' className='delete-shadow-icon' onClick={deleteItem(key)} />
-              ) : null}
+              {deleteItem ? <Icon name='cross' className='delete-shadow-icon' onClick={deleteItem} /> : null}
             </Grid>
           }
         >
-          <Slider
-            name='x'
-            label={t('controls:x-position')}
-            min={-100}
-            max={100}
-            value={x}
-            setValue={updateItem('x', key)}
-          />
-          <Slider
-            name='y'
-            label={t('controls:y-position')}
-            min={-100}
-            max={100}
-            value={y}
-            setValue={updateItem('y', key)}
-          />
+          <DistanceSelector
+            x={item.x}
+            y={item.y}
+            width='150'
+            setValue={([xValue, yValue]) => {
+              updateItem('x')(xValue);
+              updateItem('y')(yValue);
+            }}
+          >
+            <Slider
+              name='x'
+              label={t('controls:x-position')}
+              min={-100}
+              max={100}
+              value={item.x}
+              setValue={updateItem('x')}
+            />
+            <Slider
+              name='y'
+              label={t('controls:y-position')}
+              min={-100}
+              max={100}
+              value={item.y}
+              setValue={updateItem('y')}
+            />
+          </DistanceSelector>
           <Slider
             name='blur'
             label={t('controls:blur')}
             min={0}
             max={100}
-            value={blur}
-            setValue={updateItem('blur', key)}
+            value={item.blur}
+            setValue={updateItem('blur')}
           />
         </AccordionItem>
       )}
     >
-      <TextShadowStyle
-        className='text-shadow-box'
-        style={{
-          textShadow: textShadow.filter(line => line).join(', '),
-          color: textColor,
-        }}
-      >
-        <Typography variant='header1'>{text}</Typography>
-      </TextShadowStyle>
+      {item => (
+        <TextShadowStyle
+          className='text-shadow-box'
+          style={{
+            color: textColor,
+            textShadow: item
+              .map(getTextShadowCSS)
+              .filter(line => line)
+              .join(', '),
+          }}
+        >
+          <Typography variant='header1'>{text}</Typography>
+        </TextShadowStyle>
+      )}
     </ControllerLayout>
   );
 };
