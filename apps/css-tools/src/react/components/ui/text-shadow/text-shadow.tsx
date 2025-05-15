@@ -4,7 +4,7 @@ import React from 'react';
 import { TextShadowStyle } from './text-shadow.style';
 
 import { TextShadowLine } from '@core/constants';
-import { useTextShadow } from '@hooks';
+import { getTextShadowCSS } from '@hooks';
 
 type TextShadowProps = {
   textShadowList: Array<TextShadowLine>;
@@ -13,11 +13,18 @@ type TextShadowProps = {
 };
 
 export const TextShadow = ({ textShadowList, onClick, children }: TextShadowProps) => {
-  const textShadow = useTextShadow(textShadowList);
-
   return (
     <TextShadowStyle onClick={onClick}>
-      <Typography variant='body' weight='bold' style={{ textShadow: textShadow.filter(line => line).join(', ') }}>
+      <Typography
+        variant='body'
+        weight='bold'
+        style={{
+          textShadow: textShadowList
+            .map(getTextShadowCSS)
+            .filter(line => line)
+            .join(', '),
+        }}
+      >
         {children}
       </Typography>
       <Typography className='example-text' variant='small'>

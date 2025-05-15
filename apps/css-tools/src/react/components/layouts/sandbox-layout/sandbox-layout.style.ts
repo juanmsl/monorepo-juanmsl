@@ -5,4 +5,10 @@ export const SandboxLayoutStyle = styled.section`
   grid-template: 1fr / auto 1fr;
   height: 100%;
   overflow: auto;
+
+  .sandbox-layout-content {
+    height: 100%;
+    overflow: auto;
+    display: grid;
+  }
 `;

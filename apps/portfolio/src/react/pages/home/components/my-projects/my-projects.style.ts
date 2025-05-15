@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 
 export const MyProjectsStyle = styled(SectionLayout)`
   position: relative;
+  overflow: hidden;
 
   ${({ theme }) =>
     theme.name === 'dark' &&

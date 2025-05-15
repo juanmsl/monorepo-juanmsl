@@ -7,7 +7,9 @@ export const SandboxLayout = () => {
   return (
     <SandboxLayoutStyle>
       <Navbar />
-      <Outlet />
+      <section className='sandbox-layout-content'>
+        <Outlet />
+      </section>
     </SandboxLayoutStyle>
   );
 };

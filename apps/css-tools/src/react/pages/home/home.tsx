@@ -17,6 +17,11 @@ const generators = [
     text: 'text-shadow',
     className: 'text-shadow',
   },
+  {
+    to: PATHS.GRADIENTS_URL,
+    text: 'gradients',
+    className: 'gradients',
+  },
 ];
 
 export const Home = () => {

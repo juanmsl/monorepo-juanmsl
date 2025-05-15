@@ -1,4 +1,4 @@
-import { BoxShadowLine, TextShadowLine } from '@core/constants/entities';
+import { BoxShadowLine, GradientLine, TextShadowLine } from '@core/constants/entities';
 
 export const TextShadowList: Array<Array<TextShadowLine>> = [
   [{ x: 0, y: 2, blur: 6, color: '#000000' }],
@@ -115,4 +115,10 @@ export const BoxShadowList: Array<Array<BoxShadowLine>> = [
     { x: 15, y: -15, blur: 0, spread: 0, color: '#FF9C55', isInset: false },
     { x: 20, y: -20, blur: 0, spread: 0, color: '#FF5555', isInset: false },
   ],
+] as const;
+
+export const GradientList: Array<Array<GradientLine>> = [
+  [{ color: '#2acdff' }, { color: '#10e69f' }, { color: '#FED9B7' }, { color: '#e98528' }],
+  [{ color: '#5cf60a' }, { color: '#00fbff' }, { color: '#c50be6' }, { color: '#2acdff' }],
+  [{ color: '#c3b3ff' }, { color: '#4601D0' }, { color: '#080707' }, { color: '#3D14F5' }],
 ] as const;

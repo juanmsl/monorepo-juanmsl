@@ -13,3 +13,8 @@ export type BoxShadowLine = {
   color: string;
   isInset: boolean;
 };
+
+export type GradientLine = {
+  color: string;
+  percentage?: number;
+};

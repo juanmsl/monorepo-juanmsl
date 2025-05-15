@@ -26,6 +26,10 @@ export const NavbarStyle = styled.nav`
   .section-bottom {
     display: grid;
     justify-items: center;
+    gap: 20px;
+  }
+
+  .navbar-top {
     gap: 50px;
   }
 
