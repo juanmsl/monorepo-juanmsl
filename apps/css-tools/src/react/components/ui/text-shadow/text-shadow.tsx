@@ -8,7 +8,7 @@ import { getTextShadowCSS } from '@hooks';
 
 type TextShadowProps = {
   textShadowList: Array<TextShadowLine>;
-  onClick: () => void;
+  onClick: (e: React.MouseEvent<HTMLDivElement>) => void;
   children: React.ReactNode;
 };
 
