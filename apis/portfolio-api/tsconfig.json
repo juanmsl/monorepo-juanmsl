@@ -1,0 +1,11 @@
+{
+  "extends": "@juanmsl/tsconfig/nodejs.json",
+  "include": ["**/*.ts"],
+  "exclude": ["dist"],
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "dist",
+    "baseUrl": "src",
+    "resolveJsonModule": true,
+  },
+}

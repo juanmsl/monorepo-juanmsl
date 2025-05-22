@@ -1,10 +1,10 @@
+import { ProfessionalSkillsEntity } from '@juanmsl/portfolio-api';
 import { Image, Typography } from 'polpo/ui';
 import { useState } from 'react';
 
 import { GlassStyled, MySkillsStyle, SkillStyle } from './my-skills.style';
 
 import { Reveal } from '@components/animations';
-import { ProfessionalSkillsEntity } from '@domain';
 import { useGetProfessionalSkills, useGetTechnologies } from '@hooks';
 
 export const MySkills = () => {
