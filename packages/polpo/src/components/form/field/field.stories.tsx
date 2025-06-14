@@ -4,7 +4,7 @@ import { ContainerDecorator } from '../form.stories.types';
 import { Field } from './field';
 import { FieldOrientation, FieldVariant } from './field.types';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 export const FieldSharedArgTypes: Meta<typeof Field>['argTypes'] = {
   label: { control: 'text' },

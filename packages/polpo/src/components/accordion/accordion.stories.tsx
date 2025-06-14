@@ -5,7 +5,7 @@ import { Accordion } from './accordion';
 import { AccordionItem } from './accordion-item';
 import { CustomContent as AccordionItemStories } from './accordion-item.stories';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof Accordion> = {
   title: 'Accordion/Accordion',

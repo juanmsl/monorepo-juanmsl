@@ -5,7 +5,7 @@ import { ContainerDecorator, UnControlledComponentArgTypes } from '../form.stori
 
 import { Slider } from './slider';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof Slider> = {
   title: 'Form/Slider',

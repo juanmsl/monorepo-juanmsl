@@ -1,3 +1,4 @@
+import { ProjectEntity } from '@juanmsl/portfolio-api';
 import { useClassNames } from 'polpo/hooks';
 import { Button, FlipCard, Grid, Icon, IconNameT, Image, Tag, Tooltip, Typography } from 'polpo/ui';
 import { useState } from 'react';
@@ -6,7 +7,6 @@ import { useTranslation } from 'react-i18next';
 import { LinksContainerStyle, ProjectCardStyle } from './project-card.style';
 
 import { ScreenImage } from '@components/ui';
-import { ProjectEntity } from '@domain';
 
 type ProjectCardProps = {
   project: ProjectEntity;

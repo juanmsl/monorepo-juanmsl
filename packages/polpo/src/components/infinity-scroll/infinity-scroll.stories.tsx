@@ -5,7 +5,7 @@ import { Typography } from '../typography';
 
 import { InfinityScroll } from './infinity-scroll';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof InfinityScroll> = {
   title: 'InfinityScroll',

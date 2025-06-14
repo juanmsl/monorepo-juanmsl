@@ -2,7 +2,7 @@ import { Grid } from '../../../layouts';
 
 import { LoaderIcons, SimpleLoader } from './simple-loader';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof SimpleLoader> = {
   title: 'SimpleLoader',

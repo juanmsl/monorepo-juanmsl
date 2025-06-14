@@ -1,1 +1,1 @@
-export * from './content-full';
+export * from './portfolio-api';

@@ -9,7 +9,7 @@ import { Modal as ModalComponent, ModalProps } from './modal';
 import { PositionContainer } from '@polpo/helpers';
 import { useModal } from '@polpo/hooks';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const Modal = ({ children, ...props }: ModalProps) => (
   <ModalComponent backdrop='none' {...props} style={{ borderRadius: '1em' }}>

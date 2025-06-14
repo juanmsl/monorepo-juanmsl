@@ -5,7 +5,7 @@ import { ConfirmationModal } from './confirmation-modal';
 
 import { useModal } from '@polpo/hooks';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof ConfirmationModal> = {
   title: 'Modals/ConfirmationModal',

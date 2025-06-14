@@ -40,7 +40,16 @@ export const Footer = () => {
             i18nKey='footer:copyright'
             components={[
               <Link className='footer-link' key={0} target='_blank' rel='nooppener' to='https://react.dev/' />,
-              <span className='footer-heart' key={1} />,
+              <Link
+                className='footer-link'
+                key={1}
+                target='_blank'
+                rel='nooppener'
+                to='https://styled-components.com/'
+              />,
+              <Link className='footer-link' key={2} target='_blank' rel='nooppener' to='http://motion.dev/' />,
+              <Link className='footer-link' key={3} target='_blank' rel='nooppener' to='https://vercel.com/' />,
+              <span className='footer-heart' key={4} />,
             ]}
           ></Trans>
         </Typography>

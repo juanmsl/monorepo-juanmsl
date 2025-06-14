@@ -11,6 +11,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@juanmsl/portfolio-api": "*",
+    "@juanmsl/spotify-api": "*",
     "@juanmsl/pdf-viewer": "*",
     "@tanstack/react-query": "^5.17.19",
     "@vercel/analytics": "^1.3.1",

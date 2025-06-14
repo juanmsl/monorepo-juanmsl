@@ -1,3 +1,4 @@
+import { JobExperienceEntity } from '@juanmsl/portfolio-api';
 import { formatDate, timeBetween } from 'polpo/helpers';
 import { Grid, Icon, IconNameT, Image, Tag, Tooltip, Typography } from 'polpo/ui';
 
@@ -5,7 +6,6 @@ import { CompanyDetailsStyle } from './my-experience.style';
 
 import { Reveal } from '@components/animations';
 import { Markdown } from '@components/ui';
-import { JobExperienceEntity } from '@domain';
 
 type CompanyItemProps = {
   company: JobExperienceEntity;

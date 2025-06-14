@@ -25,14 +25,8 @@ const config: StorybookConfig = {
   ],
 
   addons: [
-    {
-      name: getAbsolutePath('@storybook/addon-essentials'),
-      options: {
-        actions: false,
-      },
-    },
     getAbsolutePath('@storybook/addon-links'),
-    getAbsolutePath('@storybook/addon-interactions'),
+    getAbsolutePath("@storybook/addon-docs")
   ],
 
   framework: {
@@ -43,5 +37,9 @@ const config: StorybookConfig = {
   typescript: {
     reactDocgen: 'react-docgen-typescript',
   },
+
+  features: {
+    actions: false
+  }
 };
 export default config;

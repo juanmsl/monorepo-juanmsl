@@ -13,7 +13,7 @@ import DataJson from './data.stories.json';
 import { Select } from './select';
 import { OptionComponentProps } from './select.types';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const groupNamesByFirstLetter = (names: Array<string>): Array<{ letter: string; names: Array<string> }> => {
   const groups: Record<string, Array<string>> = {};

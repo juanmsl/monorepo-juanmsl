@@ -6,7 +6,7 @@ import { UnControlledComponentArgTypes } from '../form.stories.types';
 
 import { Radio } from './radio';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof Radio> = {
   title: 'Form/Radio',

@@ -6,7 +6,7 @@ import { Menu } from './menu';
 import { PositionContainer } from '@polpo/helpers';
 import { useModal } from '@polpo/hooks';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof Menu> = {
   title: 'Modals/Menu',

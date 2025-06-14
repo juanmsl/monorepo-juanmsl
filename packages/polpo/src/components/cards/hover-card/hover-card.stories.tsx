@@ -3,7 +3,7 @@ import { Typography } from '../../typography';
 
 import { HoverCard } from './hover-card';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof HoverCard> = {
   title: 'Cards/HoverCard',

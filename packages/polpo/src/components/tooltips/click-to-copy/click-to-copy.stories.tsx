@@ -2,7 +2,7 @@ import TooltipStory from '../tooltip/tooltip.stories';
 
 import { ClickToCopy } from './click-to-copy';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof ClickToCopy> = {
   title: 'Tooltips/ClickToCopy',
