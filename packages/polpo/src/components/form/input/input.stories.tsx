@@ -5,7 +5,7 @@ import { ContainerDecorator, UnControlledComponentArgTypes } from '../form.stori
 
 import { Input } from './input';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof Input> = {
   title: 'Form/Input',

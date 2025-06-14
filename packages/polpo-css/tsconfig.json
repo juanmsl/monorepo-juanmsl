@@ -1,0 +1,15 @@
+{
+  "extends": "@juanmsl/tsconfig/react-library.json",
+  "include": ["**/*.ts", "**/*.tsx", ".storybook/**/*.ts", ".storybook/**/*.tsx"],
+  "exclude": ["dist", "lib", "node_modules", "tsup.config.cjs"],
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "dist",
+    "baseUrl": "src",
+    "resolveJsonModule": true,
+    "paths": {
+      "@polpo/helpers": ["./helpers"],
+      "@polpo/hooks": ["./hooks"]
+    }
+  },
+}

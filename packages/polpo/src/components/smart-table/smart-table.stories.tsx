@@ -2,7 +2,7 @@ import { Icon } from '../icon';
 
 import { SmartTable } from './smart-table';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const users = [
   {

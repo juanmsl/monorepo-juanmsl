@@ -1,4 +1,4 @@
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 
 import { Grid } from '../../layouts';
 import { ClickToCopy } from '../tooltips';
@@ -8,7 +8,7 @@ import { Icon } from './icon';
 
 import { IconNames } from '.';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof Icon> = {
   title: 'Icon',

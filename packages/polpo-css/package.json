@@ -1,0 +1,32 @@
+{
+  "name": "polpo-css",
+  "version": "0.0.1",
+  "sideEffects": false,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "yarn lint --fix",
+    "build:watch": "tsup --watch",
+    "clean": "rm -rf ./dist",
+    "build": "yarn clean && tsup",
+    "publish-package": "yarn lint && yarn build && yarn publish --no-git-tag-version",
+    "dev": "storybook dev -p 6006 --quiet --debug hmr"
+  },
+  "devDependencies": {
+    "@juanmsl/eslint-config": "*",
+    "@juanmsl/svg-to-react": "*",
+    "@juanmsl/tsconfig": "*",
+    "@typescript-eslint/eslint-plugin": "^7.4.0",
+    "@typescript-eslint/parser": "^7.4.0",
+    "eslint": "^8.57.0",
+    "eslint-config-custom": "*",
+    "eslint-plugin-prettier": "^5.0.0",
+    "tsconfig": "*",
+    "tsup": "^8.0.1",
+    "typescript": "^5.5.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

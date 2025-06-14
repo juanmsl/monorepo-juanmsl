@@ -5,7 +5,7 @@ import { ContainerDecorator, UnControlledComponentArgTypes } from '../form.stori
 
 import { Textarea } from './textarea';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof Textarea> = {
   title: 'Form/Textarea',

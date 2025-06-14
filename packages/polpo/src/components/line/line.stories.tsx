@@ -3,7 +3,7 @@ import { Typography } from '../typography';
 
 import { Line, LineOrientation, LineStyle } from './line';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof Line> = {
   title: 'Line',

@@ -3,7 +3,7 @@ import { useTheme } from 'styled-components';
 
 import { DarkTheme, Grid, LightTheme, THEME, ThemeProvider } from '../src';
 
-import type { Decorator, Preview } from '@storybook/react';
+import type { Decorator, Preview } from '@storybook/react-vite';
 
 const ThemeDecorator: Decorator = (Story, context) => {
   const {
